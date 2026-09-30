@@ -1,0 +1,5 @@
+# OG MotoWorks – https://ogmotoworks.nl
+User-agent: *
+Allow: /
+
+Sitemap: https://ogmotoworks.nl/sitemap.xml
