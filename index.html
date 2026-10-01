@@ -176,7 +176,7 @@
         <li><span class="what">Voorvorkkeerringen vervangen<small>Bij een lekkende voorvork</small></span><span class="amount"><small>vanaf</small>€350</span></li>
         <li><span class="what">Banden monteren<small>Banden worden apart berekend</small></span><span class="amount">€50<span>/ wiel</span></span></li>
       </ul>
-      <p class="note"><strong>Alle prijzen zijn incl. 21% btw.</strong> Iets anders nodig? <a class="link" href="https://wa.me/31642939555?text=Hoi%20Freddy%21%20Ik%20wil%20graag%20een%20prijs%20weten%20voor%3A%20" target="_blank" rel="noopener">App je vraag</a> voor een prijs op maat.</p>
+      <p class="note"><strong>Alle prijzen zijn incl. 21% btw.</strong> Iets anders nodig? <a class="link" data-wa-intent="prijs" href="https://wa.me/31642939555?text=Hoi%20Freddy%21%20Ik%20wil%20graag%20een%20prijs%20weten%20voor%3A%20" target="_blank" rel="noopener">App je vraag</a> voor een prijs op maat.</p>
     </div>
   </section>
 
@@ -346,5 +346,51 @@
 <a class="fab" href="https://wa.me/31642939555?text=Hoi%20Freddy%21%20Ik%20wil%20graag%20een%20afspraak%20maken%20voor%20mijn%20motor.%0AMerk%2Fmodel%3A%20%0ABouwjaar%3A%20%0AWat%20moet%20er%20gebeuren%3A%20" target="_blank" rel="noopener" aria-label="WhatsApp OG MotoWorks">
   <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>
 </a>
+<dialog class="sheet" id="wa-dialog" aria-labelledby="wa-title" aria-describedby="wa-desc">
+  <form class="sheet__panel" id="wa-form" novalidate>
+    <div class="sheet__head">
+      <h2 id="wa-title">Even je motorgegevens</h2>
+      <button type="button" class="sheet__close" data-wa-close aria-label="Sluiten">&times;</button>
+    </div>
+    <p class="sheet__desc" id="wa-desc">Vul dit in, dan opent WhatsApp met een kant-en-klaar bericht aan OG MotoWorks. Je verstuurt het zelf; we slaan niets op.</p>
+    <input type="hidden" name="intent" value="afspraak">
+    <div class="sheet__grid">
+      <div class="field field--full">
+        <label for="wa-kenteken">Kenteken <span class="req" aria-hidden="true">*</span></label>
+        <input id="wa-kenteken" name="kenteken" type="text" required autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="12" placeholder="AB-12-CD" aria-describedby="wa-kenteken-err">
+        <p class="field__err" id="wa-kenteken-err" aria-live="polite"></p>
+      </div>
+      <div class="field">
+        <label for="wa-merk">Merk <span class="req" aria-hidden="true">*</span></label>
+        <input id="wa-merk" name="merk" type="text" required autocomplete="off" maxlength="40" placeholder="bijv. Yamaha" aria-describedby="wa-merk-err">
+        <p class="field__err" id="wa-merk-err" aria-live="polite"></p>
+      </div>
+      <div class="field">
+        <label for="wa-model">Model <span class="req" aria-hidden="true">*</span></label>
+        <input id="wa-model" name="model" type="text" required autocomplete="off" maxlength="40" placeholder="bijv. MT-07" aria-describedby="wa-model-err">
+        <p class="field__err" id="wa-model-err" aria-live="polite"></p>
+      </div>
+      <div class="field field--full">
+        <label for="wa-km">Kilometerstand <span class="req" aria-hidden="true">*</span></label>
+        <div class="field__suffix"><input id="wa-km" name="km" type="text" inputmode="numeric" required autocomplete="off" maxlength="9" placeholder="bijv. 23450" aria-describedby="wa-km-err"><span aria-hidden="true">km</span></div>
+        <p class="field__err" id="wa-km-err" aria-live="polite"></p>
+      </div>
+      <div class="field field--full">
+        <label for="wa-vraag">Wat kunnen we voor je doen? <span class="opt">(optioneel)</span></label>
+        <textarea id="wa-vraag" name="vraag" rows="3" maxlength="600" placeholder="bijv. onderhoud, storing, banden"></textarea>
+      </div>
+      <div class="field field--full">
+        <label for="wa-naam">Naam <span class="opt">(optioneel)</span></label>
+        <input id="wa-naam" name="naam" type="text" autocomplete="given-name" maxlength="60">
+      </div>
+    </div>
+    <p class="sheet__req"><span aria-hidden="true">*</span> verplicht</p>
+    <div class="sheet__actions">
+      <button type="submit" class="btn btn--wa btn--xl"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Open WhatsApp</button>
+      <button type="button" class="btn btn--ghost" data-wa-close>Annuleren</button>
+    </div>
+  </form>
+</dialog>
+<script src="assets/js/wa-form.js" defer></script>
 </body>
 </html>
