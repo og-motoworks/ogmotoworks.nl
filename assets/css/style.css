@@ -130,6 +130,22 @@ p{margin:0 0 1em}
 .towns li{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 12px;font-weight:600}
 .towns li.home{background:var(--accent);border-color:var(--accent)}
 
+/* Over ons */
+.area--over{margin-top:28px;align-items:start}
+.over__text p{color:var(--muted);margin:0 0 1em}
+.over__text p.lead{color:var(--text);font-size:1.2rem;font-weight:600}
+.over__text strong{color:var(--text)}
+.over__text h3{font-size:1.5rem;margin:1.4em 0 .5em}
+.over__cta{margin-top:22px;max-width:440px}
+.photo--over{aspect-ratio:4/5;order:-1}
+.nav a,.brand span{white-space:nowrap}
+@media (min-width:900px) and (max-width:1099px){.nav{gap:14px}.nav a{font-size:.85rem;letter-spacing:.05em}}
+@media (min-width:900px){
+  .photo--over{order:0}
+  .area--over .photo--over{position:sticky;top:96px}
+  .over__cta .btn{width:auto}
+}
+
 /* Contact */
 .contact{display:grid;gap:22px;margin-top:28px}
 .contact__main{background:linear-gradient(160deg,#1d1f23,#141619);border:1px solid var(--line);border-radius:var(--r);padding:22px 20px}
