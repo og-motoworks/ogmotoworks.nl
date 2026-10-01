@@ -100,7 +100,7 @@
       <a href="#werkgebied">Werkgebied</a>
       <a href="#contact">Contact</a>
     </nav>
-    <a class="btn btn--wa" href="https://wa.me/31642939555?text=Hoi%20Freddy%21%20Ik%20wil%20graag%20een%20afspraak%20maken%20voor%20mijn%20motor.%0AMerk%2Fmodel%3A%20%0ABouwjaar%3A%20%0AWat%20moet%20er%20gebeuren%3A%20" target="_blank" rel="noopener">
+    <a class="btn btn--wa" href="https://wa.me/31642939555?text=Hoi%20OG%20MotoWorks%21%20Ik%20wil%20graag%20een%20afspraak%20maken.%0AKenteken%3A%20%0AMerk%2Fmodel%3A%20%0ABouwjaar%3A%20%0AKilometerstand%3A%20%0AVraag%3A%20" target="_blank" rel="noopener">
       <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>App ons
     </a>
   </div>
@@ -113,7 +113,7 @@
         <h1><span class="kicker" style="display:block">Motorwerkplaats Waalwijk</span> Onderhoud, tuning <em>&amp;</em> reparaties voor je motor</h1>
         <p class="lead">Motorwerkplaats OG MotoWorks in Waalwijk. Stuur Freddy een appje en we plannen het samen in.</p>
         <div class="hero__cta">
-          <a class="btn btn--wa btn--xl" href="https://wa.me/31642939555?text=Hoi%20Freddy%21%20Ik%20wil%20graag%20een%20afspraak%20maken%20voor%20mijn%20motor.%0AMerk%2Fmodel%3A%20%0ABouwjaar%3A%20%0AWat%20moet%20er%20gebeuren%3A%20" target="_blank" rel="noopener">
+          <a class="btn btn--wa btn--xl" href="https://wa.me/31642939555?text=Hoi%20OG%20MotoWorks%21%20Ik%20wil%20graag%20een%20afspraak%20maken.%0AKenteken%3A%20%0AMerk%2Fmodel%3A%20%0ABouwjaar%3A%20%0AKilometerstand%3A%20%0AVraag%3A%20" target="_blank" rel="noopener">
             <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>App voor een afspraak
           </a>
           <a class="btn btn--ghost btn--xl" href="#prijzen">Bekijk prijzen</a>
@@ -313,8 +313,8 @@
       <div class="contact">
         <div class="contact__main">
           <p style="margin:0">WhatsApp Freddy</p>
-          <a class="num" href="https://wa.me/31642939555?text=Hoi%20Freddy%21%20Ik%20wil%20graag%20een%20afspraak%20maken%20voor%20mijn%20motor.%0AMerk%2Fmodel%3A%20%0ABouwjaar%3A%20%0AWat%20moet%20er%20gebeuren%3A%20" target="_blank" rel="noopener">+31 6 42 93 95 55</a>
-          <a class="btn btn--wa btn--xl" href="https://wa.me/31642939555?text=Hoi%20Freddy%21%20Ik%20wil%20graag%20een%20afspraak%20maken%20voor%20mijn%20motor.%0AMerk%2Fmodel%3A%20%0ABouwjaar%3A%20%0AWat%20moet%20er%20gebeuren%3A%20" target="_blank" rel="noopener">
+          <a class="num" href="https://wa.me/31642939555?text=Hoi%20OG%20MotoWorks%21%20Ik%20wil%20graag%20een%20afspraak%20maken.%0AKenteken%3A%20%0AMerk%2Fmodel%3A%20%0ABouwjaar%3A%20%0AKilometerstand%3A%20%0AVraag%3A%20" target="_blank" rel="noopener">+31 6 42 93 95 55</a>
+          <a class="btn btn--wa btn--xl" href="https://wa.me/31642939555?text=Hoi%20OG%20MotoWorks%21%20Ik%20wil%20graag%20een%20afspraak%20maken.%0AKenteken%3A%20%0AMerk%2Fmodel%3A%20%0ABouwjaar%3A%20%0AKilometerstand%3A%20%0AVraag%3A%20" target="_blank" rel="noopener">
             <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Stuur een appje
           </a>
         </div>
@@ -343,7 +343,7 @@
   </div>
 </footer>
 
-<a class="fab" href="https://wa.me/31642939555?text=Hoi%20Freddy%21%20Ik%20wil%20graag%20een%20afspraak%20maken%20voor%20mijn%20motor.%0AMerk%2Fmodel%3A%20%0ABouwjaar%3A%20%0AWat%20moet%20er%20gebeuren%3A%20" target="_blank" rel="noopener" aria-label="WhatsApp OG MotoWorks">
+<a class="fab" href="https://wa.me/31642939555?text=Hoi%20OG%20MotoWorks%21%20Ik%20wil%20graag%20een%20afspraak%20maken.%0AKenteken%3A%20%0AMerk%2Fmodel%3A%20%0ABouwjaar%3A%20%0AKilometerstand%3A%20%0AVraag%3A%20" target="_blank" rel="noopener" aria-label="WhatsApp OG MotoWorks">
   <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>
 </a>
 <dialog class="sheet" id="wa-dialog" aria-labelledby="wa-title" aria-describedby="wa-desc">
@@ -370,7 +370,12 @@
         <input id="wa-model" name="model" type="text" required autocomplete="off" maxlength="40" placeholder="bijv. MT-07" aria-describedby="wa-model-err">
         <p class="field__err" id="wa-model-err" aria-live="polite"></p>
       </div>
-      <div class="field field--full">
+      <div class="field">
+        <label for="wa-bouwjaar">Bouwjaar <span class="req" aria-hidden="true">*</span></label>
+        <input id="wa-bouwjaar" name="bouwjaar" type="text" inputmode="numeric" pattern="[0-9]*" required autocomplete="off" maxlength="4" placeholder="bijv. 2019" aria-describedby="wa-bouwjaar-err">
+        <p class="field__err" id="wa-bouwjaar-err" aria-live="polite"></p>
+      </div>
+      <div class="field">
         <label for="wa-km">Kilometerstand <span class="req" aria-hidden="true">*</span></label>
         <div class="field__suffix"><input id="wa-km" name="km" type="text" inputmode="numeric" required autocomplete="off" maxlength="9" placeholder="bijv. 23450" aria-describedby="wa-km-err"><span aria-hidden="true">km</span></div>
         <p class="field__err" id="wa-km-err" aria-live="polite"></p>

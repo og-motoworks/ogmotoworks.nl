@@ -37,6 +37,12 @@
       setError(x[0], ok ? '' : x[1]);
       if (!ok) first = first || x[0];
     });
+    var by = field('bouwjaar');
+    var byVal = clean(by.value);
+    var maxYear = new Date().getFullYear() + 1;
+    var byOk = /^\d{4}$/.test(byVal) && +byVal >= 1950 && +byVal <= maxYear;
+    setError(by, byVal ? (byOk ? '' : 'Vul een geldig bouwjaar in (1950–' + maxYear + ').') : 'Vul het bouwjaar in.');
+    if (!byOk) first = first || by;
     var digits = clean(km.value).replace(/[.\s]/g, '');
     var kmOk = /^\d{1,7}$/.test(digits);
     setError(km, digits ? (kmOk ? '' : 'Vul alleen cijfers in, bijv. 23450.') : 'Vul de kilometerstand in.');
@@ -52,6 +58,7 @@
     if (naam) lines.push('Naam: ' + naam);
     lines.push('Kenteken: ' + clean(field('kenteken').value).toUpperCase());
     lines.push('Merk/model: ' + clean(field('merk').value) + ' ' + clean(field('model').value));
+    lines.push('Bouwjaar: ' + clean(field('bouwjaar').value));
     lines.push('Kilometerstand: ' + km.toLocaleString('nl-NL') + ' km');
     var vraag = String(field('vraag').value || '').trim();
     if (vraag) lines.push('Vraag: ' + vraag);
