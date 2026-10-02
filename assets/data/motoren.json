@@ -1,6 +1,6 @@
 {
  "bijgewerkt": "2026-10-03",
- "toelichting": "Populaire motormodellen per merk (NL). Model 'Ander model' en merk 'Anders' worden door het formulier zelf toegevoegd.",
+ "toelichting": "Populaire motormodellen per merk (NL). Model 'Ander model' en merk 'Anders' worden door het formulier zelf toegevoegd. 'uitvoeringen' = bekende uitvoeringen per model (optioneel veld); het formulier voegt 'Weet ik niet' en 'Andere uitvoering' toe.",
  "merken": {
   "Aprilia": [
    "Dorsoduro 900",
@@ -22,9 +22,7 @@
    "Leoncino 800",
    "TNT 125",
    "TRK 502",
-   "TRK 502 X",
-   "TRK 702",
-   "TRK 702 X"
+   "TRK 702"
   ],
   "BMW": [
    "F 650 GS",
@@ -40,8 +38,7 @@
    "G 310 GS",
    "G 310 R",
    "K 1300 S",
-   "K 1600 GT",
-   "K 1600 GTL",
+   "K 1600",
    "M 1000 RR",
    "R 12",
    "R 12 nineT",
@@ -66,7 +63,6 @@
   "Brixton": [
    "Cromwell 1200",
    "Crossfire 500",
-   "Crossfire 500 XC",
    "Felsberg 125"
   ],
   "CFMoto": [
@@ -94,9 +90,7 @@
    "Multistrada V4",
    "Panigale V2",
    "Panigale V4",
-   "Scrambler Full Throttle",
-   "Scrambler Icon",
-   "Scrambler Nightshift",
+   "Scrambler 800",
    "Streetfighter V2",
    "Streetfighter V4",
    "SuperSport 950",
@@ -115,8 +109,7 @@
    "Forty-Eight",
    "Heritage Classic",
    "Iron 883",
-   "Low Rider S",
-   "Low Rider ST",
+   "Low Rider",
    "Nightster",
    "Pan America 1250",
    "Road Glide",
@@ -215,10 +208,8 @@
    "990 Duke",
    "1090 Adventure",
    "1190 Adventure",
-   "1290 Super Adventure R",
-   "1290 Super Adventure S",
-   "1290 Super Duke GT",
-   "1290 Super Duke R",
+   "1290 Super Adventure",
+   "1290 Super Duke",
    "1390 Super Duke R",
    "RC 390"
   ],
@@ -274,7 +265,6 @@
    "Intruder M800",
    "Katana",
    "SV650",
-   "SV650X",
    "V-Strom 650",
    "V-Strom 800DE",
    "V-Strom 1000",
@@ -298,8 +288,7 @@
    "Thruxton",
    "Tiger 800",
    "Tiger 850 Sport",
-   "Tiger 900 GT",
-   "Tiger 900 Rally",
+   "Tiger 900",
    "Tiger 1200",
    "Tiger Sport 660",
    "Trident 660"
@@ -328,7 +317,6 @@
    "Ténéré 700",
    "Tracer 7",
    "Tracer 9",
-   "Tracer 9 GT",
    "Tracer 900",
    "XJ6",
    "XSR125",
@@ -348,5 +336,456 @@
    "350 T",
    "350 X"
   ]
+ },
+ "uitvoeringen": {
+  "Aprilia": {
+   "RS 660": [
+    "Standaard",
+    "Extrema"
+   ],
+   "RSV4": [
+    "Standaard",
+    "RR",
+    "Factory"
+   ],
+   "Tuono 660": [
+    "Standaard",
+    "Factory"
+   ],
+   "Tuono V4": [
+    "Standaard",
+    "Factory",
+    "1100 RR",
+    "1100 Factory"
+   ]
+  },
+  "Benelli": {
+   "TRK 502": [
+    "Standaard",
+    "X"
+   ],
+   "TRK 702": [
+    "Standaard",
+    "X"
+   ]
+  },
+  "BMW": {
+   "K 1600": [
+    "GT",
+    "GTL",
+    "B",
+    "Grand America"
+   ],
+   "R 18": [
+    "Standaard",
+    "Classic",
+    "B",
+    "Transcontinental",
+    "Roctane"
+   ],
+   "R 1200 GS": [
+    "Standaard",
+    "Exclusive",
+    "Rallye",
+    "Triple Black"
+   ],
+   "R 1250 GS": [
+    "Standaard",
+    "Exclusive",
+    "HP",
+    "Rallye",
+    "Triple Black"
+   ],
+   "R 1300 GS": [
+    "Standaard",
+    "Triple Black",
+    "GS Trophy",
+    "Option 719"
+   ],
+   "S 1000 RR": [
+    "Standaard",
+    "M Package"
+   ]
+  },
+  "Brixton": {
+   "Crossfire 500": [
+    "Standaard",
+    "XC"
+   ]
+  },
+  "Ducati": {
+   "DesertX": [
+    "Standaard",
+    "Rally",
+    "Discovery"
+   ],
+   "Hypermotard 950": [
+    "Standaard",
+    "RVE",
+    "SP"
+   ],
+   "Monster": [
+    "Standaard",
+    "+",
+    "SP"
+   ],
+   "Multistrada 950": [
+    "Standaard",
+    "S"
+   ],
+   "Multistrada 1260": [
+    "Standaard",
+    "S",
+    "Enduro",
+    "Pikes Peak"
+   ],
+   "Multistrada V2": [
+    "Standaard",
+    "S"
+   ],
+   "Multistrada V4": [
+    "Standaard",
+    "S",
+    "Pikes Peak",
+    "Rally",
+    "RS"
+   ],
+   "Panigale V2": [
+    "Standaard",
+    "S"
+   ],
+   "Panigale V4": [
+    "Standaard",
+    "S",
+    "R",
+    "SP2"
+   ],
+   "Scrambler 800": [
+    "Icon",
+    "Full Throttle",
+    "Nightshift",
+    "Café Racer",
+    "Desert Sled"
+   ],
+   "Streetfighter V4": [
+    "Standaard",
+    "S",
+    "SP2"
+   ],
+   "SuperSport 950": [
+    "Standaard",
+    "S"
+   ],
+   "XDiavel": [
+    "Standaard",
+    "S",
+    "Dark"
+   ]
+  },
+  "Harley-Davidson": {
+   "Low Rider": [
+    "S",
+    "ST"
+   ]
+  },
+  "Honda": {
+   "Africa Twin CRF1000L": [
+    "Standaard",
+    "Standaard DCT",
+    "Adventure Sports",
+    "Adventure Sports DCT"
+   ],
+   "Africa Twin CRF1100L": [
+    "Standaard",
+    "Standaard DCT",
+    "Adventure Sports",
+    "Adventure Sports DCT"
+   ],
+   "CB650R": [
+    "Standaard",
+    "E-Clutch"
+   ],
+   "CBR650R": [
+    "Standaard",
+    "E-Clutch"
+   ],
+   "CBR1000RR Fireblade": [
+    "Standaard",
+    "SP",
+    "RR-R",
+    "RR-R SP"
+   ],
+   "Gold Wing": [
+    "Standaard",
+    "Tour"
+   ],
+   "NC750X": [
+    "Standaard",
+    "DCT"
+   ],
+   "NT1100": [
+    "Standaard",
+    "DCT"
+   ]
+  },
+  "Husqvarna": {
+   "Norden 901": [
+    "Standaard",
+    "Expedition"
+   ]
+  },
+  "Kawasaki": {
+   "H2": [
+    "Standaard",
+    "Carbon",
+    "SX",
+    "SX SE"
+   ],
+   "Ninja 1000SX": [
+    "Standaard",
+    "Tourer",
+    "Performance"
+   ],
+   "Ninja ZX-10R": [
+    "Standaard",
+    "RR",
+    "SE"
+   ],
+   "Versys 650": [
+    "Standaard",
+    "Tourer",
+    "Grand Tourer"
+   ],
+   "Versys 1000": [
+    "Standaard",
+    "S",
+    "SE"
+   ],
+   "Z900": [
+    "Standaard",
+    "SE"
+   ],
+   "Z900RS": [
+    "Standaard",
+    "Cafe",
+    "SE"
+   ]
+  },
+  "KTM": {
+   "390 Adventure": [
+    "Standaard",
+    "SW",
+    "R",
+    "X"
+   ],
+   "690 Duke": [
+    "Standaard",
+    "R"
+   ],
+   "790 Adventure": [
+    "Standaard",
+    "R"
+   ],
+   "890 Adventure": [
+    "Standaard",
+    "R",
+    "L",
+    "Rally"
+   ],
+   "890 Duke": [
+    "Standaard",
+    "R",
+    "GP"
+   ],
+   "1090 Adventure": [
+    "Standaard",
+    "R"
+   ],
+   "1190 Adventure": [
+    "Standaard",
+    "R"
+   ],
+   "1290 Super Adventure": [
+    "S",
+    "R",
+    "T"
+   ],
+   "1290 Super Duke": [
+    "R",
+    "R EVO",
+    "RR",
+    "GT"
+   ],
+   "1390 Super Duke R": [
+    "Standaard",
+    "EVO"
+   ]
+  },
+  "Moto Guzzi": {
+   "V7": [
+    "Stone",
+    "Special",
+    "Sport",
+    "Racer"
+   ],
+   "V85 TT": [
+    "Standaard",
+    "Travel"
+   ],
+   "V100 Mandello": [
+    "Standaard",
+    "S"
+   ]
+  },
+  "MV Agusta": {
+   "Brutale 800": [
+    "Standaard",
+    "RR"
+   ],
+   "Dragster 800": [
+    "Standaard",
+    "RR",
+    "RC"
+   ],
+   "Turismo Veloce": [
+    "Standaard",
+    "Lusso",
+    "RC"
+   ]
+  },
+  "Suzuki": {
+   "GSX-R1000": [
+    "Standaard",
+    "R"
+   ],
+   "GSX-S1000GT": [
+    "Standaard",
+    "GT+"
+   ],
+   "SV650": [
+    "Standaard",
+    "X"
+   ],
+   "V-Strom 650": [
+    "Standaard",
+    "XT"
+   ],
+   "V-Strom 1000": [
+    "Standaard",
+    "XT"
+   ],
+   "V-Strom 1050": [
+    "Standaard",
+    "XT",
+    "DE"
+   ]
+  },
+  "Triumph": {
+   "Bonneville T120": [
+    "Standaard",
+    "Black"
+   ],
+   "Rocket 3": [
+    "R",
+    "GT",
+    "Storm R",
+    "Storm GT"
+   ],
+   "Scrambler 1200": [
+    "X",
+    "XC",
+    "XE"
+   ],
+   "Speed Triple 1050": [
+    "Standaard",
+    "S",
+    "R",
+    "RS"
+   ],
+   "Speed Twin 1200": [
+    "Standaard",
+    "RS"
+   ],
+   "Street Triple 675": [
+    "Standaard",
+    "R",
+    "Rx"
+   ],
+   "Street Triple 765": [
+    "S",
+    "R",
+    "RS",
+    "Moto2 Edition"
+   ],
+   "Thruxton": [
+    "Standaard",
+    "R",
+    "RS"
+   ],
+   "Tiger 800": [
+    "XC",
+    "XCx",
+    "XCa",
+    "XR",
+    "XRx",
+    "XRt"
+   ],
+   "Tiger 900": [
+    "GT",
+    "GT Pro",
+    "GT Low",
+    "Rally",
+    "Rally Pro"
+   ],
+   "Tiger 1200": [
+    "GT",
+    "GT Pro",
+    "GT Explorer",
+    "Rally Pro",
+    "Rally Explorer"
+   ]
+  },
+  "Yamaha": {
+   "MT-07": [
+    "Standaard",
+    "Y-AMT"
+   ],
+   "MT-09": [
+    "Standaard",
+    "SP",
+    "Y-AMT"
+   ],
+   "MT-10": [
+    "Standaard",
+    "SP"
+   ],
+   "R1": [
+    "Standaard",
+    "M"
+   ],
+   "Ténéré 700": [
+    "Standaard",
+    "Rally",
+    "World Raid",
+    "Extreme"
+   ],
+   "Tracer 9": [
+    "Standaard",
+    "GT",
+    "GT+"
+   ]
+  }
+ },
+ "onderhoudstips": {},
+ "onderhoudstips_formaat": {
+  "<Merk>": {
+   "<Model>": {
+    "tip": "korte tekst (NL)",
+    "uitvoering": "optioneel: lijst uitvoeringen waarvoor de tip geldt",
+    "van": "optioneel bouwjaar",
+    "tot": "optioneel bouwjaar",
+    "bron": "waar de tip vandaan komt"
+   }
+  }
  }
 }

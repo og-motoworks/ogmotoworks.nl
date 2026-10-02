@@ -1,22 +1,22 @@
-/* OG MotoWorks – WhatsApp-formulier. Plain JS, geen externe diensten, slaat niets op.
+/* OG MotoWorks – aanvraagformulier → WhatsApp. Plain JS, geen externe diensten.
+   Elke link naar wa.me/31642939555 opent eerst dit formulier; daarna opent WhatsApp met een kant-en-klaar bericht.
+   Motorgegevens komen uit de gedeelde motorkeuze (assets/js/motor.js) en worden na versturen onthouden (alleen op dit apparaat).
    Zonder JS (of zonder <dialog>-ondersteuning) werken de WhatsApp-links gewoon direct. */
 (function () {
   'use strict';
   var NUMBER = '31642939555';
   var dlg = document.getElementById('wa-dialog');
-  if (!dlg || typeof dlg.showModal !== 'function') return;
+  if (!dlg || typeof dlg.showModal !== 'function' || !window.OGMotor) return;
   var form = document.getElementById('wa-form');
   var intentEl = form.elements.intent;
   var lastTrigger = null;
-  var OTHER = '__anders';
-  var OLDEST = 1970;
-  var scriptSrc = (document.currentScript && document.currentScript.src) || 'assets/js/wa-form.js';
-  var DATA_URL = new URL('../data/motoren.json', scriptSrc).href;
-  var models = null; // { merk: [modellen] } zodra geladen; false = laden mislukt
+  var OTHER = OGMotor.OTHER;
+  var motor = OGMotor.bind('wa');
 
   var INTENTS = {
     afspraak: 'Ik wil graag een afspraak maken.',
     prijs: 'Ik wil graag een prijs weten.',
+    banden: 'Ik wil graag banden laten monteren.',
     vraag: 'Ik heb een vraag.'
   };
 
@@ -57,100 +57,56 @@
     return first;
   }
 
-  function buildMessage() {
-    var intent = INTENTS[intentEl.value] || INTENTS.afspraak;
+  // Alle gegevens uit het formulier als regels (ook bruikbaar voor een andere afleverroute)
+  function collect() {
+    var by = motor.bouwjaar();
     var km = Number(clean(field('km').value).replace(/[.\s]/g, ''));
-    var lines = ['Hoi OG MotoWorks! ' + intent];
-    var naam = clean(field('naam').value);
-    if (naam) lines.push('Naam: ' + naam);
-    lines.push('Kenteken: ' + clean(field('kenteken').value).toUpperCase());
-    lines.push('Merk/model: ' + getMerk() + ' ' + getModel());
-    var by = field('bouwjaar').value;
-    lines.push('Bouwjaar: ' + (by === 'ouder' ? 'ouder dan ' + OLDEST : by));
-    lines.push('Kilometerstand: ' + km.toLocaleString('nl-NL') + ' km');
-    var vraag = String(field('vraag').value || '').trim();
-    if (vraag) lines.push('Vraag: ' + vraag);
+    return {
+      intent: intentEl.value || 'afspraak',
+      dienst: field('dienst') ? clean(field('dienst').value) : '',
+      naam: clean(field('naam').value),
+      kenteken: clean(field('kenteken').value).toUpperCase(),
+      merk: motor.merk(), model: motor.model(), uitvoering: motor.uitvoering(),
+      bouwjaar: by ? OGMotor.yearText(by) : '',
+      km: isFinite(km) ? km : null,
+      banden: field('banden') ? clean(field('banden').value) : '',
+      vraag: String(field('vraag').value || '').trim()
+    };
+  }
+  function buildMessage() {
+    var d = collect();
+    var lines = ['Hoi OG MotoWorks! ' + (INTENTS[d.intent] || INTENTS.afspraak)];
+    if (d.dienst) lines.push('Dienst: ' + d.dienst);
+    if (d.naam) lines.push('Naam: ' + d.naam);
+    lines.push('Kenteken: ' + d.kenteken);
+    lines.push('Merk/model: ' + clean(d.merk + ' ' + d.model));
+    if (d.uitvoering) lines.push('Uitvoering: ' + d.uitvoering);
+    lines.push('Bouwjaar: ' + d.bouwjaar);
+    lines.push('Kilometerstand: ' + (d.km == null ? '' : d.km.toLocaleString('nl-NL') + ' km'));
+    if (d.banden) lines.push('Banden: ' + d.banden);
+    if (d.vraag) lines.push('Vraag: ' + d.vraag);
     return lines.join('\n');
   }
+  function waUrl() { return 'https://wa.me/' + NUMBER + '?text=' + encodeURIComponent(buildMessage()); }
 
-  function getMerk() {
-    var sel = field('merk');
-    return sel.value === OTHER ? clean(field('merk_anders').value) : clean(sel.value);
+  function setDienst(v) {
+    var sel = field('dienst'); if (!sel) return;
+    v = clean(v);
+    if (v && ![].some.call(sel.options, function (o) { return o.value === v; })) sel.appendChild(new Option(v, v));
+    sel.value = v;
   }
-  function getModel() {
-    var sel = field('model');
-    return (!field('model_anders').hidden) ? clean(field('model_anders').value) : clean(sel.value);
-  }
-
-  function opt(value, text) {
-    var o = document.createElement('option');
-    o.value = value; o.textContent = text == null ? value : text;
-    return o;
-  }
-
-  function showOther(input, show) {
-    input.hidden = !show;
-    input.required = show;
-    if (!show) { input.value = ''; setError(input, ''); }
-  }
-
-  // Bouwjaar: huidig jaar t/m 1970, plus 'Ouder'
-  (function fillYears() {
-    var sel = field('bouwjaar');
-    for (var y = new Date().getFullYear(); y >= OLDEST; y--) sel.appendChild(opt(String(y)));
-    sel.appendChild(opt('ouder', 'Ouder dan ' + OLDEST));
-  })();
-
-  function fillModels() {
-    var merk = field('merk').value, sel = field('model'), other = field('model_anders');
-    while (sel.options.length) sel.remove(0);
-    setError(sel, ''); other.value = '';
-    if (!merk) {
-      sel.appendChild(opt('', 'Kies eerst een merk'));
-      sel.disabled = true; sel.hidden = false; showOther(other, false);
-      return;
-    }
-    var list = models && models[merk];
-    if (merk === OTHER || !list) {
-      // Onbekend merk (of modellenlijst niet geladen): model als tekstveld
-      sel.appendChild(opt('', '—'));
-      sel.disabled = true; sel.hidden = true; showOther(other, true);
-      return;
-    }
-    sel.hidden = false; sel.disabled = false; showOther(other, false);
-    sel.appendChild(opt('', 'Kies model…'));
-    list.forEach(function (m) { sel.appendChild(opt(m)); });
-    sel.appendChild(opt(OTHER, 'Ander model…'));
-  }
-
-  function loadModels() {
-    if (models !== null || !window.fetch) return Promise.resolve();
-    return fetch(DATA_URL, { cache: 'no-cache' })
-      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-      .then(function (d) { models = d.merken || {}; })
-      .catch(function () { models = false; })
-      .then(function () { if (field('merk').value) fillModels(); });
-  }
-
-  field('merk').addEventListener('change', function () {
-    showOther(field('merk_anders'), this.value === OTHER);
-    fillModels();
-    if (this.value === OTHER) field('merk_anders').focus();
-  });
-  field('model').addEventListener('change', function () {
-    showOther(field('model_anders'), this.value === OTHER);
-    if (this.value === OTHER) field('model_anders').focus();
-  });
 
   function open(trigger) {
-    loadModels();
     lastTrigger = trigger;
     intentEl.value = (trigger && trigger.getAttribute('data-wa-intent')) || 'afspraak';
+    if (trigger && trigger.hasAttribute('data-dienst')) setDienst(trigger.getAttribute('data-dienst'));
+    if (field('banden')) field('banden').value = (trigger && trigger.getAttribute('data-banden')) || field('banden').value || '';
+    var saved = OGMotor.get();
+    var filled = saved ? motor.fill(saved) : OGMotor.load();
     dlg.showModal();
-    var first = field('kenteken');
-    first.focus();
+    field('kenteken').focus();
+    return filled;
   }
-
   function close() { dlg.close(); }
 
   document.addEventListener('click', function (e) {
@@ -177,13 +133,16 @@
     e.preventDefault();
     var bad = validate();
     if (bad) { bad.focus(); return; }
-    var url = 'https://wa.me/' + NUMBER + '?text=' + encodeURIComponent(buildMessage());
+    OGMotor.set(motor.read());
+    var url = waUrl();
     var w = window.open(url, '_blank', 'noopener');
     if (!w) window.location.href = url;
     close();
   });
 
   dlg.querySelectorAll('[data-wa-close]').forEach(function (b) { b.addEventListener('click', close); });
+  // Esc in een open zoeklijst sluit alleen die lijst, niet het formulier
+  dlg.addEventListener('cancel', function (e) { if (window.OGCombo && OGCombo.anyOpen(dlg)) e.preventDefault(); });
   // Klik op de achtergrond (buiten het paneel) sluit ook
   dlg.addEventListener('click', function (e) { if (e.target === dlg) close(); });
   dlg.addEventListener('close', function () {
@@ -191,7 +150,5 @@
   });
 
   // Voor testen/screenshots
-  window.ogWaForm = { open: open, buildMessage: buildMessage, validate: validate, loadModels: loadModels };
-  // Modellenlijst alvast op de achtergrond laden
-  if ('requestIdleCallback' in window) requestIdleCallback(loadModels); else setTimeout(loadModels, 1500);
+  window.ogWaForm = { open: open, buildMessage: buildMessage, collect: collect, validate: validate, loadModels: OGMotor.load, waUrl: waUrl };
 })();

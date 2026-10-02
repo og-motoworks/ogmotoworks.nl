@@ -114,6 +114,12 @@
       <div>
         <h1><span class="kicker" style="display:block">Motorwerkplaats Waalwijk</span> Onderhoud, tuning <em>&amp;</em> reparaties voor je motor</h1>
         <p class="lead">Motorwerkplaats OG MotoWorks in Waalwijk. Stuur ons een appje en we plannen het samen in.</p>
+        <div class="mp" id="kies-je-motor" data-motorpick="mp" data-title="Kies je motor">
+          <div class="mp__ctas" data-mp-cta>
+            <a class="btn btn--wa" href="https://wa.me/31642939555?text=Hoi%20OG%20MotoWorks%21%20Ik%20wil%20graag%20een%20afspraak%20maken.%0AKenteken%3A%20%0AMerk%2Fmodel%3A%20%0ABouwjaar%3A%20%0AKilometerstand%3A%20%0AVraag%3A%20" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>App ons over je motor</a>
+            <a class="btn btn--ghost" href="#diensten">Wat we doen</a>
+          </div>
+        </div>
         <div class="hero__cta">
           <a class="btn btn--wa btn--xl" href="https://wa.me/31642939555?text=Hoi%20OG%20MotoWorks%21%20Ik%20wil%20graag%20een%20afspraak%20maken.%0AKenteken%3A%20%0AMerk%2Fmodel%3A%20%0ABouwjaar%3A%20%0AKilometerstand%3A%20%0AVraag%3A%20" target="_blank" rel="noopener">
             <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>App voor een afspraak
@@ -393,7 +399,7 @@
       </div>
       <div class="field">
         <label for="wa-merk">Merk <span class="req" aria-hidden="true">*</span></label>
-        <select id="wa-merk" name="merk" required aria-describedby="wa-merk-err">
+        <select id="wa-merk" name="merk" required data-other="wa-merk-anders" data-placeholder="Typ of kies merk" aria-describedby="wa-merk-err">
           <option value="">Kies merk…</option>
           <option>Aprilia</option>
           <option>Benelli</option>
@@ -425,11 +431,19 @@
       </div>
       <div class="field">
         <label for="wa-model">Model <span class="req" aria-hidden="true">*</span></label>
-        <select id="wa-model" name="model" required disabled aria-describedby="wa-model-err">
+        <select id="wa-model" name="model" required disabled data-other="wa-model-anders" data-placeholder="Typ of kies model" aria-describedby="wa-model-err">
           <option value="">Kies eerst een merk</option>
         </select>
         <input id="wa-model-anders" name="model_anders" type="text" class="field__other" hidden autocomplete="off" maxlength="40" placeholder="Welk model?" aria-label="Welk model?" aria-describedby="wa-model-err">
         <p class="field__err" id="wa-model-err" aria-live="polite"></p>
+      </div>
+      <div class="field">
+        <label for="wa-uitvoering">Uitvoering <span class="opt">(optioneel)</span></label>
+        <select id="wa-uitvoering" name="uitvoering" disabled data-other="wa-uitvoering-anders" data-placeholder="Typ of kies uitvoering">
+          <option value="">Kies eerst een model</option>
+        </select>
+        <input id="wa-uitvoering-anders" name="uitvoering_anders" type="text" class="field__other" hidden autocomplete="off" maxlength="40" placeholder="bijv. R, GT, Adventure S" aria-label="Welke uitvoering? (optioneel)">
+        <p class="field__err" aria-hidden="true"></p>
       </div>
       <div class="field">
         <label for="wa-bouwjaar">Bouwjaar <span class="req" aria-hidden="true">*</span></label>
@@ -438,11 +452,29 @@
         </select>
         <p class="field__err" id="wa-bouwjaar-err" aria-live="polite"></p>
       </div>
-      <div class="field">
+      <div class="field field--full">
+        <button type="button" class="mp__manual" id="wa-handmatig">Mijn motor staat er niet tussen</button>
+      </div>
+      <div class="field field--full">
         <label for="wa-km">Kilometerstand <span class="req" aria-hidden="true">*</span></label>
         <div class="field__suffix"><input id="wa-km" name="km" type="text" inputmode="numeric" required autocomplete="off" maxlength="9" placeholder="bijv. 23450" aria-describedby="wa-km-err"><span aria-hidden="true">km</span></div>
         <p class="field__err" id="wa-km-err" aria-live="polite"></p>
       </div>
+      <div class="field field--full">
+        <label for="wa-dienst">Dienst <span class="opt">(optioneel)</span></label>
+        <select id="wa-dienst" name="dienst">
+          <option value="">Kies dienst…</option>
+          <option>Onderhoud / grote beurt</option>
+          <option>Diagnose / storing</option>
+          <option>Reparatie</option>
+          <option>Banden</option>
+          <option>Kettingset</option>
+          <option>Voorvorkkeerringen</option>
+          <option>Tuning / afstellen</option>
+          <option>Iets anders</option>
+        </select>
+      </div>
+      <input type="hidden" name="banden" value="">
       <div class="field field--full">
         <label for="wa-vraag">Wat kunnen we voor je doen? <span class="opt">(optioneel)</span></label>
         <textarea id="wa-vraag" name="vraag" rows="3" maxlength="600" placeholder="bijv. onderhoud, storing, banden"></textarea>
@@ -459,6 +491,8 @@
     </div>
   </form>
 </dialog>
+<script src="assets/js/combo.js" defer></script>
+<script src="assets/js/motor.js" defer></script>
 <script src="assets/js/wa-form.js" defer></script>
 <!-- Bezoekersteller: GoatCounter (cookieloos, geen persoonsgegevens) -->
 <script data-goatcounter="https://ogmotoworks.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
