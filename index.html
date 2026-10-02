@@ -393,17 +393,49 @@
       </div>
       <div class="field">
         <label for="wa-merk">Merk <span class="req" aria-hidden="true">*</span></label>
-        <input id="wa-merk" name="merk" type="text" required autocomplete="off" maxlength="40" placeholder="bijv. Yamaha" aria-describedby="wa-merk-err">
+        <select id="wa-merk" name="merk" required aria-describedby="wa-merk-err">
+          <option value="">Kies merk…</option>
+          <option>Aprilia</option>
+          <option>Benelli</option>
+          <option>BMW</option>
+          <option>Brixton</option>
+          <option>CFMoto</option>
+          <option>Ducati</option>
+          <option>Fantic</option>
+          <option>Harley-Davidson</option>
+          <option>Honda</option>
+          <option>Husqvarna</option>
+          <option>Indian</option>
+          <option>Kawasaki</option>
+          <option>KTM</option>
+          <option>Moto Guzzi</option>
+          <option>Moto Morini</option>
+          <option>MV Agusta</option>
+          <option>Royal Enfield</option>
+          <option>Suzuki</option>
+          <option>Triumph</option>
+          <option>Voge</option>
+          <option>Yamaha</option>
+          <option>Zero</option>
+          <option>Zontes</option>
+          <option value="__anders">Anders…</option>
+        </select>
+        <input id="wa-merk-anders" name="merk_anders" type="text" class="field__other" hidden autocomplete="off" maxlength="40" placeholder="Welk merk?" aria-label="Welk merk?" aria-describedby="wa-merk-err">
         <p class="field__err" id="wa-merk-err" aria-live="polite"></p>
       </div>
       <div class="field">
         <label for="wa-model">Model <span class="req" aria-hidden="true">*</span></label>
-        <input id="wa-model" name="model" type="text" required autocomplete="off" maxlength="40" placeholder="bijv. MT-07" aria-describedby="wa-model-err">
+        <select id="wa-model" name="model" required disabled aria-describedby="wa-model-err">
+          <option value="">Kies eerst een merk</option>
+        </select>
+        <input id="wa-model-anders" name="model_anders" type="text" class="field__other" hidden autocomplete="off" maxlength="40" placeholder="Welk model?" aria-label="Welk model?" aria-describedby="wa-model-err">
         <p class="field__err" id="wa-model-err" aria-live="polite"></p>
       </div>
       <div class="field">
         <label for="wa-bouwjaar">Bouwjaar <span class="req" aria-hidden="true">*</span></label>
-        <input id="wa-bouwjaar" name="bouwjaar" type="text" inputmode="numeric" pattern="[0-9]*" required autocomplete="off" maxlength="4" placeholder="bijv. 2019" aria-describedby="wa-bouwjaar-err">
+        <select id="wa-bouwjaar" name="bouwjaar" required aria-describedby="wa-bouwjaar-err">
+          <option value="">Kies bouwjaar…</option>
+        </select>
         <p class="field__err" id="wa-bouwjaar-err" aria-live="polite"></p>
       </div>
       <div class="field">
