@@ -117,7 +117,12 @@
   function typeNaam(id) { return id ? typeInfo(id)[1] : ''; }
   function typeKort(id) { return id === 'hypersport' ? 'hypersport' : typeNaam(id).toLowerCase(); } // 'Advies hypersport'
   function radiaalPos(p) { return /\bZ?R\s*\d{2}\b/i.test(label(p)); }
-  function diag(p, t) { return t.bouw === 'diagonaal' && radiaalPos(p); }
+  // fabrieksmaat met B = diagonaal met gordel. '-' telt NIET: in typegoedkeuringen betekent '-' vaak 'opbouw niet vastgelegd'
+  // (Michelin keurt daar ook radiale banden voor goed, bv. 120/70-19 Zero DSR/X, 90/90-21 KTM 990 Adventure)
+  function diagonaalPos(p) { return (state[p] && state[p].o) === 'B'; }
+  // opbouw past niet: diagonaal onder een radiale maat of radiaal onder een diagonale maat (gemarkeerd, onderaan, nooit advies)
+  function diag(p, t) { return (t.bouw === 'diagonaal' && radiaalPos(p)) || (t.bouw === 'radiaal' && diagonaalPos(p)); }
+  function letTekst(t) { return (t.bouw === 'radiaal' ? 'Radiaal' : 'Diagonaal') + ', check of dit past'; }
   function naamKey(t) { return (t.merk + '|' + t.band).toLowerCase(); }
   function zoekNorm(s) { return String(s || '').toLowerCase().replace(/[\s\-_.]+/g, ''); }
   function past(t, f) {
@@ -176,7 +181,7 @@
     });
   }
   function wie(arr) { return arr.length === 2 ? 'voor- en achterband' : arr[0].naam.toLowerCase(); }
-  function bandNaam(p, t) { return t.merk + ' ' + t.band + (t.notatie ? ' (' + t.notatie + (diag(p, t) ? ', diagonaal' : '') + ')' : ''); }
+  function bandNaam(p, t) { return t.merk + ' ' + t.band + (t.notatie ? ' (' + t.notatie + (diag(p, t) ? ', ' + t.bouw : '') + ')' : ''); }
   function som() {
     var ps = pos(), n = ps.length, m = montage(), regels = [], tot = 0;
     ps.forEach(function (x) {
@@ -246,7 +251,7 @@
     return '<li class="bm__row' + (isAdv ? ' is-adv' : '') + (d ? ' is-diag' : '') + '">' +
       '<input type="radio" name="bm-' + p + '" data-pos="' + p + '" id="' + id + '" value="' + i + '"' + (state.keuze[p] === i ? ' checked' : '') + '>' +
       '<label for="' + id + '"><span class="bm__rn">' + (isAdv ? '<span class="bm__adv">Advies ' + esc(typeKort(t.type)) + '</span>' : '') + '<b>' + esc(t.merk + ' ' + t.band) + '</b></span>' +
-      (meta ? '<span class="bm__rm">' + esc(meta) + '</span>' : '') + (d ? '<span class="bm__let">Diagonaal, check of dit past</span>' : '') + '</label>' +
+      (meta ? '<span class="bm__rm">' + esc(meta) + '</span>' : '') + (d ? '<span class="bm__let">' + letTekst(t) + '</span>' : '') + '</label>' +
       '<span class="bm__rp">' + (pr ? '€' + pr : 'op aanvraag') + '</span>' +
       (isAdv ? info('adv-' + p, 'Waarom adviseren we de ' + t.merk + ' ' + t.band + '?') : (t.uitleg && t.bron ? info('band-' + p + '-' + i, 'Over de ' + t.merk + ' ' + t.band) : '<span class="bm__i0"></span>')) + '</li>';
   }
@@ -399,7 +404,7 @@
     var h = '', titel = '';
     if (id === 'type') {
       titel = 'Soorten banden';
-      h = '<dl>' + assort.types.map(function (t) { return '<dt>' + esc(t[1]) + '</dt><dd>' + esc(t[2]) + '</dd>'; }).join('') + '</dl>' + testnoot();
+      h = '<dl>' + assort.types.map(function (t) { return '<dt>' + esc(t[1]) + '</dt><dd>' + esc(t[2]) + '</dd>'; }).join('') + '</dl><p>Radiaal of diagonaal staat in je bandenmaat (R/ZR = radiaal, B of - = meestal diagonaal). Combineer voor en achter geen radiale met een diagonale band, tenzij de bandenfabrikant die combinatie voor jouw motor heeft goedgekeurd.</p>' + testnoot();
     } else if (id === 'merk') {
       titel = 'A-merken en budget';
       h = assort.groepen.map(function (g) { return '<p><b>' + esc(g[0]) + '</b> (' + esc(g[1].join(', ')) + '): ' + esc(g[2]) + (g[3] ? ' <a class="link" href="' + esc(g[3]) + '" target="_blank" rel="noopener">Bron</a>' : '') + '</p>'; }).join('');

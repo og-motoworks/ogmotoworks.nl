@@ -207,7 +207,12 @@
   function zelfFilter(p, type, merk) {
     return (zelfLijst(p) || []).map(function (t, i) { return { t: t, i: i }; }).filter(function (x) { return (!type || x.t.type === type) && (!merk || x.t.merk === merk); });
   }
-  function diag(p, t) { return t.bouw === 'diagonaal' && radiaalPos(p); }
+  function diagonaalPos(p) { // fabrieksmaat bekend en diagonaal met gordel (B)
+    var k = tkey(state[p]), c = state.oem ? [state.oem[p]].concat((opties(state.oem) || []).map(function (x) { return x[p]; })) : [];
+    for (var i = 0; i < c.length; i++) if (c[i] && tkey(parse(c[i])) === k) return /\bB\s*\d{2}\b/i.test(c[i]); // alleen B; '-' = opbouw vaak niet vastgelegd (zie bandenkeuze.js)
+    return false;
+  }
+  function diag(p, t) { return (t.bouw === 'diagonaal' && radiaalPos(p)) || (t.bouw === 'radiaal' && diagonaalPos(p)); } // opbouw past niet
   function zelfHTML(p) {
     var z = state.zelf[p] || { type: '', merk: '' }, alle = zelfFilter(p, '', ''), id = 'bm-' + p;
     var h = '<div class="bm__zelf" role="group" aria-labelledby="' + id + '-zelf-kop"><h4 class="bm__kop" id="' + id + '-zelf-kop">Zelf kiezen</h4>';
@@ -236,7 +241,7 @@
       return '<li class="bm__opt bm__zopt"><input type="radio" name="bm-' + p + '-z" data-pos="' + p + '" id="' + rid + '" value="z' + x.i + '"' + (state.keuze[p] === 'z' + x.i ? ' checked' : '') + '>' +
         '<label for="' + rid + '"><span class="bm__soort">' + esc(typeInfo(x.t.type)[1]) + '</span><b>' + esc(x.t.merk + ' ' + x.t.band) + '</b>' +
         (x.t.notatie ? '<span class="bm__notatie">' + esc(x.t.notatie) + (x.t.bouw ? ' · ' + x.t.bouw : '') + '</span>' : '') +
-        (diag(p, x.t) ? '<span class="bm__let">Diagonaal, check of dit past</span>' : '') +
+        (diag(p, x.t) ? '<span class="bm__let">' + (x.t.bouw === 'radiaal' ? 'Radiaal' : 'Diagonaal') + ', check of dit past</span>' : '') +
         (x.t.uitleg ? '<span class="bm__uitleg">' + esc(x.t.uitleg) + '</span>' : '') +
         '<span class="bm__prijs">' + (pr ? 'vanaf €' + pr : 'prijs op aanvraag') + '</span></label></li>';
     }).join('') + '</ul></div>';
@@ -244,7 +249,7 @@
   // Naam van de gekozen band zoals in overzicht/WhatsApp: bij zelf gekozen met echte maat en evt. 'diagonaal'
   function bandNaam(p, t) {
     var zelf = typeof state.keuze[p] === 'string';
-    return t.merk + ' ' + t.band + (zelf && t.notatie ? ' (' + t.notatie + (diag(p, t) ? ', diagonaal' : '') + ')' : '');
+    return t.merk + ' ' + t.band + (zelf && t.notatie ? ' (' + t.notatie + (diag(p, t) ? ', ' + t.bouw : '') + ')' : '');
   }
   // Bandeninfo naar de gedeelde staat (OGMotor.klus) → komt in het WhatsApp-bericht
   function save() {
