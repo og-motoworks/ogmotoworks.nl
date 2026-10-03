@@ -21,7 +21,7 @@ De website bestaat uit drie onderdelen:
 
 1. Je past op GitHub een bestand aan.
 2. Je klikt op **Commit changes**. "Commit" betekent: opslaan, met een kort briefje erbij.
-3. GitHub Pages zet de nieuwe versie online. Dat duurt ongeveer 30 seconden.
+3. GitHub Pages zet de nieuwe versie online. Dat duurt meestal minder dan een minuut.
 4. Na ongeveer **1 minuut** zie je het op ogmotoworks.nl. Zie je het niet? Ververs de pagina met **Ctrl + F5** (Mac: Cmd + Shift + R).
 
 Of het gelukt is, zie je op twee plekken:
@@ -116,7 +116,7 @@ Klik je op een briefje in History, dan zie je precies wat er veranderd is:
 | Niet aanraken | Waarom |
 |---|---|
 | Bestand `CNAME` | Hierin staat ogmotoworks.nl. Zonder dit bestand is de site onbereikbaar op dat adres. |
-| Bestand `.nojekyll` | Zorgt dat GitHub de bestanden gewoon online zet. |
+| Bestand `_config.yml` | Zorgt dat deze handleiding niet op de site komt. De rest zet GitHub gewoon online. |
 | Map `assets/js/` (scripts) | Het formulier, het bandenmenu en de motorkeuze. Eén fout teken en het werkt niet meer. |
 | Map `assets/data/` (JSON-bestanden) | Banden, prijzen, motoren. Maakt de bot. |
 | `sitemap.xml`, `robots.txt`, `assets/css/` | Voor Google en de opmaak. Maakt of beheert de bot. |
