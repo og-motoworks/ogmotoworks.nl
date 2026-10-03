@@ -423,3 +423,39 @@ html:has(.nav.is-open) .fab{display:none}
 .dl--tyre dt small{display:block;color:var(--muted);font-size:.7rem;margin-top:4px}
 .dl--tyre dd{font-weight:400;color:var(--muted)}
 @media (max-width:420px){.dl--tyre div{grid-template-columns:1fr;gap:4px}}
+
+/* ---------- jouw motor: silhouet + merk/model groot ---------- */
+.mp__view{grid-template-columns:auto 1fr auto;gap:10px 14px}
+.mp__sil-wrap{grid-column:1;grid-row:1;width:112px}
+.mp__sil{display:block;width:100%;height:auto}
+.mp__sil .w circle{fill:none;stroke:var(--text);stroke-width:7}
+.mp__sil .b{fill:var(--text);stroke:none}
+.mp__sil .b .s{fill:none;stroke:var(--text);stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
+.mp__sil .a{stroke:var(--accent);stroke-width:5;stroke-linecap:round}
+.mp__id{grid-column:2;grid-row:1;min-width:0}
+.mp__view .mp__label{margin-bottom:6px}
+.mp__name{overflow-wrap:anywhere}
+.mp__brand{display:block;font:500 .95rem/1.1 var(--head);letter-spacing:.14em;text-transform:uppercase;color:var(--accent-2)}
+.mp__model{display:block;font:700 clamp(1.4rem,5vw,2rem)/1.05 var(--head);text-transform:uppercase}
+.mp__year{display:block;font:500 .95rem/1.3 var(--body);color:var(--muted);text-transform:none}
+.mp__view .mp__edit{grid-column:3;grid-row:1}
+@media (max-width:480px){.mp__view{grid-template-columns:1fr auto}.mp__sil-wrap{grid-column:1/-1;width:150px}.mp__id{grid-column:1;grid-row:2}.mp__view .mp__edit{grid-column:2;grid-row:2;align-self:start}}
+/* ---------- wat wil je laten doen? ---------- */
+.klus{grid-column:1/-1;border:0;margin:6px 0 0;padding:0;min-width:0}
+.klus__title{padding:0;font:600 1rem/1.3 var(--body);color:var(--text)}
+.klus__hint{margin:2px 0 10px;font-size:.88rem;color:var(--muted)}
+.klus__list{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+@media (min-width:600px){.klus__list{grid-template-columns:1fr 1fr}}
+.klus__list li{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 12px;min-height:44px}
+.klus__list li:has(input:checked){border-color:var(--accent)}
+.klus__list input{width:20px;height:20px;margin:0;accent-color:var(--accent);flex:none}
+.klus__list label{flex:1;cursor:pointer;font-weight:600;font-size:.95rem}
+.klus__prijs{display:block;font-weight:400;font-size:.82rem;color:var(--accent-2)}
+.klus__link{font-size:.85rem;flex-basis:100%;padding-left:30px}
+.klus__anders{margin-top:8px;width:100%}
+.klus__list input:focus-visible{outline:2px solid var(--accent-2);outline-offset:2px}
+.klus .klus__list input[type=checkbox]{width:20px;height:20px;min-height:0;padding:0;border-radius:4px}
+.klus .klus__anders{width:100%;min-height:48px;padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--text);font:400 16px/1.4 var(--body)}
+.klus .klus__anders:focus{outline:2px solid var(--accent-2);outline-offset:1px;border-color:transparent}
+.klus .klus__list label{margin:0;font:600 .95rem/1.3 var(--body);letter-spacing:0;text-transform:none;color:var(--text)}
+.klus .klus__prijs{font:400 .82rem/1.3 var(--body);letter-spacing:0;text-transform:none;color:var(--accent-2)}

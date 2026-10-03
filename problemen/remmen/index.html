@@ -135,14 +135,14 @@
         <h1>Remmen piepen of voelen slap?</h1>
         <p class="lead">Je remmen zijn het belangrijkste onderdeel van je motor. Piepen, schuren of een slappe hendel zijn signalen om serieus te nemen.</p>
         <div class="hero__cta">
-          <a class="btn btn--wa btn--xl" data-dienst="Reparatie" href="https://wa.me/31642939555?text=Hoi%20OG%20MotoWorks%21%20Ik%20wil%20graag%20een%20afspraak%20maken.%0ADienst%3A%20Reparatie%0AKenteken%3A%20%0AMerk%2Fmodel%3A%20%0ABouwjaar%3A%20%0AKilometerstand%3A%20%0AVraag%3A%20" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>App ons over je remmen</a>
+          <a class="btn btn--wa btn--xl" data-dienst="Remmen" href="https://wa.me/31642939555?text=Hoi%20OG%20MotoWorks%21%20Ik%20wil%20graag%20een%20afspraak%20maken.%0ADienst%3A%20Remmen%0AKenteken%3A%20%0AMerk%2Fmodel%3A%20%0ABouwjaar%3A%20%0AKilometerstand%3A%20%0AVraag%3A%20" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>App ons over je remmen</a>
           <a class="btn btn--ghost btn--xl" href="/tarieven/">Bekijk tarieven</a>
         </div>
       </div>
       <div>
         <div class="mp" id="kies-je-motor" data-motorpick="mp" data-title="Voor welke motor?">
           <div class="mp__ctas" data-mp-cta>
-            <a class="btn btn--wa" data-dienst="Reparatie" href="https://wa.me/31642939555?text=Hoi%20OG%20MotoWorks%21%20Ik%20wil%20graag%20een%20afspraak%20maken.%0ADienst%3A%20Reparatie%0AKenteken%3A%20%0AMerk%2Fmodel%3A%20%0ABouwjaar%3A%20%0AKilometerstand%3A%20%0AVraag%3A%20" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>App ons over je remmen</a>
+            <a class="btn btn--wa" data-dienst="Remmen" href="https://wa.me/31642939555?text=Hoi%20OG%20MotoWorks%21%20Ik%20wil%20graag%20een%20afspraak%20maken.%0ADienst%3A%20Remmen%0AKenteken%3A%20%0AMerk%2Fmodel%3A%20%0ABouwjaar%3A%20%0AKilometerstand%3A%20%0AVraag%3A%20" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>App ons over je remmen</a>
           </div>
         </div>
         <div class="interval" data-motor-interval aria-live="polite"><p><b>Onderhoudsinterval</b> Interval volgens jouw instructieboekje, wij checken het voor je.</p></div>
@@ -249,20 +249,7 @@
         <div class="field__suffix"><input id="wa-km" name="km" type="text" inputmode="numeric" required autocomplete="off" maxlength="9" placeholder="bijv. 23450" aria-describedby="wa-km-err"><span aria-hidden="true">km</span></div>
         <p class="field__err" id="wa-km-err" aria-live="polite"></p>
       </div>
-      <div class="field field--full">
-        <label for="wa-dienst">Dienst <span class="opt">(optioneel)</span></label>
-        <select id="wa-dienst" name="dienst">
-          <option value="">Kies dienst…</option>
-          <option>Onderhoud / grote beurt</option>
-          <option>Diagnose / storing</option>
-          <option>Reparatie</option>
-          <option>Banden</option>
-          <option>Kettingset</option>
-          <option>Voorvorkkeerringen</option>
-          <option>Tuning / afstellen</option>
-          <option>Iets anders</option>
-        </select>
-      </div>
+      <fieldset class="field field--full klus" data-klus="wa"></fieldset>
       <input type="hidden" name="banden" value="">
       <div class="field field--full">
         <label for="wa-vraag">Wat kunnen we voor je doen? <span class="opt">(optioneel)</span></label>

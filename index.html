@@ -505,20 +505,7 @@
         <div class="field__suffix"><input id="wa-km" name="km" type="text" inputmode="numeric" required autocomplete="off" maxlength="9" placeholder="bijv. 23450" aria-describedby="wa-km-err"><span aria-hidden="true">km</span></div>
         <p class="field__err" id="wa-km-err" aria-live="polite"></p>
       </div>
-      <div class="field field--full">
-        <label for="wa-dienst">Dienst <span class="opt">(optioneel)</span></label>
-        <select id="wa-dienst" name="dienst">
-          <option value="">Kies dienst…</option>
-          <option>Onderhoud / grote beurt</option>
-          <option>Diagnose / storing</option>
-          <option>Reparatie</option>
-          <option>Banden</option>
-          <option>Kettingset</option>
-          <option>Voorvorkkeerringen</option>
-          <option>Tuning / afstellen</option>
-          <option>Iets anders</option>
-        </select>
-      </div>
+      <fieldset class="field field--full klus" data-klus="wa"></fieldset>
       <input type="hidden" name="banden" value="">
       <div class="field field--full">
         <label for="wa-vraag">Wat kunnen we voor je doen? <span class="opt">(optioneel)</span></label>

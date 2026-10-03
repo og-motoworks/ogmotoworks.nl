@@ -212,6 +212,97 @@
     return api;
   }
 
+  /* ---------- silhouet per soort motor (eigen SVG's, geen foto's) ---------- */
+  // Soort komt uit motoren.json → "types" (naked, sport, toer, adventure, scooter, klassiek); anders generiek.
+  var SIL = {
+    naked: '<path d="M44 66l52-6 8-9h34l18 8-6 13-15 12-4 19H101l-9-21-34-6z"/><path class="s" d="M187 106l-24-55M150 44l20-4M55 106l50-10"/><circle cx="166" cy="61" r="7"/>',
+    sport: '<path d="M30 58l40 4 34-4 16-12 30-2 26 8 16 20-16 12-26 6-12 14h-38l-10-18-32-4z"/><path class="s" d="M150 44l20-7 10 16M55 106l50-10M187 106l-18-40"/>',
+    toer: '<path d="M38 70l58-6 14-14 38-4 24-6 14-6 8 22-4 20-20 12-30 4-6 14h-34l-8-16-44 2z"/><rect x="20" y="44" width="34" height="26" rx="5"/><rect x="34" y="76" width="44" height="26" rx="5"/><path class="s" d="M187 106l-16-34M55 106l46-8"/>',
+    adventure: '<path d="M44 62l52-4 10-12 40-4 20 6-6 16-18 14-6 22h-34l-8-18-32-6z"/><path d="M166 48l18 10-8 4z"/><path class="s" d="M160 44l10-18 8 4M187 106l-21-62M55 106l50-12M110 102h28"/>',
+    scooter: '<path d="M38 94l6-26 54-4 6 26h44l12-50 16-6 6 10-10 52-12 12H78z"/><path class="s" d="M164 42l-4-14h14"/>',
+    klassiek: '<path d="M44 70l56-4 6-10q18-10 40-2l4 12-16 14-4 24h-28l-8-22-34-2z"/><path class="s" d="M187 106l-21-46M152 46l18-4M55 106l48-8M28 96a30 30 0 0 1 50-14M166 84a30 30 0 0 1 44 14"/><circle cx="168" cy="60" r="9"/>',
+    generiek: '<path d="M46 68l54-6 10-10h30l16 10-10 16-14 8-4 18h-30l-8-20-36-6z"/><path class="s" d="M187 106l-22-50M55 106l48-10"/>'
+  };
+  function motorType(s) { return (s && !s.handmatig && data && data.types && data.types[s.merk] && data.types[s.merk][s.model]) || 'generiek'; }
+  function silhouette(type) {
+    var small = type === 'scooter', r = small ? 20 : 27, y = small ? 113 : 106, x1 = small ? 60 : 55, x2 = small ? 182 : 187;
+    return '<svg class="mp__sil" viewBox="0 0 240 140" role="img" aria-label="Silhouet ' + (type === 'generiek' ? 'motor' : type) + '" data-type="' + type + '">' +
+      '<g class="w"><circle cx="' + x1 + '" cy="' + y + '" r="' + r + '"/><circle cx="' + x2 + '" cy="' + y + '" r="' + r + '"/></g>' +
+      '<g class="b">' + (SIL[type] || SIL.generiek) + '</g><path class="a" d="M8 136h224"/></svg>';
+  }
+  function richLabel(s) {
+    return '<span class="mp__brand">' + escapeHtml(s.merk) + '</span> <span class="mp__model">' + escapeHtml(clean(s.model + ' ' + (s.uitvoering || ''))) + '</span>' +
+           (s.bouwjaar ? ' <span class="mp__year">(' + escapeHtml(yearText(s.bouwjaar)) + ')</span>' : '');
+  }
+
+  /* ---------- "Wat wil je laten doen?" (meerkeuze, onthouden op dit apparaat) ---------- */
+  // Indicatieprijs alleen waar we een vaste prijs hebben. Banden: band 'vanaf' (bandenmenu, later) + €50 montage per band.
+  var KLUS_KEY = 'ogmw.klus.v1';
+  var KLUS = [
+    { id: 'kleine-beurt', label: 'Kleine beurt' }, { id: 'grote-beurt', label: 'Grote beurt' },
+    { id: 'banden', label: 'Banden', prijs: '+ €50 montage per band', link: '/banden/#advies', linkText: 'Naar bandenadvies' },
+    { id: 'ketting', label: 'Ketting / kettingset', prijs: 'vanaf €150' }, { id: 'remmen', label: 'Remmen' },
+    { id: 'voorvork', label: 'Voorvorkkeerringen', prijs: 'vanaf €350' }, { id: 'storing', label: 'Storing / lampje / diagnose' },
+    { id: 'tuning', label: 'Tuning / afstellen' }, { id: 'anders', label: 'Iets anders' }
+  ];
+  // data-dienst op knoppen → welk vinkje vooraf aan gaat
+  var DIENST_KLUS = { 'Onderhoud / grote beurt': 'grote-beurt', 'Kleine beurt': 'kleine-beurt', 'Diagnose / storing': 'storing', 'Banden': 'banden',
+                      'Kettingset': 'ketting', 'Remmen': 'remmen', 'Voorvorkkeerringen': 'voorvork', 'Tuning / afstellen': 'tuning' };
+  var klusListeners = [];
+  function klusGet() {
+    try { var k = JSON.parse(localStorage.getItem(KLUS_KEY) || 'null'); if (k && k.items) return { items: k.items.filter(byId), anders: clean(k.anders), bandPrijs: k.bandPrijs || null }; } catch (e) {}
+    return { items: [], anders: '', bandPrijs: null };
+  }
+  function byId(id) { return KLUS.some(function (k) { return k.id === id; }); }
+  function klusSet(k) {
+    k = { items: (k.items || []).filter(byId), anders: clean(k.anders).slice(0, 200), bandPrijs: k.bandPrijs || null };
+    try { localStorage.setItem(KLUS_KEY, JSON.stringify(k)); } catch (e) {}
+    klusListeners.forEach(function (fn) { try { fn(k); } catch (e) {} }); return k;
+  }
+  function klusAdd(id) { var k = klusGet(); if (byId(id) && k.items.indexOf(id) === -1) { k.items.push(id); klusSet(k); } }
+  function klusPrijs(item, k) {
+    if (item.id === 'banden' && k.bandPrijs) return 'band vanaf €' + k.bandPrijs + ' + €50 montage per band';
+    return item.prijs || '';
+  }
+  // Regels voor het WhatsApp-bericht, in vaste volgorde
+  function klusLines() {
+    var k = klusGet();
+    return KLUS.filter(function (i) { return k.items.indexOf(i.id) !== -1; }).map(function (i) {
+      if (i.id === 'anders') return 'Iets anders' + (k.anders ? ': ' + k.anders : '');
+      var pr = klusPrijs(i, k); return i.label + (pr ? ' (' + pr + ')' : '');
+    });
+  }
+  window.addEventListener('storage', function (e) { if (e.key === KLUS_KEY) { var k = klusGet(); klusListeners.forEach(function (fn) { fn(k); }); } });
+  function renderKlus(box) {
+    var p = box.getAttribute('data-klus') || 'klus', here = location.pathname.replace(/\/+$/, '/') ;
+    box.innerHTML = '<legend class="klus__title">Wat wil je laten doen?</legend>' +
+      '<p class="klus__hint">Vink aan wat je wilt, dan staat het in je WhatsApp-bericht.</p><ul class="klus__list">' +
+      KLUS.map(function (i) {
+        var id = p + '-klus-' + i.id;
+        return '<li><input type="checkbox" id="' + id + '" value="' + i.id + '"><label for="' + id + '">' + i.label +
+          (i.prijs ? ' <span class="klus__prijs" data-prijs="' + i.id + '">' + i.prijs + '</span>' : '') + '</label>' +
+          (i.link && here !== i.link.split('#')[0] ? ' <a class="link klus__link" href="' + i.link + '" hidden>' + i.linkText + ' →</a>' : '') + '</li>';
+      }).join('') + '</ul>' +
+      '<input type="text" class="field__other klus__anders" id="' + p + '-klus-anders-tekst" maxlength="200" placeholder="Wat wil je nog meer laten doen?" aria-label="Iets anders: wat wil je laten doen?" hidden>';
+    var boxes = box.querySelectorAll('input[type=checkbox]'), txt = box.querySelector('.klus__anders');
+    function sync(k) {
+      boxes.forEach(function (c) { c.checked = k.items.indexOf(c.value) !== -1; var l = c.parentNode.querySelector('.klus__link'); if (l) l.hidden = !c.checked; });
+      txt.hidden = k.items.indexOf('anders') === -1; if (document.activeElement !== txt) txt.value = k.anders || '';
+      var bp = box.querySelector('[data-prijs=banden]'); if (bp) bp.textContent = klusPrijs(KLUS[2], k);
+    }
+    function save() {
+      var k = klusGet();
+      k.items = [].filter.call(boxes, function (c) { return c.checked; }).map(function (c) { return c.value; });
+      k.anders = txt.value; klusSet(k);
+    }
+    box.addEventListener('change', function (e) {
+      save();
+      if (e.target.value === 'anders' && e.target.checked) txt.focus();
+    });
+    txt.addEventListener('input', save);
+    klusListeners.push(sync); sync(klusGet());
+  }
+
   /* ---------- blok "Kies je motor" ([data-motorpick]) ---------- */
   function fieldsHTML(p) {
     return '' +
@@ -246,9 +337,11 @@
     var title = box.getAttribute('data-title') || 'Kies je motor';
     box.innerHTML =
       '<div class="mp__view" hidden>' +
-        '<p class="mp__label">Jouw motor</p>' +
-        '<p class="mp__name" data-motor-label></p>' +
+        '<div class="mp__sil-wrap" aria-hidden="false"></div>' +
+        '<div class="mp__id"><p class="mp__label">Jouw motor</p>' +
+        '<p class="mp__name" data-motor-label data-rich></p></div>' +
         '<button type="button" class="mp__edit" aria-label="Wijzig je motor">Wijzig</button>' +
+        '<fieldset class="klus" data-klus="' + p + '"></fieldset>' +
         '<div class="mp__cta"></div>' +
       '</div>' +
       '<form class="mp__form" novalidate>' +
@@ -266,11 +359,12 @@
     var form = box.querySelector('form'), view = box.querySelector('.mp__view');
     var b = bind(p);
     merkOptions(b.el.merk);
+    renderKlus(box.querySelector('[data-klus]'));
     function show(s, focus) {
       var editing = !s;
       view.hidden = editing; form.hidden = !editing;
       box.querySelector('.mp__cancel').hidden = !get();
-      if (s) view.querySelector('[data-motor-label]').textContent = label(s);
+      if (s) paintView(s);
       if (focus) (editing ? b.el.merk : view.querySelector('.mp__edit')).focus();
     }
     view.querySelector('.mp__edit').addEventListener('click', function () {
@@ -294,6 +388,12 @@
       if (first) { first.focus(); return; }
       set(s); show(get() || s, true);
     });
+    function paintView(s) {
+      view.querySelector('[data-motor-label]').innerHTML = richLabel(s);
+      var w = view.querySelector('.mp__sil-wrap');
+      w.innerHTML = silhouette(motorType(s));
+      if (!data) load().then(function () { if (get()) w.innerHTML = silhouette(motorType(get())); });
+    }
     form.addEventListener('input', function (e) { if (e.target.getAttribute('aria-invalid') === 'true') { e.target.removeAttribute('aria-invalid'); } });
     on(function (s) { if (form.hidden || !s) show(s); });
     show(get());
@@ -301,7 +401,7 @@
 
   /* ---------- labels elders op de pagina ---------- */
   function paint(s) {
-    document.querySelectorAll('[data-motor-label]').forEach(function (n) { if (s) n.textContent = label(s); });
+    document.querySelectorAll('[data-motor-label]').forEach(function (n) { if (s) { if (n.hasAttribute('data-rich')) n.innerHTML = richLabel(s); else n.textContent = label(s); } });
     document.querySelectorAll('[data-motor-if]').forEach(function (n) { n.hidden = !s; });
     document.querySelectorAll('[data-motor-unless]').forEach(function (n) { n.hidden = !!s; });
     paintInterval(s);
@@ -310,10 +410,12 @@
   on(paint);
 
   window.OGMotor = { load: load, get: get, set: set, clear: clear, label: label, name: name, yearText: yearText,
-                     bind: bind, tip: tip, interval: interval, loadOnderhoud: loadOnderhoud, on: on, OTHER: OTHER, data: function () { return data; } };
+                     bind: bind, tip: tip, type: motorType, silhouette: silhouette,
+                     klus: { list: KLUS, get: klusGet, set: klusSet, add: klusAdd, lines: klusLines, fromDienst: function (d) { return DIENST_KLUS[clean(d)] || null; }, on: function (fn) { klusListeners.push(fn); } }, interval: interval, loadOnderhoud: loadOnderhoud, on: on, OTHER: OTHER, data: function () { return data; } };
 
   function init() {
     document.querySelectorAll('[data-motorpick]').forEach(renderPicker);
+    document.querySelectorAll('[data-klus]').forEach(function (b) { if (!b.children.length) renderKlus(b); });
     paint(get());
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();

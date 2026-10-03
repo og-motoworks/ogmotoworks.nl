@@ -63,7 +63,7 @@
     var km = Number(clean(field('km').value).replace(/[.\s]/g, ''));
     return {
       intent: intentEl.value || 'afspraak',
-      dienst: field('dienst') ? clean(field('dienst').value) : '',
+      klus: OGMotor.klus.lines(),
       naam: clean(field('naam').value),
       kenteken: clean(field('kenteken').value).toUpperCase(),
       merk: motor.merk(), model: motor.model(), uitvoering: motor.uitvoering(),
@@ -76,7 +76,7 @@
   function buildMessage() {
     var d = collect();
     var lines = ['Hoi OG MotoWorks! ' + (INTENTS[d.intent] || INTENTS.afspraak)];
-    if (d.dienst) lines.push('Dienst: ' + d.dienst);
+    if (d.klus.length) lines.push('Laten doen:\n' + d.klus.map(function (x) { return '- ' + x; }).join('\n'));
     if (d.naam) lines.push('Naam: ' + d.naam);
     lines.push('Kenteken: ' + d.kenteken);
     lines.push('Merk/model: ' + clean(d.merk + ' ' + d.model));
@@ -89,12 +89,8 @@
   }
   function waUrl() { return 'https://wa.me/' + NUMBER + '?text=' + encodeURIComponent(buildMessage()); }
 
-  function setDienst(v) {
-    var sel = field('dienst'); if (!sel) return;
-    v = clean(v);
-    if (v && ![].some.call(sel.options, function (o) { return o.value === v; })) sel.appendChild(new Option(v, v));
-    sel.value = v;
-  }
+  // knop met data-dienst → bijbehorend vinkje in 'Wat wil je laten doen?' aan
+  function setDienst(v) { var id = OGMotor.klus.fromDienst(v); if (id) OGMotor.klus.add(id); }
 
   function open(trigger) {
     lastTrigger = trigger;
