@@ -139,9 +139,12 @@
     var breed = Number(state.achter.b) >= (A.breed_vanaf || 190);
     var c = gt && (mt === 'toer' || mt === 'naked' || mt === 'sport') ? 'gt' : mt === 'naked' ? (breed ? 'naked_breed' : 'naked') : mt;
     if (!A.categorie[c]) c = (state.voor.v === '21' || state.voor.v === '19') && Number(state.voor.b) <= 120 && Number(state.voor.h) >= 70 ? 'onbekend_adventure' : 'onbekend';
-    return A.categorie[c] ? { id: c, wie: A.categorie[c].wie, types: A.categorie[c].types, voorkeur: A.categorie[c].voorkeur || {} } : null;
+    return A.categorie[c] ? { id: c, wie: A.categorie[c].wie, waarom: A.categorie[c].waarom || '', types: A.categorie[c].types, voorkeur: A.categorie[c].voorkeur || {} } : null;
   }
-  function vkLijst(c, type) { var A = assort && assort.advies; return (c && c.voorkeur && c.voorkeur[type]) || ((A && A.voorkeur) || {})[type] || []; } // eigen voorkeur van de categorie gaat voor
+  function vkLijst(c, type) { // eigen voorkeur van de categorie gaat voor; 'niet_aanraden' (slecht in een onafhankelijke test) is nooit het advies
+    var A = assort && assort.advies, na = ((A && A.niet_aanraden) || []).map(function (x) { return x.toLowerCase(); });
+    return ((c && c.voorkeur && c.voorkeur[type]) || ((A && A.voorkeur) || {})[type] || []).filter(function (x) { return na.indexOf(x.toLowerCase()) === -1; });
+  }
   function adviesBerekenen() {
     var c = categorie(), ps = actievePos().filter(function (p) { return lijst(p).length; }), A = assort && assort.advies; // posities zonder banden in de lijst tellen niet mee
     if (!c || !ps.length) return null;
@@ -386,26 +389,33 @@
   });
   // ---------- popups (ⓘ) ----------
   var dlg = null, opener = null;
+  // ⓘ-tekst van een band = onafhankelijke test + uitslag, met de bron(nen) erachter
+  function bronnen(t) {
+    var l = t.bronnen && t.bronnen.length ? t.bronnen : [['Bron', t.bron]];
+    return (t.bronnen && t.bronnen.length ? ' Bron: ' : ' ') + l.map(function (b) { return '<a class="link" href="' + esc(b[1]) + '" target="_blank" rel="noopener">' + esc(b[0]) + '</a>'; }).join('; ') + '.';
+  }
+  function testnoot() { var n = assort && assort.advies && assort.advies.testnoot; return n ? '<p class="muted">' + esc(n) + '</p>' : ''; }
   function pop(id, btn) {
     var h = '', titel = '';
     if (id === 'type') {
       titel = 'Soorten banden';
-      h = '<dl>' + assort.types.map(function (t) { return '<dt>' + esc(t[1]) + '</dt><dd>' + esc(t[2]) + '</dd>'; }).join('') + '</dl>';
+      h = '<dl>' + assort.types.map(function (t) { return '<dt>' + esc(t[1]) + '</dt><dd>' + esc(t[2]) + '</dd>'; }).join('') + '</dl>' + testnoot();
     } else if (id === 'merk') {
       titel = 'A-merken en budget';
       h = assort.groepen.map(function (g) { return '<p><b>' + esc(g[0]) + '</b> (' + esc(g[1].join(', ')) + '): ' + esc(g[2]) + (g[3] ? ' <a class="link" href="' + esc(g[3]) + '" target="_blank" rel="noopener">Bron</a>' : '') + '</p>'; }).join('');
     } else if (/^adv-/.test(id)) {
       var p = id.slice(4), t = lijst(p)[adv.idx[p]];
       titel = 'Waarom de ' + t.merk + ' ' + t.band + '?';
-      var s = OGMotor.get(), ti = typeInfo(adv.type);
-      h = '<p>' + (adv.cat.wie ? 'Je ' + esc(OGMotor.label(s)) + ' is ' + esc(adv.cat.wie) + '. Daar past een <b>' + esc(typeKort(adv.type)) + '</b>band bij.' : 'Voor deze maat is een <b>' + esc(typeKort(adv.type)) + '</b>band een goede middenweg.') + '</p>' +
-        (ti[2] ? '<p>' + esc(ti[2]) + '</p>' : '') +
-        (t.uitleg && t.bron ? '<p>' + esc(t.uitleg) + ' <a class="link" href="' + esc(t.bron) + '" target="_blank" rel="noopener">Bron</a></p>' : '') +
+      // volgorde: eerst de onafhankelijke test + uitslag (met bron), dan waarom dit bandtype bij deze motor past
+      var s = OGMotor.get();
+      h = (t.uitleg && t.bron ? '<p>' + esc(t.uitleg) + bronnen(t) + '</p>' : '') +
+        '<p>' + (adv.cat.waarom ? esc(adv.cat.waarom) : adv.cat.wie ? 'Je ' + esc(OGMotor.label(s)) + ' is ' + esc(adv.cat.wie) + '. Daar past een <b>' + esc(typeKort(adv.type)) + '</b>band bij.' : 'Voor deze maat is een <b>' + esc(typeKort(adv.type)) + '</b>band een goede middenweg.') + '</p>' +
+        (t.uitleg && t.bron ? testnoot() : '') +
         '<p class="muted">Liever iets anders? Kies een ander merk of type, of app ons.</p>';
     } else if (/^band-/.test(id)) {
       var m = /^band-(voor|achter)-(\d+)$/.exec(id), tt = lijst(m[1])[Number(m[2])];
       titel = tt.merk + ' ' + tt.band;
-      h = '<p>' + esc(tt.uitleg) + ' <a class="link" href="' + esc(tt.bron) + '" target="_blank" rel="noopener">Bron</a></p>';
+      h = '<p>' + esc(tt.uitleg) + bronnen(tt) + '</p>' + testnoot();
     }
     if (!dlg) {
       dlg = document.createElement('dialog'); dlg.className = 'bm__pop'; dlg.setAttribute('aria-labelledby', 'bm-pop-t');
