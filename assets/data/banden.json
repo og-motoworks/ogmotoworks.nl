@@ -1,14 +1,14 @@
 {
  "versie": 1,
  "bijgewerkt": "2026-10-03",
- "prijzen_bijgewerkt": null,
- "toelichting": "Bandenmenu. 'maten': OEM-bandenmaten per motor (alleen met bron). 'advies': per bandenmaat 3 adviesbanden (zuinig / allround / sportief). 'inkoop_excl_btw': inkoopprijs Bandenleader excl. btw (null = 'prijs op aanvraag'). Vanaf-/richtprijs op de site: zie 'formule' (marge, buffer en btw staan alleen daar). Montage wordt apart getoond: montage_per_band. Prijzen maandelijks bijwerken, alleen voor de meest voorkomende maten, met site-build/update_bandenprijzen.py (zie BANDEN-JSON.md); zonder prijs = 'prijs op aanvraag'. Aanleverformaat: OG Command met de Bandenleader-bot, als /workspace/og_motoworks/site-build/banden-prijzen.csv.",
+ "prijzen_bijgewerkt": "2026-10-03",
+ "toelichting": "Bandenmenu. 'maten': OEM-bandenmaten per motor (alleen met bron). 'advies': per bandenmaat 3 adviesbanden (zuinig / allround / sportief). 'inkoop_excl_btw': publieke Bandenleader-prijs excl. btw (null = 'prijs op aanvraag'). Vanaf-/richtprijs op de site: zie 'formule' (marge, buffer en btw staan alleen daar). Montage wordt apart getoond: montage_per_band. Prijzen maandelijks bijwerken, alleen voor de meest voorkomende maten, met site-build/update_bandenprijzen.py (zie BANDEN-JSON.md); zonder prijs = 'prijs op aanvraag'. Aanleverformaat: OG Command met de Bandenleader-bot, als /workspace/og_motoworks/site-build/banden-prijzen.csv.",
  "formule": {
-  "marge": 1.1,
-  "buffer": 0.05,
+  "marge": 0,
+  "buffer": 0,
   "btw": 1.21,
   "afronden": "op hele euro's (half naar boven)",
-  "uitleg": "richtprijs per band incl. btw = afronden(inkoop_excl_btw x marge x (1 + buffer) x btw). marge 1,10 = 10% marge; buffer = opslag voor prijsschommelingen (0,05 = 5%, 0 = geen buffer); btw 1,21 = 21%. Alleen hier aanpassen: de site (banden.js) en update_bandenprijzen.py lezen deze waarden."
+  "uitleg": "richtprijs per band incl. btw = afronden(inkoop_excl_btw x (1 + marge) x (1 + buffer) x btw). inkoop_excl_btw in de CSV is de PUBLIEKE Bandenleader-prijs excl. btw (geen echte inkoopprijs), dus met marge 0 en buffer 0 is de richtprijs gelijk aan de Bandenleader-prijs incl. btw. marge = opslag als fractie (0,10 = 10%), buffer = opslag voor prijsschommelingen (0,05 = 5%); allebei 0 op keuze van Freddy (3 oktober 2026). btw 1,21 = 21%. Alleen hier aanpassen: de site (banden.js) en update_bandenprijzen.py lezen deze waarden."
  },
  "montage_per_band": 50,
  "maten": [
@@ -292,21 +292,21 @@
     "merk": "Michelin",
     "band": "Road 6",
     "uitleg": "Toerband die lang meegaat en veel grip houdt in de regen.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 113.38
    },
    {
     "soort": "allround",
     "merk": "Bridgestone",
     "band": "Battlax T32",
     "uitleg": "Sporttoerband: stabiel, snel op temperatuur, goed in alle weer.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 95.11
    },
    {
     "soort": "sportief",
     "merk": "Michelin",
     "band": "Power 6",
     "uitleg": "Sportieve straatband met veel grip in bochten, slijt sneller.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 114.78
    }
   ],
   "180/55 ZR17": [
@@ -315,21 +315,21 @@
     "merk": "Michelin",
     "band": "Road 6",
     "uitleg": "Toerband die lang meegaat en veel grip houdt in de regen.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 149.41
    },
    {
     "soort": "allround",
     "merk": "Bridgestone",
     "band": "Battlax T32",
     "uitleg": "Sporttoerband: stabiel, snel op temperatuur, goed in alle weer.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 123.79
    },
    {
     "soort": "sportief",
     "merk": "Michelin",
     "band": "Power 6",
     "uitleg": "Sportieve straatband met veel grip in bochten, slijt sneller.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 143.63
    }
   ],
   "120/70 R19": [
@@ -338,21 +338,21 @@
     "merk": "Michelin",
     "band": "Anakee Road",
     "uitleg": "Adventureband voor de weg: lange levensduur, prettig in de regen.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 106.69
    },
    {
     "soort": "allround",
     "merk": "Bridgestone",
     "band": "Battlax A41",
     "uitleg": "Allround adventureband voor asfalt en een stukje onverhard.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 100.73
    },
    {
     "soort": "sportief",
     "merk": "Pirelli",
     "band": "Scorpion Trail II",
     "uitleg": "Sportieve adventureband met veel grip op asfalt.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 106.36
    }
   ],
   "170/60 R17": [
@@ -361,21 +361,21 @@
     "merk": "Michelin",
     "band": "Anakee Road",
     "uitleg": "Adventureband voor de weg: lange levensduur, prettig in de regen.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 136.27
    },
    {
     "soort": "allround",
     "merk": "Bridgestone",
     "band": "Battlax A41",
     "uitleg": "Allround adventureband voor asfalt en een stukje onverhard.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 121.14
    },
    {
     "soort": "sportief",
     "merk": "Pirelli",
     "band": "Scorpion Trail II",
     "uitleg": "Sportieve adventureband met veel grip op asfalt.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 127.84
    }
   ],
   "90/90-21": [
@@ -384,21 +384,21 @@
     "merk": "Michelin",
     "band": "Anakee Adventure",
     "uitleg": "Vooral voor de weg, met genoeg profiel voor een onverhard pad. Gaat lang mee.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 100.73
    },
    {
     "soort": "allround",
     "merk": "Bridgestone",
     "band": "Battlax A41",
     "uitleg": "Allround adventureband voor asfalt en een stukje onverhard.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 108.75
    },
    {
     "soort": "sportief",
     "merk": "Metzeler",
     "band": "Karoo Street",
     "uitleg": "Grof profiel voor meer grip onverhard; op asfalt iets minder verfijnd.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 102.31
    }
   ],
   "200/55 ZR17": [
@@ -407,21 +407,21 @@
     "merk": "Continental",
     "band": "ContiSportAttack 4",
     "uitleg": "Eigenlijk een sportband, maar in deze maat de voordeligste gangbare band. Veel grip in bochten; slijt sneller dan een sporttoerband.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 128.67
    },
    {
     "soort": "allround",
     "merk": "Pirelli",
     "band": "Diablo Rosso IV",
     "uitleg": "Sportieve straatband die snel warm is en ook op natte weg vertrouwen geeft.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 163.46
    },
    {
     "soort": "sportief",
     "merk": "Bridgestone",
     "band": "Battlax Hypersport S23",
     "uitleg": "Veel grip voor sportief rijden op de weg, slijt sneller.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 179.9
    }
   ],
   "190/55 ZR17": [
@@ -430,21 +430,21 @@
     "merk": "Michelin",
     "band": "Road 6",
     "uitleg": "Toerband die lang meegaat en veel grip houdt in de regen.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 159.33
    },
    {
     "soort": "allround",
     "merk": "Bridgestone",
     "band": "Battlax T32",
     "uitleg": "Sporttoerband: stabiel, snel op temperatuur, goed in alle weer.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 136.19
    },
    {
     "soort": "sportief",
     "merk": "Michelin",
     "band": "Power 6",
     "uitleg": "Sportieve straatband met veel grip in bochten, slijt sneller.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 151.07
    }
   ],
   "110/80 R19": [
@@ -453,21 +453,21 @@
     "merk": "Michelin",
     "band": "Anakee Road",
     "uitleg": "Adventureband voor de weg: lange levensduur, prettig in de regen.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 107.6
    },
    {
     "soort": "allround",
     "merk": "Bridgestone",
     "band": "Battlax A41",
     "uitleg": "Allround adventureband voor asfalt en een stukje onverhard.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 90.65
    },
    {
     "soort": "sportief",
     "merk": "Pirelli",
     "band": "Scorpion Trail II",
     "uitleg": "Sportieve adventureband met veel grip op asfalt.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 98.83
    }
   ],
   "150/70 R18": [
@@ -476,21 +476,21 @@
     "merk": "Michelin",
     "band": "Anakee Adventure",
     "uitleg": "Vooral voor de weg, met genoeg profiel voor een onverhard pad. Gaat lang mee.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 122.97
    },
    {
     "soort": "allround",
     "merk": "Bridgestone",
     "band": "Battlax A41",
     "uitleg": "Allround adventureband voor asfalt en een stukje onverhard.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 115.36
    },
    {
     "soort": "sportief",
     "merk": "Metzeler",
     "band": "Karoo Street",
     "uitleg": "Grof profiel voor meer grip onverhard; op asfalt iets minder verfijnd.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 123.13
    }
   ],
   "190/50 ZR17": [
@@ -499,21 +499,21 @@
     "merk": "Dunlop",
     "band": "Sportmax GPR-300",
     "uitleg": "Voordelige radiaalband voor dagelijks rijden en toeren; gaat redelijk lang mee en is voorspelbaar, ook op natte weg.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 104.79
    },
    {
     "soort": "allround",
     "merk": "Michelin",
     "band": "Road 6",
     "uitleg": "Toerband die lang meegaat en veel grip houdt in de regen.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 156.85
    },
    {
     "soort": "sportief",
     "merk": "Michelin",
     "band": "Power 6",
     "uitleg": "Sportieve straatband met veel grip in bochten, slijt sneller.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 147.76
    }
   ],
   "160/60 ZR17": [
@@ -522,21 +522,21 @@
     "merk": "Dunlop",
     "band": "Sportmax GPR-300",
     "uitleg": "Voordelige radiaalband voor dagelijks rijden en toeren; gaat redelijk lang mee en is voorspelbaar, ook op natte weg.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 96.77
    },
    {
     "soort": "allround",
     "merk": "Michelin",
     "band": "Road 6",
     "uitleg": "Toerband die lang meegaat en veel grip houdt in de regen.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 139.58
    },
    {
     "soort": "sportief",
     "merk": "Michelin",
     "band": "Power 6",
     "uitleg": "Sportieve straatband met veel grip in bochten, slijt sneller.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 133.71
    }
   ],
   "150/60 ZR17": [
@@ -545,21 +545,21 @@
     "merk": "Dunlop",
     "band": "Sportmax GPR-300",
     "uitleg": "Voordelige radiaalband voor dagelijks rijden en toeren; gaat redelijk lang mee en is voorspelbaar, ook op natte weg.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 111.98
    },
    {
     "soort": "allround",
     "merk": "Michelin",
     "band": "Road 6",
     "uitleg": "Toerband die lang meegaat en veel grip houdt in de regen.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 137.02
    },
    {
     "soort": "sportief",
     "merk": "Michelin",
     "band": "Power 6",
     "uitleg": "Sportieve straatband met veel grip in bochten, slijt sneller.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 134.95
    }
   ],
   "110/70 ZR17": [
@@ -568,21 +568,21 @@
     "merk": "Michelin",
     "band": "Pilot Street Radial",
     "uitleg": "Radiaalband voor lichtere motoren en dagelijks gebruik; gaat lang mee en geeft vertrouwen op natte weg.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 78.75
    },
    {
     "soort": "allround",
     "merk": "Bridgestone",
     "band": "Battlax BT-46",
     "uitleg": "Toerband voor lichtere en klassieke motoren: stabiel, rustig en gemaakt om lang mee te gaan, ook bij nat weer.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 81.64
    },
    {
     "soort": "sportief",
     "merk": "Pirelli",
     "band": "Diablo Rosso IV",
     "uitleg": "Sportieve straatband die snel warm is en ook op natte weg vertrouwen geeft.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 113.71
    }
   ],
   "140/70-17": [
@@ -591,21 +591,21 @@
     "merk": "Michelin",
     "band": "Pilot Street Radial",
     "uitleg": "Radiaalband voor lichtere motoren en dagelijks gebruik; gaat lang mee en geeft vertrouwen op natte weg.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 90.24
    },
    {
     "soort": "allround",
     "merk": "Bridgestone",
     "band": "Battlax BT-46",
     "uitleg": "Toerband voor lichtere en klassieke motoren: stabiel, rustig en gemaakt om lang mee te gaan, ook bij nat weer.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 98.92
    },
    {
     "soort": "sportief",
     "merk": "Pirelli",
     "band": "Diablo Rosso IV",
     "uitleg": "Sportieve straatband die snel warm is en ook op natte weg vertrouwen geeft.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 114.7
    }
   ],
   "130/70-17": [
@@ -614,21 +614,21 @@
     "merk": "Michelin",
     "band": "Pilot Street Radial",
     "uitleg": "Radiaalband voor lichtere motoren en dagelijks gebruik; gaat lang mee en geeft vertrouwen op natte weg.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 88.17
    },
    {
     "soort": "allround",
     "merk": "Bridgestone",
     "band": "Battlax BT-46",
     "uitleg": "Toerband voor lichtere en klassieke motoren: stabiel, rustig en gemaakt om lang mee te gaan, ook bij nat weer.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 98.26
    },
    {
     "soort": "sportief",
     "merk": "Pirelli",
     "band": "Diablo Rosso II",
     "uitleg": "Sportieve straatband (ouder model) met veel grip in bochten op droge weg; slijt sneller dan een toerband.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 73.88
    }
   ],
   "150/70 R17": [
@@ -637,21 +637,21 @@
     "merk": "Bridgestone",
     "band": "Battlax A41",
     "uitleg": "Adventureband vooral voor asfalt (een stukje onverhard kan): gaat lang mee en blijft goed in de regen.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 117.1
    },
    {
     "soort": "allround",
     "merk": "Michelin",
     "band": "Anakee Adventure",
     "uitleg": "Vooral voor de weg, met genoeg profiel voor een onverhard pad. Gaat lang mee.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 121.31
    },
    {
     "soort": "sportief",
     "merk": "Pirelli",
     "band": "Scorpion Trail II",
     "uitleg": "Sportieve adventureband met veel grip op asfalt.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 126.27
    }
   ],
   "100/90-19": [
@@ -660,21 +660,21 @@
     "merk": "Bridgestone",
     "band": "Battlax A41",
     "uitleg": "Adventureband vooral voor asfalt (een stukje onverhard kan): gaat lang mee en blijft goed in de regen.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 95.69
    },
    {
     "soort": "allround",
     "merk": "Michelin",
     "band": "Anakee Adventure",
     "uitleg": "Vooral voor de weg, met genoeg profiel voor een onverhard pad. Gaat lang mee.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 101.89
    },
    {
     "soort": "sportief",
     "merk": "Metzeler",
     "band": "Karoo Street",
     "uitleg": "Grof profiel voor meer grip onverhard; op asfalt iets minder verfijnd.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 103.13
    }
   ],
   "130/80-17": [
@@ -683,21 +683,21 @@
     "merk": "Bridgestone",
     "band": "Battlax A41",
     "uitleg": "Adventureband vooral voor asfalt (een stukje onverhard kan): gaat lang mee en blijft goed in de regen.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 96.52
    },
    {
     "soort": "allround",
     "merk": "Michelin",
     "band": "Anakee Adventure",
     "uitleg": "Vooral voor de weg, met genoeg profiel voor een onverhard pad. Gaat lang mee.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 125.45
    },
    {
     "soort": "sportief",
     "merk": "Metzeler",
     "band": "Karoo Street",
     "uitleg": "Grof profiel voor meer grip onverhard; op asfalt iets minder verfijnd.",
-    "inkoop_excl_btw": null
+    "inkoop_excl_btw": 112.72
    }
   ]
  },

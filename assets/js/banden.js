@@ -1,5 +1,5 @@
 /* OG MotoWorks – bandenmenu ([data-bandenmenu]). Na merk/model/bouwjaar (OGMotor): OEM-maten voor/achter (per generatie, uit banden.json)
-   als vooringevulde keuzelijsten breedte/hoogte/velgmaat, per maat 3 adviesbanden met 'vanaf'-prijs (inkoop excl. btw x marge x (1 + buffer) x btw, afgerond; zie formule in banden.json) en
+   als vooringevulde keuzelijsten breedte/hoogte/velgmaat, per maat 3 adviesbanden met 'vanaf'-prijs (inkoop excl. btw x (1 + marge) x (1 + buffer) x btw, afgerond; zie formule in banden.json) en
    montage apart (+ €50 per band). Geen prijs bekend = 'prijs op aanvraag'. Extra's: haakse ventielen (€20 per set), afvoeren (€5 per band).
    Overzicht onderaan (geen betaling/winkelwagen) met richtprijs; gaat mee in WhatsApp-bericht en Formspree. */
 (function () {
@@ -21,12 +21,12 @@
   function vanaf(t) {
     if (t.inkoop_excl_btw == null || !(t.inkoop_excl_btw > 0)) return null;
     var f = formule(); if (!f) return null;
-    return Math.round(t.inkoop_excl_btw * f.marge * (1 + f.buffer) * f.btw);
+    return Math.round(t.inkoop_excl_btw * (1 + f.marge) * (1 + f.buffer) * f.btw);
   }
-  // Formule staat alleen in banden.json (marge, buffer voor prijsschommelingen, btw). Ontbreekt of klopt die niet: geen prijs (= op aanvraag).
+  // Formule staat alleen in banden.json: marge en buffer als fractie (0 = geen opslag), btw als factor. Ontbreekt of klopt die niet: geen prijs (= op aanvraag).
   function formule() {
     var f = data && data.formule, ok = function (v, a, z) { return typeof v === 'number' && isFinite(v) && v >= a && v <= z; };
-    return f && ok(f.marge, 1, 3) && ok(f.btw, 1, 2) && ok(f.buffer, 0, 0.5) ? f : null;
+    return f && ok(f.marge, 0, 1) && ok(f.btw, 1, 2) && ok(f.buffer, 0, 0.5) ? f : null;
   }
   function inYear(m, y) { return y && (!m.van || y >= m.van) && (!m.tot || y <= m.tot); }
   // Precies één regel moet passen (merk, model, uitvoering, bouwjaar); anders geen OEM-maat
