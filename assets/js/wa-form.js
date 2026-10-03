@@ -5,10 +5,10 @@
 (function () {
   'use strict';
   var NUMBER = '31642939555';
-  // Formspree-endpoint, bv. 'https://formspree.io/f/abcdwxyz'. Leeg = uit (alleen WhatsApp).
+  // Formspree-endpoint (aan sinds 3 okt 2026; account info@ogmotoworks.nl, doel afspraken@ogmotoworks.nl). Leeg = uit (alleen WhatsApp).
   // Aan: bij versturen gaat de aanvraag ook als e-mail via Formspree naar ons; WhatsApp opent altijd, ook als dat mislukt.
-  // Let op: zet bij aanzetten ook FORMSPREE_AAN = True in site-build/build_pages.py (privacyverklaring) en bouw opnieuw.
-  var FORMSPREE_ENDPOINT = '';
+  // Let op: bij uitzetten ook FORMSPREE_AAN = False in site-build/build_pages.py (privacyverklaring) en opnieuw bouwen.
+  var FORMSPREE_ENDPOINT = 'https://formspree.io/f/myezrojv';
   var dlg = document.getElementById('wa-dialog');
   if (!dlg || typeof dlg.showModal !== 'function' || !window.OGMotor) return;
   var form = document.getElementById('wa-form');
