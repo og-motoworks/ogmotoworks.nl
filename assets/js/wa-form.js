@@ -121,30 +121,33 @@
     if (!r || !note) return;
     note.textContent = r.checked && !clean(field('email').value) ? 'Voor de reviewmail hebben we je e-mailadres nodig. Vul het hierboven in als je die wilt ontvangen.' : '';
   }
-  // Velden voor Formspree (worden in de mail getoond); _subject/_replyto/_gotcha zijn speciale Formspree-velden
+  // Velden voor Formspree (worden in de mail getoond). Speciale Formspree-velden (help.formspree.io, Special Fields):
+  // 'subject' = onderwerp van de mail, 'email' = Reply-To (alleen meesturen als het een geldig adres is), '_gotcha' = honeypot.
+  // Lege/niet-van-toepassing velden worden weggelaten (geen '(niet ingevuld)' e.d.: spamfilters houden niet van lege of nep-waarden).
+  var MAIL_OK = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
   function formspreeData() {
     var d = collect(), kl = OGMotor.klus.get(), bx = d.banden && kl.items.indexOf('banden') !== -1 ? (kl.bandExtra || { ventielen: false, afvoeren: false, aantal: 0, totaal: null }) : null;
-    var o = {
-      _subject: 'Aanvraag ogmotoworks.nl – ' + (clean(d.merk + ' ' + d.model) || 'motor'),
-      'Soort aanvraag': (function (op) { return op.zin + (/:$/.test(op.zin) ? ' ' + op.lijst.join('; ') : ''); })(OGMotor.klus.opening(d.intent)),
-      'Naam': d.naam, 'Telefoon': d.telefoon, 'E-mail': d.email || '(niet ingevuld)', 'Plaats/adres': d.plaats || '(niet ingevuld)',
-      'Kenteken': d.kenteken, 'Merk/model': clean(d.merk + ' ' + d.model), 'Uitvoering': d.uitvoering || '(niet ingevuld)',
-      'Bouwjaar': d.bouwjaar, 'Kilometerstand': d.km == null ? '' : d.km.toLocaleString('nl-NL') + ' km',
-      'Laten doen': d.klus.length ? d.klus.join('; ') : '(niets aangevinkt)',
-      'Banden': d.banden || '(geen)', 'Vraag': d.vraag || '(geen)',
-      'Haakse ventielen': bx ? (bx.ventielen ? 'ja (+€20 per set, als het past)' : 'nee') : '(n.v.t.)',
-      'Oude band afvoeren': bx ? (bx.afvoeren ? 'ja (' + (bx.aantal ? bx.aantal + ' × €5' : '€5 per band') + ')' : 'nee') : '(n.v.t.)',
-      'Banden overzicht': bandOverzicht() ? bandOverzicht().regels.map(function (r) { return r[0] + ': ' + r[1]; }).join('\n') : '(n.v.t.)',
-      'Richtprijs banden': bandOverzicht() ? bandOverzicht().tekst + ' (incl. btw). ' + DEF : '(n.v.t.)',
-      'Winterpakket': d.winter ? (d.winter.naam || '(nog kiezen)') : '(geen)',
-      'Vroegboek': d.winter ? (d.winter.vroegboek ? 'ja' : 'nee') : '(n.v.t.)',
-      'Akkoord gegevens voor deze aanvraag': d.akkoord ? 'ja' : 'nee',
-      'Toestemming reviewverzoek per mail': d.review ? 'ja' : 'nee',
-      'Pagina': location.pathname,
-      'WhatsApp-bericht': buildMessage(),
-      _gotcha: ''
-    };
-    if (d.email) o._replyto = d.email;
+    var motorTxt = clean(d.merk + ' ' + d.model), bo = bandOverzicht(), o = {};
+    function put(k, v) { if (v != null && String(v).trim() !== '') o[k] = String(v); }
+    put('subject', 'Nieuwe aanvraag via ogmotoworks.nl – ' + (d.naam || 'onbekend') + ' – ' + (motorTxt || 'motor'));
+    put('Soort aanvraag', (function (op) { return op.zin + (/:$/.test(op.zin) ? ' ' + op.lijst.join('; ') : ''); })(OGMotor.klus.opening(d.intent)));
+    put('Naam', d.naam); put('Telefoon', d.telefoon);
+    if (MAIL_OK.test(d.email)) put('email', d.email);
+    put('Plaats/adres', d.plaats); put('Kenteken', d.kenteken); put('Merk/model', motorTxt); put('Uitvoering', d.uitvoering);
+    put('Bouwjaar', d.bouwjaar); put('Kilometerstand', d.km == null ? '' : d.km.toLocaleString('nl-NL') + ' km');
+    if (d.klus.length) put('Laten doen', d.klus.join('; '));
+    put('Banden', d.banden);
+    if (bx) {
+      put('Haakse ventielen', bx.ventielen ? 'ja (+€20 per set, als het past)' : 'nee');
+      put('Oude band afvoeren', bx.afvoeren ? 'ja (' + (bx.aantal ? bx.aantal + ' × €5' : '€5 per band') + ')' : 'nee');
+    }
+    if (bo) { put('Banden overzicht', bo.regels.map(function (r) { return r[0] + ': ' + r[1]; }).join('\n')); put('Richtprijs banden', bo.tekst + ' (incl. btw). ' + DEF); }
+    put('Vraag', d.vraag);
+    if (d.winter) { put('Winterpakket', d.winter.naam || '(nog kiezen)'); put('Vroegboek', d.winter.vroegboek ? 'ja' : 'nee'); }
+    put('Akkoord gegevens voor deze aanvraag', d.akkoord ? 'ja' : 'nee');
+    put('Toestemming reviewverzoek per mail', d.review ? 'ja' : 'nee');
+    put('Pagina', location.pathname);
+    o._gotcha = '';
     return o;
   }
   // Stil versturen: geen foutmelding voor de klant; WhatsApp is altijd de hoofdroute
