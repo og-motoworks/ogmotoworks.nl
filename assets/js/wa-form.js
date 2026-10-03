@@ -106,7 +106,7 @@
     lines.push('Kilometerstand: ' + (d.km == null ? '' : d.km.toLocaleString('nl-NL') + ' km'));
     if (d.banden) lines.push('Banden: ' + d.banden);
     if (d.vraag) lines.push('Vraag: ' + d.vraag);
-    if (d.review) lines.push('Reviewverzoek per mail: ja' + (d.email ? '' : ' (nog geen e-mailadres)'));
+    if (d.review) lines.push('Reviewverzoek per mail: ja');
     return lines.join('\n');
   }
   // Zachte melding (blokkeert niet): reviewverzoek aangevinkt maar geen e-mailadres
