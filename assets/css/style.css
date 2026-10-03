@@ -479,3 +479,11 @@ html:has(.nav.is-open) .fab{display:none}
 .bm__prijs{font-weight:700;margin-top:4px}
 .bm__cta{margin-top:14px}
 .bm .muted{color:var(--muted)}
+/* ---------- formulier: jouw gegevens ---------- */
+.sheet__sub{grid-column:1/-1;margin:10px 0 -4px;font:600 1rem/1.3 var(--body);color:var(--text)}
+.field--check{display:grid;grid-template-columns:22px 1fr;gap:4px 10px;align-items:start}
+.field--check input[type=checkbox]{width:20px;height:20px;min-height:0;padding:0;margin:3px 0 0;accent-color:var(--accent)}
+.field.field--check label{font:400 .92rem/1.45 var(--body);letter-spacing:0;text-transform:none;color:var(--muted)}
+.field--check .field__err{grid-column:2}
+.field--check input[aria-invalid=true]{outline:2px solid var(--accent-2);outline-offset:2px}
+@media (max-width:480px){#wa-form .field:has(#wa-telefoon),#wa-form .field:has(#wa-email){grid-column:1/-1}}

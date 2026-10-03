@@ -5,6 +5,9 @@
 (function () {
   'use strict';
   var NUMBER = '31642939555';
+  // Afleverroute voor aanvragen (naast WhatsApp). Leeg = alleen WhatsApp. Pas invullen na akkoord (zie OG Command):
+  // dan wordt collect() als JSON gepost naar deze URL (bv. een formulierdienst), en opent WhatsApp zoals nu.
+  var DELIVERY_URL = '';
   var dlg = document.getElementById('wa-dialog');
   if (!dlg || typeof dlg.showModal !== 'function' || !window.OGMotor) return;
   var form = document.getElementById('wa-form');
@@ -54,6 +57,17 @@
     var kmOk = /^\d{1,7}$/.test(digits);
     setError(km, digits ? (kmOk ? '' : 'Vul alleen cijfers in, bijv. 23450.') : 'Vul de kilometerstand in.');
     if (!kmOk) first = first || km;
+    // jouw gegevens
+    var naam = field('naam'), tel = field('telefoon'), mail = field('email'), akk = field('akkoord');
+    var nOk = clean(naam.value).length >= 2;
+    setError(naam, nOk ? '' : 'Vul je naam in.'); if (!nOk) first = first || naam;
+    var t = clean(tel.value).replace(/[\s().-]/g, '');
+    var tOk = /^(\+|00)?\d{9,14}$/.test(t);
+    setError(tel, t ? (tOk ? '' : 'Vul een geldig telefoonnummer in, bijv. 06 12345678.') : 'Vul je telefoonnummer in.'); if (!tOk) first = first || tel;
+    var m = clean(mail.value);
+    var mOk = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m);
+    setError(mail, m ? (mOk ? '' : 'Vul een geldig e-mailadres in.') : 'Vul je e-mailadres in.'); if (!mOk) first = first || mail;
+    setError(akk, akk.checked ? '' : 'Vink aan dat we je gegevens mogen gebruiken voor deze aanvraag.'); if (!akk.checked) first = first || akk;
     return first;
   }
 
@@ -65,6 +79,8 @@
       intent: intentEl.value || 'afspraak',
       klus: OGMotor.klus.lines(),
       naam: clean(field('naam').value),
+      telefoon: clean(field('telefoon').value), email: clean(field('email').value), plaats: clean(field('plaats').value),
+      akkoord: !!field('akkoord').checked,
       kenteken: clean(field('kenteken').value).toUpperCase(),
       merk: motor.merk(), model: motor.model(), uitvoering: motor.uitvoering(),
       bouwjaar: by ? OGMotor.yearText(by) : '',
@@ -78,6 +94,9 @@
     var lines = ['Hoi OG MotoWorks! ' + (INTENTS[d.intent] || INTENTS.afspraak)];
     if (d.klus.length) lines.push('Laten doen:\n' + d.klus.map(function (x) { return '- ' + x; }).join('\n'));
     if (d.naam) lines.push('Naam: ' + d.naam);
+    if (d.telefoon) lines.push('Telefoon: ' + d.telefoon);
+    if (d.email) lines.push('E-mail: ' + d.email);
+    if (d.plaats) lines.push('Plaats/adres: ' + d.plaats);
     lines.push('Kenteken: ' + d.kenteken);
     lines.push('Merk/model: ' + clean(d.merk + ' ' + d.model));
     if (d.uitvoering) lines.push('Uitvoering: ' + d.uitvoering);
@@ -130,6 +149,10 @@
     var bad = validate();
     if (bad) { bad.focus(); return; }
     OGMotor.set(motor.read());
+    if (DELIVERY_URL && window.fetch) {
+      try { fetch(DELIVERY_URL, { method: 'POST', keepalive: true, headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                                  body: JSON.stringify({ bron: location.pathname, bericht: buildMessage(), gegevens: collect() }) }).catch(function () {}); } catch (err) {}
+    }
     var url = waUrl();
     var w = window.open(url, '_blank', 'noopener');
     if (!w) window.location.href = url;
