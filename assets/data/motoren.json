@@ -3,15 +3,22 @@
  "toelichting": "Populaire motormodellen per merk (NL). Model 'Ander model' en merk 'Anders' worden door het formulier zelf toegevoegd. 'uitvoeringen' = bekende uitvoeringen per model (optioneel veld); het formulier voegt 'Weet ik niet' en 'Andere uitvoering' toe. 'types' = soort motor per model voor het silhouet (naked, sport, toer, adventure, scooter, klassiek); niet ingedeeld = generiek silhouet.",
  "merken": {
   "Aprilia": [
+   "Caponord 1200",
+   "Dorsoduro 750",
    "Dorsoduro 900",
+   "Dorsoduro 1200",
+   "ETV 1000 Caponord",
    "RS 125",
    "RS 457",
    "RS 660",
    "RSV4",
+   "RSV 1000",
+   "Shiver 750",
    "Shiver 900",
    "SX 125",
    "Tuareg 660",
    "Tuono 660",
+   "Tuono 1000",
    "Tuono V4"
   ],
   "Benelli": [
@@ -21,6 +28,7 @@
    "Leoncino 500",
    "Leoncino 800",
    "TNT 125",
+   "TNT 1130",
    "TRK 502",
    "TRK 702"
   ],
@@ -37,6 +45,7 @@
    "F 900 XR",
    "G 310 GS",
    "G 310 R",
+   "K 1200 S",
    "K 1300 S",
    "K 1600",
    "M 1000 RR",
@@ -44,10 +53,14 @@
    "R 12 nineT",
    "R 18",
    "R 1150 GS",
+   "R 1150 GS Adventure",
+   "R 1150 R",
+   "R 1150 RT",
    "R 1200 GS",
    "R 1200 GS Adventure",
    "R 1200 R",
    "R 1200 RT",
+   "R 1200 ST",
    "R 1250 GS",
    "R 1250 GS Adventure",
    "R 1250 R",
@@ -74,25 +87,48 @@
    "650MT",
    "650NK",
    "700CL-X",
+   "700MT",
    "800MT",
    "800NK"
   ],
   "Ducati": [
+   "848",
+   "899 Panigale",
+   "959 Panigale",
+   "1098",
+   "1198",
+   "1199 Panigale",
+   "1299 Panigale",
    "DesertX",
+   "Diavel",
    "Diavel V4",
+   "Hypermotard 821",
+   "Hypermotard 939",
    "Hypermotard 950",
+   "Hypermotard 1100",
    "Monster",
+   "Monster 696",
+   "Monster 796",
+   "Monster 797",
    "Monster 821",
+   "Monster 1100",
    "Monster 1200",
    "Multistrada 950",
+   "Multistrada 1000 DS",
+   "Multistrada 1100",
+   "Multistrada 1200",
    "Multistrada 1260",
    "Multistrada V2",
    "Multistrada V4",
    "Panigale V2",
    "Panigale V4",
    "Scrambler 800",
+   "Scrambler 1100",
+   "Streetfighter 848",
+   "Streetfighter 1098",
    "Streetfighter V2",
    "Streetfighter V4",
+   "SuperSport 939",
    "SuperSport 950",
    "XDiavel"
   ],
@@ -126,15 +162,19 @@
    "CB500 Hornet",
    "CB500F",
    "CB500X",
+   "CB600F Hornet",
    "CB650F",
    "CB650R",
    "CB750 Hornet",
    "CB1000R",
    "CBF600",
+   "CBF1000",
    "CBR125R",
    "CBR500R",
+   "CBR600F",
    "CBR600RR",
    "CBR650R",
+   "CBR900RR Fireblade",
    "CBR1000RR Fireblade",
    "CMX500 Rebel",
    "CMX1100 Rebel",
@@ -142,19 +182,28 @@
    "Gold Wing",
    "NC700X",
    "NC750X",
+   "NT700V Deauville",
    "NT1100",
    "NX500",
+   "ST1300 Pan-European",
    "VFR800F",
+   "VFR1200F",
+   "VFR1200X Crosstourer",
    "X-ADV",
-   "XL750 Transalp"
+   "XL650V Transalp",
+   "XL700V Transalp",
+   "XL750 Transalp",
+   "XL1000V Varadero"
   ],
   "Husqvarna": [
    "701 Enduro",
    "701 Supermoto",
    "Norden 901",
+   "Nuda 900",
    "Svartpilen 125",
    "Svartpilen 401",
    "Svartpilen 701",
+   "Svartpilen 801",
    "Vitpilen 401",
    "Vitpilen 701"
   ],
@@ -169,7 +218,9 @@
    "Super Chief"
   ],
   "Kawasaki": [
+   "1400GTR",
    "Eliminator 500",
+   "ER-5",
    "ER-6f",
    "ER-6n",
    "H2",
@@ -192,7 +243,10 @@
    "Z800",
    "Z900",
    "Z900RS",
-   "Z1000"
+   "Z1000",
+   "Z1000SX",
+   "Z H2",
+   "ZZR1400"
   ],
   "KTM": [
    "125 Duke",
@@ -205,17 +259,26 @@
    "790 Duke",
    "890 Adventure",
    "890 Duke",
+   "990 Adventure",
    "990 Duke",
+   "990 SMT",
+   "990 Super Duke",
+   "1050 Adventure",
    "1090 Adventure",
    "1190 Adventure",
+   "1190 RC8",
    "1290 Super Adventure",
    "1290 Super Duke",
    "1390 Super Duke R",
    "RC 390"
   ],
   "Moto Guzzi": [
+   "1200 Sport",
+   "Breva 750",
+   "Breva 1100",
    "California 1400",
    "Griso",
+   "Norge 1200",
    "Stelvio",
    "V7",
    "V9 Bobber",
@@ -251,8 +314,12 @@
    "Super Meteor 650"
   ],
   "Suzuki": [
+   "Bandit 600",
    "Bandit 650",
+   "Bandit 1200",
    "Bandit 1250",
+   "GSX650F",
+   "GSX1250FA",
    "GSX-8R",
    "GSX-8S",
    "GSX-R600",
@@ -265,33 +332,44 @@
    "Intruder M800",
    "Katana",
    "SV650",
+   "SV1000",
    "V-Strom 650",
    "V-Strom 800DE",
    "V-Strom 1000",
    "V-Strom 1050"
   ],
   "Triumph": [
+   "Bonneville Bobber",
    "Bonneville T100",
    "Bonneville T120",
    "Daytona 660",
+   "Daytona 675",
+   "Daytona 955i",
    "Rocket 3",
    "Scrambler 400 X",
    "Scrambler 900",
    "Scrambler 1200",
    "Speed 400",
+   "Speed Four",
+   "Speed Triple 955i",
    "Speed Triple 1050",
    "Speed Triple 1200 RS",
    "Speed Twin 900",
    "Speed Twin 1200",
+   "Sprint ST",
    "Street Triple 675",
    "Street Triple 765",
    "Thruxton",
    "Tiger 800",
    "Tiger 850 Sport",
    "Tiger 900",
+   "Tiger 955i",
+   "Tiger 1050",
    "Tiger 1200",
    "Tiger Sport 660",
-   "Trident 660"
+   "Tiger Sport 1050",
+   "Trident 660",
+   "Trophy 1215"
   ],
   "Voge": [
    "300 Rally",
@@ -302,6 +380,10 @@
    "FJR1300",
    "FZ1",
    "FZ6",
+   "FZ8",
+   "FZS600 Fazer",
+   "FZS1000 Fazer",
+   "MT-01",
    "MT-03",
    "MT-07",
    "MT-09",
@@ -314,6 +396,7 @@
    "R7",
    "R125",
    "Super Ténéré XT1200Z",
+   "TDM900",
    "Ténéré 700",
    "Tracer 7",
    "Tracer 9",
@@ -339,6 +422,10 @@
  },
  "uitvoeringen": {
   "Aprilia": {
+   "Caponord 1200": [
+    "Standaard",
+    "Rally"
+   ],
    "RS 660": [
     "Standaard",
     "Extrema"
@@ -360,6 +447,10 @@
    ]
   },
   "Benelli": {
+   "Leoncino 800": [
+    "Standaard",
+    "Trail"
+   ],
    "TRK 502": [
     "Standaard",
     "X"
@@ -370,6 +461,10 @@
    ]
   },
   "BMW": {
+   "F 650 GS": [
+    "Standaard",
+    "Dakar"
+   ],
    "K 1600": [
     "GT",
     "GTL",
@@ -382,6 +477,10 @@
     "B",
     "Transcontinental",
     "Roctane"
+   ],
+   "R 1150 R": [
+    "Standaard",
+    "Rockster"
    ],
    "R 1200 GS": [
     "Standaard",
@@ -402,6 +501,13 @@
     "GS Trophy",
     "Option 719"
    ],
+   "R nineT": [
+    "Standaard",
+    "Pure",
+    "Racer",
+    "Scrambler",
+    "Urban G/S"
+   ],
    "S 1000 RR": [
     "Standaard",
     "M Package"
@@ -411,6 +517,13 @@
    "Crossfire 500": [
     "Standaard",
     "XC"
+   ]
+  },
+  "CFMoto": {
+   "700CL-X": [
+    "Heritage",
+    "Sport",
+    "Adventure"
    ]
   },
   "Ducati": {
@@ -432,6 +545,12 @@
    "Multistrada 950": [
     "Standaard",
     "S"
+   ],
+   "Multistrada 1200": [
+    "Standaard",
+    "S",
+    "Enduro",
+    "Pikes Peak"
    ],
    "Multistrada 1260": [
     "Standaard",
@@ -778,14 +897,21 @@
  },
  "types": {
   "Aprilia": {
+   "Caponord 1200": "adventure",
+   "Dorsoduro 750": "naked",
    "Dorsoduro 900": "naked",
+   "Dorsoduro 1200": "naked",
+   "ETV 1000 Caponord": "adventure",
    "RS 125": "sport",
    "RS 457": "sport",
    "RS 660": "sport",
    "RSV4": "sport",
+   "RSV 1000": "sport",
+   "Shiver 750": "naked",
    "Shiver 900": "naked",
    "Tuareg 660": "adventure",
    "Tuono 660": "naked",
+   "Tuono 1000": "naked",
    "Tuono V4": "naked"
   },
   "Benelli": {
@@ -795,6 +921,7 @@
    "Leoncino 500": "klassiek",
    "Leoncino 800": "klassiek",
    "TNT 125": "naked",
+   "TNT 1130": "naked",
    "TRK 502": "adventure",
    "TRK 702": "adventure"
   },
@@ -811,6 +938,7 @@
    "F 900 XR": "toer",
    "G 310 GS": "adventure",
    "G 310 R": "naked",
+   "K 1200 S": "sport",
    "K 1300 S": "sport",
    "K 1600": "toer",
    "M 1000 RR": "sport",
@@ -818,10 +946,14 @@
    "R 12 nineT": "klassiek",
    "R 18": "klassiek",
    "R 1150 GS": "adventure",
+   "R 1150 GS Adventure": "adventure",
+   "R 1150 R": "naked",
+   "R 1150 RT": "toer",
    "R 1200 GS": "adventure",
    "R 1200 GS Adventure": "adventure",
    "R 1200 R": "naked",
    "R 1200 RT": "toer",
+   "R 1200 ST": "toer",
    "R 1250 GS": "adventure",
    "R 1250 GS Adventure": "adventure",
    "R 1250 R": "naked",
@@ -848,23 +980,42 @@
    "650MT": "adventure",
    "650NK": "naked",
    "700CL-X": "klassiek",
+   "700MT": "adventure",
    "800MT": "adventure",
    "800NK": "naked"
   },
   "Ducati": {
+   "848": "sport",
+   "899 Panigale": "sport",
+   "959 Panigale": "sport",
+   "1098": "sport",
+   "1198": "sport",
+   "1199 Panigale": "sport",
+   "1299 Panigale": "sport",
    "DesertX": "adventure",
    "Monster": "naked",
+   "Monster 696": "naked",
+   "Monster 796": "naked",
+   "Monster 797": "naked",
    "Monster 821": "naked",
+   "Monster 1100": "naked",
    "Monster 1200": "naked",
    "Multistrada 950": "adventure",
+   "Multistrada 1000 DS": "adventure",
+   "Multistrada 1100": "adventure",
+   "Multistrada 1200": "adventure",
    "Multistrada 1260": "adventure",
    "Multistrada V2": "adventure",
    "Multistrada V4": "adventure",
    "Panigale V2": "sport",
    "Panigale V4": "sport",
    "Scrambler 800": "klassiek",
+   "Scrambler 1100": "klassiek",
+   "Streetfighter 848": "naked",
+   "Streetfighter 1098": "naked",
    "Streetfighter V2": "naked",
    "Streetfighter V4": "naked",
+   "SuperSport 939": "sport",
    "SuperSport 950": "sport"
   },
   "Fantic": {
@@ -896,15 +1047,19 @@
    "CB500 Hornet": "naked",
    "CB500F": "naked",
    "CB500X": "adventure",
+   "CB600F Hornet": "naked",
    "CB650F": "naked",
    "CB650R": "naked",
    "CB750 Hornet": "naked",
    "CB1000R": "naked",
    "CBF600": "naked",
+   "CBF1000": "naked",
    "CBR125R": "sport",
    "CBR500R": "sport",
+   "CBR600F": "sport",
    "CBR600RR": "sport",
    "CBR650R": "sport",
+   "CBR900RR Fireblade": "sport",
    "CBR1000RR Fireblade": "sport",
    "CMX500 Rebel": "klassiek",
    "CMX1100 Rebel": "klassiek",
@@ -912,11 +1067,18 @@
    "Gold Wing": "toer",
    "NC700X": "adventure",
    "NC750X": "adventure",
+   "NT700V Deauville": "toer",
    "NT1100": "toer",
    "NX500": "adventure",
+   "ST1300 Pan-European": "toer",
    "VFR800F": "toer",
+   "VFR1200F": "toer",
+   "VFR1200X Crosstourer": "adventure",
    "X-ADV": "scooter",
-   "XL750 Transalp": "adventure"
+   "XL650V Transalp": "adventure",
+   "XL700V Transalp": "adventure",
+   "XL750 Transalp": "adventure",
+   "XL1000V Varadero": "adventure"
   },
   "Husqvarna": {
    "701 Enduro": "adventure",
@@ -924,6 +1086,7 @@
    "Svartpilen 125": "naked",
    "Svartpilen 401": "naked",
    "Svartpilen 701": "naked",
+   "Svartpilen 801": "naked",
    "Vitpilen 401": "naked",
    "Vitpilen 701": "naked"
   },
@@ -938,7 +1101,9 @@
    "Super Chief": "klassiek"
   },
   "Kawasaki": {
+   "1400GTR": "toer",
    "Eliminator 500": "klassiek",
+   "ER-5": "naked",
    "ER-6f": "sport",
    "ER-6n": "naked",
    "H2": "sport",
@@ -961,7 +1126,10 @@
    "Z800": "naked",
    "Z900": "naked",
    "Z900RS": "klassiek",
-   "Z1000": "naked"
+   "Z1000": "naked",
+   "Z1000SX": "toer",
+   "Z H2": "naked",
+   "ZZR1400": "sport"
   },
   "KTM": {
    "125 Duke": "naked",
@@ -973,17 +1141,26 @@
    "790 Duke": "naked",
    "890 Adventure": "adventure",
    "890 Duke": "naked",
+   "990 Adventure": "adventure",
    "990 Duke": "naked",
+   "990 SMT": "toer",
+   "990 Super Duke": "naked",
+   "1050 Adventure": "adventure",
    "1090 Adventure": "adventure",
    "1190 Adventure": "adventure",
+   "1190 RC8": "sport",
    "1290 Super Adventure": "adventure",
    "1290 Super Duke": "naked",
    "1390 Super Duke R": "naked",
    "RC 390": "sport"
   },
   "Moto Guzzi": {
+   "1200 Sport": "naked",
+   "Breva 750": "naked",
+   "Breva 1100": "naked",
    "California 1400": "klassiek",
    "Griso": "naked",
+   "Norge 1200": "toer",
    "Stelvio": "adventure",
    "V7": "klassiek",
    "V9 Bobber": "klassiek",
@@ -1019,8 +1196,12 @@
    "Super Meteor 650": "klassiek"
   },
   "Suzuki": {
+   "Bandit 600": "naked",
    "Bandit 650": "naked",
+   "Bandit 1200": "naked",
    "Bandit 1250": "naked",
+   "GSX650F": "sport",
+   "GSX1250FA": "toer",
    "GSX-8R": "sport",
    "GSX-8S": "naked",
    "GSX-R600": "sport",
@@ -1033,32 +1214,43 @@
    "Intruder M800": "klassiek",
    "Katana": "naked",
    "SV650": "naked",
+   "SV1000": "naked",
    "V-Strom 650": "adventure",
    "V-Strom 800DE": "adventure",
    "V-Strom 1000": "adventure",
    "V-Strom 1050": "adventure"
   },
   "Triumph": {
+   "Bonneville Bobber": "klassiek",
    "Bonneville T100": "klassiek",
    "Bonneville T120": "klassiek",
    "Daytona 660": "sport",
+   "Daytona 675": "sport",
+   "Daytona 955i": "sport",
    "Scrambler 400 X": "klassiek",
    "Scrambler 900": "klassiek",
    "Scrambler 1200": "klassiek",
    "Speed 400": "naked",
+   "Speed Four": "naked",
+   "Speed Triple 955i": "naked",
    "Speed Triple 1050": "naked",
    "Speed Triple 1200 RS": "naked",
    "Speed Twin 900": "klassiek",
    "Speed Twin 1200": "klassiek",
+   "Sprint ST": "toer",
    "Street Triple 675": "naked",
    "Street Triple 765": "naked",
    "Thruxton": "klassiek",
    "Tiger 800": "adventure",
    "Tiger 850 Sport": "adventure",
    "Tiger 900": "adventure",
+   "Tiger 955i": "adventure",
+   "Tiger 1050": "toer",
    "Tiger 1200": "adventure",
    "Tiger Sport 660": "toer",
-   "Trident 660": "naked"
+   "Tiger Sport 1050": "toer",
+   "Trident 660": "naked",
+   "Trophy 1215": "toer"
   },
   "Voge": {
    "300 Rally": "adventure",
@@ -1069,6 +1261,10 @@
    "FJR1300": "toer",
    "FZ1": "naked",
    "FZ6": "naked",
+   "FZ8": "naked",
+   "FZS600 Fazer": "naked",
+   "FZS1000 Fazer": "naked",
+   "MT-01": "naked",
    "MT-03": "naked",
    "MT-07": "naked",
    "MT-09": "naked",
@@ -1081,6 +1277,7 @@
    "R7": "sport",
    "R125": "sport",
    "Super Ténéré XT1200Z": "adventure",
+   "TDM900": "toer",
    "Ténéré 700": "adventure",
    "Tracer 7": "toer",
    "Tracer 9": "toer",
