@@ -492,6 +492,213 @@
     "uitleg": "Grof profiel voor meer grip onverhard; op asfalt iets minder verfijnd.",
     "inkoop_excl_btw": null
    }
+  ],
+  "190/50 ZR17": [
+   {
+    "soort": "zuinig",
+    "merk": "Dunlop",
+    "band": "Sportmax GPR-300",
+    "uitleg": "Voordelige radiaalband voor dagelijks rijden en toeren; gaat redelijk lang mee en is voorspelbaar, ook op natte weg.",
+    "inkoop_excl_btw": null
+   },
+   {
+    "soort": "allround",
+    "merk": "Michelin",
+    "band": "Road 6",
+    "uitleg": "Toerband die lang meegaat en veel grip houdt in de regen.",
+    "inkoop_excl_btw": null
+   },
+   {
+    "soort": "sportief",
+    "merk": "Michelin",
+    "band": "Power 6",
+    "uitleg": "Sportieve straatband met veel grip in bochten, slijt sneller.",
+    "inkoop_excl_btw": null
+   }
+  ],
+  "160/60 ZR17": [
+   {
+    "soort": "zuinig",
+    "merk": "Dunlop",
+    "band": "Sportmax GPR-300",
+    "uitleg": "Voordelige radiaalband voor dagelijks rijden en toeren; gaat redelijk lang mee en is voorspelbaar, ook op natte weg.",
+    "inkoop_excl_btw": null
+   },
+   {
+    "soort": "allround",
+    "merk": "Michelin",
+    "band": "Road 6",
+    "uitleg": "Toerband die lang meegaat en veel grip houdt in de regen.",
+    "inkoop_excl_btw": null
+   },
+   {
+    "soort": "sportief",
+    "merk": "Michelin",
+    "band": "Power 6",
+    "uitleg": "Sportieve straatband met veel grip in bochten, slijt sneller.",
+    "inkoop_excl_btw": null
+   }
+  ],
+  "150/60 ZR17": [
+   {
+    "soort": "zuinig",
+    "merk": "Dunlop",
+    "band": "Sportmax GPR-300",
+    "uitleg": "Voordelige radiaalband voor dagelijks rijden en toeren; gaat redelijk lang mee en is voorspelbaar, ook op natte weg.",
+    "inkoop_excl_btw": null
+   },
+   {
+    "soort": "allround",
+    "merk": "Michelin",
+    "band": "Road 6",
+    "uitleg": "Toerband die lang meegaat en veel grip houdt in de regen.",
+    "inkoop_excl_btw": null
+   },
+   {
+    "soort": "sportief",
+    "merk": "Michelin",
+    "band": "Power 6",
+    "uitleg": "Sportieve straatband met veel grip in bochten, slijt sneller.",
+    "inkoop_excl_btw": null
+   }
+  ],
+  "110/70 ZR17": [
+   {
+    "soort": "zuinig",
+    "merk": "Michelin",
+    "band": "Pilot Street Radial",
+    "uitleg": "Radiaalband voor lichtere motoren en dagelijks gebruik; gaat lang mee en geeft vertrouwen op natte weg.",
+    "inkoop_excl_btw": null
+   },
+   {
+    "soort": "allround",
+    "merk": "Bridgestone",
+    "band": "Battlax BT-46",
+    "uitleg": "Toerband voor lichtere en klassieke motoren: stabiel, rustig en gemaakt om lang mee te gaan, ook bij nat weer.",
+    "inkoop_excl_btw": null
+   },
+   {
+    "soort": "sportief",
+    "merk": "Pirelli",
+    "band": "Diablo Rosso IV",
+    "uitleg": "Sportieve straatband die snel warm is en ook op natte weg vertrouwen geeft.",
+    "inkoop_excl_btw": null
+   }
+  ],
+  "140/70-17": [
+   {
+    "soort": "zuinig",
+    "merk": "Michelin",
+    "band": "Pilot Street Radial",
+    "uitleg": "Radiaalband voor lichtere motoren en dagelijks gebruik; gaat lang mee en geeft vertrouwen op natte weg.",
+    "inkoop_excl_btw": null
+   },
+   {
+    "soort": "allround",
+    "merk": "Bridgestone",
+    "band": "Battlax BT-46",
+    "uitleg": "Toerband voor lichtere en klassieke motoren: stabiel, rustig en gemaakt om lang mee te gaan, ook bij nat weer.",
+    "inkoop_excl_btw": null
+   },
+   {
+    "soort": "sportief",
+    "merk": "Pirelli",
+    "band": "Diablo Rosso IV",
+    "uitleg": "Sportieve straatband die snel warm is en ook op natte weg vertrouwen geeft.",
+    "inkoop_excl_btw": null
+   }
+  ],
+  "130/70-17": [
+   {
+    "soort": "zuinig",
+    "merk": "Michelin",
+    "band": "Pilot Street Radial",
+    "uitleg": "Radiaalband voor lichtere motoren en dagelijks gebruik; gaat lang mee en geeft vertrouwen op natte weg.",
+    "inkoop_excl_btw": null
+   },
+   {
+    "soort": "allround",
+    "merk": "Bridgestone",
+    "band": "Battlax BT-46",
+    "uitleg": "Toerband voor lichtere en klassieke motoren: stabiel, rustig en gemaakt om lang mee te gaan, ook bij nat weer.",
+    "inkoop_excl_btw": null
+   },
+   {
+    "soort": "sportief",
+    "merk": "Pirelli",
+    "band": "Diablo Rosso II",
+    "uitleg": "Sportieve straatband (ouder model) met veel grip in bochten op droge weg; slijt sneller dan een toerband.",
+    "inkoop_excl_btw": null
+   }
+  ],
+  "150/70 R17": [
+   {
+    "soort": "zuinig",
+    "merk": "Bridgestone",
+    "band": "Battlax A41",
+    "uitleg": "Adventureband vooral voor asfalt (een stukje onverhard kan): gaat lang mee en blijft goed in de regen.",
+    "inkoop_excl_btw": null
+   },
+   {
+    "soort": "allround",
+    "merk": "Michelin",
+    "band": "Anakee Adventure",
+    "uitleg": "Vooral voor de weg, met genoeg profiel voor een onverhard pad. Gaat lang mee.",
+    "inkoop_excl_btw": null
+   },
+   {
+    "soort": "sportief",
+    "merk": "Pirelli",
+    "band": "Scorpion Trail II",
+    "uitleg": "Sportieve adventureband met veel grip op asfalt.",
+    "inkoop_excl_btw": null
+   }
+  ],
+  "100/90-19": [
+   {
+    "soort": "zuinig",
+    "merk": "Bridgestone",
+    "band": "Battlax A41",
+    "uitleg": "Adventureband vooral voor asfalt (een stukje onverhard kan): gaat lang mee en blijft goed in de regen.",
+    "inkoop_excl_btw": null
+   },
+   {
+    "soort": "allround",
+    "merk": "Michelin",
+    "band": "Anakee Adventure",
+    "uitleg": "Vooral voor de weg, met genoeg profiel voor een onverhard pad. Gaat lang mee.",
+    "inkoop_excl_btw": null
+   },
+   {
+    "soort": "sportief",
+    "merk": "Metzeler",
+    "band": "Karoo Street",
+    "uitleg": "Grof profiel voor meer grip onverhard; op asfalt iets minder verfijnd.",
+    "inkoop_excl_btw": null
+   }
+  ],
+  "130/80-17": [
+   {
+    "soort": "zuinig",
+    "merk": "Bridgestone",
+    "band": "Battlax A41",
+    "uitleg": "Adventureband vooral voor asfalt (een stukje onverhard kan): gaat lang mee en blijft goed in de regen.",
+    "inkoop_excl_btw": null
+   },
+   {
+    "soort": "allround",
+    "merk": "Michelin",
+    "band": "Anakee Adventure",
+    "uitleg": "Vooral voor de weg, met genoeg profiel voor een onverhard pad. Gaat lang mee.",
+    "inkoop_excl_btw": null
+   },
+   {
+    "soort": "sportief",
+    "merk": "Metzeler",
+    "band": "Karoo Street",
+    "uitleg": "Grof profiel voor meer grip onverhard; op asfalt iets minder verfijnd.",
+    "inkoop_excl_btw": null
+   }
   ]
  },
  "toelichting_maten": "Eén regel per generatie/jaarreeks, altijd met bron. 'uitvoering': null = alle uitvoeringen; anders een lijst, waarbij \"\" = uitvoering onbekend ('Weet ik niet'). \"\" staat er alleen bij als alle uitvoeringen in die jaren dezelfde maten hebben. Niet zeker voor een jaarreeks of uitvoering = geen regel (klant kiest zelf).",
