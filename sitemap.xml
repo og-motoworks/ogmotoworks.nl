@@ -1,7 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.w3.org/2000/sitemaps/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://ogmotoworks.nl/</loc>
-    <lastmod>2026-10-01</lastmod>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+  <url>
+    <loc>https://ogmotoworks.nl/banden/</loc>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+  <url>
+    <loc>https://ogmotoworks.nl/contact/</loc>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+  <url>
+    <loc>https://ogmotoworks.nl/diensten/</loc>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+  <url>
+    <loc>https://ogmotoworks.nl/diensten/diagnose/</loc>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+  <url>
+    <loc>https://ogmotoworks.nl/diensten/kettingset/</loc>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+  <url>
+    <loc>https://ogmotoworks.nl/diensten/onderhoud/</loc>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+  <url>
+    <loc>https://ogmotoworks.nl/diensten/reparatie/</loc>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+  <url>
+    <loc>https://ogmotoworks.nl/diensten/tuning/</loc>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+  <url>
+    <loc>https://ogmotoworks.nl/diensten/voorvorkkeerringen/</loc>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+  <url>
+    <loc>https://ogmotoworks.nl/over-ons/</loc>
+    <lastmod>2026-10-03</lastmod>
+  </url>
+  <url>
+    <loc>https://ogmotoworks.nl/werk/</loc>
+    <lastmod>2026-10-03</lastmod>
   </url>
 </urlset>

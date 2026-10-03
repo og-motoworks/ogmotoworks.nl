@@ -48,13 +48,29 @@
   },
   "areaServed": [
     {"@type": "City", "name": "Waalwijk"},
-    {"@type": "City", "name": "'s-Hertogenbosch"},
-    {"@type": "City", "name": "Tilburg"},
-    {"@type": "City", "name": "Kaatsheuvel"},
-    {"@type": "City", "name": "Drunen"},
     {"@type": "City", "name": "Sprang-Capelle"},
+    {"@type": "City", "name": "Waspik"},
+    {"@type": "City", "name": "Kaatsheuvel"},
     {"@type": "City", "name": "Loon op Zand"},
-    {"@type": "City", "name": "Oosterhout"}
+    {"@type": "City", "name": "Drunen"},
+    {"@type": "City", "name": "Heusden"},
+    {"@type": "City", "name": "Vlijmen"},
+    {"@type": "City", "name": "'s-Hertogenbosch"},
+    {"@type": "City", "name": "Rosmalen"},
+    {"@type": "City", "name": "Vught"},
+    {"@type": "City", "name": "Tilburg"},
+    {"@type": "City", "name": "Goirle"},
+    {"@type": "City", "name": "Oisterwijk"},
+    {"@type": "City", "name": "Dongen"},
+    {"@type": "City", "name": "Oosterhout"},
+    {"@type": "City", "name": "Raamsdonksveer"},
+    {"@type": "City", "name": "Geertruidenberg"},
+    {"@type": "City", "name": "Made"},
+    {"@type": "City", "name": "Breda"},
+    {"@type": "City", "name": "Boxtel"},
+    {"@type": "City", "name": "Zaltbommel"},
+    {"@type": "City", "name": "Gorinchem"},
+    {"@type": "City", "name": "Oss"}
   ],
   "founder": {"@type": "Person", "name": "Freddy Oliveira Gomes"},
   "sameAs": ["https://www.instagram.com/og_motoworks", "https://share.google/mfVz03Qhs4EkLpyDO"],
@@ -90,21 +106,43 @@
 
 <header class="header">
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="OG MotoWorks – naar boven">
-      <picture><source srcset="assets/img/logo-192.webp" type="image/webp"><img src="assets/img/logo-192.png" width="44" height="44" alt=""></picture>
+    <a class="brand" href="/" aria-label="OG MotoWorks – naar de homepage">
+      <picture><source srcset="/assets/img/logo-192.webp" type="image/webp"><img src="/assets/img/logo-192.png" width="44" height="44" alt=""></picture>
       <span><b>OG</b> MotoWorks</span>
     </a>
-    <nav class="nav" aria-label="Hoofdmenu">
-      <a href="#diensten">Diensten</a>
-      <a href="#prijzen">Prijzen</a>
-      <a href="#werk">Recent werk</a>
-      <a href="#werkgebied">Werkgebied</a>
-      <a href="#over-ons">Over ons</a>
-      <a href="#contact">Contact</a>
+    <nav class="nav" id="hoofdmenu" aria-label="Hoofdmenu">
+      <ul class="nav__list">
+        <li class="nav__item">
+          <a class="nav__link" href="/diensten/">Diensten</a>
+          <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="sub-diensten"><span class="sr-only">Submenu Diensten</span><svg viewBox="0 0 14 9" aria-hidden="true"><path d="M1 1l6 6 6-6"/></svg></button>
+          <ul class="nav__sub" id="sub-diensten"><li><a href="/diensten/">Alle diensten &amp; prijzen</a></li><li><a href="/diensten/onderhoud/">Onderhoud &amp; grote beurt</a></li><li><a href="/diensten/diagnose/">Diagnose &amp; storingen</a></li><li><a href="/diensten/reparatie/">Reparatie</a></li><li><a href="/banden/">Banden</a></li><li><a href="/diensten/kettingset/">Kettingset vervangen</a></li><li><a href="/diensten/voorvorkkeerringen/">Voorvorkkeerringen</a></li><li><a href="/diensten/tuning/">Tuning &amp; afstellen</a></li></ul>
+        </li>
+        <li class="nav__item">
+          <a class="nav__link" href="/banden/">Banden</a>
+          <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="sub-banden"><span class="sr-only">Submenu Banden</span><svg viewBox="0 0 14 9" aria-hidden="true"><path d="M1 1l6 6 6-6"/></svg></button>
+          <ul class="nav__sub" id="sub-banden"><li><a href="/banden/#advies">Bandenadvies voor jouw motor</a></li><li><a href="/banden/#soorten">Welke band past bij jou?</a></li><li><a href="/banden/#montage">Banden monteren</a></li><li><a href="/banden/#wanneer">Wanneer nieuwe banden?</a></li></ul>
+        </li>
+        <li class="nav__item">
+          <a class="nav__link" href="/werk/">Werk</a>
+          <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="sub-werk"><span class="sr-only">Submenu Werk</span><svg viewBox="0 0 14 9" aria-hidden="true"><path d="M1 1l6 6 6-6"/></svg></button>
+          <ul class="nav__sub" id="sub-werk"><li><a href="/werk/">Recente projecten</a></li><li><a href="/werk/#bmw-r1200gs-adventure">BMW R1200GS Adventure</a></li><li><a href="/werk/#instagram">Volg ons op Instagram</a></li></ul>
+        </li>
+        <li class="nav__item">
+          <a class="nav__link" href="/over-ons/">Over ons</a>
+          <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="sub-over-ons"><span class="sr-only">Submenu Over ons</span><svg viewBox="0 0 14 9" aria-hidden="true"><path d="M1 1l6 6 6-6"/></svg></button>
+          <ul class="nav__sub" id="sub-over-ons"><li><a href="/over-ons/">Ons verhaal</a></li><li><a href="/over-ons/#werkwijze">Onze werkwijze</a></li><li><a href="/over-ons/#werkgebied">Werkgebied</a></li><li><a href="/#reviews">Reviews</a></li></ul>
+        </li>
+        <li class="nav__item">
+          <a class="nav__link" href="/contact/">Contact</a>
+          <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="sub-contact"><span class="sr-only">Submenu Contact</span><svg viewBox="0 0 14 9" aria-hidden="true"><path d="M1 1l6 6 6-6"/></svg></button>
+          <ul class="nav__sub" id="sub-contact"><li><a href="/contact/#afspraak">Afspraak maken</a></li><li><a href="/contact/#adres">Adres &amp; route</a></li><li><a href="/contact/#openingstijden">Openingstijden</a></li></ul>
+        </li>
+      </ul>
     </nav>
-    <a class="btn btn--wa" href="https://wa.me/31642939555?text=Hoi%20OG%20MotoWorks%21%20Ik%20wil%20graag%20een%20afspraak%20maken.%0AKenteken%3A%20%0AMerk%2Fmodel%3A%20%0ABouwjaar%3A%20%0AKilometerstand%3A%20%0AVraag%3A%20" target="_blank" rel="noopener">
-      <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>App ons
+    <a class="btn btn--wa" href="https://wa.me/31642939555?text=Hoi%20OG%20MotoWorks%21%20Ik%20wil%20graag%20een%20afspraak%20maken.%0AKenteken%3A%20%0AMerk%2Fmodel%3A%20%0ABouwjaar%3A%20%0AKilometerstand%3A%20%0AVraag%3A%20" target="_blank" rel="noopener" aria-label="App ons via WhatsApp">
+      <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg><span class="btn__txt">App ons</span>
     </a>
+    <button class="nav-burger" type="button" aria-expanded="false" aria-controls="hoofdmenu" aria-label="Menu openen"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="b-open" d="M3 6h18M3 12h18M3 18h18"/><path class="b-close" d="M5 5l14 14M19 5L5 19"/></svg></button>
   </div>
 </header>
 
@@ -117,7 +155,7 @@
         <div class="mp" id="kies-je-motor" data-motorpick="mp" data-title="Kies je motor">
           <div class="mp__ctas" data-mp-cta>
             <a class="btn btn--wa" href="https://wa.me/31642939555?text=Hoi%20OG%20MotoWorks%21%20Ik%20wil%20graag%20een%20afspraak%20maken.%0AKenteken%3A%20%0AMerk%2Fmodel%3A%20%0ABouwjaar%3A%20%0AKilometerstand%3A%20%0AVraag%3A%20" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>App ons over je motor</a>
-            <a class="btn btn--ghost" href="#diensten">Wat we doen</a>
+            <a class="btn btn--ghost" href="/diensten/">Wat we doen</a>
           </div>
         </div>
         <div class="hero__cta">
@@ -152,23 +190,26 @@
           <svg class="big" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.2L3 17.8V21h3.2l6.3-6.3a4 4 0 0 0 5.2-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/></svg>
           <h3>Onderhoud</h3>
           <p>Periodiek onderhoud zodat je zorgeloos blijft rijden. Ketting, banden en voorvork horen erbij.</p>
+          <a class="link" href="/diensten/onderhoud/">Meer over onderhoud →</a>
         </article>
         <article class="card">
           <svg class="big" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21a9 9 0 1 1 9-9"/><path d="M12 12l5-4"/><circle cx="12" cy="12" r="1.5"/><path d="M3.5 12h2M12 3.5v2M18.5 12h2"/></svg>
           <h3>Tuning</h3>
           <p>Afstellen en finetunen, zodat je motor weer soepel en strak loopt.</p>
+          <a class="link" href="/diensten/tuning/">Meer over tuning →</a>
         </article>
         <article class="card">
           <svg class="big" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l6-6M14 4l6 6M9 9l6 6M12 6l6 6-3 3-6-6z"/><path d="M4 20l2 0 0-2"/></svg>
           <h3>Reparaties</h3>
           <p>Loopt hij niet lekker of lekt er iets? We zoeken het uit en maken het.</p>
+          <a class="link" href="/diensten/reparatie/">Meer over reparaties →</a>
         </article>
       </div>
       <ul class="tags" aria-label="Voorbeelden van werk">
-        <li>Kettingset vervangen</li>
-        <li>Voorvorkkeerringen vervangen</li>
-        <li>Banden monteren</li>
-        <li>Carburateurs reinigen &amp; synchroniseren</li>
+        <li><a href="/diensten/kettingset/">Kettingset vervangen</a></li>
+        <li><a href="/diensten/voorvorkkeerringen/">Voorvorkkeerringen vervangen</a></li>
+        <li><a href="/banden/">Banden monteren</a></li>
+        <li><a href="/diensten/tuning/">Carburateurs reinigen &amp; synchroniseren</a></li>
       </ul>
     </div>
   </section>
@@ -368,14 +409,15 @@
 
 <footer class="footer">
   <div class="wrap">
-    <a class="brand" href="#top">
-      <picture><source srcset="assets/img/logo-192.webp" type="image/webp"><img src="assets/img/logo-192.png" width="44" height="44" alt="" loading="lazy"></picture>
+    <a class="brand" href="/">
+      <picture><source srcset="/assets/img/logo-192.webp" type="image/webp"><img src="/assets/img/logo-192.png" width="44" height="44" alt="" loading="lazy"></picture>
       <span><b>OG</b> MotoWorks</span>
     </a>
     <nav aria-label="Footer">
-      <a href="#diensten">Diensten</a><a href="#prijzen">Prijzen</a><a href="#werk">Recent werk</a><a href="#reviews">Reviews</a><a href="#over-ons">Over ons</a><a href="#contact">Contact</a>
+      <a href="/diensten/">Diensten</a><a href="/banden/">Banden</a><a href="/diensten/#prijzen">Prijzen</a><a href="/werk/">Werk</a><a href="/over-ons/">Over ons</a><a href="/#reviews">Reviews</a><a href="/contact/">Contact</a>
       <a href="https://www.instagram.com/og_motoworks" target="_blank" rel="noopener">Instagram</a>
     </nav>
+    <p class="footer__nap">OG MotoWorks · <a href="https://www.google.com/maps/search/?api=1&amp;query=Professor+Zeemanweg+6-10%2C+5144+NN+Waalwijk" target="_blank" rel="noopener">Professor Zeemanweg 6-10, 5144&nbsp;NN Waalwijk</a> · <a href="tel:+31642939555">06 42 93 95 55</a></p>
     <div class="copy">© 2026 OG MotoWorks · Motorwerkplaats Waalwijk · KvK 90649443</div>
   </div>
 </footer>
@@ -494,6 +536,7 @@
 <script src="assets/js/combo.js" defer></script>
 <script src="assets/js/motor.js" defer></script>
 <script src="assets/js/wa-form.js" defer></script>
+<script src="assets/js/nav.js" defer></script>
 <!-- Bezoekersteller: GoatCounter (cookieloos, geen persoonsgegevens) -->
 <script data-goatcounter="https://ogmotoworks.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
