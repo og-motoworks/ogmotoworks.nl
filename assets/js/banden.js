@@ -1,5 +1,5 @@
-/* OG MotoWorks – bandenmenu ([data-bandenmenu]). Na merk/model/bouwjaar (OGMotor): OEM-maten voor/achter als
-   aanpasbaar advies, per maat 3 adviesbanden met 'vanaf'-prijs (inkoop excl. btw x 1,10 x 1,21, afgerond) en
+/* OG MotoWorks – bandenmenu ([data-bandenmenu]). Na merk/model/bouwjaar (OGMotor): OEM-maten voor/achter (per generatie, uit banden.json)
+   als vooringevulde keuzelijsten breedte/hoogte/velgmaat, per maat 3 adviesbanden met 'vanaf'-prijs (inkoop excl. btw x 1,10 x 1,21, afgerond) en
    montage apart (+ €50 per band). Geen prijs bekend = 'prijs op aanvraag'. Keuze gaat mee in het WhatsApp-bericht. */
 (function () {
   'use strict';
@@ -9,57 +9,88 @@
   var URL_ = new URL('../data/banden.json', src).href, data = null;
   var SOORT = { zuinig: 'Zuinig / veel km', allround: 'Allround / sporttoer', sportief: 'Sportief / grip' };
   function esc(t) { return String(t == null ? '' : t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
-  function key(m) { // vergelijk maten los van spaties/hoofdletters, 'R17' en 'ZR17' gelijk
-    return String(m || '').toUpperCase().replace(/\s+/g, '').replace(/ZR/, 'R');
+  var B = range(60, 240, 10), H = range(45, 110, 5), V = range(10, 21, 1);
+  function range(a, z, st) { var r = []; for (var i = a; i <= z; i += st) r.push(String(i)); return r; }
+  // Maat ontleden naar breedte/hoogte/velg; ZR/R/-/B en spaties maken niet uit (120/70 ZR17 = 120/70-17)
+  function parse(m) {
+    var x = /(\d{2,3})\s*\/\s*(\d{2,3})\s*-?\s*(?:Z?R|B)?\s*-?\s*(\d{2})/i.exec(String(m || ''));
+    return x ? { b: x[1], h: x[2], v: String(Number(x[3])) } : { b: '', h: '', v: '' };
   }
+  function tkey(t) { return t && t.b && t.h && t.v ? t.b + '/' + t.h + '/' + t.v : ''; }
   function vanaf(t) {
     if (t.inkoop_excl_btw == null || !(t.inkoop_excl_btw > 0)) return null;
     var f = data.formule || { marge: 1.10, btw: 1.21 };
     return Math.round(t.inkoop_excl_btw * f.marge * f.btw);
   }
+  function inYear(m, y) { return y && (!m.van || y >= m.van) && (!m.tot || y <= m.tot); }
+  // Precies één regel moet passen (merk, model, uitvoering, bouwjaar); anders geen OEM-maat
   function oem(s) {
     if (!s || !data) return null;
     var y = parseInt(s.bouwjaar, 10);
     var hits = data.maten.filter(function (m) {
-      return m.merk === s.merk && m.model === s.model && (!m.uitvoering || m.uitvoering.indexOf(s.uitvoering) !== -1) &&
-             y && (!m.van || y >= m.van) && (!m.tot || y <= m.tot);
+      return m.merk === s.merk && m.model === s.model && (!m.uitvoering || m.uitvoering.indexOf(s.uitvoering || '') !== -1) && inYear(m, y);
     });
     return hits.length === 1 ? hits[0] : null;
   }
-  function advies(maat) {
-    var k = key(maat), list = null;
-    Object.keys(data.advies).forEach(function (m) { if (key(m) === k) list = data.advies[m]; });
-    return list;
+  function perUitvoering(s) { // wel maten voor dit model/jaar, maar niet voor deze (onbekende) uitvoering
+    var y = parseInt(s.bouwjaar, 10);
+    return data.maten.some(function (m) { return m.merk === s.merk && m.model === s.model && m.uitvoering && inYear(m, y); });
   }
-  var state = { voor: '', achter: '', keuze: {} };
-  function render() {
+  function adviesKey(t) {
+    var k = tkey(t), hit = null; if (!k) return null;
+    Object.keys(data.advies).forEach(function (m) { if (!hit && tkey(parse(m)) === k) hit = m; });
+    return hit;
+  }
+  function advies(t) { var k = adviesKey(t); return k ? data.advies[k] : null; }
+  // Weergave: OEM-notatie als die gekozen is, anders de notatie uit het advies, anders 120/70-17
+  function label(p) {
+    var t = state[p], k = tkey(t); if (!k) return '';
+    if (state.oem && tkey(parse(state.oem[p])) === k) return state.oem[p];
+    return adviesKey(t) || (t.b + '/' + t.h + '-' + t.v);
+  }
+  function sel(p, f, name, vals, v) {
+    var id = 'bm-' + p + '-' + f;
+    return '<div class="field"><label for="' + id + '">' + name + '</label><select id="' + id + '" data-pos="' + p + '" data-f="' + f + '"><option value="">kies</option>' +
+      vals.map(function (x) { return '<option value="' + x + '"' + (x === v ? ' selected' : '') + '>' + x + '</option>'; }).join('') + '</select></div>';
+  }
+  var state = { voor: parse(''), achter: parse(''), keuze: {}, oem: null };
+  function render(focus) {
     var s = OGMotor.get(), o = oem(s);
     var head;
     if (!s) head = '<p class="bm__intro">Kies hierboven eerst je motor. Dan vullen we de originele bandenmaten voor je in.</p>';
     else if (o) head = '<p class="bm__intro">Originele bandenmaten voor de <strong>' + esc(OGMotor.label(s)) + '</strong>. Dit is een advies: staat er iets anders op je band of in je instructieboekje, pas het dan aan.</p>';
-    else head = '<p class="bm__intro">Van de <strong>' + esc(OGMotor.label(s)) + '</strong> hebben we de bandenmaten nog niet in onze lijst. Vul de maat van je band in, of app ons, dan zoeken we het op. <a class="link" href="/banden/bandenmaat/">Zo lees je je bandenmaat →</a></p>';
-    if (s && !state.motor || (s && state.motor !== OGMotor.label(s))) {
-      state = { motor: OGMotor.label(s), voor: o ? o.voor : '', achter: o ? o.achter : '', keuze: {} };
+    else if (perUitvoering(s)) head = '<p class="bm__intro">Bij de <strong>' + esc(OGMotor.label(s)) + '</strong> verschillen de bandenmaten per uitvoering. Kies hierboven je uitvoering, of kies hieronder zelf de maat van je band. <a class="link" href="/banden/bandenmaat/">Zo lees je je bandenmaat →</a></p>';
+    else head = '<p class="bm__intro">Van de <strong>' + esc(OGMotor.label(s)) + '</strong> hebben we de bandenmaten nog niet in onze lijst. Kies hieronder de maat van je band, of app ons, dan zoeken we het op. <a class="link" href="/banden/bandenmaat/">Zo lees je je bandenmaat →</a></p>';
+    var id = s ? OGMotor.label(s) + '|' + (s.bouwjaar || '') : '';
+    if (s && state.motor !== id) {
+      state = { motor: id, oem: o, voor: parse(o && o.voor), achter: parse(o && o.achter), keuze: {} };
     }
     box.innerHTML = head + (s ? '<div class="bm__maten">' + ['voor', 'achter'].map(function (p) {
-      return '<div class="field"><label for="bm-' + p + '">Bandenmaat ' + p + '</label><input id="bm-' + p + '" type="text" maxlength="24" autocomplete="off" placeholder="bijv. ' + (p === 'voor' ? '120/70 ZR17' : '180/55 ZR17') + '" value="' + esc(state[p]) + '"></div>';
+      var t = state[p];
+      return '<fieldset class="bm__maat"><legend>Bandenmaat ' + p + '</legend><div class="bm__sel">' +
+        sel(p, 'b', 'Breedte', B, t.b) + sel(p, 'h', 'Hoogte', H, t.h) + sel(p, 'v', 'Velg (inch)', V, t.v) + '</div></fieldset>';
     }).join('') + '</div><div class="bm__lijst">' + ['voor', 'achter'].map(list).join('') + '</div>' +
       '<p class="note">Vanaf-prijs is per band, inclusief btw. Montage komt erbij: <strong>+ €' + (data.montage_per_band || 50) + ' montage per band</strong>.' +
       (data.prijzen_bijgewerkt ? ' Prijzen bijgewerkt op ' + esc(new Date(data.prijzen_bijgewerkt).toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' })) + '.' : '') + '</p>' +
       '<div class="bm__cta"><a class="btn btn--wa" data-dienst="Banden" data-wa-intent="banden" href="https://wa.me/31642939555" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>App ons over deze banden</a></div>' : '');
-    box.querySelectorAll('.bm__maten input').forEach(function (inp) {
-      inp.addEventListener('change', function () { var p = inp.id.slice(3); state[p] = inp.value.trim(); delete state.keuze[p]; render(); save(); document.getElementById(inp.id).focus(); });
+    box.querySelectorAll('.bm__sel select').forEach(function (el) {
+      el.addEventListener('change', function () {
+        var p = el.getAttribute('data-pos'); state[p][el.getAttribute('data-f')] = el.value; delete state.keuze[p];
+        render(el.id); save();
+      });
     });
     box.querySelectorAll('.bm__opt input').forEach(function (r) {
       r.addEventListener('change', function () { state.keuze[r.name.slice(3)] = Number(r.value); save(); });
     });
+    if (focus && document.getElementById(focus)) document.getElementById(focus).focus();
     save();
   }
   function list(p) {
-    var maat = state[p]; if (!maat) return '';
-    var l = advies(maat);
-    if (!l) return '<fieldset class="bm__pos"><legend>' + (p === 'voor' ? 'Voorband' : 'Achterband') + ' ' + esc(maat) + '</legend><p class="muted">Voor deze maat hebben we nog geen standaardadvies. App ons, dan adviseren we je persoonlijk.</p></fieldset>';
-    return '<fieldset class="bm__pos"><legend>' + (p === 'voor' ? 'Voorband' : 'Achterband') + ' ' + esc(maat) + '</legend><ul class="bm__opts">' + l.map(function (t, i) {
+    var t = state[p], naam = p === 'voor' ? 'Voorband' : 'Achterband';
+    if (!tkey(t)) return '<fieldset class="bm__pos"><legend>' + naam + '</legend><p class="muted">Kies breedte, hoogte en velgmaat, dan tonen we ons advies.</p></fieldset>';
+    var l = advies(t), maat = label(p);
+    if (!l) return '<fieldset class="bm__pos"><legend>' + naam + ' ' + esc(maat) + '</legend><p class="muted">Voor deze maat hebben we nog geen standaardadvies. App ons, dan adviseren we je persoonlijk.</p></fieldset>';
+    return '<fieldset class="bm__pos"><legend>' + naam + ' ' + esc(maat) + '</legend><ul class="bm__opts">' + l.map(function (t, i) {
       var pr = vanaf(t), id = 'bm-' + p + '-' + i;
       return '<li class="bm__opt"><input type="radio" name="bm-' + p + '" id="' + id + '" value="' + i + '"' + (state.keuze[p] === i ? ' checked' : '') + '>' +
         '<label for="' + id + '"><span class="bm__soort">' + esc(SOORT[t.soort] || t.soort) + '</span><b>' + esc(t.merk + ' ' + t.band) + '</b><span class="bm__uitleg">' + esc(t.uitleg) + '</span>' +
@@ -71,10 +102,10 @@
     if (!OGMotor.get()) return;
     var parts = [], min = null;
     ['voor', 'achter'].forEach(function (p) {
-      if (!state[p]) return;
+      if (!tkey(state[p])) return;
       var l = advies(state[p]), t = l && state.keuze[p] != null ? l[state.keuze[p]] : null, pr = t ? vanaf(t) : null;
       if (pr != null) min = min == null ? pr : Math.min(min, pr);
-      parts.push(p + ' ' + state[p] + (t ? ' ' + t.merk + ' ' + t.band + ' (' + (pr ? 'vanaf €' + pr : 'prijs op aanvraag') + ')' : ''));
+      parts.push(p + ' ' + label(p) + (t ? ' ' + t.merk + ' ' + t.band + ' (' + (pr ? 'vanaf €' + pr : 'prijs op aanvraag') + ')' : ''));
     });
     var k = OGMotor.klus.get(); k.banden = parts.join('; ') + (parts.length ? ' + €' + (data.montage_per_band || 50) + ' montage per band' : ''); k.bandPrijs = min;
     OGMotor.klus.set(k);

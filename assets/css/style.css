@@ -463,7 +463,13 @@ html:has(.nav.is-open) .fab{display:none}
 /* ---------- bandenmenu ---------- */
 .bm{margin-top:18px}
 .bm__intro{color:var(--muted)}
-.bm__maten{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.bm__maten{display:grid;gap:14px;margin:14px 0}
+@media (min-width:700px){.bm__maten{grid-template-columns:1fr 1fr}}
+.bm__maat{border:1px solid var(--line);border-radius:var(--r);padding:10px 12px 12px;margin:0;min-width:0}
+.bm__maat legend{font:700 .95rem/1.2 var(--head);text-transform:uppercase;letter-spacing:.04em;padding:0 4px}
+.bm__sel{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.bm__sel .field{margin:0}
+.bm__sel select{width:100%;min-width:0}
 .bm__lijst{display:grid;gap:18px}
 @media (min-width:900px){.bm__lijst{grid-template-columns:1fr 1fr}}
 .bm__pos{border:0;padding:0;margin:0;min-width:0}
