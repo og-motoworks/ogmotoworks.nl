@@ -1,0 +1,43 @@
+{
+ "versie": 1,
+ "bijgewerkt": "2026-10-03",
+ "prijzen_bijgewerkt": null,
+ "toelichting": "Bandenmenu. 'maten': OEM-bandenmaten per motor (alleen met bron). 'advies': per bandenmaat 3 adviesbanden (zuinig / allround / sportief). 'inkoop_excl_btw': inkoopprijs Bandenleader excl. btw (null = 'prijs op aanvraag'). Vanaf-prijs op de site = afronden(inkoop_excl_btw x 1,10 x 1,21). Montage wordt apart getoond: montage_per_band. Prijzen wekelijks bijwerken met site-build/update_bandenprijzen.py (zie BANDEN-JSON.md).",
+ "formule": {"marge": 1.10, "btw": 1.21, "afronden": "op hele euro's"},
+ "montage_per_band": 50,
+ "maten": [
+  {"merk": "Yamaha", "model": "MT-07", "uitvoering": null, "van": 2014, "tot": null, "voor": "120/70 ZR17", "achter": "180/55 ZR17", "bron": "https://yamaha.co.za/product/2025-mt-07/"},
+  {"merk": "Yamaha", "model": "MT-09", "uitvoering": null, "van": 2021, "tot": null, "voor": "120/70 ZR17", "achter": "180/55 ZR17", "bron": "https://www.carmanualsonline.info/yamaha-mt-09-2021-owners-manual/?srch=wheel+size"},
+  {"merk": "Yamaha", "model": "Ténéré 700", "uitvoering": null, "van": 2019, "tot": null, "voor": "90/90-21", "achter": "150/70 R18", "bron": "https://yamahamotorsports.com/models/tenere-700/specs"},
+  {"merk": "Kawasaki", "model": "Z900", "uitvoering": null, "van": 2017, "tot": null, "voor": "120/70 ZR17", "achter": "180/55 ZR17", "bron": "https://www.kawasaki.eu/en/EICMA/Z900.html"},
+  {"merk": "BMW", "model": "R 1250 GS", "uitvoering": null, "van": 2019, "tot": 2023, "voor": "120/70 R19", "achter": "170/60 R17", "bron": "https://www.bmw-motorrad.com.my/en/models/adventure/r1250gs/technicaldata.html"},
+  {"merk": "BMW", "model": "R 1250 GS Adventure", "uitvoering": null, "van": 2019, "tot": 2023, "voor": "120/70 R19", "achter": "170/60 R17", "bron": "https://www.bmw-motorrad.co.uk/en/models/adventure/r1250gsadventure/technicaldata.html"},
+  {"merk": "Honda", "model": "Africa Twin CRF1100L", "uitvoering": ["Standaard", "Standaard DCT"], "van": 2020, "tot": null, "voor": "90/90-21", "achter": "150/70 R18", "bron": "https://www.honda.co.uk/motorcycles/range/adventure/crf1100l-africa-twin/specifications-and-price.html"}
+ ],
+ "advies": {
+  "120/70 ZR17": [
+   {"soort": "zuinig", "merk": "Michelin", "band": "Road 6", "uitleg": "Toerband die lang meegaat en veel grip houdt in de regen.", "inkoop_excl_btw": null},
+   {"soort": "allround", "merk": "Bridgestone", "band": "Battlax T32", "uitleg": "Sporttoerband: stabiel, snel op temperatuur, goed in alle weer.", "inkoop_excl_btw": null},
+   {"soort": "sportief", "merk": "Michelin", "band": "Power 6", "uitleg": "Sportieve straatband met veel grip in bochten, slijt sneller.", "inkoop_excl_btw": null}],
+  "180/55 ZR17": [
+   {"soort": "zuinig", "merk": "Michelin", "band": "Road 6", "uitleg": "Toerband die lang meegaat en veel grip houdt in de regen.", "inkoop_excl_btw": null},
+   {"soort": "allround", "merk": "Bridgestone", "band": "Battlax T32", "uitleg": "Sporttoerband: stabiel, snel op temperatuur, goed in alle weer.", "inkoop_excl_btw": null},
+   {"soort": "sportief", "merk": "Michelin", "band": "Power 6", "uitleg": "Sportieve straatband met veel grip in bochten, slijt sneller.", "inkoop_excl_btw": null}],
+  "120/70 R19": [
+   {"soort": "zuinig", "merk": "Michelin", "band": "Anakee Road", "uitleg": "Adventureband voor de weg: lange levensduur, prettig in de regen.", "inkoop_excl_btw": null},
+   {"soort": "allround", "merk": "Bridgestone", "band": "Battlax A41", "uitleg": "Allround adventureband voor asfalt en een stukje onverhard.", "inkoop_excl_btw": null},
+   {"soort": "sportief", "merk": "Pirelli", "band": "Scorpion Trail II", "uitleg": "Sportieve adventureband met veel grip op asfalt.", "inkoop_excl_btw": null}],
+  "170/60 R17": [
+   {"soort": "zuinig", "merk": "Michelin", "band": "Anakee Road", "uitleg": "Adventureband voor de weg: lange levensduur, prettig in de regen.", "inkoop_excl_btw": null},
+   {"soort": "allround", "merk": "Bridgestone", "band": "Battlax A41", "uitleg": "Allround adventureband voor asfalt en een stukje onverhard.", "inkoop_excl_btw": null},
+   {"soort": "sportief", "merk": "Pirelli", "band": "Scorpion Trail II", "uitleg": "Sportieve adventureband met veel grip op asfalt.", "inkoop_excl_btw": null}],
+  "90/90-21": [
+   {"soort": "zuinig", "merk": "Michelin", "band": "Anakee Adventure", "uitleg": "Vooral voor de weg, met genoeg profiel voor een onverhard pad. Gaat lang mee.", "inkoop_excl_btw": null},
+   {"soort": "allround", "merk": "Bridgestone", "band": "Battlax Adventurecross Tourer AX41T", "uitleg": "Blokkerig profiel dat ook op asfalt rustig en voorspelbaar blijft.", "inkoop_excl_btw": null},
+   {"soort": "sportief", "merk": "Metzeler", "band": "Karoo Street", "uitleg": "Grof profiel voor meer grip onverhard; op asfalt iets minder verfijnd.", "inkoop_excl_btw": null}],
+  "150/70 R18": [
+   {"soort": "zuinig", "merk": "Michelin", "band": "Anakee Adventure", "uitleg": "Vooral voor de weg, met genoeg profiel voor een onverhard pad. Gaat lang mee.", "inkoop_excl_btw": null},
+   {"soort": "allround", "merk": "Bridgestone", "band": "Battlax Adventurecross Tourer AX41T", "uitleg": "Blokkerig profiel dat ook op asfalt rustig en voorspelbaar blijft.", "inkoop_excl_btw": null},
+   {"soort": "sportief", "merk": "Metzeler", "band": "Karoo Street", "uitleg": "Grof profiel voor meer grip onverhard; op asfalt iets minder verfijnd.", "inkoop_excl_btw": null}]
+ }
+}

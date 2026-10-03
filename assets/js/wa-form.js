@@ -69,7 +69,7 @@
       merk: motor.merk(), model: motor.model(), uitvoering: motor.uitvoering(),
       bouwjaar: by ? OGMotor.yearText(by) : '',
       km: isFinite(km) ? km : null,
-      banden: field('banden') ? clean(field('banden').value) : '',
+      banden: (field('banden') && clean(field('banden').value)) || (OGMotor.klus.get().items.indexOf('banden') !== -1 ? OGMotor.klus.get().banden : ''),
       vraag: String(field('vraag').value || '').trim()
     };
   }

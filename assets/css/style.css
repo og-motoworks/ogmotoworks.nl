@@ -459,3 +459,23 @@ html:has(.nav.is-open) .fab{display:none}
 .klus .klus__anders:focus{outline:2px solid var(--accent-2);outline-offset:1px;border-color:transparent}
 .klus .klus__list label{margin:0;font:600 .95rem/1.3 var(--body);letter-spacing:0;text-transform:none;color:var(--text)}
 .klus .klus__prijs{font:400 .82rem/1.3 var(--body);letter-spacing:0;text-transform:none;color:var(--accent-2)}
+
+/* ---------- bandenmenu ---------- */
+.bm{margin-top:18px}
+.bm__intro{color:var(--muted)}
+.bm__maten{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.bm__lijst{display:grid;gap:18px}
+@media (min-width:900px){.bm__lijst{grid-template-columns:1fr 1fr}}
+.bm__pos{border:0;padding:0;margin:0;min-width:0}
+.bm__pos legend{font:700 1.05rem/1.2 var(--head);text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px;padding:0}
+.bm__opts{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.bm__opt{position:relative}
+.bm__opt input{position:absolute;left:16px;top:20px;width:20px;height:20px;margin:0;accent-color:var(--accent)}
+.bm__opt label{display:grid;gap:2px;padding:14px 16px 14px 48px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);cursor:pointer}
+.bm__opt input:checked + label{border-color:var(--accent)}
+.bm__opt input:focus-visible + label{outline:2px solid var(--accent-2);outline-offset:2px}
+.bm__soort{font:500 .75rem/1.2 var(--head);letter-spacing:.12em;text-transform:uppercase;color:var(--accent-2)}
+.bm__uitleg{color:var(--muted);font-size:.92rem}
+.bm__prijs{font-weight:700;margin-top:4px}
+.bm__cta{margin-top:14px}
+.bm .muted{color:var(--muted)}

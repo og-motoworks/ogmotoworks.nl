@@ -250,12 +250,12 @@
                       'Kettingset': 'ketting', 'Remmen': 'remmen', 'Voorvorkkeerringen': 'voorvork', 'Tuning / afstellen': 'tuning' };
   var klusListeners = [];
   function klusGet() {
-    try { var k = JSON.parse(localStorage.getItem(KLUS_KEY) || 'null'); if (k && k.items) return { items: k.items.filter(byId), anders: clean(k.anders), bandPrijs: k.bandPrijs || null }; } catch (e) {}
-    return { items: [], anders: '', bandPrijs: null };
+    try { var k = JSON.parse(localStorage.getItem(KLUS_KEY) || 'null'); if (k && k.items) return { items: k.items.filter(byId), anders: clean(k.anders), bandPrijs: k.bandPrijs || null, banden: clean(k.banden) }; } catch (e) {}
+    return { items: [], anders: '', bandPrijs: null, banden: '' };
   }
   function byId(id) { return KLUS.some(function (k) { return k.id === id; }); }
   function klusSet(k) {
-    k = { items: (k.items || []).filter(byId), anders: clean(k.anders).slice(0, 200), bandPrijs: k.bandPrijs || null };
+    k = { items: (k.items || []).filter(byId), anders: clean(k.anders).slice(0, 200), bandPrijs: k.bandPrijs || null, banden: clean(k.banden).slice(0, 300) };
     try { localStorage.setItem(KLUS_KEY, JSON.stringify(k)); } catch (e) {}
     klusListeners.forEach(function (fn) { try { fn(k); } catch (e) {} }); return k;
   }
