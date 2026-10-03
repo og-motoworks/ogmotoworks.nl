@@ -487,6 +487,18 @@ html:has(.nav.is-open) .fab{display:none}
 .bm__opt input:checked + label{border-color:var(--accent)}
 .bm__opt input:focus-visible + label{outline:2px solid var(--accent-2);outline-offset:2px}
 .bm__soort{font:500 .75rem/1.2 var(--head);letter-spacing:.12em;text-transform:uppercase;color:var(--accent-2)}
+/* Zelf kiezen (assortiment, achter ASSORTIMENT_LIVE) */
+.bm__kop{margin:10px 0 8px;font:700 .9rem/1.2 var(--head);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.bm__zelf{margin-top:14px;padding-top:4px;border-top:1px dashed var(--line)}
+.bm__zsel{display:grid;grid-template-columns:1fr;gap:8px;margin-bottom:10px}
+@media (min-width:420px){.bm__zsel{grid-template-columns:1fr 1fr}}
+.bm__zsel .field{margin:0}
+.bm__zsel select{width:100%;min-width:0}
+.bm__zsel select:disabled{opacity:.6}
+.bm__leeg,.bm__hint{margin:4px 0 0;font-size:.9rem}
+.bm__zsel .bm__help{grid-column:auto;margin:6px 0 0}
+.bm__notatie{font-size:.85rem;color:var(--muted)}
+.bm__let{justify-self:start;margin:2px 0;padding:2px 8px;border-radius:999px;border:1px solid var(--accent-2);color:var(--accent-2);font-size:.8rem;font-weight:600}
 .bm__uitleg{color:var(--muted);font-size:.92rem}
 .bm__prijs{font-weight:700;margin-top:4px}
 .bm__cta{margin-top:14px}
