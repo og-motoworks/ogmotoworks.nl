@@ -608,3 +608,12 @@ html:has(.nav.is-open) .fab{display:none}
 .bm__popin dd{margin:0;color:var(--muted)}
 .bm__popin .muted{color:var(--muted);font-size:.88rem}
 .bm__popx{position:absolute;top:8px;right:8px;width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--text);font-size:1.2rem;line-height:1;cursor:pointer}
+/* Bandenmenu: meerdere fabrieksmaten voor één generatie (klant kiest) */
+.bm__opties{margin:12px 0 4px;padding:12px 14px;border:1px solid var(--accent);border-radius:12px;background:var(--card)}
+.bm__optkop{margin:0 0 8px}
+.bm__optrij{margin:8px 0 0}
+.bm__optlab{display:block;font:700 .8rem/1.2 var(--head);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.bm__optk{display:flex;flex-wrap:wrap;gap:8px}
+.bm__chip.bm__opt{white-space:normal;text-align:left;max-width:100%;touch-action:manipulation}
+.bm__opt:focus-visible{outline:2px solid var(--accent-2);outline-offset:2px}
+.bm__opttip{margin:10px 0 0;font-size:.88rem;color:var(--muted)}

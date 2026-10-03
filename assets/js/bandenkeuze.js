@@ -59,6 +59,25 @@
     var y = parseInt(s.bouwjaar, 10);
     return data.maten.some(function (m) { return m.merk === s.merk && m.model === s.model && m.uitvoering && inYear(m, y); });
   }
+  // Meerdere fabrieksmaten voor één generatie (banden.json 'opties'): de klant kiest, niets vooraf gekozen.
+  // Optie met voor én achter = maatpaar (zoals de bron het geeft); optie met één positie = los te kiezen.
+  function opties(o) { return o && Array.isArray(o.opties) && o.opties.length ? o.opties : null; }
+  function optAan(x) { return POS.every(function (p) { if (!x[p]) return true; var t = parse(x[p]); return tkey(t) === tkey(state[p]) && t.o === (state[p].o || ''); }); }
+  function optTxt(x) { var m = POS.filter(function (p) { return x[p]; }); return (x.naam ? x.naam + ': ' : '') + (m.length === 2 ? 'voor ' + x.voor + ' + achter ' + x.achter : x[m[0]]); }
+  function optiesHTML() {
+    var op = opties(state.oem); if (!op) return '';
+    var paren = [], los = { voor: [], achter: [] };
+    op.forEach(function (x, i) { if (x.voor && x.achter) paren.push(i); else POS.forEach(function (p) { if (x[p]) los[p].push(i); }); });
+    function rij(kop, idx) {
+      if (!idx.length) return '';
+      return '<div class="bm__optrij"><span class="bm__optlab" id="bm-opt-' + kop[0] + '">' + kop[1] + '</span><div class="bm__optk" role="group" aria-labelledby="bm-opt-' + kop[0] + '">' +
+        idx.map(function (i) { return '<button type="button" class="bm__chip bm__opt" id="bm-opt-' + i + '" data-opt="' + i + '" aria-pressed="' + optAan(op[i]) + '">' + esc(optTxt(op[i])) + '</button>'; }).join('') + '</div></div>';
+    }
+    return '<div class="bm__opties" id="bm-opties"><p class="bm__optkop"><strong>Voor deze motor bestaan meerdere bandenmaten.</strong> Kies hieronder je maat.</p>' +
+      rij(['paar', 'Voor + achter'], paren) + rij(['voor', 'Voorband'], los.voor) + rij(['achter', 'Achterband'], los.achter) +
+      '<p class="bm__opttip">Check de maat op de zijkant van je huidige band; afwijken mag, vraag ons gerust.</p></div>';
+  }
+  function optUpd() { box.querySelectorAll('[data-opt]').forEach(function (b) { var x = (opties(state.oem) || [])[Number(b.getAttribute('data-opt'))]; if (x) b.setAttribute('aria-pressed', String(optAan(x))); }); }
   function adviesKey(t) {
     var k = tkey(t), hit = null; if (!k) return null;
     Object.keys(data.advies || {}).forEach(function (m) { if (!hit && tkey(parse(m)) === k) hit = m; });
@@ -66,7 +85,8 @@
   }
   function label(p) {
     var t = state[p], k = tkey(t); if (!k) return '';
-    if (state.oem && tkey(parse(state.oem[p])) === k && parse(state.oem[p]).o === (t.o || '')) return state.oem[p];
+    var c = state.oem ? [state.oem[p]].concat((opties(state.oem) || []).map(function (x) { return x[p]; })) : [];
+    for (var i = 0; i < c.length; i++) if (c[i] && tkey(parse(c[i])) === k && parse(c[i]).o === (t.o || '')) return c[i];
     if (t.o) return t.b + '/' + t.h + (t.o === '-' ? '-' : ' ' + t.o) + t.v;
     return adviesKey(t) || (t.b + '/' + t.h + '-' + t.v);
   }
@@ -119,8 +139,9 @@
     var breed = Number(state.achter.b) >= (A.breed_vanaf || 190);
     var c = gt && (mt === 'toer' || mt === 'naked' || mt === 'sport') ? 'gt' : mt === 'naked' ? (breed ? 'naked_breed' : 'naked') : mt;
     if (!A.categorie[c]) c = (state.voor.v === '21' || state.voor.v === '19') && Number(state.voor.b) <= 120 && Number(state.voor.h) >= 70 ? 'onbekend_adventure' : 'onbekend';
-    return A.categorie[c] ? { id: c, wie: A.categorie[c].wie, types: A.categorie[c].types } : null;
+    return A.categorie[c] ? { id: c, wie: A.categorie[c].wie, types: A.categorie[c].types, voorkeur: A.categorie[c].voorkeur || {} } : null;
   }
+  function vkLijst(c, type) { var A = assort && assort.advies; return (c && c.voorkeur && c.voorkeur[type]) || ((A && A.voorkeur) || {})[type] || []; } // eigen voorkeur van de categorie gaat voor
   function adviesBerekenen() {
     var c = categorie(), ps = actievePos().filter(function (p) { return lijst(p).length; }), A = assort && assort.advies; // posities zonder banden in de lijst tellen niet mee
     if (!c || !ps.length) return null;
@@ -130,7 +151,7 @@
       return -1;
     }
     for (var ti = 0; ti < c.types.length; ti++) {
-      var type = c.types[ti], vk = ((A.voorkeur || {})[type] || []).map(function (x) { return x.toLowerCase(); });
+      var type = c.types[ti], vk = vkLijst(c, type).map(function (x) { return x.toLowerCase(); });
       // 1. zelfde model voor en achter
       for (var j = 0; j < vk.length; j++) {
         var idx = {}, ok = ps.every(function (p) { var i = vind(p, vk[j]); idx[p] = i; return i !== -1 && lijst(p)[i].type === type; });
@@ -237,7 +258,7 @@
     var to = assort ? assort.types.map(function (x) { return x[0]; }) : [], mo = assort ? [].concat.apply([], assort.groepen.map(function (g) { return g[1]; })) : [];
     // volgorde: advies, dan (niet-diagonaal) de voorkeursmodellen uit de adviesregels voor deze motor, dan hetzelfde type, dan de rest; diagonaal onder radiaal onderaan
     var rank = {};
-    if (adv && assort.advies) adv.cat.types.forEach(function (ty, ti) { ((assort.advies.voorkeur || {})[ty] || []).forEach(function (x, j) { var k = x.toLowerCase(); if (rank[k] == null) rank[k] = ti * 100 + j; }); });
+    if (adv && assort.advies) adv.cat.types.forEach(function (ty, ti) { vkLijst(adv.cat, ty).forEach(function (x, j) { var k = x.toLowerCase(); if (rank[k] == null) rank[k] = ti * 100 + j; }); });
     var rk = function (t) { var r = rank[naamKey(t)]; return r == null ? 1e4 : r; };
     if (assort) items.sort(function (a, b) { // zonder assortiment: volgorde van banden.json (zuinig, allround, sportief)
       return (a.i === ai ? 0 : 1) - (b.i === ai ? 0 : 1) || (diag(p, a.t) ? 1 : 0) - (diag(p, b.t) ? 1 : 0) || rk(a.t) - rk(b.t) ||
@@ -267,6 +288,7 @@
   function render(focus) {
     var s = OGMotor.get(), o = oem(s), head;
     if (!s) head = '<p class="bm__intro">Kies hierboven eerst je motor. Dan vullen we de originele bandenmaten voor je in.</p>';
+    else if (o && opties(o)) head = '<p class="bm__intro">Originele bandenmaten voor de <strong>' + esc(OGMotor.label(s)) + '</strong>.</p>';
     else if (o) head = '<p class="bm__intro">Originele bandenmaten voor de <strong>' + esc(OGMotor.label(s)) + '</strong>. Staat er iets anders op je band of in je instructieboekje, pas het dan aan.</p>';
     else if (perUitvoering(s)) head = '<p class="bm__intro">Bij de <strong>' + esc(OGMotor.label(s)) + '</strong> verschillen de bandenmaten per uitvoering. Kies hierboven je uitvoering, of kies hieronder zelf de maat van je band. <a class="link" href="/banden/bandenmaat/">Zo lees je je bandenmaat →</a></p>';
     else head = '<p class="bm__intro">Van de <strong>' + esc(OGMotor.label(s)) + '</strong> hebben we de bandenmaten nog niet in onze lijst. Kies hieronder de maat van je band, of app ons, dan zoeken we het op. <a class="link" href="/banden/bandenmaat/">Zo lees je je bandenmaat →</a></p>';
@@ -275,7 +297,7 @@
       state = { motor: id, oem: o, voor: parse(o && o.voor), achter: parse(o && o.achter), keuze: {}, f: { merk: '', type: '', q: '' }, meer: {}, ventielen: state.ventielen, afvoeren: state.afvoeren };
     }
     adv = assort ? adviesBerekenen() : null;
-    box.innerHTML = head + (s ? '<div class="bm__maten">' + POS.map(function (p) {
+    box.innerHTML = head + (s ? optiesHTML() + '<div class="bm__maten">' + POS.map(function (p) {
       var t = state[p];
       return '<fieldset class="bm__maat"><legend>Bandenmaat ' + p + '</legend><div class="bm__sel">' + sel(p, 'b', 'Breedte', B, t.b) + sel(p, 'h', 'Hoogte', H, t.h) + sel(p, 'v', 'Velg (inch)', V, t.v) + sel(p, 'o', 'Opbouw', O, t.o || '') + '</div>' +
         '<div id="bm-' + p + '-foutvak">' + foutHTML(p) + '</div></fieldset>';
@@ -291,7 +313,7 @@
         // iOS Safari opent de lijst anders opnieuw (focus() op een nieuwe <select> na het kiezen).
         var p = el.getAttribute('data-pos'); state[p][el.getAttribute('data-f')] = el.value; delete state.keuze[p]; state.meer = {};
         var fv = document.getElementById('bm-' + p + '-foutvak'); if (fv) fv.innerHTML = foutHTML(p);
-        upd(); updSom(); save();
+        optUpd(); upd(); updSom(); save();
       });
     });
     var z = document.getElementById('bm-zoek');
@@ -327,7 +349,17 @@
   // Eén gedelegeerde klik-/change-handler voor knoppen en radio's
   box.addEventListener('click', function (e) {
     var b = e.target.closest('button'); if (!b || !box.contains(b)) return;
-    if (b.hasAttribute('data-f')) {
+    if (b.hasAttribute('data-opt')) {
+      // maatoptie: keuzelijsten op hun plek bijwerken (niet opnieuw opbouwen, iOS), focus blijft op de knop
+      var x = (opties(state.oem) || [])[Number(b.getAttribute('data-opt'))]; if (!x) return;
+      POS.forEach(function (q) {
+        if (!x[q]) return;
+        state[q] = parse(x[q]); delete state.keuze[q];
+        ['b', 'h', 'v', 'o'].forEach(function (f) { var el = document.getElementById('bm-' + q + '-' + f); if (el) el.value = state[q][f] || ''; });
+        var fv = document.getElementById('bm-' + q + '-foutvak'); if (fv) fv.innerHTML = foutHTML(q);
+      });
+      state.meer = {}; optUpd(); upd(); updSom(); save();
+    } else if (b.hasAttribute('data-f')) {
       var k = b.getAttribute('data-f'), v = b.getAttribute('data-v');
       state.f[k] = state.f[k] === v ? '' : v; state.meer = {};
       // andere filter niet meer leverbaar met deze keuze? dan loslaten (nooit een lege lijst door een combinatie)
@@ -391,5 +423,5 @@
   fetch(URL_, { cache: 'no-cache' }).then(function (r) { return r.json(); }).then(function (d) { data = d; return pa; }).then(function (a) { assort = assortOk(a); return OGMotor.load(); })
     .then(function () { render(); OGMotor.on(function () { render(); }); })
     .catch(function () { box.innerHTML = '<p class="bm__intro">Het bandenmenu kon niet laden. App ons je motor en bandenmaat, dan helpen we je verder.</p>'; });
-  window.OGBanden = { versie: 2, vanaf: function (inkoop) { return data ? vanaf({ inkoop_excl_btw: inkoop }) : null; }, state: function () { return state; }, maatGeldig: function (m) { return maatGeldig(typeof m === 'string' ? parse(m) : m); }, assortiment: function () { return !!assort; }, advies: function () { return adv; } };
+  window.OGBanden = { versie: 2, opties: function () { return opties(state.oem); }, vanaf: function (inkoop) { return data ? vanaf({ inkoop_excl_btw: inkoop }) : null; }, state: function () { return state; }, maatGeldig: function (m) { return maatGeldig(typeof m === 'string' ? parse(m) : m); }, assortiment: function () { return !!assort; }, advies: function () { return adv; } };
 })();
