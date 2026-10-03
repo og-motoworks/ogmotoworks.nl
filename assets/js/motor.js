@@ -236,30 +236,56 @@
   }
 
   /* ---------- "Wat wil je laten doen?" (meerkeuze, onthouden op dit apparaat) ---------- */
-  // Indicatieprijs alleen waar we een vaste prijs hebben. Banden: band 'vanaf' (bandenmenu, later) + €50 montage per band.
+  // Indicatieprijs alleen waar we een (vanaf-)prijs hebben. Banden: band 'vanaf' (bandenmenu, later) + €50 montage per band.
   var KLUS_KEY = 'ogmw.klus.v1';
   var KLUS = [
+    { id: 'winter', label: 'Winterpakket' },
     { id: 'kleine-beurt', label: 'Kleine beurt' }, { id: 'grote-beurt', label: 'Grote beurt' },
     { id: 'banden', label: 'Banden', prijs: '+ €50 montage per band', link: '/banden/#advies', linkText: 'Naar bandenadvies' },
     { id: 'ketting', label: 'Ketting / kettingset', prijs: 'vanaf €150' }, { id: 'remmen', label: 'Remmen' },
     { id: 'voorvork', label: 'Voorvorkkeerringen', prijs: 'vanaf €350' }, { id: 'storing', label: 'Storing / lampje / diagnose' },
-    { id: 'tuning', label: 'Tuning / afstellen' }, { id: 'anders', label: 'Iets anders' }
+    { id: 'tuning', label: 'Tuning / afstellen' }, { id: 'schade', label: 'Schade / onderdelen vervangen' },
+    { id: 'verlichting', label: 'Verlichting / knipperlichten monteren' }, { id: 'anders', label: 'Iets anders' }
   ];
+  // Winterpakketten (goedgekeurde prijzen incl. btw). Vroegboek: boeken t/m 30 november, afspraak t/m januari.
+  var WINTER = [{ id: 'winterbeurt', naam: 'Winterbeurt', prijs: 179, vroeg: 159 },
+                { id: 'voorjaarsklaar', naam: 'Winterbeurt + Voorjaarsklaar', prijs: 219, vroeg: 199 },
+                { id: 'compleet', naam: 'Winter Compleet', prijs: 279, vroeg: 259 }];
+  var VROEG_TOT = '2026-11-30';
+  function today() { var d = new Date(); return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); }
+  function vroegboek() { return today() <= VROEG_TOT; }
+  function winterPakket(id) { return WINTER.filter(function (w) { return w.id === id; })[0] || null; }
+  // Winterpakket staat in de lijst op /winter/, als de actie live is (<body data-winter="live">) of als het al is gekozen
+  function winterZichtbaar(k) {
+    return /^\/winter\//.test(location.pathname) || (document.body && document.body.getAttribute('data-winter') === 'live') || k.items.indexOf('winter') !== -1;
+  }
   // data-dienst op knoppen → welk vinkje vooraf aan gaat
-  var DIENST_KLUS = { 'Onderhoud / grote beurt': 'grote-beurt', 'Kleine beurt': 'kleine-beurt', 'Diagnose / storing': 'storing', 'Banden': 'banden',
-                      'Kettingset': 'ketting', 'Remmen': 'remmen', 'Voorvorkkeerringen': 'voorvork', 'Tuning / afstellen': 'tuning' };
+  var DIENST_KLUS = { 'Winterpakket': 'winter', 'Onderhoud / grote beurt': 'grote-beurt', 'Kleine beurt': 'kleine-beurt', 'Diagnose / storing': 'storing', 'Banden': 'banden',
+                      'Kettingset': 'ketting', 'Remmen': 'remmen', 'Voorvorkkeerringen': 'voorvork', 'Tuning / afstellen': 'tuning',
+                      'Schade repareren': 'schade', 'Verlichting / knipperlichten': 'verlichting' };
   var klusListeners = [];
   function klusGet() {
-    try { var k = JSON.parse(localStorage.getItem(KLUS_KEY) || 'null'); if (k && k.items) return { items: k.items.filter(byId), anders: clean(k.anders), bandPrijs: k.bandPrijs || null, banden: clean(k.banden) }; } catch (e) {}
-    return { items: [], anders: '', bandPrijs: null, banden: '' };
+    try { var k = JSON.parse(localStorage.getItem(KLUS_KEY) || 'null'); if (k && k.items) return { items: k.items.filter(byId), anders: clean(k.anders), bandPrijs: k.bandPrijs || null, banden: clean(k.banden), winter: winterPakket(k.winter) ? k.winter : '' }; } catch (e) {}
+    return { items: [], anders: '', bandPrijs: null, banden: '', winter: '' };
   }
   function byId(id) { return KLUS.some(function (k) { return k.id === id; }); }
   function klusSet(k) {
-    k = { items: (k.items || []).filter(byId), anders: clean(k.anders).slice(0, 200), bandPrijs: k.bandPrijs || null, banden: clean(k.banden).slice(0, 300) };
+    k = { items: (k.items || []).filter(byId), anders: clean(k.anders).slice(0, 200), bandPrijs: k.bandPrijs || null, banden: clean(k.banden).slice(0, 300), winter: winterPakket(k.winter) ? k.winter : '' };
     try { localStorage.setItem(KLUS_KEY, JSON.stringify(k)); } catch (e) {}
     klusListeners.forEach(function (fn) { try { fn(k); } catch (e) {} }); return k;
   }
   function klusAdd(id) { var k = klusGet(); if (byId(id) && k.items.indexOf(id) === -1) { k.items.push(id); klusSet(k); } }
+  function winterSet(id) { var k = klusGet(); if (!winterPakket(id)) return; if (k.items.indexOf('winter') === -1) k.items.push('winter'); k.winter = id; klusSet(k); }
+  // Gekozen winterpakket + vroegboek ja/nee (voor WhatsApp en Formspree); null als Winterpakket niet is aangevinkt
+  function winterInfo() {
+    var k = klusGet(); if (k.items.indexOf('winter') === -1) return null;
+    var w = winterPakket(k.winter), v = vroegboek();
+    return { id: w ? w.id : '', naam: w ? w.naam : '', prijs: w ? (v ? w.vroeg : w.prijs) : null, normaal: w ? w.prijs : null, vroegboek: v };
+  }
+  function winterTekst(w) {
+    if (!w.naam) return 'Winterpakket (welk pakket nog kiezen)';
+    return 'Winterpakket: ' + w.naam + (w.vroegboek ? ' (vroegboek €' + w.prijs + ' i.p.v. €' + w.normaal + ')' : ' (€' + w.prijs + ')');
+  }
   function klusPrijs(item, k) {
     if (item.id === 'banden' && k.bandPrijs) return 'band vanaf €' + k.bandPrijs + ' + €50 montage per band';
     return item.prijs || '';
@@ -269,6 +295,7 @@
     var k = klusGet();
     return KLUS.filter(function (i) { return k.items.indexOf(i.id) !== -1; }).map(function (i) {
       if (i.id === 'anders') return 'Iets anders' + (k.anders ? ': ' + k.anders : '');
+      if (i.id === 'winter') return winterTekst(winterInfo());
       var pr = klusPrijs(i, k); return i.label + (pr ? ' (' + pr + ')' : '');
     });
   }
@@ -279,24 +306,35 @@
       '<p class="klus__hint">Vink aan wat je wilt, dan staat het in je WhatsApp-bericht.</p><ul class="klus__list">' +
       KLUS.map(function (i) {
         var id = p + '-klus-' + i.id;
+        if (i.id === 'winter') return '<li data-klus-winter><input type="checkbox" id="' + id + '" value="winter"><label for="' + id + '">' + i.label + '</label>' +
+          '<fieldset class="klus__sub" hidden><legend>Welk pakket?</legend>' + WINTER.map(function (w) {
+            return '<label class="klus__radio"><input type="radio" name="' + p + '-winter" id="' + p + '-winter-' + w.id + '" value="' + w.id + '"><span>' + w.naam +
+              '<span class="klus__prijs">€' + w.prijs + (vroegboek() ? ' · vroegboek €' + w.vroeg : '') + '</span></span></label>';
+          }).join('') + '<p class="klus__note">' + (vroegboek() ? 'Vroegboekprijs bij boeken t/m 30 november, voor een afspraak t/m januari.' : 'Prijzen incl. btw.') +
+          (/^\/winter\//.test(location.pathname) ? '' : ' <a class="link" href="/winter/">Bekijk de pakketten →</a>') + '</p></fieldset></li>';
         return '<li><input type="checkbox" id="' + id + '" value="' + i.id + '"><label for="' + id + '">' + i.label +
           (i.prijs ? ' <span class="klus__prijs" data-prijs="' + i.id + '">' + i.prijs + '</span>' : '') + '</label>' +
           (i.link && here !== i.link.split('#')[0] ? ' <a class="link klus__link" href="' + i.link + '" hidden>' + i.linkText + ' →</a>' : '') + '</li>';
       }).join('') + '</ul>' +
       '<input type="text" class="field__other klus__anders" id="' + p + '-klus-anders-tekst" maxlength="200" placeholder="Wat wil je nog meer laten doen?" aria-label="Iets anders: wat wil je laten doen?" hidden>';
     var boxes = box.querySelectorAll('input[type=checkbox]'), txt = box.querySelector('.klus__anders');
+    var wLi = box.querySelector('[data-klus-winter]'), wSub = wLi && wLi.querySelector('.klus__sub'), wRadios = box.querySelectorAll('input[type=radio]');
     function sync(k) {
+      if (wLi) { wLi.hidden = !winterZichtbaar(k); wSub.hidden = k.items.indexOf('winter') === -1; wRadios.forEach(function (r) { r.checked = r.value === k.winter; }); }
       boxes.forEach(function (c) { c.checked = k.items.indexOf(c.value) !== -1; var l = c.parentNode.querySelector('.klus__link'); if (l) l.hidden = !c.checked; });
       txt.hidden = k.items.indexOf('anders') === -1; if (document.activeElement !== txt) txt.value = k.anders || '';
-      var bp = box.querySelector('[data-prijs=banden]'); if (bp) bp.textContent = klusPrijs(KLUS[2], k);
+      var bp = box.querySelector('[data-prijs=banden]'); if (bp) bp.textContent = klusPrijs(KLUS.filter(function (x) { return x.id === 'banden'; })[0], k);
     }
-    function save() {
+    function save(e) {
       var k = klusGet();
       k.items = [].filter.call(boxes, function (c) { return c.checked; }).map(function (c) { return c.value; });
+      var r = [].filter.call(wRadios, function (x) { return x.checked; })[0];
+      if (r) k.winter = r.value;
+      if (e && e.target.type === 'radio' && k.items.indexOf('winter') === -1) k.items.push('winter'); // pakket kiezen = Winterpakket aan
       k.anders = txt.value; klusSet(k);
     }
     box.addEventListener('change', function (e) {
-      save();
+      save(e);
       if (e.target.value === 'anders' && e.target.checked) txt.focus();
     });
     txt.addEventListener('input', save);
@@ -411,7 +449,7 @@
 
   window.OGMotor = { load: load, get: get, set: set, clear: clear, label: label, name: name, yearText: yearText,
                      bind: bind, tip: tip, type: motorType, silhouette: silhouette,
-                     klus: { list: KLUS, get: klusGet, set: klusSet, add: klusAdd, lines: klusLines, fromDienst: function (d) { return DIENST_KLUS[clean(d)] || null; }, on: function (fn) { klusListeners.push(fn); } }, interval: interval, loadOnderhoud: loadOnderhoud, on: on, OTHER: OTHER, data: function () { return data; } };
+                     klus: { list: KLUS, get: klusGet, set: klusSet, add: klusAdd, lines: klusLines, winter: { list: WINTER, set: winterSet, info: winterInfo, vroegboek: vroegboek }, fromDienst: function (d) { return DIENST_KLUS[clean(d)] || null; }, on: function (fn) { klusListeners.push(fn); } }, interval: interval, loadOnderhoud: loadOnderhoud, on: on, OTHER: OTHER, data: function () { return data; } };
 
   function init() {
     document.querySelectorAll('[data-motorpick]').forEach(renderPicker);

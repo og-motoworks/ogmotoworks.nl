@@ -499,3 +499,29 @@ html:has(.nav.is-open) .fab{display:none}
 .field--check .field__err{grid-column:2}
 .field--check input[aria-invalid=true]{outline:2px solid var(--accent-2);outline-offset:2px}
 @media (max-width:480px){#wa-form .field:has(#wa-telefoon),#wa-form .field:has(#wa-email){grid-column:1/-1}}
+/* Winterpakket in 'Wat wil je laten doen?' */
+.klus__list li[hidden],.klus__sub[hidden]{display:none}
+.klus__list li[data-klus-winter]{grid-column:1/-1}
+.klus__sub{flex-basis:100%;border:0;margin:4px 0 2px;padding:0 0 0 30px;display:grid;gap:6px;min-width:0}
+.klus__sub legend{padding:0;font-size:.85rem;color:var(--muted);margin-bottom:4px}
+.klus__list .klus__radio{display:grid;grid-template-columns:20px 1fr;align-items:start;gap:10px;font-weight:600;flex:none}
+.klus__radio input{margin-top:2px}
+.klus__radio .klus__prijs{display:block;margin:2px 0 0}
+.klus__note{margin:2px 0 0;font-size:.82rem;color:var(--muted)}
+/* Winterpakketten (/winter/) */
+.wp{display:grid;gap:16px;margin-top:28px}
+@media (min-width:900px){.wp{grid-template-columns:repeat(3,1fr);align-items:start}}
+.wp__card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.wp__card--tip{border:2px solid var(--accent);box-shadow:0 10px 30px rgba(0,0,0,.35)}
+@media (min-width:900px){.wp__card--tip{transform:translateY(-8px)}}
+.wp__label{font:500 .8rem/1 var(--head);letter-spacing:.14em;text-transform:uppercase;color:var(--accent-2)}
+.wp__card h3{margin:0}
+.wp__prijs{margin:0;display:flex;align-items:baseline;gap:8px}
+.wp__prijs b{font:700 2.4rem/1 var(--head)}
+.wp__prijs span{color:var(--muted);font-size:.9rem}
+.wp__vroeg{margin:0;font-size:.95rem}
+.wp__vroeg b{color:var(--accent-2)}
+.wp__card .checks{margin:4px 0}
+.wp__extra{margin:0;font-size:.88rem;color:var(--muted)}
+.wp__card .btn{margin-top:auto;align-self:stretch;justify-content:center}
+.hours{font-size:1.1rem}

@@ -79,6 +79,7 @@
     return {
       intent: intentEl.value || 'afspraak',
       klus: OGMotor.klus.lines(),
+      winter: OGMotor.klus.winter ? OGMotor.klus.winter.info() : null,
       naam: clean(field('naam').value),
       telefoon: clean(field('telefoon').value), email: clean(field('email').value), plaats: clean(field('plaats').value),
       akkoord: !!field('akkoord').checked,
@@ -95,6 +96,7 @@
     var d = collect();
     var lines = ['Hoi OG MotoWorks! ' + (INTENTS[d.intent] || INTENTS.afspraak)];
     if (d.klus.length) lines.push('Laten doen:\n' + d.klus.map(function (x) { return '- ' + x; }).join('\n'));
+    if (d.winter) lines.push('Vroegboek: ' + (d.winter.vroegboek ? 'ja (geboekt t/m 30 november, afspraak t/m januari)' : 'nee'));
     if (d.naam) lines.push('Naam: ' + d.naam);
     if (d.telefoon) lines.push('Telefoon: ' + d.telefoon);
     if (d.email) lines.push('E-mail: ' + d.email);
@@ -126,6 +128,8 @@
       'Bouwjaar': d.bouwjaar, 'Kilometerstand': d.km == null ? '' : d.km.toLocaleString('nl-NL') + ' km',
       'Laten doen': d.klus.length ? d.klus.join('; ') : '(niets aangevinkt)',
       'Banden': d.banden || '(geen)', 'Vraag': d.vraag || '(geen)',
+      'Winterpakket': d.winter ? (d.winter.naam || '(nog kiezen)') : '(geen)',
+      'Vroegboek': d.winter ? (d.winter.vroegboek ? 'ja' : 'nee') : '(n.v.t.)',
       'Akkoord gegevens voor deze aanvraag': d.akkoord ? 'ja' : 'nee',
       'Toestemming reviewverzoek per mail': d.review ? 'ja' : 'nee',
       'Pagina': location.pathname,
@@ -156,6 +160,7 @@
     lastTrigger = trigger;
     intentEl.value = (trigger && trigger.getAttribute('data-wa-intent')) || 'afspraak';
     if (trigger && trigger.hasAttribute('data-dienst')) setDienst(trigger.getAttribute('data-dienst'));
+    if (trigger && trigger.hasAttribute('data-winterpakket') && OGMotor.klus.winter) OGMotor.klus.winter.set(trigger.getAttribute('data-winterpakket'));
     if (field('banden')) field('banden').value = (trigger && trigger.getAttribute('data-banden')) || field('banden').value || '';
     var saved = OGMotor.get();
     var filled = saved ? motor.fill(saved) : OGMotor.load();

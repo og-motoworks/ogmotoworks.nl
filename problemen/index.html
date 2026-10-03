@@ -39,7 +39,30 @@
     "postalCode": "5144 NN",
     "addressLocality": "Waalwijk",
     "addressCountry": "NL"
-   }
+   },
+   "openingHoursSpecification": [
+    {
+     "@type": "OpeningHoursSpecification",
+     "dayOfWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+     ],
+     "opens": "19:00",
+     "closes": "23:00"
+    },
+    {
+     "@type": "OpeningHoursSpecification",
+     "dayOfWeek": [
+      "Saturday",
+      "Sunday"
+     ],
+     "opens": "10:00",
+     "closes": "23:00"
+    }
+   ]
   },
   {
    "@type": "BreadcrumbList",
@@ -80,7 +103,7 @@
         <li class="nav__item">
           <a class="nav__link" href="/diensten/">Diensten</a>
           <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="sub-diensten"><span class="sr-only">Submenu Diensten</span><svg viewBox="0 0 14 9" aria-hidden="true"><path d="M1 1l6 6 6-6"/></svg></button>
-          <ul class="nav__sub nav__sub--wide" id="sub-diensten"><li class="nav__group" role="presentation">Diensten</li><li><a href="/diensten/">Alle diensten</a></li><li><a href="/tarieven/">Tarieven</a></li><li><a href="/diensten/onderhoud/">Onderhoud &amp; grote beurt</a></li><li><a href="/diensten/diagnose/">Diagnose &amp; storingen</a></li><li><a href="/diensten/reparatie/">Reparatie</a></li><li><a href="/banden/">Banden</a></li><li><a href="/diensten/kettingset/">Kettingset vervangen</a></li><li><a href="/diensten/voorvorkkeerringen/">Voorvorkkeerringen</a></li><li><a href="/diensten/tuning/">Tuning &amp; afstellen</a></li><li class="nav__group" role="presentation">Probleem met je motor?</li><li><a href="/problemen/" aria-current="page">Alle problemen</a></li><li><a href="/problemen/lampje-brandt/">Lampje brandt?</a></li><li><a href="/problemen/motor-start-niet/">Motor start niet?</a></li><li><a href="/problemen/olie-lekt/">Motor lekt olie?</a></li><li><a href="/problemen/ketting-rammelt/">Ketting rammelt?</a></li><li><a href="/problemen/remmen/">Remmen piepen of slap?</a></li><li><a href="/problemen/motor-hapert/">Motor hapert?</a></li></ul>
+          <ul class="nav__sub nav__sub--wide" id="sub-diensten"><li class="nav__group" role="presentation">Diensten</li><li><a href="/diensten/">Alle diensten</a></li><li><a href="/tarieven/">Tarieven</a></li><li><a href="/diensten/onderhoud/">Onderhoud &amp; grote beurt</a></li><li><a href="/diensten/diagnose/">Diagnose &amp; storingen</a></li><li><a href="/diensten/reparatie/">Reparatie</a></li><li><a href="/banden/">Banden</a></li><li><a href="/diensten/kettingset/">Kettingset vervangen</a></li><li><a href="/diensten/voorvorkkeerringen/">Voorvorkkeerringen</a></li><li><a href="/diensten/tuning/">Tuning &amp; afstellen</a></li><li><a href="/diensten/schade-repareren/">Schade repareren</a></li><li><a href="/diensten/verlichting-knipperlichten/">Verlichting &amp; knipperlichten</a></li><li class="nav__group" role="presentation">Probleem met je motor?</li><li><a href="/problemen/" aria-current="page">Alle problemen</a></li><li><a href="/problemen/lampje-brandt/">Lampje brandt?</a></li><li><a href="/problemen/motor-start-niet/">Motor start niet?</a></li><li><a href="/problemen/olie-lekt/">Motor lekt olie?</a></li><li><a href="/problemen/ketting-rammelt/">Ketting rammelt?</a></li><li><a href="/problemen/remmen/">Remmen piepen of slap?</a></li><li><a href="/problemen/motor-hapert/">Motor hapert?</a></li></ul>
         </li>
         <li class="nav__item">
           <a class="nav__link" href="/banden/">Banden</a>
@@ -150,6 +173,7 @@
       <a href="https://www.instagram.com/og_motoworks" target="_blank" rel="noopener">Instagram</a><a href="/privacy/">Privacy</a>
     </nav>
     <p class="footer__nap">OG MotoWorks · <a href="https://www.google.com/maps/search/?api=1&amp;query=Professor+Zeemanweg+6-10%2C+5144+NN+Waalwijk" target="_blank" rel="noopener">Professor Zeemanweg 6-10, 5144&nbsp;NN Waalwijk</a> · <a href="tel:+31642939555">06 42 93 95 55</a></p>
+    <p class="footer__nap footer__hours">Op afspraak: ma-vr 19-23, za-zo 10-23</p>
     <div class="copy">© 2026 OG MotoWorks · Motorwerkplaats Waalwijk · KvK 90649443</div>
   </div>
 </footer>
