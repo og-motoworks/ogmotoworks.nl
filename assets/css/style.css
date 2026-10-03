@@ -378,3 +378,48 @@ html:has(.sheet[open]){overflow:hidden}
 }
 .mp .btn,.page-hero .btn{white-space:normal;text-align:center;line-height:1.15}
 html:has(.nav.is-open) .fab{display:none}
+
+/* ---------- menu-groepen ---------- */
+.nav__group{padding:12px 0 4px;font:500 .72rem/1 var(--head);letter-spacing:.14em;text-transform:uppercase;color:var(--accent-2)}
+.nav__group:first-child{padding-top:4px}
+@media (min-width:1000px){
+  .nav__sub--wide{columns:2;column-gap:8px;min-width:540px}
+  .nav__sub--wide li{break-inside:avoid}
+  .nav__sub--wide .nav__group{padding:8px 12px 6px}
+  .nav__sub--wide .nav__group ~ .nav__group{break-before:column}
+}
+/* ---------- onderhoudsinterval ---------- */
+.interval{margin-top:14px;background:var(--card);border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:var(--r);padding:14px 18px;font-size:.95rem;color:var(--muted)}
+.interval p{margin:0}
+.interval b{display:block;color:var(--text);font:600 .95rem/1.3 var(--body);margin-bottom:4px}
+/* ---------- zo werken wij ---------- */
+.steps{list-style:none;counter-reset:st;margin:26px 0 0;padding:0;display:grid;gap:12px}
+.steps li{counter-increment:st;position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px 18px 66px}
+.steps li::before{content:counter(st);position:absolute;left:18px;top:16px;width:32px;height:32px;border-radius:50%;background:var(--accent);color:#fff;font:700 1rem/32px var(--head);text-align:center}
+.steps h3{margin:0 0 4px;font-size:1.05rem}
+.steps p{margin:0;color:var(--muted)}
+@media (min-width:900px){.steps{grid-template-columns:repeat(5,1fr)}.steps li{padding:62px 18px 18px}.steps li::before{top:18px}}
+/* ---------- team & werkplaats ---------- */
+.team{display:grid;gap:22px;margin-top:22px}
+.team__card{display:grid;gap:18px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px}
+.team__card h3{margin:0}
+.team__card p{color:var(--muted);margin:0 0 .8em}
+.team__role{color:var(--accent-2)!important;font:500 .85rem/1 var(--head);letter-spacing:.12em;text-transform:uppercase}
+.photo--team{aspect-ratio:4/5}
+.photo--team img{width:100%;height:100%;object-fit:cover}
+.team__place p{color:var(--muted)}
+.ph-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.ph{aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border:1px dashed var(--line);border-radius:var(--r);background:var(--card);color:var(--muted);font-size:.85rem;text-align:center;padding:8px}
+.ph .ico{width:28px;height:28px}
+@media (min-width:900px){.team{grid-template-columns:1.1fr 1fr;align-items:start}.team__card{grid-template-columns:200px 1fr}}
+/* ---------- overig ---------- */
+.prices .amount--txt{font:600 1rem/1.2 var(--body);color:var(--muted)}
+.warn{background:rgba(225,37,27,.1);border:1px solid rgba(225,37,27,.45);border-radius:var(--r);padding:14px 18px;margin:22px 0}
+.mp__manualhint{margin:8px 0 0;font-size:.9rem;color:var(--muted)}
+.tyre{font:700 clamp(1.6rem,7vw,2.6rem)/1.2 var(--head);letter-spacing:.04em;margin:18px 0 22px;display:flex;flex-wrap:wrap;gap:0 .15em}
+.tyre span{border-bottom:3px solid var(--accent);padding:0 .06em}
+.dl--tyre div{grid-template-columns:130px 1fr}
+.dl--tyre dt{font-size:1.1rem;color:var(--text)}
+.dl--tyre dt small{display:block;color:var(--muted);font-size:.7rem;margin-top:4px}
+.dl--tyre dd{font-weight:400;color:var(--muted)}
+@media (max-width:420px){.dl--tyre div{grid-template-columns:1fr;gap:4px}}
