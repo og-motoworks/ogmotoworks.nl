@@ -238,14 +238,20 @@
   /* ---------- "Wat wil je laten doen?" (meerkeuze, onthouden op dit apparaat) ---------- */
   // Indicatieprijs alleen waar we een (vanaf-)prijs hebben. Banden: band 'vanaf' (bandenmenu, later) + €50 montage per band.
   var KLUS_KEY = 'ogmw.klus.v1';
+  // zin = openingszin als alleen deze dienst is aangevinkt; wat = 'een prijs weten voor ...' (WhatsApp/Formspree)
   var KLUS = [
-    { id: 'winter', label: 'Winterpakket' },
-    { id: 'kleine-beurt', label: 'Kleine beurt' }, { id: 'grote-beurt', label: 'Grote beurt' },
-    { id: 'banden', label: 'Banden', prijs: '+ €50 montage per band', link: '/banden/#advies', linkText: 'Naar bandenadvies' },
-    { id: 'ketting', label: 'Ketting / kettingset', prijs: 'vanaf €150' }, { id: 'remmen', label: 'Remmen' },
-    { id: 'voorvork', label: 'Voorvorkkeerringen', prijs: 'vanaf €350' }, { id: 'storing', label: 'Storing / lampje / diagnose' },
-    { id: 'tuning', label: 'Tuning / afstellen' }, { id: 'schade', label: 'Schade / onderdelen vervangen' },
-    { id: 'verlichting', label: 'Verlichting / knipperlichten monteren' }, { id: 'anders', label: 'Iets anders' }
+    { id: 'winter', label: 'Winterpakket', zin: 'Ik wil graag een afspraak voor een winterpakket.', wat: 'een winterpakket' },
+    { id: 'kleine-beurt', label: 'Kleine beurt', zin: 'Ik wil graag een afspraak voor een kleine beurt.', wat: 'een kleine beurt' },
+    { id: 'grote-beurt', label: 'Grote beurt', zin: 'Ik wil graag een afspraak voor een grote beurt.', wat: 'een grote beurt' },
+    { id: 'banden', label: 'Banden', prijs: '+ €50 montage per band', link: '/banden/#advies', linkText: 'Naar bandenadvies', zin: 'Ik wil graag banden laten monteren.', wat: 'banden + montage' },
+    { id: 'ketting', label: 'Ketting / kettingset', prijs: 'vanaf €150', zin: 'Ik wil graag een ketting / kettingset laten vervangen.', wat: 'een ketting / kettingset' },
+    { id: 'remmen', label: 'Remmen', zin: 'Ik wil graag een afspraak voor mijn remmen.', wat: 'mijn remmen' },
+    { id: 'voorvork', label: 'Voorvorkkeerringen', prijs: 'vanaf €350', zin: 'Ik wil graag mijn voorvorkkeerringen laten vervangen.', wat: 'voorvorkkeerringen vervangen' },
+    { id: 'storing', label: 'Storing / lampje / diagnose', zin: 'Ik wil graag een afspraak voor een storing / diagnose.', wat: 'een storing / diagnose' },
+    { id: 'tuning', label: 'Tuning / afstellen', zin: 'Ik wil graag een afspraak voor tuning / afstellen.', wat: 'tuning / afstellen' },
+    { id: 'schade', label: 'Schade / onderdelen vervangen', zin: 'Ik wil graag een afspraak voor schade / onderdelen vervangen.', wat: 'schade / onderdelen vervangen' },
+    { id: 'verlichting', label: 'Verlichting / knipperlichten monteren', zin: 'Ik wil graag verlichting / knipperlichten laten monteren.', wat: 'verlichting / knipperlichten monteren' },
+    { id: 'anders', label: 'Iets anders' }
   ];
   // Winterpakketten (goedgekeurde prijzen incl. btw). Vroegboek: boeken t/m 30 november, afspraak t/m januari.
   var WINTER = [{ id: 'winterbeurt', naam: 'Winterbeurt', prijs: 179, vroeg: 159 },
@@ -306,6 +312,20 @@
       if (i.id === 'winter') return winterTekst(winterInfo());
       var pr = klusPrijs(i, k); return i.label + (pr ? ' (' + pr + ')' : '');
     });
+  }
+  // Openingszin van het bericht op basis van wat is aangevinkt: 0 = neutraal, 1 = zin voor die dienst, meer = 'een afspraak voor:' + lijst.
+  // -> { zin, lijst } ; lijst = regels die direct onder de zin komen (leeg = geen aparte lijst nodig)
+  var NEUTRAAL = { afspraak: 'Ik wil graag een afspraak maken.', prijs: 'Ik wil graag een prijs weten.', vraag: 'Ik heb een vraag.' };
+  function klusOpening(intent) {
+    var k = klusGet(), items = KLUS.filter(function (i) { return k.items.indexOf(i.id) !== -1; }), lines = klusLines();
+    var prijs = intent === 'prijs';
+    if (!items.length) return { zin: NEUTRAAL[intent] || NEUTRAAL.afspraak, lijst: [] };
+    if (items.length === 1) {
+      var i = items[0], extra = lines[0] !== i.label ? lines : [];
+      if (!i.zin) return { zin: prijs ? NEUTRAAL.prijs : NEUTRAAL.afspraak, lijst: lines };
+      return { zin: prijs ? 'Ik wil graag een prijs weten voor ' + i.wat + '.' : i.zin, lijst: extra };
+    }
+    return { zin: prijs ? 'Ik wil graag een prijs weten voor:' : 'Ik wil graag een afspraak voor:', lijst: lines };
   }
   window.addEventListener('storage', function (e) { if (e.key === KLUS_KEY) { var k = klusGet(); klusListeners.forEach(function (fn) { fn(k); }); } });
   function renderKlus(box) {
@@ -457,7 +477,7 @@
 
   window.OGMotor = { load: load, get: get, set: set, clear: clear, label: label, name: name, yearText: yearText,
                      bind: bind, tip: tip, type: motorType, silhouette: silhouette,
-                     klus: { list: KLUS, get: klusGet, set: klusSet, add: klusAdd, lines: klusLines, winter: { list: WINTER, set: winterSet, info: winterInfo, vroegboek: vroegboek }, fromDienst: function (d) { return DIENST_KLUS[clean(d)] || null; }, on: function (fn) { klusListeners.push(fn); } }, interval: interval, loadOnderhoud: loadOnderhoud, on: on, OTHER: OTHER, data: function () { return data; } };
+                     klus: { list: KLUS, get: klusGet, set: klusSet, add: klusAdd, lines: klusLines, opening: klusOpening, winter: { list: WINTER, set: winterSet, info: winterInfo, vroegboek: vroegboek }, fromDienst: function (d) { return DIENST_KLUS[clean(d)] || null; }, on: function (fn) { klusListeners.push(fn); } }, interval: interval, loadOnderhoud: loadOnderhoud, on: on, OTHER: OTHER, data: function () { return data; } };
 
   function init() {
     document.querySelectorAll('[data-motorpick]').forEach(renderPicker);

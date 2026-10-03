@@ -283,6 +283,339 @@
    "voor": "120/70 ZR17",
    "achter": "190/55 ZR17",
    "bron": "https://www.motorcycle-specs.net/make/ktm/1290-super-duke-gt/2016 ; https://motorbike-specs.com/ktm-1290-super-duke-gt-2019/ ; https://www.motorcycle.com/specs/ktm/sport/2024/super-duke/1290-gt/detail.html"
+  },
+  {
+   "merk": "BMW",
+   "model": "F 900 XR",
+   "uitvoering": null,
+   "van": 2020,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://www.bmw-motorrad.co.uk/en/models/sport/f900xr/technicaldata.html ; https://www.bmw-motorrad.ie/en/models/sport/f900xr-2024/technicaldata.html"
+  },
+  {
+   "merk": "BMW",
+   "model": "K 1600",
+   "uitvoering": null,
+   "van": 2011,
+   "tot": 2016,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://www.press.bmwgroup.com/switzerland/article/attachment/T0084875DE/130175"
+  },
+  {
+   "merk": "BMW",
+   "model": "K 1600",
+   "uitvoering": null,
+   "van": 2017,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://www.press.bmwgroup.com/usa/article/detail/T0266146EN_US/the-new-bmw-k-1600-gt?language=en_US ; https://www.bmw-motorrad.co.uk/en/models/tour/k1600gt/technicaldata.html ; https://www.bmwmotorcycles.com/en/models/tour/k1600b/technicaldata.html ; https://www.bmwmotorcycles.com/en/models/tour/k1600-grand-america/technicaldata.html"
+  },
+  {
+   "merk": "BMW",
+   "model": "R 1200 RT",
+   "uitvoering": null,
+   "van": 2005,
+   "tot": 2009,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://www.manualslib.com/manual/368760/Bmw-R-1200-Rt.html"
+  },
+  {
+   "merk": "BMW",
+   "model": "R 1200 RT",
+   "uitvoering": null,
+   "van": 2010,
+   "tot": 2013,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://www.press.bmwgroup.com/global/article/attachment/T0060833EN/132338"
+  },
+  {
+   "merk": "BMW",
+   "model": "R 1200 RT",
+   "uitvoering": null,
+   "van": 2014,
+   "tot": 2018,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://www.press.bmwgroup.com/portugal/article/attachment/T0152366PT/231413"
+  },
+  {
+   "merk": "BMW",
+   "model": "R 1250 RS",
+   "uitvoering": null,
+   "van": 2019,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://www.bmw-motorrad.co.uk/en/models/sport/r1250rs-2019/technicaldata.html"
+  },
+  {
+   "merk": "BMW",
+   "model": "R 1250 RT",
+   "uitvoering": null,
+   "van": 2019,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://www.bmw-motorrad.ie/en/models/tour/r1250rt/technicaldata.html ; https://manuals.bmw-motorrad.com/manuals/BA-Extern/IN/BA-INTERNET-COM/PDF/R_0L01_RM_0720_01.pdf"
+  },
+  {
+   "merk": "BMW",
+   "model": "S 1000 XR",
+   "uitvoering": null,
+   "van": 2015,
+   "tot": 2019,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://www.manualslib.de/manual/1188791/Bmw-Motorrad-S-1000-Xr-2015.html?page=203"
+  },
+  {
+   "merk": "BMW",
+   "model": "S 1000 XR",
+   "uitvoering": null,
+   "van": 2020,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://www.press.bmwgroup.com/middle-east/article/attachment/T0302931EN/442495 ; https://www.bmw-motorrad.co.uk/en/models/sport/s1000xr/technicaldata.html"
+  },
+  {
+   "merk": "CFMoto",
+   "model": "650GT",
+   "uitvoering": null,
+   "van": 2021,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://www.cfmoto.com/content/dam/cfmoto/site/global/product/motorcycle/gt---grand-touring/650gt-/documentation/2021_650GT%20brochure.pdf"
+  },
+  {
+   "merk": "Harley-Davidson",
+   "model": "Street Glide",
+   "uitvoering": null,
+   "van": 2022,
+   "tot": 2023,
+   "voor": "130/60 B19",
+   "achter": "180/55 B18",
+   "bron": "https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2022/flhx/specifications_flhx_us.pdf ; https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2022/flhxs/specifications_flhxs_us.pdf ; https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2022/flhxst/specifications_flhxst_us.pdf ; https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2022/flhxse/specifications_flhxse_us.pdf ; https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2023/flhx/specifications_flhx_us.pdf ; https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2023/flhxs/specifications_flhxs_us.pdf ; https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2023/flhxst/specifications_flhxst_us.pdf ; https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2023/flhxse/specifications_flhxse_us.pdf"
+  },
+  {
+   "merk": "Harley-Davidson",
+   "model": "Street Glide",
+   "uitvoering": null,
+   "van": 2024,
+   "tot": null,
+   "voor": "130/60 B19",
+   "achter": "180/55 B18",
+   "bron": "https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2024/flhx/specifications_flhx_us.pdf ; https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2024/flhxse/specifications_flhxse_us.pdf ; https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2025/flhx/specifications_flhx_us.pdf ; https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2025/flhxse/specifications_flhxse_us.pdf ; https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2025/flhxu/specifications_flhxu_us.pdf ; https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2026/flhx/specifications_flhx_us.pdf ; https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2026/flhxse/specifications_flhxse_us.pdf ; https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2026/flhxl/specifications_flhxl_us.pdf ; https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2026/flhxlse/specifications_flhxlse_us.pdf"
+  },
+  {
+   "merk": "Harley-Davidson",
+   "model": "Road Glide",
+   "uitvoering": null,
+   "van": 2025,
+   "tot": null,
+   "voor": "130/60 B19",
+   "achter": "180/55 B18",
+   "bron": "https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2025/fltrx/specifications_fltrx_us.pdf ; https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2025/fltrxse/specifications_fltrxse_us.pdf ; https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2025/fltrxstse/specifications_fltrxstse_us.pdf ; https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2025/fltrxrrse/specifications_fltrxrrse_us.pdf ; https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2026/fltrx/specifications_fltrx_us.pdf ; https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2026/fltrxstse/specifications_fltrxstse_us.pdf ; https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2026/fltrxl/specifications_fltrxl_us.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "Gold Wing",
+   "uitvoering": null,
+   "van": 2012,
+   "tot": 2017,
+   "voor": "130/70 R18",
+   "achter": "180/60 R16",
+   "bron": "https://hondanews.eu/eu/lv/cars/media/pressreleases/73952/16ym-gl1800-gold-wing8 ; https://goldwing-forum.de/homepage/inhalte/gw_technik/broschueren/2012/HONDA_Gold_Wing_Daten_2012_at.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "Gold Wing",
+   "uitvoering": null,
+   "van": 2018,
+   "tot": null,
+   "voor": "130/70 R18",
+   "achter": "200/55 R16",
+   "bron": "https://www.honda.co.uk/motorcycles/range/touring/gl1800-gold-wing/specifications-and-price.html ; https://www.honda.co.uk/motorcycles/range/touring/gl1800-gold-wing-tour/specifications-and-price.html ; https://hondanews.eu/eu/en/motorcycles/media/pressreleases/116767/2018-gl1800-gold-wing"
+  },
+  {
+   "merk": "Honda",
+   "model": "NT1100",
+   "uitvoering": null,
+   "van": 2022,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://www.honda.co.uk/motorcycles/range/touring/nt1100/specifications-and-price.html ; https://webom.hondamotopub.com/webom/HMEE/MLF250/html/GSP002001.html"
+  },
+  {
+   "merk": "Honda",
+   "model": "VFR800F",
+   "uitvoering": null,
+   "van": 2014,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://hondanews.eu/eu/en/cars/media/pressreleases/35085/2014-vfr800f-press-pack"
+  },
+  {
+   "merk": "Indian",
+   "model": "Roadmaster",
+   "uitvoering": null,
+   "van": 2015,
+   "tot": 2019,
+   "voor": "130/90 B16",
+   "achter": "180/60 R16",
+   "bron": "https://www.indianmotorcycle.com/en-us/2015/touring/roadmaster-thunder-black-2015/ ; https://www.indianmotorcycle.com/en-us/2017/touring/roadmaster-classic-thunder-black-2017-indian/ ; https://www.indianmotorcycle.com/en-us/2018/touring/roadmaster-thunder-black-2018-indian/ ; https://www.indianmotorcycle.media/product/2019-indian-roadmaster/ ; https://www.indianmotorcycle.media/product/2019-roadmaster-elite/"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "Ninja 1000SX",
+   "uitvoering": null,
+   "van": 2020,
+   "tot": 2024,
+   "voor": "120/70 ZR17",
+   "achter": "190/50 ZR17",
+   "bron": "https://hawaii.kawasaki.com/en-la/products/ProductSpecSheetPDF/2020-ninja-1000sx ; https://hawaii.kawasaki.com/en-us/products/ProductSpecSheetPDF/2024-ninja-1000sx"
+  },
+  {
+   "merk": "MV Agusta",
+   "model": "Turismo Veloce",
+   "uitvoering": null,
+   "van": 2023,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://www.mvagusta.com/media/c2f69498-87c3-49b2-b437-3fab46110a5b/Turismo_Veloce_R_my23_en.pdf ; https://www.mvagusta.com/media/04ef8709-90d9-47ee-a7f5-9a874986a9d6/Turismo_Veloce_Lusso_SCS_my24_en.pdf ; https://www.mvagusta.com/media/56babac3-0676-45a2-9cc8-45f133f76e74/Turismo_Veloce_RC_SCS_my24_en.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "GSX-S1000GT",
+   "uitvoering": null,
+   "van": 2022,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "190/50 ZR17",
+   "bron": "https://www.globalsuzuki.com/motorcycle/smgs/products/specialsite/2022gsx-s1000gt/ ; https://www.globalsuzuki.com/motorcycle/smgs/products/2027gsx-s1000gt/"
+  },
+  {
+   "merk": "Triumph",
+   "model": "Tiger Sport 660",
+   "uitvoering": null,
+   "van": 2022,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://www.triumphmotorcycles.com/motorcycles/adventure/tiger-sport-660/specification"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "FJR1300",
+   "uitvoering": null,
+   "van": 2008,
+   "tot": 2012,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://cdn2.yamaha-motor.eu/prod/product-assets/2008/FJR1300A/Factsheets/2008-FJR1300A_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2009/FJR1300A/Factsheets/2009-FJR1300A_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2010/FJR1300A/Factsheets/2010-FJR1300A_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2011/FJR1300A/Factsheets/2011-FJR1300A_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2012/FJR1300A/Factsheets/2012-FJR1300A_en.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "FJR1300",
+   "uitvoering": null,
+   "van": 2013,
+   "tot": 2015,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://cdn2.yamaha-motor.eu/prod/product-assets/2013/FJR1300A/Factsheets/2013-FJR1300A_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2013/FJR1300AS/Factsheets/2013-FJR1300AS_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2014/FJR1300AE/Factsheets/2014-FJR1300AE_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2015/FJR1300AE/Factsheets/2015-FJR1300AE_en.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "FJR1300",
+   "uitvoering": null,
+   "van": 2016,
+   "tot": 2020,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://cdn2.yamaha-motor.eu/prod/product-assets/2016/FJR1300AE/Factsheets/2016-FJR1300AE_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2018/FJR1300AE/Factsheets/2018-FJR1300AE_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2020/FJR1300A/Factsheets/2020-FJR1300A_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2020/FJR1300AE/Factsheets/2020-FJR1300AE_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2020/FJR1300AS/Factsheets/2020-FJR1300AS_en.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "Niken",
+   "uitvoering": null,
+   "van": 2018,
+   "tot": 2022,
+   "voor": "120/70 R15",
+   "achter": "190/55 R17",
+   "bron": "https://cdn2.yamaha-motor.eu/prod/product-assets/2018/MXT850/Factsheets/2018-MXT850_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2019/LMWTR/Factsheets/2019-LMWTR_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2019/LMWTRDX/Factsheets/2019-LMWTRDX_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2020/LMWTRDX/Factsheets/2020-LMWTRDX_en.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "Niken",
+   "uitvoering": null,
+   "van": 2023,
+   "tot": null,
+   "voor": "120/70 R15",
+   "achter": "190/55 R17",
+   "bron": "https://cdn2.yamaha-motor.eu/prod/product-assets/2023/LMWTRDX/Factsheets/2023-LMWTRDX_en.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "Tracer 7",
+   "uitvoering": null,
+   "van": 2021,
+   "tot": 2024,
+   "voor": "120/70 R17",
+   "achter": "180/55 R17",
+   "bron": "https://cdn2.yamaha-motor.eu/prod/product-assets/2021/MT07TRGT/Factsheets/2021-MT07TRGT_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2022/MT07TR/Factsheets/2022-MT07TR_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2023/MT07TR/Factsheets/2023-MT07TR_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2024/MT07TR/Factsheets/2024-MT07TR_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2024/MT07TRGT/Factsheets/2024-MT07TRGT_en.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "Tracer 7",
+   "uitvoering": null,
+   "van": 2025,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 R17",
+   "bron": "https://cdn2.yamaha-motor.eu/prod/product-assets/2025/MT07TR/Factsheets/2025-MT07TR_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2025/MT07TRGT/Factsheets/2025-MT07TRGT_en.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "Tracer 9",
+   "uitvoering": [
+    "Standaard",
+    "GT"
+   ],
+   "van": 2021,
+   "tot": 2024,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://cdn2.yamaha-motor.eu/prod/product-assets/2021/MT09TR/Factsheets/2021-MT09TR_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2021/MT09TRGT/Factsheets/2021-MT09TRGT_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2023/MT09TR/Factsheets/2023-MT09TR_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2023/MT09TRGT/Factsheets/2023-MT09TRGT_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2024/MT09TR/Factsheets/2024-MT09TR_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2024/MT09TRGT/Factsheets/2024-MT09TRGT_en.pdf ; https://www.bridgestone.com/corporate/news/2020112701.html"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "Tracer 900",
+   "uitvoering": null,
+   "van": 2015,
+   "tot": 2017,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://cdn2.yamaha-motor.eu/prod/product-assets/2015/MT09TR/Factsheets/2015-MT09TR_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2016/MT09TR/Factsheets/2016-MT09TR_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2017/MT09TR/Factsheets/2017-MT09TR_en.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "Tracer 900",
+   "uitvoering": null,
+   "van": 2018,
+   "tot": 2020,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://cdn2.yamaha-motor.eu/prod/product-assets/2018/MT09TR/Factsheets/2018-MT09TR_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2018/MT09TRGT/Factsheets/2018-MT09TRGT_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2019/MT09TR/Factsheets/2019-MT09TR_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2019/MT09TRGT/Factsheets/2019-MT09TRGT_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2020/MT09TR/Factsheets/2020-MT09TR_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2020/MT09TRGT/Factsheets/2020-MT09TRGT_en.pdf"
   }
  ],
  "advies": {

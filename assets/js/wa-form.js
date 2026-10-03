@@ -17,12 +17,7 @@
   var OTHER = OGMotor.OTHER;
   var motor = OGMotor.bind('wa');
 
-  var INTENTS = {
-    afspraak: 'Ik wil graag een afspraak maken.',
-    prijs: 'Ik wil graag een prijs weten.',
-    banden: 'Ik wil graag banden laten monteren.',
-    vraag: 'Ik heb een vraag.'
-  };
+  // intent (data-wa-intent: afspraak/prijs/banden/vraag) + aangevinkte diensten → openingszin: zie OGMotor.klus.opening (motor.js)
 
   function field(name) { return form.elements[name]; }
   function clean(v) { return String(v || '').replace(/\s+/g, ' ').trim(); }
@@ -94,8 +89,9 @@
   }
   function buildMessage() {
     var d = collect();
-    var lines = ['Hoi OG MotoWorks! ' + (INTENTS[d.intent] || INTENTS.afspraak)];
-    if (d.klus.length) lines.push('Laten doen:\n' + d.klus.map(function (x) { return '- ' + x; }).join('\n'));
+    var op = OGMotor.klus.opening(d.intent);
+    var lines = ['Hoi OG MotoWorks! ' + op.zin + (op.lijst.length && /:$/.test(op.zin) ? '\n' + op.lijst.map(function (x) { return '- ' + x; }).join('\n') : '')];
+    if (op.lijst.length && !/:$/.test(op.zin)) lines.push('Laten doen:\n' + op.lijst.map(function (x) { return '- ' + x; }).join('\n'));
     if (d.winter) lines.push('Vroegboek: ' + (d.winter.vroegboek ? 'ja (geboekt t/m 30 november, afspraak t/m januari)' : 'nee'));
     if (d.naam) lines.push('Naam: ' + d.naam);
     if (d.telefoon) lines.push('Telefoon: ' + d.telefoon);
@@ -130,7 +126,7 @@
     var d = collect(), kl = OGMotor.klus.get(), bx = d.banden && kl.items.indexOf('banden') !== -1 ? (kl.bandExtra || { ventielen: false, afvoeren: false, aantal: 0, totaal: null }) : null;
     var o = {
       _subject: 'Aanvraag ogmotoworks.nl – ' + (clean(d.merk + ' ' + d.model) || 'motor'),
-      'Soort aanvraag': INTENTS[d.intent] || INTENTS.afspraak,
+      'Soort aanvraag': (function (op) { return op.zin + (/:$/.test(op.zin) ? ' ' + op.lijst.join('; ') : ''); })(OGMotor.klus.opening(d.intent)),
       'Naam': d.naam, 'Telefoon': d.telefoon, 'E-mail': d.email || '(niet ingevuld)', 'Plaats/adres': d.plaats || '(niet ingevuld)',
       'Kenteken': d.kenteken, 'Merk/model': clean(d.merk + ' ' + d.model), 'Uitvoering': d.uitvoering || '(niet ingevuld)',
       'Bouwjaar': d.bouwjaar, 'Kilometerstand': d.km == null ? '' : d.km.toLocaleString('nl-NL') + ' km',

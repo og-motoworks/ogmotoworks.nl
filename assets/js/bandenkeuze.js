@@ -15,11 +15,26 @@
   var ZICHTBAAR = 4; // regels per positie zonder 'Meer tonen' (voor + achter = 8)
   var NL = 'niet leverbaar in jouw maat';
   function esc(t) { return String(t == null ? '' : t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
-  var B = range(60, 240, 10), H = range(45, 110, 5), V = range(10, 21, 1);
+  // Keuzelijsten: gangbare motorbandmaten (breedte mm, hoogte = % van de breedte, velg inch) + opbouw (R/ZR radiaal, - diagonaal, B diagonaal met gordel)
+  var B = range(60, 210, 10).concat(['240', '250', '260', '280', '300', '330', '360']), H = range(30, 100, 5), V = range(10, 21, 1).concat(['23']);
+  var O = [['ZR', 'ZR'], ['R', 'R'], ['-', '- / geen'], ['B', 'B']];
+  var FOUT = 'Deze bandenmaat bestaat niet, check de maat op de zijkant van je band.';
+  // Bestaat deze combinatie bij motorbanden? Hoogte per breedteklasse (bv. 60/60-17 bestaat niet, 60/100-17 wel); radiaal pas vanaf 90 breed.
+  function maatGeldig(t) {
+    var b = Number(t.b), h = Number(t.h), v = Number(t.v), o = t.o || '';
+    if (B.indexOf(String(t.b)) === -1 || H.indexOf(String(t.h)) === -1 || V.indexOf(String(t.v)) === -1) return false;
+    var hk = b <= 80 ? [80, 100] : b <= 100 ? [60, 100] : b <= 130 ? [60, 90] : b <= 160 ? [55, 90] : b <= 200 ? [50, 80] : [30, 55];
+    if (h < hk[0] || h > hk[1]) return false;
+    if (v <= 13 && (b > 160 || h < 60)) return false;   // scootervelgen: smal en hoog
+    if (v >= 21 && (b > 130 || h < 60)) return false;   // 21 en 23 inch: smalle voorbanden
+    if ((o === 'R' || o === 'ZR') && (b < 90 || h > 90)) return false;
+    if (o === 'ZR' && (b < 100 || h > 80)) return false;
+    return true;
+  }
   function range(a, z, st) { var r = []; for (var i = a; i <= z; i += st) r.push(String(i)); return r; }
   function parse(m) {
-    var x = /(\d{2,3})\s*\/\s*(\d{2,3})\s*-?\s*(?:Z?R|B)?\s*-?\s*(\d{2})/i.exec(String(m || ''));
-    return x ? { b: x[1], h: x[2], v: String(Number(x[3])) } : { b: '', h: '', v: '' };
+    var x = /(\d{2,3})\s*\/\s*(\d{2,3})\s*(-)?\s*(ZR|R|B)?\s*-?\s*(\d{2})/i.exec(String(m || ''));
+    return x ? { b: x[1], h: x[2], v: String(Number(x[5])), o: x[4] ? x[4].toUpperCase() : x[3] ? '-' : '' } : { b: '', h: '', v: '', o: '' };
   }
   function tkey(t) { return t && t.b && t.h && t.v ? t.b + '/' + t.h + '/' + t.v : ''; }
   function formule() {
@@ -51,13 +66,14 @@
   }
   function label(p) {
     var t = state[p], k = tkey(t); if (!k) return '';
-    if (state.oem && tkey(parse(state.oem[p])) === k) return state.oem[p];
+    if (state.oem && tkey(parse(state.oem[p])) === k && parse(state.oem[p]).o === (t.o || '')) return state.oem[p];
+    if (t.o) return t.b + '/' + t.h + (t.o === '-' ? '-' : ' ' + t.o) + t.v;
     return adviesKey(t) || (t.b + '/' + t.h + '-' + t.v);
   }
   function sel(p, f, name, vals, v) {
     var id = 'bm-' + p + '-' + f;
     return '<div class="field"><label for="' + id + '">' + name + '</label><select id="' + id + '" data-pos="' + p + '" data-f="' + f + '"><option value="">kies</option>' +
-      vals.map(function (x) { return '<option value="' + x + '"' + (x === v ? ' selected' : '') + '>' + x + '</option>'; }).join('') + '</select></div>';
+      vals.map(function (x) { var w = Array.isArray(x) ? x : [x, x]; return '<option value="' + w[0] + '"' + (w[0] === v ? ' selected' : '') + '>' + w[1] + '</option>'; }).join('') + '</select></div>';
   }
   var state = { voor: parse(''), achter: parse(''), keuze: {}, oem: null, f: { merk: '', type: '', q: '' }, meer: {}, ventielen: false, afvoeren: false };
   var VENTIELEN = 20, AFVOEREN = 5;
@@ -87,7 +103,7 @@
   function past(t, f) {
     return (!f.merk || t.merk === f.merk) && (!f.type || t.type === f.type) && (!f.q || zoekNorm(t.merk + ' ' + t.band).indexOf(zoekNorm(f.q)) !== -1);
   }
-  function actievePos() { return POS.filter(function (p) { return tkey(state[p]); }); }
+  function actievePos() { return POS.filter(function (p) { return tkey(state[p]) && maatGeldig(state[p]); }); } // ongeldige maat telt nergens mee (lijst, advies, overzicht, WhatsApp)
   // Knop beschikbaar als er in minstens één van de gekozen maten een band is (met het andere filter erbij; zoeken telt niet mee)
   function leverbaar(merk, type) {
     return actievePos().some(function (p) { return lijst(p).some(function (t) { return (!merk || t.merk === merk) && (!type || t.type === type); }); });
@@ -106,7 +122,7 @@
     return A.categorie[c] ? { id: c, wie: A.categorie[c].wie, types: A.categorie[c].types } : null;
   }
   function adviesBerekenen() {
-    var c = categorie(), ps = actievePos(), A = assort && assort.advies;
+    var c = categorie(), ps = actievePos().filter(function (p) { return lijst(p).length; }), A = assort && assort.advies; // posities zonder banden in de lijst tellen niet mee
     if (!c || !ps.length) return null;
     function vind(p, key) {
       var l = lijst(p);
@@ -213,8 +229,9 @@
   function lijstHTML(p) {
     var naam = posNaam(p);
     if (!tkey(state[p])) return '<section class="bm__pos" aria-label="' + naam + '"><h3 class="bm__ph">' + naam + '</h3><p class="muted">Kies breedte, hoogte en velgmaat, dan tonen we de banden.</p></section>';
+    if (!maatGeldig(state[p])) return '<section class="bm__pos" aria-label="' + naam + '"><h3 class="bm__ph">' + naam + ' <span>' + esc(label(p)) + '</span></h3><p class="muted">' + FOUT + '</p></section>';
     var l = lijst(p), maat = label(p), kop = '<h3 class="bm__ph" id="bm-' + p + '-kop">' + naam + ' <span>' + esc(maat) + '</span></h3>';
-    if (!l.length) return '<section class="bm__pos" aria-labelledby="bm-' + p + '-kop">' + kop + '<p class="muted">Voor deze maat hebben we nog geen banden in onze lijst. App ons, dan zoeken we het voor je uit.</p></section>';
+    if (!l.length) return '<section class="bm__pos" aria-labelledby="bm-' + p + '-kop">' + kop + '<p class="muted bm__nietstd">Deze maat zit niet in ons standaardassortiment, we zoeken hem voor je op. App ons gerust.</p></section>';
     var ai = adv && adv.idx[p] != null ? adv.idx[p] : -1;
     var items = l.map(function (t, i) { return { t: t, i: i }; }).filter(function (x) { return !assort || past(x.t, state.f); });
     var to = assort ? assort.types.map(function (x) { return x[0]; }) : [], mo = assort ? [].concat.apply([], assort.groepen.map(function (g) { return g[1]; })) : [];
@@ -259,7 +276,8 @@
     adv = assort ? adviesBerekenen() : null;
     box.innerHTML = head + (s ? '<div class="bm__maten">' + POS.map(function (p) {
       var t = state[p];
-      return '<fieldset class="bm__maat"><legend>Bandenmaat ' + p + '</legend><div class="bm__sel">' + sel(p, 'b', 'Breedte', B, t.b) + sel(p, 'h', 'Hoogte', H, t.h) + sel(p, 'v', 'Velg (inch)', V, t.v) + '</div></fieldset>';
+      return '<fieldset class="bm__maat"><legend>Bandenmaat ' + p + '</legend><div class="bm__sel">' + sel(p, 'b', 'Breedte', B, t.b) + sel(p, 'h', 'Hoogte', H, t.h) + sel(p, 'v', 'Velg (inch)', V, t.v) + sel(p, 'o', 'Opbouw', O, t.o || '') + '</div>' +
+        (tkey(t) && !maatGeldig(t) ? '<p class="bm__fout" role="alert">' + posNaam(p) + ': ' + FOUT + '</p>' : '') + '</fieldset>';
     }).join('') + '</div>' +
       (assort ? keuzeHTML() + '<div class="field bm__zoek"><label for="bm-zoek">Zoek op bandnaam</label><input type="search" id="bm-zoek" placeholder="bv. Road 6 of MK4" autocomplete="off" value="' + esc(state.f.q) + '"></div>' : '') +
       '<p class="bm__pnote">Richtprijs per band, incl. btw. Montage komt erbij: <strong>+ €' + montage() + ' montage per band</strong>.' +
@@ -369,5 +387,5 @@
   fetch(URL_, { cache: 'no-cache' }).then(function (r) { return r.json(); }).then(function (d) { data = d; return pa; }).then(function (a) { assort = assortOk(a); return OGMotor.load(); })
     .then(function () { render(); OGMotor.on(function () { render(); }); })
     .catch(function () { box.innerHTML = '<p class="bm__intro">Het bandenmenu kon niet laden. App ons je motor en bandenmaat, dan helpen we je verder.</p>'; });
-  window.OGBanden = { versie: 2, vanaf: function (inkoop) { return data ? vanaf({ inkoop_excl_btw: inkoop }) : null; }, state: function () { return state; }, assortiment: function () { return !!assort; }, advies: function () { return adv; } };
+  window.OGBanden = { versie: 2, vanaf: function (inkoop) { return data ? vanaf({ inkoop_excl_btw: inkoop }) : null; }, state: function () { return state; }, maatGeldig: function (m) { return maatGeldig(typeof m === 'string' ? parse(m) : m); }, assortiment: function () { return !!assort; }, advies: function () { return adv; } };
 })();
