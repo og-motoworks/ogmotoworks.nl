@@ -775,17 +775,5 @@
     "GT+"
    ]
   }
- },
- "onderhoudstips": {},
- "onderhoudstips_formaat": {
-  "<Merk>": {
-   "<Model>": {
-    "tip": "korte tekst (NL)",
-    "uitvoering": "optioneel: lijst uitvoeringen waarvoor de tip geldt",
-    "van": "optioneel bouwjaar",
-    "tot": "optioneel bouwjaar",
-    "bron": "waar de tip vandaan komt"
-   }
-  }
  }
 }

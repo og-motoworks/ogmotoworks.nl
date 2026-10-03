@@ -1,0 +1,22 @@
+{
+ "versie": 1,
+ "bijgewerkt": "2026-10-03",
+ "toelichting": "Onderhoudsintervallen per motor, alleen als ze uit een betrouwbare bron komen (instructieboekje of fabrikant). Niet in de lijst = de site toont 'interval volgens jouw instructieboekje, wij checken het voor je'. Velden: merk/model zoals in motoren.json; uitvoering = lijst uitvoeringen waarvoor het geldt (null = alle); van/tot = bouwjaren; interval.km / interval.maanden = 'wat het eerst komt'; extra = aanvullende intervallen (tekst); bron = url; tip = onderhoudstip per motor (voor later, null = geen).",
+ "modellen": [
+  {"merk": "BMW", "model": "R 1250 GS", "uitvoering": null, "van": 2019, "tot": 2023,
+   "interval": {"km": 10000, "maanden": 12}, "extra": ["Kleppen controleren en bougies vervangen: jaarlijks of elke 20.000 km"],
+   "bron": "https://manuals.bmw-motorrad.com/manuals/BA-Extern/IN/BA-INTERNET-COM/PDF/R_0M01_RM_0620_R1250GS_01.pdf", "tip": null},
+  {"merk": "BMW", "model": "R 1250 GS Adventure", "uitvoering": null, "van": 2019, "tot": 2023,
+   "interval": {"km": 10000, "maanden": 12}, "extra": ["Kleppen controleren en bougies vervangen: jaarlijks of elke 20.000 km"],
+   "bron": "https://manuals.bmw-motorrad.com/manuals/BA-Extern/IN/BA-INTERNET-COM/PDF/R_0M01_RM_0620_R1250GS_01.pdf", "tip": null},
+  {"merk": "KTM", "model": "1290 Super Duke", "uitvoering": ["R"], "van": 2020, "tot": 2023,
+   "interval": {"km": 15000, "maanden": null}, "extra": [],
+   "bron": "https://www.ktmshop.se/bike-manuals/20_3214110_en_OM.pdf", "tip": null},
+  {"merk": "Yamaha", "model": "MT-07", "uitvoering": ["Standaard"], "van": 2014, "tot": 2024,
+   "interval": {"km": 10000, "maanden": 12}, "extra": ["Klepspeling controleren: elke 40.000 km"],
+   "bron": "https://www.manualslib.com/manual/3101234/Yamaha-Mt-07-2019.html", "tip": null},
+  {"merk": "Ducati", "model": "Multistrada V4", "uitvoering": ["Standaard", "S", "Pikes Peak"], "van": 2021, "tot": 2024,
+   "interval": {"km": 15000, "maanden": 24}, "extra": ["Klepspeling controleren: elke 60.000 km"],
+   "bron": "https://assets.ctfassets.net/oifkva25gsx4/1wOay4kvUrwUaBlW2qMApe/a6e1c781322ad0f4aed1aeb80faba4f4/Check_List_for_Scheduled_Maintenance_Multistrada_V4_Ed.11-20.pdf", "tip": null}
+ ]
+}

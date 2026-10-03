@@ -12,7 +12,8 @@
   var OLDEST = 1970;
   var scriptSrc = (document.currentScript && document.currentScript.src) || '/assets/js/motor.js';
   var DATA_URL = new URL('../data/motoren.json', scriptSrc).href;
-  var data = null, loading = null, listeners = [];
+  var ONDERHOUD_URL = new URL('../data/onderhoud.json', scriptSrc).href;
+  var data = null, loading = null, listeners = [], onderhoud = null, oLoading = null;
 
   function clean(v) { return String(v || '').replace(/\s+/g, ' ').trim(); }
   function $(id) { return document.getElementById(id); }
@@ -47,11 +48,49 @@
   function yearText(by) { return by === 'ouder' ? 'ouder dan ' + OLDEST : by; }
   function name(s) { return s ? clean([s.merk, s.model, s.uitvoering].join(' ')) : ''; }
   function label(s) { return s ? name(s) + (s.bouwjaar ? ' (' + yearText(s.bouwjaar) + ')' : '') : ''; }
-  // Voorbereid voor later: onderhoudstip per motor uit motoren.json → "onderhoudstips" (nog leeg; zie README).
-  function tip(s) {
-    var t = s && data && data.onderhoudstips && data.onderhoudstips[s.merk] && data.onderhoudstips[s.merk][s.model];
-    return t || null;
+  /* ---------- onderhoudsinterval (+ later: tip) per motor uit onderhoud.json ---------- */
+  function loadOnderhoud() {
+    if (onderhoud !== null) return Promise.resolve(onderhoud);
+    if (oLoading) return oLoading;
+    if (!window.fetch) { onderhoud = false; return Promise.resolve(false); }
+    oLoading = fetch(ONDERHOUD_URL, { cache: 'no-cache' })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function (d) { onderhoud = d; return d; }).catch(function () { onderhoud = false; return false; });
+    return oLoading;
   }
+  // Alleen een treffer als merk, model, (uitvoering) en bouwjaar binnen de bron vallen
+  function interval(s) {
+    if (!s || !onderhoud || !onderhoud.modellen) return null;
+    var y = parseInt(s.bouwjaar, 10);
+    var hits = onderhoud.modellen.filter(function (m) {
+      if (m.merk !== s.merk || m.model !== s.model) return false;
+      if (m.uitvoering && m.uitvoering.indexOf(s.uitvoering) === -1) return false;
+      if (!y || (m.van && y < m.van) || (m.tot && y > m.tot)) return false;
+      return true;
+    });
+    return hits.length === 1 ? hits[0] : null;
+  }
+  function tip(s) { var m = interval(s); return m && m.tip || null; }
+  function nl(n) { return Number(n).toLocaleString('nl-NL'); }
+  function paintInterval(s) {
+    var boxes = document.querySelectorAll('[data-motor-interval]');
+    if (!boxes.length) return;
+    loadOnderhoud().then(function () {
+      var m = interval(s), html;
+      if (!s) html = '<b>Onderhoudsinterval</b> Kies je motor, dan zie je hier het onderhoudsinterval als we dat zeker weten.';
+      else if (!m) html = '<b>Onderhoudsinterval ' + escapeHtml(name(s)) + '</b> Interval volgens jouw instructieboekje, wij checken het voor je.';
+      else {
+        var parts = [];
+        if (m.interval.km) parts.push('elke ' + nl(m.interval.km) + ' km');
+        if (m.interval.maanden) parts.push(m.interval.maanden % 12 === 0 ? (m.interval.maanden === 12 ? 'elk jaar' : 'elke ' + m.interval.maanden / 12 + ' jaar') : 'elke ' + m.interval.maanden + ' maanden');
+        html = '<b>Onderhoudsinterval ' + escapeHtml(name(s)) + '</b> Een beurt ' + parts.join(' of ') + (parts.length > 1 ? ', wat het eerst komt' : '') +
+               ' (volgens het instructieboekje van ' + escapeHtml(s.merk) + ').' +
+               (m.extra && m.extra.length ? ' ' + m.extra.map(escapeHtml).join('. ') + '.' : '') + ' Wij checken het voor je.';
+      }
+      boxes.forEach(function (b) { b.innerHTML = '<p>' + html + '</p>'; });
+    });
+  }
+  function escapeHtml(t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
 
   /* ---------- velden koppelen (prefix-merk, prefix-model, …) ---------- */
   function bind(prefix) {
@@ -123,8 +162,11 @@
       showOther(el.uitvO, this.value === OTHER, false);
       if (this.value === OTHER) el.uitvO.focus();
     });
+    el.hint = $(prefix + '-handmatig-hint');
+    function syncHint() { if (el.hint) el.hint.hidden = el.merk.value !== OTHER; }
+    el.merk.addEventListener('change', syncHint);
     if (el.manual) el.manual.addEventListener('click', function () {
-      el.merk.value = OTHER; onMerk(); el.merkO.focus();
+      el.merk.value = OTHER; onMerk(); syncHint(); el.merkO.focus();
     });
     if (window.OGCombo) [el.merk, el.model, el.uitv].forEach(function (s) { if (s) OGCombo.enhance(s); });
     // modellen bijwerken zodra de lijst geladen is (of mislukt)
@@ -162,6 +204,7 @@
           }
           if (el.by && s.bouwjaar && has(el.by, s.bouwjaar)) el.by.value = s.bouwjaar;
           [el.merk, el.model, el.uitv, el.by].forEach(function (x) { if (x && x._combo) x._combo.syncValue(); });
+          syncHint();
         });
       },
       reset: function () { el.merk.value = ''; onMerk(); if (el.by) el.by.value = ''; [el.merk, el.by].forEach(function (x) { if (x && x._combo) x._combo.syncValue(); }); }
@@ -213,6 +256,7 @@
         '<p class="mp__hint">Dan zie je meteen wat bij jouw motor hoort. We onthouden je keuze alleen op dit apparaat.</p>' +
         '<div class="sheet__grid">' + fieldsHTML(p) + '</div>' +
         '<button type="button" class="mp__manual" id="' + p + '-handmatig">Mijn motor staat er niet tussen</button>' +
+        '<p class="mp__manualhint" id="' + p + '-handmatig-hint" hidden>Vul merk en model dan zelf in. Voor banden helpt je bandenmaat ook: <a class="link" href="/banden/bandenmaat/">zo lees je je bandenmaat</a>.</p>' +
         '<div class="mp__actions"><button type="submit" class="btn btn--wa">Dit is mijn motor</button>' +
         '<button type="button" class="btn btn--ghost mp__cancel" hidden>Annuleren</button></div>' +
       '</form>';
@@ -260,12 +304,13 @@
     document.querySelectorAll('[data-motor-label]').forEach(function (n) { if (s) n.textContent = label(s); });
     document.querySelectorAll('[data-motor-if]').forEach(function (n) { n.hidden = !s; });
     document.querySelectorAll('[data-motor-unless]').forEach(function (n) { n.hidden = !!s; });
+    paintInterval(s);
   }
   function on(fn) { listeners.push(fn); }
   on(paint);
 
   window.OGMotor = { load: load, get: get, set: set, clear: clear, label: label, name: name, yearText: yearText,
-                     bind: bind, tip: tip, on: on, OTHER: OTHER, data: function () { return data; } };
+                     bind: bind, tip: tip, interval: interval, loadOnderhoud: loadOnderhoud, on: on, OTHER: OTHER, data: function () { return data; } };
 
   function init() {
     document.querySelectorAll('[data-motorpick]').forEach(renderPicker);
