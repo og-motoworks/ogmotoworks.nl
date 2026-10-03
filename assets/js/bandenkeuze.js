@@ -263,6 +263,7 @@
     var el = document.getElementById('bm-status'); if (!el || !assort) return;
     el.textContent = actievePos().map(function (p) { var n = lijst(p).filter(function (t) { return past(t, state.f); }).length; return posNaam(p) + ': ' + n + (n === 1 ? ' band' : ' banden'); }).join(', ');
   }
+  function foutHTML(p) { var t = state[p]; return tkey(t) && !maatGeldig(t) ? '<p class="bm__fout" role="alert">' + posNaam(p) + ': ' + FOUT + '</p>' : ''; }
   function render(focus) {
     var s = OGMotor.get(), o = oem(s), head;
     if (!s) head = '<p class="bm__intro">Kies hierboven eerst je motor. Dan vullen we de originele bandenmaten voor je in.</p>';
@@ -277,7 +278,7 @@
     box.innerHTML = head + (s ? '<div class="bm__maten">' + POS.map(function (p) {
       var t = state[p];
       return '<fieldset class="bm__maat"><legend>Bandenmaat ' + p + '</legend><div class="bm__sel">' + sel(p, 'b', 'Breedte', B, t.b) + sel(p, 'h', 'Hoogte', H, t.h) + sel(p, 'v', 'Velg (inch)', V, t.v) + sel(p, 'o', 'Opbouw', O, t.o || '') + '</div>' +
-        (tkey(t) && !maatGeldig(t) ? '<p class="bm__fout" role="alert">' + posNaam(p) + ': ' + FOUT + '</p>' : '') + '</fieldset>';
+        '<div id="bm-' + p + '-foutvak">' + foutHTML(p) + '</div></fieldset>';
     }).join('') + '</div>' +
       (assort ? keuzeHTML() + '<div class="field bm__zoek"><label for="bm-zoek">Zoek op bandnaam</label><input type="search" id="bm-zoek" placeholder="bv. Road 6 of MK4" autocomplete="off" value="' + esc(state.f.q) + '"></div>' : '') +
       '<p class="bm__pnote">Richtprijs per band, incl. btw. Montage komt erbij: <strong>+ €' + montage() + ' montage per band</strong>.' +
@@ -286,8 +287,11 @@
       '<div class="bm__cta"><a class="btn btn--wa" data-dienst="Banden" data-wa-intent="banden" href="https://wa.me/31642939555" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>App ons over deze banden</a></div>' : '');
     box.querySelectorAll('.bm__sel select').forEach(function (el) {
       el.addEventListener('change', function () {
+        // Alleen de rest bijwerken, de keuzelijsten zelf NIET opnieuw opbouwen of focussen:
+        // iOS Safari opent de lijst anders opnieuw (focus() op een nieuwe <select> na het kiezen).
         var p = el.getAttribute('data-pos'); state[p][el.getAttribute('data-f')] = el.value; delete state.keuze[p]; state.meer = {};
-        render(el.id); save();
+        var fv = document.getElementById('bm-' + p + '-foutvak'); if (fv) fv.innerHTML = foutHTML(p);
+        upd(); updSom(); save();
       });
     });
     var z = document.getElementById('bm-zoek');

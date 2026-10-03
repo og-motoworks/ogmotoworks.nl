@@ -46,10 +46,22 @@
     input.addEventListener('keydown', function (e) { self.key(e); });
     input.addEventListener('blur', function () { self.commit(); });
     list.addEventListener('mousedown', function (e) { e.preventDefault(); }); // focus in het zoekveld houden
+    // Tik (touch/pen) op een optie: kiezen, lijst dicht én focus weg (iOS houdt anders toetsenbord + lijst open)
+    var tik = false;
+    list.addEventListener('pointerdown', function (e) { tik = e.pointerType !== 'mouse'; });
+    list.addEventListener('touchstart', function () { tik = true; }, { passive: true });
     list.addEventListener('click', function (e) {
-      var li = e.target.closest('li[role=option]');
-      if (li) self.choose(Number(li.getAttribute('data-i')));
+      var li = e.target.closest('li[role=option]'); if (!li) return;
+      var n = Number(li.getAttribute('data-i')), it = self.items[n];
+      self.choose(n);
+      if (tik && it && it.value !== OTHER && document.activeElement === input) input.blur();
+      tik = false;
     });
+    // Tik/klik buiten het veld: lijst dicht (iOS blurt het veld niet bij een tik op niet-focusbare tekst)
+    document.addEventListener('pointerdown', function (e) {
+      if (!self.isOpen() || wrap.contains(e.target)) return;
+      self.commit(); if (e.pointerType !== 'mouse' && document.activeElement === input) input.blur();
+    }, true);
     sel.addEventListener('change', function () { self.syncValue(); });
     new MutationObserver(function (muts) {
       var opts = muts.some(function (m) { return m.type === 'childList'; });
