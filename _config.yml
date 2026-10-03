@@ -1,0 +1,8 @@
+# GitHub Pages bouwt deze site met Jekyll (er is geen .nojekyll meer), alleen om bestanden NIET te publiceren.
+# Bestanden zonder front matter (alle .html, .js, .json, .css, afbeeldingen, sitemap.xml, robots.txt, CNAME) worden
+# ongewijzigd gekopieerd. Bestanden/mappen die met . of _ beginnen worden nooit gepubliceerd.
+# Niet aanpassen zonder de Webmaster (zie HANDOVER-website.md).
+exclude:
+  - HANDLEIDING.md
+  - handleiding/
+  - README.md
