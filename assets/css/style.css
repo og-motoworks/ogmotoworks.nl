@@ -521,6 +521,7 @@ html:has(.nav.is-open) .fab{display:none}
 .klus__radio input{margin-top:2px}
 .klus__radio .klus__prijs{display:block;margin:2px 0 0}
 .klus__note{margin:2px 0 0;font-size:.82rem;color:var(--muted)}
+.klus__tarieven{margin-top:10px}
 /* Winterpakketten (/winter/) */
 .wp{display:grid;gap:16px;margin-top:28px}
 @media (min-width:900px){.wp{grid-template-columns:repeat(3,1fr);align-items:start}}

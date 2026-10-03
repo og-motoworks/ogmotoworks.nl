@@ -236,7 +236,8 @@
   }
 
   /* ---------- "Wat wil je laten doen?" (meerkeuze, onthouden op dit apparaat) ---------- */
-  // Indicatieprijs alleen waar we een (vanaf-)prijs hebben. Banden: band 'vanaf' (bandenmenu, later) + €50 montage per band.
+  // prijs = indicatie (vanaf-)prijs: alleen nog in het WhatsApp-/Formspree-bericht, NIET meer zichtbaar in de checklist (verzoek Sven, 3 okt 2026).
+  // Banden: band 'vanaf' (bandenmenu) + €50 montage per band. Onder de lijst staat een link naar /tarieven/.
   var KLUS_KEY = 'ogmw.klus.v1';
   // zin = openingszin als alleen deze dienst is aangevinkt; wat = 'een prijs weten voor ...' (WhatsApp/Formspree)
   var KLUS = [
@@ -340,18 +341,17 @@
               '<span class="klus__prijs">€' + w.prijs + (vroegboek() ? ' · vroegboek €' + w.vroeg : '') + '</span></span></label>';
           }).join('') + '<p class="klus__note">' + (vroegboek() ? 'Vroegboekprijs bij boeken t/m 30 november, voor een afspraak t/m januari.' : 'Prijzen incl. btw.') +
           (/^\/winter\//.test(location.pathname) ? '' : ' <a class="link" href="/winter/">Bekijk de pakketten →</a>') + '</p></fieldset></li>';
-        return '<li><input type="checkbox" id="' + id + '" value="' + i.id + '"><label for="' + id + '">' + i.label +
-          (i.prijs ? ' <span class="klus__prijs" data-prijs="' + i.id + '">' + i.prijs + '</span>' : '') + '</label>' +
+        return '<li><input type="checkbox" id="' + id + '" value="' + i.id + '"><label for="' + id + '">' + i.label + '</label>' +
           (i.link && here !== i.link.split('#')[0] ? ' <a class="link klus__link" href="' + i.link + '" hidden>' + i.linkText + ' →</a>' : '') + '</li>';
       }).join('') + '</ul>' +
-      '<input type="text" class="field__other klus__anders" id="' + p + '-klus-anders-tekst" maxlength="200" placeholder="Wat wil je nog meer laten doen?" aria-label="Iets anders: wat wil je laten doen?" hidden>';
+      '<input type="text" class="field__other klus__anders" id="' + p + '-klus-anders-tekst" maxlength="200" placeholder="Wat wil je nog meer laten doen?" aria-label="Iets anders: wat wil je laten doen?" hidden>' +
+      (here === '/tarieven/' ? '' : '<p class="klus__note klus__tarieven"><a class="link" href="/tarieven/">Bekijk onze tarieven →</a></p>');
     var boxes = box.querySelectorAll('input[type=checkbox]'), txt = box.querySelector('.klus__anders');
     var wLi = box.querySelector('[data-klus-winter]'), wSub = wLi && wLi.querySelector('.klus__sub'), wRadios = box.querySelectorAll('input[type=radio]');
     function sync(k) {
       if (wLi) { wLi.hidden = !winterZichtbaar(k); wSub.hidden = k.items.indexOf('winter') === -1; wRadios.forEach(function (r) { r.checked = r.value === k.winter; }); }
       boxes.forEach(function (c) { c.checked = k.items.indexOf(c.value) !== -1; var l = c.parentNode.querySelector('.klus__link'); if (l) l.hidden = !c.checked; });
       txt.hidden = k.items.indexOf('anders') === -1; if (document.activeElement !== txt) txt.value = k.anders || '';
-      var bp = box.querySelector('[data-prijs=banden]'); if (bp) bp.textContent = klusPrijs(KLUS.filter(function (x) { return x.id === 'banden'; })[0], k);
     }
     function save(e) {
       var k = klusGet();
