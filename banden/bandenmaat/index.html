@@ -260,8 +260,9 @@
         <p class="field__err" id="wa-telefoon-err" aria-live="polite"></p>
       </div>
       <div class="field">
-        <label for="wa-email">E-mail <span class="req" aria-hidden="true">*</span></label>
-        <input id="wa-email" name="email" type="email" required autocomplete="email" maxlength="80" placeholder="naam@voorbeeld.nl" aria-describedby="wa-email-err">
+        <label for="wa-email">E-mail <span class="opt">(optioneel)</span></label>
+        <input id="wa-email" name="email" type="email" autocomplete="email" maxlength="80" placeholder="naam@voorbeeld.nl" aria-describedby="wa-email-err wa-email-hint">
+        <p class="field__hint" id="wa-email-hint">vul in als je je factuur of reviewverzoek per mail wilt</p>
         <p class="field__err" id="wa-email-err" aria-live="polite"></p>
       </div>
       <div class="field field--full">
@@ -273,7 +274,14 @@
         <label for="wa-akkoord">Ik ga akkoord dat OG MotoWorks mijn gegevens gebruikt om contact met mij op te nemen over deze aanvraag. Lees de <a class="link" href="/privacy/" target="_blank" rel="noopener">privacyverklaring</a>. <span class="req" aria-hidden="true">*</span></label>
         <p class="field__err" id="wa-akkoord-err" aria-live="polite"></p>
       </div>
+      <div class="field field--full field--check">
+        <input id="wa-review" name="review" type="checkbox" aria-describedby="wa-review-note">
+        <label for="wa-review">Ja, stuur me na afloop per mail een verzoek voor een Google-review. <span class="opt">(optioneel)</span></label>
+        <p class="field__note" id="wa-review-note" aria-live="polite"></p>
+      </div>
+      <div class="hp" aria-hidden="true"><label for="wa-gotcha">Laat dit veld leeg</label><input id="wa-gotcha" name="_gotcha" type="text" tabindex="-1" autocomplete="off"></div>
     </div>
+    <p class="sheet__note" data-fs-note hidden>Je aanvraag komt ook per e-mail bij ons binnen, zodat er niets kwijtraakt.</p>
     <p class="sheet__req"><span aria-hidden="true">*</span> verplicht</p>
     <div class="sheet__actions">
       <button type="submit" class="btn btn--wa btn--xl"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Open WhatsApp</button>

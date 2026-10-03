@@ -184,6 +184,12 @@ html:has(.sheet[open]){overflow:hidden}
 .field--full{grid-column:1/-1}
 .field label{font:500 .85rem/1.2 var(--head);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .field .req{color:var(--accent-2)}
+.field__hint{margin:4px 0 0;font-size:.85rem;color:var(--muted)}
+.field__note{margin:4px 0 0;font-size:.88rem;color:var(--muted);border-left:3px solid var(--accent);padding-left:8px}
+.field--check .field__note{grid-column:2}
+.field__note:empty{display:none}
+.hp{position:absolute!important;left:-10000px;width:1px;height:1px;overflow:hidden}
+.sheet__note{margin:6px 0 0;font-size:.88rem;color:var(--muted)}
 .field .opt{text-transform:none;letter-spacing:0;font-family:var(--body);font-weight:400}
 .field input,.field textarea,.field select{width:100%;min-height:48px;padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--text);font:400 16px/1.4 var(--body)}
 .field textarea{resize:vertical;min-height:84px}

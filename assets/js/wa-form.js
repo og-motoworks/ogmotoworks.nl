@@ -1,13 +1,14 @@
-/* OG MotoWorks – aanvraagformulier → WhatsApp. Plain JS, geen externe diensten.
+/* OG MotoWorks – aanvraagformulier → WhatsApp (+ optioneel een kopie per e-mail via Formspree). Plain JS.
    Elke link naar wa.me/31642939555 opent eerst dit formulier; daarna opent WhatsApp met een kant-en-klaar bericht.
    Motorgegevens komen uit de gedeelde motorkeuze (assets/js/motor.js) en worden na versturen onthouden (alleen op dit apparaat).
    Zonder JS (of zonder <dialog>-ondersteuning) werken de WhatsApp-links gewoon direct. */
 (function () {
   'use strict';
   var NUMBER = '31642939555';
-  // Afleverroute voor aanvragen (naast WhatsApp). Leeg = alleen WhatsApp. Pas invullen na akkoord (zie OG Command):
-  // dan wordt collect() als JSON gepost naar deze URL (bv. een formulierdienst), en opent WhatsApp zoals nu.
-  var DELIVERY_URL = '';
+  // Formspree-endpoint, bv. 'https://formspree.io/f/abcdwxyz'. Leeg = uit (alleen WhatsApp).
+  // Aan: bij versturen gaat de aanvraag ook als e-mail via Formspree naar ons; WhatsApp opent altijd, ook als dat mislukt.
+  // Let op: zet bij aanzetten ook FORMSPREE_AAN = True in site-build/build_pages.py (privacyverklaring) en bouw opnieuw.
+  var FORMSPREE_ENDPOINT = '';
   var dlg = document.getElementById('wa-dialog');
   if (!dlg || typeof dlg.showModal !== 'function' || !window.OGMotor) return;
   var form = document.getElementById('wa-form');
@@ -64,9 +65,9 @@
     var t = clean(tel.value).replace(/[\s().-]/g, '');
     var tOk = /^(\+|00)?\d{9,14}$/.test(t);
     setError(tel, t ? (tOk ? '' : 'Vul een geldig telefoonnummer in, bijv. 06 12345678.') : 'Vul je telefoonnummer in.'); if (!tOk) first = first || tel;
-    var m = clean(mail.value);
-    var mOk = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m);
-    setError(mail, m ? (mOk ? '' : 'Vul een geldig e-mailadres in.') : 'Vul je e-mailadres in.'); if (!mOk) first = first || mail;
+    var m = clean(mail.value); // optioneel; alleen controleren als het is ingevuld
+    var mOk = !m || /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m);
+    setError(mail, mOk ? '' : 'Vul een geldig e-mailadres in, of laat het leeg.'); if (!mOk) first = first || mail;
     setError(akk, akk.checked ? '' : 'Vink aan dat we je gegevens mogen gebruiken voor deze aanvraag.'); if (!akk.checked) first = first || akk;
     return first;
   }
@@ -81,6 +82,7 @@
       naam: clean(field('naam').value),
       telefoon: clean(field('telefoon').value), email: clean(field('email').value), plaats: clean(field('plaats').value),
       akkoord: !!field('akkoord').checked,
+      review: !!(field('review') && field('review').checked),
       kenteken: clean(field('kenteken').value).toUpperCase(),
       merk: motor.merk(), model: motor.model(), uitvoering: motor.uitvoering(),
       bouwjaar: by ? OGMotor.yearText(by) : '',
@@ -104,7 +106,46 @@
     lines.push('Kilometerstand: ' + (d.km == null ? '' : d.km.toLocaleString('nl-NL') + ' km'));
     if (d.banden) lines.push('Banden: ' + d.banden);
     if (d.vraag) lines.push('Vraag: ' + d.vraag);
+    if (d.review) lines.push('Reviewverzoek per mail: ja' + (d.email ? '' : ' (nog geen e-mailadres)'));
     return lines.join('\n');
+  }
+  // Zachte melding (blokkeert niet): reviewverzoek aangevinkt maar geen e-mailadres
+  function reviewNote() {
+    var r = field('review'), note = document.getElementById('wa-review-note');
+    if (!r || !note) return;
+    note.textContent = r.checked && !clean(field('email').value) ? 'Voor de reviewmail hebben we je e-mailadres nodig. Vul het hierboven in als je die wilt ontvangen.' : '';
+  }
+  // Velden voor Formspree (worden in de mail getoond); _subject/_replyto/_gotcha zijn speciale Formspree-velden
+  function formspreeData() {
+    var d = collect();
+    var o = {
+      _subject: 'Aanvraag ogmotoworks.nl – ' + (clean(d.merk + ' ' + d.model) || 'motor'),
+      'Soort aanvraag': INTENTS[d.intent] || INTENTS.afspraak,
+      'Naam': d.naam, 'Telefoon': d.telefoon, 'E-mail': d.email || '(niet ingevuld)', 'Plaats/adres': d.plaats || '(niet ingevuld)',
+      'Kenteken': d.kenteken, 'Merk/model': clean(d.merk + ' ' + d.model), 'Uitvoering': d.uitvoering || '(niet ingevuld)',
+      'Bouwjaar': d.bouwjaar, 'Kilometerstand': d.km == null ? '' : d.km.toLocaleString('nl-NL') + ' km',
+      'Laten doen': d.klus.length ? d.klus.join('; ') : '(niets aangevinkt)',
+      'Banden': d.banden || '(geen)', 'Vraag': d.vraag || '(geen)',
+      'Akkoord gegevens voor deze aanvraag': d.akkoord ? 'ja' : 'nee',
+      'Toestemming reviewverzoek per mail': d.review ? 'ja' : 'nee',
+      'Pagina': location.pathname,
+      'WhatsApp-bericht': buildMessage(),
+      _gotcha: ''
+    };
+    if (d.email) o._replyto = d.email;
+    return o;
+  }
+  // Stil versturen: geen foutmelding voor de klant; WhatsApp is altijd de hoofdroute
+  function sendFormspree() {
+    if (!FORMSPREE_ENDPOINT || !window.fetch) return false;
+    if (clean(field('_gotcha') && field('_gotcha').value)) return false; // honeypot ingevuld = bot
+    try {
+      // FormData + Accept: application/json = 'simple' CORS-verzoek (geen preflight), werkt ook met keepalive
+      var o = formspreeData(), fd = new FormData();
+      Object.keys(o).forEach(function (k) { fd.append(k, o[k]); });
+      fetch(FORMSPREE_ENDPOINT, { method: 'POST', keepalive: true, headers: { 'Accept': 'application/json' }, body: fd }).catch(function () {});
+    } catch (err) {}
+    return true;
   }
   function waUrl() { return 'https://wa.me/' + NUMBER + '?text=' + encodeURIComponent(buildMessage()); }
 
@@ -143,16 +184,16 @@
   }
   form.addEventListener('input', clearOnEdit);
   form.addEventListener('change', clearOnEdit);
+  if (field('review')) { field('review').addEventListener('change', reviewNote); field('email').addEventListener('input', reviewNote); }
+  var fsNote = dlg.querySelector('[data-fs-note]'); if (fsNote && FORMSPREE_ENDPOINT) fsNote.hidden = false;
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var bad = validate();
     if (bad) { bad.focus(); return; }
     OGMotor.set(motor.read());
-    if (DELIVERY_URL && window.fetch) {
-      try { fetch(DELIVERY_URL, { method: 'POST', keepalive: true, headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                                  body: JSON.stringify({ bron: location.pathname, bericht: buildMessage(), gegevens: collect() }) }).catch(function () {}); } catch (err) {}
-    }
+    reviewNote();
+    sendFormspree();
     var url = waUrl();
     var w = window.open(url, '_blank', 'noopener');
     if (!w) window.location.href = url;
@@ -169,5 +210,5 @@
   });
 
   // Voor testen/screenshots
-  window.ogWaForm = { open: open, buildMessage: buildMessage, collect: collect, validate: validate, loadModels: OGMotor.load, waUrl: waUrl };
+  window.ogWaForm = { open: open, buildMessage: buildMessage, collect: collect, validate: validate, formspreeData: formspreeData, endpoint: function () { return FORMSPREE_ENDPOINT; }, loadModels: OGMotor.load, waUrl: waUrl };
 })();
