@@ -2,11 +2,13 @@
  "versie": 1,
  "bijgewerkt": "2026-10-03",
  "prijzen_bijgewerkt": null,
- "toelichting": "Bandenmenu. 'maten': OEM-bandenmaten per motor (alleen met bron). 'advies': per bandenmaat 3 adviesbanden (zuinig / allround / sportief). 'inkoop_excl_btw': inkoopprijs Bandenleader excl. btw (null = 'prijs op aanvraag'). Vanaf-prijs op de site = afronden(inkoop_excl_btw x 1,10 x 1,21). Montage wordt apart getoond: montage_per_band. Prijzen maandelijks bijwerken, alleen voor de meest voorkomende maten, met site-build/update_bandenprijzen.py (zie BANDEN-JSON.md); zonder prijs = 'prijs op aanvraag'. Aanleverformaat: OG Command met de Bandenleader-bot.",
+ "toelichting": "Bandenmenu. 'maten': OEM-bandenmaten per motor (alleen met bron). 'advies': per bandenmaat 3 adviesbanden (zuinig / allround / sportief). 'inkoop_excl_btw': inkoopprijs Bandenleader excl. btw (null = 'prijs op aanvraag'). Vanaf-/richtprijs op de site: zie 'formule' (marge, buffer en btw staan alleen daar). Montage wordt apart getoond: montage_per_band. Prijzen maandelijks bijwerken, alleen voor de meest voorkomende maten, met site-build/update_bandenprijzen.py (zie BANDEN-JSON.md); zonder prijs = 'prijs op aanvraag'. Aanleverformaat: OG Command met de Bandenleader-bot, als /workspace/og_motoworks/site-build/banden-prijzen.csv.",
  "formule": {
   "marge": 1.1,
+  "buffer": 0.05,
   "btw": 1.21,
-  "afronden": "op hele euro's"
+  "afronden": "op hele euro's (half naar boven)",
+  "uitleg": "richtprijs per band incl. btw = afronden(inkoop_excl_btw x marge x (1 + buffer) x btw). marge 1,10 = 10% marge; buffer = opslag voor prijsschommelingen (0,05 = 5%, 0 = geen buffer); btw 1,21 = 21%. Alleen hier aanpassen: de site (banden.js) en update_bandenprijzen.py lezen deze waarden."
  },
  "montage_per_band": 50,
  "maten": [

@@ -265,12 +265,20 @@
                       'Schade repareren': 'schade', 'Verlichting / knipperlichten': 'verlichting' };
   var klusListeners = [];
   function klusGet() {
-    try { var k = JSON.parse(localStorage.getItem(KLUS_KEY) || 'null'); if (k && k.items) return { items: k.items.filter(byId), anders: clean(k.anders), bandPrijs: k.bandPrijs || null, banden: clean(k.banden), winter: winterPakket(k.winter) ? k.winter : '' }; } catch (e) {}
-    return { items: [], anders: '', bandPrijs: null, banden: '', winter: '' };
+    try { var k = JSON.parse(localStorage.getItem(KLUS_KEY) || 'null'); if (k && k.items) return { items: k.items.filter(byId), anders: clean(k.anders), bandPrijs: k.bandPrijs || null, banden: clean(k.banden), winter: winterPakket(k.winter) ? k.winter : '', bandExtra: extraOk(k.bandExtra) }; } catch (e) {}
+    return { items: [], anders: '', bandPrijs: null, banden: '', winter: '', bandExtra: null };
+  }
+  // Bandenoverzicht uit het bandenmenu: extra's (haakse ventielen per set, afvoeren per band), regels [omschrijving, bedrag] en richtprijs-tekst
+  function extraOk(e) {
+    if (!e || typeof e !== 'object') return null;
+    var regels = Array.isArray(e.regels) ? e.regels.slice(0, 6).filter(function (r) { return Array.isArray(r) && r.length === 2; })
+      .map(function (r) { return [clean(r[0]).slice(0, 120), clean(r[1]).slice(0, 40)]; }) : [];
+    return { ventielen: !!e.ventielen, afvoeren: !!e.afvoeren, aantal: Math.max(0, Math.min(2, Number(e.aantal) || 0)), totaal: Number(e.totaal) > 0 ? Math.round(Number(e.totaal)) : null,
+      compleet: !!e.compleet, regels: regels, tekst: /^Richtprijs: €\d+/.test(clean(e.tekst)) ? clean(e.tekst).slice(0, 160) : '' };
   }
   function byId(id) { return KLUS.some(function (k) { return k.id === id; }); }
   function klusSet(k) {
-    k = { items: (k.items || []).filter(byId), anders: clean(k.anders).slice(0, 200), bandPrijs: k.bandPrijs || null, banden: clean(k.banden).slice(0, 300), winter: winterPakket(k.winter) ? k.winter : '' };
+    k = { items: (k.items || []).filter(byId), anders: clean(k.anders).slice(0, 200), bandPrijs: k.bandPrijs || null, banden: clean(k.banden).slice(0, 500), winter: winterPakket(k.winter) ? k.winter : '', bandExtra: extraOk(k.bandExtra) };
     try { localStorage.setItem(KLUS_KEY, JSON.stringify(k)); } catch (e) {}
     klusListeners.forEach(function (fn) { try { fn(k); } catch (e) {} }); return k;
   }

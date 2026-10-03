@@ -525,3 +525,19 @@ html:has(.nav.is-open) .fab{display:none}
 .wp__extra{margin:0;font-size:.88rem;color:var(--muted)}
 .wp__card .btn{margin-top:auto;align-self:stretch;justify-content:center}
 .hours{font-size:1.1rem}
+/* Bandenmenu: extra's + indicatie */
+.bm__extras{border:1px solid var(--line);border-radius:var(--r);padding:12px 14px 6px;margin:18px 0 0;min-width:0;display:grid;gap:10px}
+.bm__extras legend{font:700 .95rem/1.2 var(--head);text-transform:uppercase;letter-spacing:.04em;padding:0 4px}
+.bm__check label{font-weight:600!important;color:var(--text)!important}
+.bm__help{grid-column:2;margin:0 0 4px;font-size:.88rem;color:var(--muted)}
+.bm__som{margin-top:14px;background:var(--card);border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:var(--r);padding:14px 16px}
+.bm__som h3{margin:0 0 8px;font-size:1rem}
+.bm__som ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.bm__som li{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.bm__som li>span{flex:1 1 auto;min-width:0}
+.bm__som li>b{flex:0 0 auto;white-space:nowrap;text-align:right}
+.bm__som li.muted{display:block;color:var(--muted);font-size:.9rem}
+.bm__sub{margin:0 0 10px;color:var(--muted);font-size:.9rem}
+.bm__totaal{margin:10px 0 0;border-top:1px solid var(--line);padding-top:8px;font-size:1.05rem;font-weight:600}
+.bm__totaal b{color:var(--accent)}
+.bm__def{margin:4px 0 0;color:var(--muted);font-size:.9rem}

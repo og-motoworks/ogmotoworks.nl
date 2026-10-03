@@ -1,6 +1,7 @@
 /* OG MotoWorks – bandenmenu ([data-bandenmenu]). Na merk/model/bouwjaar (OGMotor): OEM-maten voor/achter (per generatie, uit banden.json)
-   als vooringevulde keuzelijsten breedte/hoogte/velgmaat, per maat 3 adviesbanden met 'vanaf'-prijs (inkoop excl. btw x 1,10 x 1,21, afgerond) en
-   montage apart (+ €50 per band). Geen prijs bekend = 'prijs op aanvraag'. Keuze gaat mee in het WhatsApp-bericht. */
+   als vooringevulde keuzelijsten breedte/hoogte/velgmaat, per maat 3 adviesbanden met 'vanaf'-prijs (inkoop excl. btw x marge x (1 + buffer) x btw, afgerond; zie formule in banden.json) en
+   montage apart (+ €50 per band). Geen prijs bekend = 'prijs op aanvraag'. Extra's: haakse ventielen (€20 per set), afvoeren (€5 per band).
+   Overzicht onderaan (geen betaling/winkelwagen) met richtprijs; gaat mee in WhatsApp-bericht en Formspree. */
 (function () {
   'use strict';
   var box = document.querySelector('[data-bandenmenu]');
@@ -19,8 +20,13 @@
   function tkey(t) { return t && t.b && t.h && t.v ? t.b + '/' + t.h + '/' + t.v : ''; }
   function vanaf(t) {
     if (t.inkoop_excl_btw == null || !(t.inkoop_excl_btw > 0)) return null;
-    var f = data.formule || { marge: 1.10, btw: 1.21 };
-    return Math.round(t.inkoop_excl_btw * f.marge * f.btw);
+    var f = formule(); if (!f) return null;
+    return Math.round(t.inkoop_excl_btw * f.marge * (1 + f.buffer) * f.btw);
+  }
+  // Formule staat alleen in banden.json (marge, buffer voor prijsschommelingen, btw). Ontbreekt of klopt die niet: geen prijs (= op aanvraag).
+  function formule() {
+    var f = data && data.formule, ok = function (v, a, z) { return typeof v === 'number' && isFinite(v) && v >= a && v <= z; };
+    return f && ok(f.marge, 1, 3) && ok(f.btw, 1, 2) && ok(f.buffer, 0, 0.5) ? f : null;
   }
   function inYear(m, y) { return y && (!m.van || y >= m.van) && (!m.tot || y <= m.tot); }
   // Precies één regel moet passen (merk, model, uitvoering, bouwjaar); anders geen OEM-maat
@@ -53,7 +59,54 @@
     return '<div class="field"><label for="' + id + '">' + name + '</label><select id="' + id + '" data-pos="' + p + '" data-f="' + f + '"><option value="">kies</option>' +
       vals.map(function (x) { return '<option value="' + x + '"' + (x === v ? ' selected' : '') + '>' + x + '</option>'; }).join('') + '</select></div>';
   }
-  var state = { voor: parse(''), achter: parse(''), keuze: {}, oem: null };
+  var state = { voor: parse(''), achter: parse(''), keuze: {}, oem: null, ventielen: false, afvoeren: false };
+  var VENTIELEN = 20, AFVOEREN = 5; // incl. btw: haakse ventielen per set (één keer per bestelling), afvoeren per band
+  var HELP = {
+    ventielen: 'Met haakse ventielen kom je veel makkelijker bij je ventiel om je bandenspanning te checken of bij te pompen, ook langs remschijf en remklauw. We checken eerst of ze op jouw velg passen; past het niet, dan betaal je niets.',
+    afvoeren: 'Neem je oude band mee. Bij veel milieustraten lever je banden gratis in, check even wat jouw gemeente doet. Liever geen gedoe? Vink dit aan, dan voeren wij hem af voor €5 per band.'
+  };
+  function montage() { return data.montage_per_band || 50; }
+  // Per gekozen band: richtprijs (vanaf(): formule uit banden.json), 'aanvraag' (geen inkoopprijs / geen advies) of 'kiezen' (nog geen band aangeklikt)
+  function pos() {
+    return ['voor', 'achter'].filter(function (p) { return tkey(state[p]); }).map(function (p) {
+      var l = advies(state[p]), t = l && state.keuze[p] != null ? l[state.keuze[p]] : null, pr = t ? vanaf(t) : null;
+      return { p: p, naam: p === 'voor' ? 'Voorband' : 'Achterband', maat: label(p), band: t, pr: pr, st: pr != null ? 'ok' : (l && !t ? 'kiezen' : 'aanvraag') };
+    });
+  }
+  function wie(arr) { return arr.length === 2 ? 'voor- en achterband' : arr[0].naam.toLowerCase(); }
+  // Overzicht (geen betaling, geen winkelwagen): regels + richtprijs. Ontbreekt een bandenprijs, dan tellen we de rest op
+  // en zeggen we er duidelijk bij welke band(en) nog niet in het bedrag zitten.
+  function som() {
+    var ps = pos(), n = ps.length, m = montage(), regels = [], tot = 0;
+    ps.forEach(function (x) {
+      regels.push([x.naam + ' ' + x.maat + (x.band ? ' · ' + x.band.merk + ' ' + x.band.band : ' (kies een band)'), x.st === 'ok' ? '€' + x.pr : (x.st === 'kiezen' ? 'nog kiezen' : 'prijs op aanvraag')]);
+      if (x.st === 'ok') tot += x.pr;
+    });
+    if (n) { regels.push(['Montage ' + n + ' × €' + m, '€' + m * n]); tot += m * n; }
+    if (n && state.ventielen) { regels.push(['Haakse ventielen (als het past), per set', '€' + VENTIELEN]); tot += VENTIELEN; }
+    if (n && state.afvoeren) { regels.push(['Oude band afvoeren ' + n + ' × €' + AFVOEREN, '€' + AFVOEREN * n]); tot += AFVOEREN * n; }
+    var aan = ps.filter(function (x) { return x.st === 'aanvraag'; }), kies = ps.filter(function (x) { return x.st === 'kiezen'; });
+    var tekst = n ? 'Richtprijs: €' + tot + (aan.length ? ' + ' + wie(aan) + ' prijs op aanvraag' : '') + (kies.length ? ' + ' + wie(kies) + ' nog kiezen' : '') : '';
+    return { n: n, regels: regels, totaal: n ? tot : null, compleet: n > 0 && !aan.length && !kies.length, tekst: tekst };
+  }
+  var DEF = 'Definitieve prijs na check in de offerte.';
+  function extrasHTML() {
+    function cb(id, label) {
+      return '<div class="field field--check bm__check"><input type="checkbox" id="bm-' + id + '"' + (state[id] ? ' checked' : '') + ' aria-describedby="bm-' + id + '-help">' +
+        '<label for="bm-' + id + '">' + label + '</label><p class="bm__help" id="bm-' + id + '-help">' + esc(HELP[id]) + '</p></div>';
+    }
+    return '<fieldset class="bm__extras"><legend>Extra\'s</legend>' +
+      cb('ventielen', 'Haakse ventielen (+€' + VENTIELEN + ' per set, als het past)') +
+      cb('afvoeren', 'Wij voeren je oude band af (+€' + AFVOEREN + ' per band)') + '</fieldset>';
+  }
+  function somHTML() {
+    var x = som();
+    var body = !x.n ? '<p class="muted">Kies je bandenmaat, dan zie je hier je overzicht.</p>' :
+      '<ul>' + x.regels.map(function (r) { return '<li><span>' + esc(r[0]) + '</span><b>' + esc(r[1]) + '</b></li>'; }).join('') + '</ul>' +
+      '<p class="bm__totaal">Richtprijs: <b>€' + x.totaal + '</b>' + esc(x.tekst.replace(/^Richtprijs: €\d+/, '')) + '</p>' +
+      '<p class="bm__def">Alle bedragen incl. btw. ' + DEF + '</p>';
+    return '<div class="bm__som" aria-live="polite"><h3>Overzicht</h3><p class="bm__sub">Dit gaat mee in je bericht aan ons. Je betaalt nu niets.</p>' + body + '</div>';
+  }
   function render(focus) {
     var s = OGMotor.get(), o = oem(s);
     var head;
@@ -63,13 +116,13 @@
     else head = '<p class="bm__intro">Van de <strong>' + esc(OGMotor.label(s)) + '</strong> hebben we de bandenmaten nog niet in onze lijst. Kies hieronder de maat van je band, of app ons, dan zoeken we het op. <a class="link" href="/banden/bandenmaat/">Zo lees je je bandenmaat →</a></p>';
     var id = s ? OGMotor.label(s) + '|' + (s.bouwjaar || '') : '';
     if (s && state.motor !== id) {
-      state = { motor: id, oem: o, voor: parse(o && o.voor), achter: parse(o && o.achter), keuze: {} };
+      state = { motor: id, oem: o, voor: parse(o && o.voor), achter: parse(o && o.achter), keuze: {}, ventielen: state.ventielen, afvoeren: state.afvoeren };
     }
     box.innerHTML = head + (s ? '<div class="bm__maten">' + ['voor', 'achter'].map(function (p) {
       var t = state[p];
       return '<fieldset class="bm__maat"><legend>Bandenmaat ' + p + '</legend><div class="bm__sel">' +
         sel(p, 'b', 'Breedte', B, t.b) + sel(p, 'h', 'Hoogte', H, t.h) + sel(p, 'v', 'Velg (inch)', V, t.v) + '</div></fieldset>';
-    }).join('') + '</div><div class="bm__lijst">' + ['voor', 'achter'].map(list).join('') + '</div>' +
+    }).join('') + '</div><div class="bm__lijst">' + ['voor', 'achter'].map(list).join('') + '</div>' + extrasHTML() + somHTML() +
       '<p class="note">Vanaf-prijs is per band, inclusief btw. Montage komt erbij: <strong>+ €' + (data.montage_per_band || 50) + ' montage per band</strong>.' +
       (data.prijzen_bijgewerkt ? ' Prijzen bijgewerkt op ' + esc(new Date(data.prijzen_bijgewerkt).toLocaleDateString('nl-NL', { day: 'numeric', month: 'long', year: 'numeric' })) + '.' : '') + '</p>' +
       '<div class="bm__cta"><a class="btn btn--wa" data-dienst="Banden" data-wa-intent="banden" href="https://wa.me/31642939555" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>App ons over deze banden</a></div>' : '');
@@ -80,11 +133,16 @@
       });
     });
     box.querySelectorAll('.bm__opt input').forEach(function (r) {
-      r.addEventListener('change', function () { state.keuze[r.name.slice(3)] = Number(r.value); save(); });
+      r.addEventListener('change', function () { state.keuze[r.name.slice(3)] = Number(r.value); save(); updSom(); });
+    });
+    ['ventielen', 'afvoeren'].forEach(function (id) {
+      var c = document.getElementById('bm-' + id);
+      if (c) c.addEventListener('change', function () { state[id] = c.checked; save(); updSom(); });
     });
     if (focus && document.getElementById(focus)) document.getElementById(focus).focus();
     save();
   }
+  function updSom() { var b = box.querySelector('.bm__som'); if (b) b.outerHTML = somHTML(); }
   function list(p) {
     var t = state[p], naam = p === 'voor' ? 'Voorband' : 'Achterband';
     if (!tkey(t)) return '<fieldset class="bm__pos"><legend>' + naam + '</legend><p class="muted">Kies breedte, hoogte en velgmaat, dan tonen we ons advies.</p></fieldset>';
@@ -107,7 +165,10 @@
       if (pr != null) min = min == null ? pr : Math.min(min, pr);
       parts.push(p + ' ' + label(p) + (t ? ' ' + t.merk + ' ' + t.band + ' (' + (pr ? 'vanaf €' + pr : 'prijs op aanvraag') + ')' : ''));
     });
-    var k = OGMotor.klus.get(); k.banden = parts.join('; ') + (parts.length ? ' + €' + (data.montage_per_band || 50) + ' montage per band' : ''); k.bandPrijs = min;
+    var x = som(), k = OGMotor.klus.get();
+    k.banden = (parts.join('; ') + (parts.length ? ' + €' + montage() + ' montage per band' : '')).replace(/^; /, '');
+    k.bandPrijs = min;
+    k.bandExtra = { ventielen: !!state.ventielen, afvoeren: !!state.afvoeren, aantal: x.n, totaal: x.totaal, compleet: x.compleet, regels: x.regels, tekst: x.tekst };
     OGMotor.klus.set(k);
   }
   fetch(URL_, { cache: 'no-cache' }).then(function (r) { return r.json(); }).then(function (d) { data = d; return OGMotor.load(); })

@@ -106,10 +106,18 @@
     if (d.uitvoering) lines.push('Uitvoering: ' + d.uitvoering);
     lines.push('Bouwjaar: ' + d.bouwjaar);
     lines.push('Kilometerstand: ' + (d.km == null ? '' : d.km.toLocaleString('nl-NL') + ' km'));
-    if (d.banden) lines.push('Banden: ' + d.banden);
+    var bo = bandOverzicht();
+    if (bo) lines.push('Banden – overzicht:\n' + bo.regels.map(function (r) { return '- ' + r[0] + ': ' + r[1]; }).join('\n') + '\n' + bo.tekst + '\n' + DEF);
+    else if (d.banden) lines.push('Banden: ' + d.banden);
     if (d.vraag) lines.push('Vraag: ' + d.vraag);
     if (d.review) lines.push('Reviewverzoek per mail: ja');
     return lines.join('\n');
+  }
+  // Bandenoverzicht (regels + richtprijs) alleen als Banden aangevinkt is en het bandenmenu een overzicht heeft gemaakt
+  var DEF = 'Definitieve prijs na check in de offerte.';
+  function bandOverzicht() {
+    var kl = OGMotor.klus.get(), bx = kl.bandExtra;
+    return kl.items.indexOf('banden') !== -1 && bx && bx.regels && bx.regels.length && bx.tekst ? bx : null;
   }
   // Zachte melding (blokkeert niet): reviewverzoek aangevinkt maar geen e-mailadres
   function reviewNote() {
@@ -119,7 +127,7 @@
   }
   // Velden voor Formspree (worden in de mail getoond); _subject/_replyto/_gotcha zijn speciale Formspree-velden
   function formspreeData() {
-    var d = collect();
+    var d = collect(), kl = OGMotor.klus.get(), bx = d.banden && kl.items.indexOf('banden') !== -1 ? (kl.bandExtra || { ventielen: false, afvoeren: false, aantal: 0, totaal: null }) : null;
     var o = {
       _subject: 'Aanvraag ogmotoworks.nl – ' + (clean(d.merk + ' ' + d.model) || 'motor'),
       'Soort aanvraag': INTENTS[d.intent] || INTENTS.afspraak,
@@ -128,6 +136,10 @@
       'Bouwjaar': d.bouwjaar, 'Kilometerstand': d.km == null ? '' : d.km.toLocaleString('nl-NL') + ' km',
       'Laten doen': d.klus.length ? d.klus.join('; ') : '(niets aangevinkt)',
       'Banden': d.banden || '(geen)', 'Vraag': d.vraag || '(geen)',
+      'Haakse ventielen': bx ? (bx.ventielen ? 'ja (+€20 per set, als het past)' : 'nee') : '(n.v.t.)',
+      'Oude band afvoeren': bx ? (bx.afvoeren ? 'ja (' + (bx.aantal ? bx.aantal + ' × €5' : '€5 per band') + ')' : 'nee') : '(n.v.t.)',
+      'Banden overzicht': bandOverzicht() ? bandOverzicht().regels.map(function (r) { return r[0] + ': ' + r[1]; }).join('\n') : '(n.v.t.)',
+      'Richtprijs banden': bandOverzicht() ? bandOverzicht().tekst + ' (incl. btw). ' + DEF : '(n.v.t.)',
       'Winterpakket': d.winter ? (d.winter.naam || '(nog kiezen)') : '(geen)',
       'Vroegboek': d.winter ? (d.winter.vroegboek ? 'ja' : 'nee') : '(n.v.t.)',
       'Akkoord gegevens voor deze aanvraag': d.akkoord ? 'ja' : 'nee',
