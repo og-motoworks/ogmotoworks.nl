@@ -13,7 +13,7 @@
   function setMenu(open) {
     if (!burger) return;
     burger.setAttribute('aria-expanded', open ? 'true' : 'false');
-    burger.setAttribute('aria-label', open ? 'Menu sluiten' : 'Menu openen');
+    var d = (window.OGI18n && OGI18n.d) || {}; burger.setAttribute('aria-label', open ? d['Menu sluiten'] || 'Menu sluiten' : d['Menu openen'] || 'Menu openen');
     nav.classList.toggle('is-open', open);
     if (!open) closeAll();
   }

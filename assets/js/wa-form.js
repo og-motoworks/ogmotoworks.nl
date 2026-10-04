@@ -16,6 +16,7 @@
   var lastTrigger = null;
   var OTHER = OGMotor.OTHER;
   var motor = OGMotor.bind('wa');
+  var T = OGMotor.T, I18N = OGMotor.i18n; // taal: zie motor.js (EN-pagina's laden assets/js/i18n-en.js)
 
   // intent (data-wa-intent: afspraak/prijs/banden/vraag) + aangevinkte diensten → openingszin: zie OGMotor.klus.opening (motor.js)
 
@@ -34,10 +35,10 @@
     var p = clean(plate.value).toUpperCase().replace(/\s/g, '-');
     plate.value = p;
     var pOk = /^[A-Z0-9]+(-[A-Z0-9]+)*$/.test(p) && p.replace(/-/g, '').length >= 4 && p.replace(/-/g, '').length <= 10;
-    setError(plate, p ? (pOk ? '' : 'Vul een geldig kenteken in, bijv. AB-12-CD.') : 'Vul je kenteken in.');
+    setError(plate, p ? (pOk ? '' : T('Vul een geldig kenteken in, bijv. AB-12-CD.')) : T('Vul je kenteken in.'));
     if (!pOk) first = first || plate;
-    [[merk, field('merk_anders'), 'Kies het merk.', 'Vul het merk in.'],
-     [model, field('model_anders'), 'Kies het model.', 'Vul het model in.']].forEach(function (x) {
+    [[merk, field('merk_anders'), T('Kies het merk.'), T('Vul het merk in.')],
+     [model, field('model_anders'), T('Kies het model.'), T('Vul het model in.')]].forEach(function (x) {
       var sel = x[0], other = x[1], useOther = !other.hidden;
       var ok = useOther ? clean(other.value) !== '' : clean(sel.value) !== '' && sel.value !== OTHER;
       var target = useOther && (sel.value === OTHER || sel.hidden) ? other : sel;
@@ -47,30 +48,30 @@
     });
     var by = field('bouwjaar');
     var byOk = by.value !== '';
-    setError(by, byOk ? '' : 'Kies het bouwjaar.');
+    setError(by, byOk ? '' : T('Kies het bouwjaar.'));
     if (!byOk) first = first || by;
-    var digits = clean(km.value).replace(/[.\s]/g, '');
-    var kmOk = /^\d{1,7}$/.test(digits);
-    setError(km, digits ? (kmOk ? '' : 'Vul alleen cijfers in, bijv. 23450.') : 'Vul de kilometerstand in.');
+    var digits = clean(km.value).replace(/[.,\s]/g, '');
+    var kmOk = !digits || /^\d{1,7}$/.test(digits); // optioneel sinds 4 okt 2026 (verzoek Freddy): leeg mag, ingevuld = alleen cijfers
+    setError(km, kmOk ? '' : T('Vul alleen cijfers in, bijv. 23450.'));
     if (!kmOk) first = first || km;
     // jouw gegevens
     var naam = field('naam'), tel = field('telefoon'), mail = field('email'), akk = field('akkoord');
     var nOk = clean(naam.value).length >= 2;
-    setError(naam, nOk ? '' : 'Vul je naam in.'); if (!nOk) first = first || naam;
+    setError(naam, nOk ? '' : T('Vul je naam in.')); if (!nOk) first = first || naam;
     var t = clean(tel.value).replace(/[\s().-]/g, '');
     var tOk = /^(\+|00)?\d{9,14}$/.test(t);
-    setError(tel, t ? (tOk ? '' : 'Vul een geldig telefoonnummer in, bijv. 06 12345678.') : 'Vul je telefoonnummer in.'); if (!tOk) first = first || tel;
+    setError(tel, t ? (tOk ? '' : T('Vul een geldig telefoonnummer in, bijv. 06 12345678.')) : T('Vul je telefoonnummer in.')); if (!tOk) first = first || tel;
     var m = clean(mail.value); // optioneel; alleen controleren als het is ingevuld
     var mOk = !m || /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m);
-    setError(mail, mOk ? '' : 'Vul een geldig e-mailadres in, of laat het leeg.'); if (!mOk) first = first || mail;
-    setError(akk, akk.checked ? '' : 'Vink aan dat we je gegevens mogen gebruiken voor deze aanvraag.'); if (!akk.checked) first = first || akk;
+    setError(mail, mOk ? '' : T('Vul een geldig e-mailadres in, of laat het leeg.')); if (!mOk) first = first || mail;
+    setError(akk, akk.checked ? '' : T('Vink aan dat we je gegevens mogen gebruiken voor deze aanvraag.')); if (!akk.checked) first = first || akk;
     return first;
   }
 
   // Alle gegevens uit het formulier als regels (ook bruikbaar voor een andere afleverroute)
   function collect() {
     var by = motor.bouwjaar();
-    var km = Number(clean(field('km').value).replace(/[.\s]/g, ''));
+    var kmTxt = clean(field('km').value).replace(/[.,\s]/g, ''), km = kmTxt === '' ? NaN : Number(kmTxt);
     return {
       intent: intentEl.value || 'afspraak',
       klus: OGMotor.klus.lines(),
@@ -80,7 +81,7 @@
       akkoord: !!field('akkoord').checked,
       review: !!(field('review') && field('review').checked),
       kenteken: clean(field('kenteken').value).toUpperCase(),
-      merk: motor.merk(), model: motor.model(), uitvoering: motor.uitvoering(),
+      merk: motor.merk(), model: motor.model(), uitvoering: OGMotor.uvTxt(motor.uitvoering()),
       bouwjaar: by ? OGMotor.yearText(by) : '',
       km: isFinite(km) ? km : null,
       banden: (field('banden') && clean(field('banden').value)) || (OGMotor.klus.get().items.indexOf('banden') !== -1 ? OGMotor.klus.get().banden : ''),
@@ -90,27 +91,27 @@
   function buildMessage() {
     var d = collect();
     var op = OGMotor.klus.opening(d.intent);
-    var lines = ['Hoi OG MotoWorks! ' + op.zin + (op.lijst.length && /:$/.test(op.zin) ? '\n' + op.lijst.map(function (x) { return '- ' + x; }).join('\n') : '')];
-    if (op.lijst.length && !/:$/.test(op.zin)) lines.push('Laten doen:\n' + op.lijst.map(function (x) { return '- ' + x; }).join('\n'));
-    if (d.winter) lines.push('Vroegboek: ' + (d.winter.vroegboek ? 'ja (geboekt t/m 30 november, afspraak t/m januari)' : 'nee'));
-    if (d.naam) lines.push('Naam: ' + d.naam);
-    if (d.telefoon) lines.push('Telefoon: ' + d.telefoon);
-    if (d.email) lines.push('E-mail: ' + d.email);
-    if (d.plaats) lines.push('Plaats/adres: ' + d.plaats);
-    lines.push('Kenteken: ' + d.kenteken);
-    lines.push('Merk/model: ' + clean(d.merk + ' ' + d.model));
-    if (d.uitvoering) lines.push('Uitvoering: ' + d.uitvoering);
-    lines.push('Bouwjaar: ' + d.bouwjaar);
-    lines.push('Kilometerstand: ' + (d.km == null ? '' : d.km.toLocaleString('nl-NL') + ' km'));
+    var lines = [T('Hoi OG MotoWorks! ') + op.zin + (op.lijst.length && /:$/.test(op.zin) ? '\n' + op.lijst.map(function (x) { return '- ' + x; }).join('\n') : '')];
+    if (op.lijst.length && !/:$/.test(op.zin)) lines.push(T('Laten doen:') + '\n' + op.lijst.map(function (x) { return '- ' + x; }).join('\n'));
+    if (d.winter) lines.push(T('Vroegboek: ') + (d.winter.vroegboek ? T('ja (geboekt t/m 30 november, afspraak t/m januari)') : T('nee')));
+    if (d.naam) lines.push(T('Naam: ') + d.naam);
+    if (d.telefoon) lines.push(T('Telefoon: ') + d.telefoon);
+    if (d.email) lines.push(T('E-mail: ') + d.email);
+    if (d.plaats) lines.push(T('Plaats/adres: ') + d.plaats);
+    lines.push(T('Kenteken: ') + d.kenteken);
+    lines.push(T('Merk/model: ') + clean(d.merk + ' ' + d.model));
+    if (d.uitvoering) lines.push(T('Uitvoering: ') + d.uitvoering);
+    lines.push(T('Bouwjaar: ') + d.bouwjaar);
+    if (d.km != null) lines.push(T('Kilometerstand: ') + d.km.toLocaleString(I18N.loc) + ' km'); // optioneel: alleen als ingevuld
     var bo = bandOverzicht();
-    if (bo) lines.push('Banden – overzicht:\n' + bo.regels.map(function (r) { return '- ' + r[0] + ': ' + r[1]; }).join('\n') + '\n' + bo.tekst + '\n' + DEF);
-    else if (d.banden) lines.push('Banden: ' + d.banden);
-    if (d.vraag) lines.push('Vraag: ' + d.vraag);
-    if (d.review) lines.push('Reviewverzoek per mail: ja');
+    if (bo) lines.push(T('Banden – overzicht:') + '\n' + bo.regels.map(function (r) { return '- ' + r[0] + ': ' + r[1]; }).join('\n') + '\n' + bo.tekst + '\n' + DEF);
+    else if (d.banden) lines.push(T('Banden: ') + d.banden);
+    if (d.vraag) lines.push(T('Vraag: ') + d.vraag);
+    if (d.review) lines.push(T('Reviewverzoek per mail: ja'));
     return lines.join('\n');
   }
   // Bandenoverzicht (regels + richtprijs) alleen als Banden aangevinkt is en het bandenmenu een overzicht heeft gemaakt
-  var DEF = 'Definitieve prijs na check in de offerte.';
+  var DEF = T('Definitieve prijs na check in de offerte.');
   function bandOverzicht() {
     var kl = OGMotor.klus.get(), bx = kl.bandExtra;
     return kl.items.indexOf('banden') !== -1 && bx && bx.regels && bx.regels.length && bx.tekst ? bx : null;
@@ -119,7 +120,7 @@
   function reviewNote() {
     var r = field('review'), note = document.getElementById('wa-review-note');
     if (!r || !note) return;
-    note.textContent = r.checked && !clean(field('email').value) ? 'Voor de reviewmail hebben we je e-mailadres nodig. Vul het hierboven in als je die wilt ontvangen.' : '';
+    note.textContent = r.checked && !clean(field('email').value) ? T('Voor de reviewmail hebben we je e-mailadres nodig. Vul het hierboven in als je die wilt ontvangen.') : '';
   }
   // Velden voor Formspree (worden in de mail getoond). Speciale Formspree-velden (help.formspree.io, Special Fields):
   // 'subject' = onderwerp van de mail, 'email' = Reply-To (alleen meesturen als het een geldig adres is), '_gotcha' = honeypot.
@@ -129,12 +130,14 @@
     var d = collect(), kl = OGMotor.klus.get(), bx = d.banden && kl.items.indexOf('banden') !== -1 ? (kl.bandExtra || { ventielen: false, afvoeren: false, aantal: 0, totaal: null }) : null;
     var motorTxt = clean(d.merk + ' ' + d.model), bo = bandOverzicht(), o = {};
     function put(k, v) { if (v != null && String(v).trim() !== '') o[k] = String(v); }
-    put('subject', 'Nieuwe aanvraag via ogmotoworks.nl – ' + (d.naam || 'onbekend') + ' – ' + (motorTxt || 'motor'));
+    // Veldnamen en onderwerp blijven Nederlands (voor ons); 'Taal' zegt in welke taal we antwoorden. Klantteksten zijn in de taal van de pagina.
+    put('subject', 'Nieuwe aanvraag via ogmotoworks.nl – ' + (d.naam || 'onbekend') + ' – ' + (motorTxt || 'motor') + (I18N.lang === 'en' ? ' [EN]' : ''));
+    put('Taal', I18N.lang === 'en' ? 'EN' : 'NL');
     put('Soort aanvraag', (function (op) { return op.zin + (/:$/.test(op.zin) ? ' ' + op.lijst.join('; ') : ''); })(OGMotor.klus.opening(d.intent)));
     put('Naam', d.naam); put('Telefoon', d.telefoon);
     if (MAIL_OK.test(d.email)) put('email', d.email);
     put('Plaats/adres', d.plaats); put('Kenteken', d.kenteken); put('Merk/model', motorTxt); put('Uitvoering', d.uitvoering);
-    put('Bouwjaar', d.bouwjaar); put('Kilometerstand', d.km == null ? '' : d.km.toLocaleString('nl-NL') + ' km');
+    put('Bouwjaar', d.bouwjaar); put('Kilometerstand', d.km == null ? '' : d.km.toLocaleString('nl-NL') + ' km'); // leeg = weggelaten
     if (d.klus.length) put('Laten doen', d.klus.join('; '));
     put('Banden', d.banden);
     if (bx) {

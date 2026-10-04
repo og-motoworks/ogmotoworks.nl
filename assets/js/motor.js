@@ -7,6 +7,11 @@
    Zonder JS of zonder localStorage werkt de site gewoon, alleen zonder onthouden. */
 (function () {
   'use strict';
+  // Taal: NL-pagina's gebruiken de teksten zoals ze hier staan. EN-pagina's laden eerst assets/js/i18n-en.js
+  // (window.OGI18n: woordenboek met de NL-tekst als sleutel, paden en locale). Geen woordenboek = NL.
+  var I18N = window.OGI18n || { lang: 'nl', d: {}, uv: {}, loc: 'nl-NL', p: function (u) { return u; } };
+  function T(s, v) { var x = I18N.d[s] || s; return v ? x.replace(/\{(\w+)\}/g, function (m, k) { return v[k] == null ? '' : v[k]; }) : x; }
+  function uvTxt(u) { return (I18N.uv && I18N.uv[u]) || u; } // weergave van een uitvoering (bv. Standaard -> Standard); de waarde blijft gelijk
   var KEY = 'ogmw.motor.v1';
   var OTHER = '__anders', WEET = '__weet';
   var OLDEST = 1970;
@@ -45,8 +50,8 @@
   }
   function clear() { try { localStorage.removeItem(KEY); } catch (e) {} emit(null); }
   window.addEventListener('storage', function (e) { if (e.key === KEY) emit(get()); });
-  function yearText(by) { return by === 'ouder' ? 'ouder dan ' + OLDEST : by; }
-  function name(s) { return s ? clean([s.merk, s.model, s.uitvoering].join(' ')) : ''; }
+  function yearText(by) { return by === 'ouder' ? T('ouder dan {j}', { j: OLDEST }) : by; }
+  function name(s) { return s ? clean([s.merk, s.model, uvTxt(s.uitvoering)].join(' ')) : ''; }
   function label(s) { return s ? name(s) + (s.bouwjaar ? ' (' + yearText(s.bouwjaar) + ')' : '') : ''; }
   /* ---------- onderhoudsinterval (+ later: tip) per motor uit onderhoud.json ---------- */
   function loadOnderhoud() {
@@ -71,21 +76,21 @@
     return hits.length === 1 ? hits[0] : null;
   }
   function tip(s) { var m = interval(s); return m && m.tip || null; }
-  function nl(n) { return Number(n).toLocaleString('nl-NL'); }
+  function nl(n) { return Number(n).toLocaleString(I18N.loc); }
   function paintInterval(s) {
     var boxes = document.querySelectorAll('[data-motor-interval]');
     if (!boxes.length) return;
     loadOnderhoud().then(function () {
       var m = interval(s), html;
-      if (!s) html = '<b>Onderhoudsinterval</b> Kies je motor, dan zie je hier het onderhoudsinterval als we dat zeker weten.';
-      else if (!m) html = '<b>Onderhoudsinterval ' + escapeHtml(name(s)) + '</b> Interval volgens jouw instructieboekje, wij checken het voor je.';
+      if (!s) html = T('<b>Onderhoudsinterval</b> Kies je motor, dan zie je hier het onderhoudsinterval als we dat zeker weten.');
+      else if (!m) html = T('<b>Onderhoudsinterval {naam}</b> Interval volgens jouw instructieboekje, wij checken het voor je.', { naam: escapeHtml(name(s)) });
       else {
         var parts = [];
-        if (m.interval.km) parts.push('elke ' + nl(m.interval.km) + ' km');
-        if (m.interval.maanden) parts.push(m.interval.maanden % 12 === 0 ? (m.interval.maanden === 12 ? 'elk jaar' : 'elke ' + m.interval.maanden / 12 + ' jaar') : 'elke ' + m.interval.maanden + ' maanden');
-        html = '<b>Onderhoudsinterval ' + escapeHtml(name(s)) + '</b> Een beurt ' + parts.join(' of ') + (parts.length > 1 ? ', wat het eerst komt' : '') +
-               ' (volgens het instructieboekje van ' + escapeHtml(s.merk) + ').' +
-               (m.extra && m.extra.length ? ' ' + m.extra.map(escapeHtml).join('. ') + '.' : '') + ' Wij checken het voor je.';
+        if (m.interval.km) parts.push(T('elke {n} km', { n: nl(m.interval.km) }));
+        if (m.interval.maanden) parts.push(m.interval.maanden % 12 === 0 ? (m.interval.maanden === 12 ? T('elk jaar') : T('elke {n} jaar', { n: m.interval.maanden / 12 })) : T('elke {n} maanden', { n: m.interval.maanden }));
+        html = T('<b>Onderhoudsinterval {naam}</b> Een beurt {wanneer}', { naam: escapeHtml(name(s)), wanneer: parts.join(T(' of ')) }) + (parts.length > 1 ? T(', wat het eerst komt') : '') +
+               T(' (volgens het instructieboekje van {merk}).', { merk: escapeHtml(s.merk) }) +
+               (m.extra && m.extra.length ? ' ' + m.extra.map(function (x) { return escapeHtml(T(x)); }).join('. ') + '.' : '') + T(' Wij checken het voor je.');
       }
       boxes.forEach(function (b) { b.innerHTML = '<p>' + html + '</p>'; });
     });
@@ -114,7 +119,7 @@
 
     if (el.by && el.by.options.length <= 1) {
       for (var y = new Date().getFullYear(); y >= OLDEST; y--) el.by.appendChild(opt(String(y)));
-      el.by.appendChild(opt('ouder', 'Ouder dan ' + OLDEST));
+      el.by.appendChild(opt('ouder', T('Ouder dan {j}', { j: OLDEST })));
     }
     function fillUitv() {
       if (!el.uitv) return;
@@ -123,32 +128,32 @@
       var free = merk === OTHER || model === OTHER || el.model.hidden;
       var list = !free && model && variants(merk, model);
       if (!merk || (!free && !model)) {
-        sel.appendChild(opt('', 'Kies eerst een model'));
+        sel.appendChild(opt('', T('Kies eerst een model')));
         sel.disabled = true; sel.hidden = false; showOther(el.uitvO, false); return;
       }
       if (!list) { // geen bekende uitvoeringen: vrij tekstveld (optioneel)
         sel.appendChild(opt('', '—')); sel.disabled = true; sel.hidden = true; showOther(el.uitvO, true, false); return;
       }
       sel.hidden = false; sel.disabled = false; showOther(el.uitvO, false);
-      sel.appendChild(opt('', 'Kies uitvoering…'));
-      list.forEach(function (v) { sel.appendChild(opt(v)); });
-      sel.appendChild(opt(WEET, 'Weet ik niet'));
-      sel.appendChild(opt(OTHER, 'Andere uitvoering…'));
+      sel.appendChild(opt('', T('Kies uitvoering…')));
+      list.forEach(function (v) { sel.appendChild(opt(v, uvTxt(v))); });
+      sel.appendChild(opt(WEET, T('Weet ik niet')));
+      sel.appendChild(opt(OTHER, T('Andere uitvoering…')));
     }
     function fillModels() {
       var merk = el.merk.value, sel = el.model;
       empty(sel); if (el.modelO) el.modelO.value = '';
       if (!merk) {
-        sel.appendChild(opt('', 'Kies eerst een merk'));
+        sel.appendChild(opt('', T('Kies eerst een merk')));
         sel.disabled = true; sel.hidden = false; showOther(el.modelO, false, true);
       } else if (merk === OTHER || !models(merk)) { // onbekend merk of lijst niet geladen: model als tekstveld
         sel.appendChild(opt('', '—'));
         sel.disabled = true; sel.hidden = true; showOther(el.modelO, true, true);
       } else {
         sel.hidden = false; sel.disabled = false; showOther(el.modelO, false, true);
-        sel.appendChild(opt('', 'Kies model…'));
+        sel.appendChild(opt('', T('Kies model…')));
         models(merk).forEach(function (m) { sel.appendChild(opt(m)); });
-        sel.appendChild(opt(OTHER, 'Ander model…'));
+        sel.appendChild(opt(OTHER, T('Ander model…')));
       }
       fillUitv();
     }
@@ -226,12 +231,12 @@
   function motorType(s) { return (s && !s.handmatig && data && data.types && data.types[s.merk] && data.types[s.merk][s.model]) || 'generiek'; }
   function silhouette(type) {
     var small = type === 'scooter', r = small ? 20 : 27, y = small ? 113 : 106, x1 = small ? 60 : 55, x2 = small ? 182 : 187;
-    return '<svg class="mp__sil" viewBox="0 0 240 140" role="img" aria-label="Silhouet ' + (type === 'generiek' ? 'motor' : type) + '" data-type="' + type + '">' +
+    return '<svg class="mp__sil" viewBox="0 0 240 140" role="img" aria-label="' + T('Silhouet ' + (type === 'generiek' ? 'motor' : type)) + '" data-type="' + type + '">' +
       '<g class="w"><circle cx="' + x1 + '" cy="' + y + '" r="' + r + '"/><circle cx="' + x2 + '" cy="' + y + '" r="' + r + '"/></g>' +
       '<g class="b">' + (SIL[type] || SIL.generiek) + '</g><path class="a" d="M8 136h224"/></svg>';
   }
   function richLabel(s) {
-    return '<span class="mp__brand">' + escapeHtml(s.merk) + '</span> <span class="mp__model">' + escapeHtml(clean(s.model + ' ' + (s.uitvoering || ''))) + '</span>' +
+    return '<span class="mp__brand">' + escapeHtml(s.merk) + '</span> <span class="mp__model">' + escapeHtml(clean(s.model + ' ' + uvTxt(s.uitvoering || ''))) + '</span>' +
            (s.bouwjaar ? ' <span class="mp__year">(' + escapeHtml(yearText(s.bouwjaar)) + ')</span>' : '');
   }
 
@@ -254,17 +259,20 @@
     { id: 'verlichting', label: 'Verlichting / knipperlichten monteren', zin: 'Ik wil graag verlichting / knipperlichten laten monteren.', wat: 'verlichting / knipperlichten monteren' },
     { id: 'anders', label: 'Iets anders' }
   ];
+  KLUS.forEach(function (k) { ['label', 'prijs', 'linkText', 'zin', 'wat'].forEach(function (f) { if (k[f]) k[f] = T(k[f]); }); if (k.link) k.link = I18N.p(k.link); });
   // Winterpakketten (goedgekeurde prijzen incl. btw). Vroegboek: boeken t/m 30 november, afspraak t/m januari.
   var WINTER = [{ id: 'winterbeurt', naam: 'Winterbeurt', prijs: 179, vroeg: 159 },
                 { id: 'voorjaarsklaar', naam: 'Winterbeurt + Voorjaarsklaar', prijs: 219, vroeg: 199 },
                 { id: 'compleet', naam: 'Winter Compleet', prijs: 279, vroeg: 259 }];
+  WINTER.forEach(function (w) { w.naam = T(w.naam); });
+  function opWinter() { return location.pathname.indexOf(I18N.p('/winter/')) === 0; }
   var VROEG_TOT = '2026-11-30';
   function today() { var d = new Date(); return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); }
   function vroegboek() { return today() <= VROEG_TOT; }
   function winterPakket(id) { return WINTER.filter(function (w) { return w.id === id; })[0] || null; }
   // Winterpakket staat in de lijst op /winter/, als de actie live is (<body data-winter="live">) of als het al is gekozen
   function winterZichtbaar(k) {
-    return /^\/winter\//.test(location.pathname) || (document.body && document.body.getAttribute('data-winter') === 'live') || k.items.indexOf('winter') !== -1;
+    return opWinter() || (document.body && document.body.getAttribute('data-winter') === 'live') || k.items.indexOf('winter') !== -1;
   }
   // data-dienst op knoppen → welk vinkje vooraf aan gaat
   var DIENST_KLUS = { 'Winterpakket': 'winter', 'Onderhoud / grote beurt': 'grote-beurt', 'Kleine beurt': 'kleine-beurt', 'Diagnose / storing': 'storing', 'Banden': 'banden',
@@ -281,7 +289,7 @@
     var regels = Array.isArray(e.regels) ? e.regels.slice(0, 6).filter(function (r) { return Array.isArray(r) && r.length === 2; })
       .map(function (r) { return [clean(r[0]).slice(0, 120), clean(r[1]).slice(0, 40)]; }) : [];
     return { ventielen: !!e.ventielen, afvoeren: !!e.afvoeren, aantal: Math.max(0, Math.min(2, Number(e.aantal) || 0)), totaal: Number(e.totaal) > 0 ? Math.round(Number(e.totaal)) : null,
-      compleet: !!e.compleet, regels: regels, tekst: /^Richtprijs: €\d+/.test(clean(e.tekst)) ? clean(e.tekst).slice(0, 160) : '' };
+      compleet: !!e.compleet, regels: regels, tekst: /^(Richtprijs|Guide price): €\d+/.test(clean(e.tekst)) ? clean(e.tekst).slice(0, 160) : '' };
   }
   function byId(id) { return KLUS.some(function (k) { return k.id === id; }); }
   function klusSet(k) {
@@ -298,25 +306,25 @@
     return { id: w ? w.id : '', naam: w ? w.naam : '', prijs: w ? (v ? w.vroeg : w.prijs) : null, normaal: w ? w.prijs : null, vroegboek: v };
   }
   function winterTekst(w) {
-    if (!w.naam) return 'Winterpakket (welk pakket nog kiezen)';
-    return 'Winterpakket: ' + w.naam + (w.vroegboek ? ' (vroegboek €' + w.prijs + ' i.p.v. €' + w.normaal + ')' : ' (€' + w.prijs + ')');
+    if (!w.naam) return T('Winterpakket (welk pakket nog kiezen)');
+    return w.vroegboek ? T('Winterpakket: {naam} (vroegboek €{p} i.p.v. €{n})', { naam: w.naam, p: w.prijs, n: w.normaal }) : T('Winterpakket: {naam} (€{p})', { naam: w.naam, p: w.prijs });
   }
   function klusPrijs(item, k) {
-    if (item.id === 'banden' && k.bandPrijs) return 'band vanaf €' + k.bandPrijs + ' + €50 montage per band';
+    if (item.id === 'banden' && k.bandPrijs) return T('band vanaf €{p} + €50 montage per band', { p: k.bandPrijs });
     return item.prijs || '';
   }
   // Regels voor het WhatsApp-bericht, in vaste volgorde
   function klusLines() {
     var k = klusGet();
     return KLUS.filter(function (i) { return k.items.indexOf(i.id) !== -1; }).map(function (i) {
-      if (i.id === 'anders') return 'Iets anders' + (k.anders ? ': ' + k.anders : '');
+      if (i.id === 'anders') return T('Iets anders') + (k.anders ? ': ' + k.anders : '');
       if (i.id === 'winter') return winterTekst(winterInfo());
       var pr = klusPrijs(i, k); return i.label + (pr ? ' (' + pr + ')' : '');
     });
   }
   // Openingszin van het bericht op basis van wat is aangevinkt: 0 = neutraal, 1 = zin voor die dienst, meer = 'een afspraak voor:' + lijst.
   // -> { zin, lijst } ; lijst = regels die direct onder de zin komen (leeg = geen aparte lijst nodig)
-  var NEUTRAAL = { afspraak: 'Ik wil graag een afspraak maken.', prijs: 'Ik wil graag een prijs weten.', vraag: 'Ik heb een vraag.' };
+  var NEUTRAAL = { afspraak: T('Ik wil graag een afspraak maken.'), prijs: T('Ik wil graag een prijs weten.'), vraag: T('Ik heb een vraag.') };
   function klusOpening(intent) {
     var k = klusGet(), items = KLUS.filter(function (i) { return k.items.indexOf(i.id) !== -1; }), lines = klusLines();
     var prijs = intent === 'prijs';
@@ -324,28 +332,28 @@
     if (items.length === 1) {
       var i = items[0], extra = lines[0] !== i.label ? lines : [];
       if (!i.zin) return { zin: prijs ? NEUTRAAL.prijs : NEUTRAAL.afspraak, lijst: lines };
-      return { zin: prijs ? 'Ik wil graag een prijs weten voor ' + i.wat + '.' : i.zin, lijst: extra };
+      return { zin: prijs ? T('Ik wil graag een prijs weten voor {wat}.', { wat: i.wat }) : i.zin, lijst: extra };
     }
-    return { zin: prijs ? 'Ik wil graag een prijs weten voor:' : 'Ik wil graag een afspraak voor:', lijst: lines };
+    return { zin: prijs ? T('Ik wil graag een prijs weten voor:') : T('Ik wil graag een afspraak voor:'), lijst: lines };
   }
   window.addEventListener('storage', function (e) { if (e.key === KLUS_KEY) { var k = klusGet(); klusListeners.forEach(function (fn) { fn(k); }); } });
   function renderKlus(box) {
     var p = box.getAttribute('data-klus') || 'klus', here = location.pathname.replace(/\/+$/, '/') ;
-    box.innerHTML = '<legend class="klus__title">Wat wil je laten doen?</legend>' +
-      '<p class="klus__hint">Vink aan wat je wilt, dan staat het in je WhatsApp-bericht.</p><ul class="klus__list">' +
+    box.innerHTML = '<legend class="klus__title">' + T('Wat wil je laten doen?') + '</legend>' +
+      '<p class="klus__hint">' + T('Vink aan wat je wilt, dan staat het in je WhatsApp-bericht.') + '</p><ul class="klus__list">' +
       KLUS.map(function (i) {
         var id = p + '-klus-' + i.id;
         if (i.id === 'winter') return '<li data-klus-winter><input type="checkbox" id="' + id + '" value="winter"><label for="' + id + '">' + i.label + '</label>' +
-          '<fieldset class="klus__sub" hidden><legend>Welk pakket?</legend>' + WINTER.map(function (w) {
+          '<fieldset class="klus__sub" hidden><legend>' + T('Welk pakket?') + '</legend>' + WINTER.map(function (w) {
             return '<label class="klus__radio"><input type="radio" name="' + p + '-winter" id="' + p + '-winter-' + w.id + '" value="' + w.id + '"><span>' + w.naam +
-              '<span class="klus__prijs">€' + w.prijs + (vroegboek() ? ' · vroegboek €' + w.vroeg : '') + '</span></span></label>';
-          }).join('') + '<p class="klus__note">' + (vroegboek() ? 'Vroegboekprijs bij boeken t/m 30 november, voor een afspraak t/m januari.' : 'Prijzen incl. btw.') +
-          (/^\/winter\//.test(location.pathname) ? '' : ' <a class="link" href="/winter/">Bekijk de pakketten →</a>') + '</p></fieldset></li>';
+              '<span class="klus__prijs">€' + w.prijs + (vroegboek() ? T(' · vroegboek €{p}', { p: w.vroeg }) : '') + '</span></span></label>';
+          }).join('') + '<p class="klus__note">' + (vroegboek() ? T('Vroegboekprijs bij boeken t/m 30 november, voor een afspraak t/m januari.') : T('Prijzen incl. btw.')) +
+          (opWinter() ? '' : ' <a class="link" href="' + I18N.p('/winter/') + '">' + T('Bekijk de pakketten →') + '</a>') + '</p></fieldset></li>';
         return '<li><input type="checkbox" id="' + id + '" value="' + i.id + '"><label for="' + id + '">' + i.label + '</label>' +
           (i.link && here !== i.link.split('#')[0] ? ' <a class="link klus__link" href="' + i.link + '" hidden>' + i.linkText + ' →</a>' : '') + '</li>';
       }).join('') + '</ul>' +
-      '<input type="text" class="field__other klus__anders" id="' + p + '-klus-anders-tekst" maxlength="200" placeholder="Wat wil je nog meer laten doen?" aria-label="Iets anders: wat wil je laten doen?" hidden>' +
-      (here === '/tarieven/' ? '' : '<p class="klus__note klus__tarieven"><a class="link" href="/tarieven/">Bekijk onze tarieven →</a></p>');
+      '<input type="text" class="field__other klus__anders" id="' + p + '-klus-anders-tekst" maxlength="200" placeholder="' + T('Wat wil je nog meer laten doen?') + '" aria-label="' + T('Iets anders: wat wil je laten doen?') + '" hidden>' +
+      (here === I18N.p('/tarieven/') ? '' : '<p class="klus__note klus__tarieven"><a class="link" href="' + I18N.p('/tarieven/') + '">' + T('Bekijk onze tarieven →') + '</a></p>');
     var boxes = box.querySelectorAll('input[type=checkbox]'), txt = box.querySelector('.klus__anders');
     var wLi = box.querySelector('[data-klus-winter]'), wSub = wLi && wLi.querySelector('.klus__sub'), wRadios = box.querySelectorAll('input[type=radio]');
     function sync(k) {
@@ -372,20 +380,20 @@
   /* ---------- blok "Kies je motor" ([data-motorpick]) ---------- */
   function fieldsHTML(p) {
     return '' +
-      '<div class="field"><label for="' + p + '-merk">Merk <span class="req" aria-hidden="true">*</span></label>' +
-        '<select id="' + p + '-merk" required data-other="' + p + '-merk-anders" data-placeholder="Typ of kies merk" aria-describedby="' + p + '-merk-err"><option value="">Kies merk…</option></select>' +
-        '<input id="' + p + '-merk-anders" type="text" class="field__other" hidden autocomplete="off" maxlength="40" placeholder="Welk merk?" aria-label="Welk merk?" aria-describedby="' + p + '-merk-err">' +
+      '<div class="field"><label for="' + p + '-merk">' + T('Merk') + ' <span class="req" aria-hidden="true">*</span></label>' +
+        '<select id="' + p + '-merk" required data-other="' + p + '-merk-anders" data-placeholder="' + T('Typ of kies merk') + '" aria-describedby="' + p + '-merk-err"><option value="">' + T('Kies merk…') + '</option></select>' +
+        '<input id="' + p + '-merk-anders" type="text" class="field__other" hidden autocomplete="off" maxlength="40" placeholder="' + T('Welk merk?') + '" aria-label="' + T('Welk merk?') + '" aria-describedby="' + p + '-merk-err">' +
         '<p class="field__err" id="' + p + '-merk-err" aria-live="polite"></p></div>' +
-      '<div class="field"><label for="' + p + '-model">Model <span class="req" aria-hidden="true">*</span></label>' +
-        '<select id="' + p + '-model" required disabled data-other="' + p + '-model-anders" data-placeholder="Typ of kies model" aria-describedby="' + p + '-model-err"><option value="">Kies eerst een merk</option></select>' +
-        '<input id="' + p + '-model-anders" type="text" class="field__other" hidden autocomplete="off" maxlength="40" placeholder="Welk model?" aria-label="Welk model?" aria-describedby="' + p + '-model-err">' +
+      '<div class="field"><label for="' + p + '-model">' + T('Model') + ' <span class="req" aria-hidden="true">*</span></label>' +
+        '<select id="' + p + '-model" required disabled data-other="' + p + '-model-anders" data-placeholder="' + T('Typ of kies model') + '" aria-describedby="' + p + '-model-err"><option value="">' + T('Kies eerst een merk') + '</option></select>' +
+        '<input id="' + p + '-model-anders" type="text" class="field__other" hidden autocomplete="off" maxlength="40" placeholder="' + T('Welk model?') + '" aria-label="' + T('Welk model?') + '" aria-describedby="' + p + '-model-err">' +
         '<p class="field__err" id="' + p + '-model-err" aria-live="polite"></p></div>' +
-      '<div class="field"><label for="' + p + '-uitvoering">Uitvoering <span class="opt">(optioneel)</span></label>' +
-        '<select id="' + p + '-uitvoering" disabled data-other="' + p + '-uitvoering-anders" data-placeholder="Typ of kies uitvoering"><option value="">Kies eerst een model</option></select>' +
-        '<input id="' + p + '-uitvoering-anders" type="text" class="field__other" hidden autocomplete="off" maxlength="40" placeholder="bijv. R, GT, Adventure S" aria-label="Welke uitvoering? (optioneel)">' +
+      '<div class="field"><label for="' + p + '-uitvoering">' + T('Uitvoering') + ' <span class="opt">' + T('(optioneel)') + '</span></label>' +
+        '<select id="' + p + '-uitvoering" disabled data-other="' + p + '-uitvoering-anders" data-placeholder="' + T('Typ of kies uitvoering') + '"><option value="">' + T('Kies eerst een model') + '</option></select>' +
+        '<input id="' + p + '-uitvoering-anders" type="text" class="field__other" hidden autocomplete="off" maxlength="40" placeholder="' + T('bijv. R, GT, Adventure S') + '" aria-label="' + T('Welke uitvoering? (optioneel)') + '">' +
         '<p class="field__err" aria-hidden="true"></p></div>' +
-      '<div class="field"><label for="' + p + '-bouwjaar">Bouwjaar <span class="req" aria-hidden="true">*</span></label>' +
-        '<select id="' + p + '-bouwjaar" required aria-describedby="' + p + '-bouwjaar-err"><option value="">Kies bouwjaar…</option></select>' +
+      '<div class="field"><label for="' + p + '-bouwjaar">' + T('Bouwjaar') + ' <span class="req" aria-hidden="true">*</span></label>' +
+        '<select id="' + p + '-bouwjaar" required aria-describedby="' + p + '-bouwjaar-err"><option value="">' + T('Kies bouwjaar…') + '</option></select>' +
         '<p class="field__err" id="' + p + '-bouwjaar-err" aria-live="polite"></p></div>';
   }
   function merkOptions(sel) {
@@ -393,31 +401,31 @@
     return load().then(function (d) {
       var names = d && d.merken ? Object.keys(d.merken) : [];
       names.forEach(function (n) { sel.insertBefore(opt(n), null); });
-      sel.appendChild(opt(OTHER, 'Anders…'));
+      sel.appendChild(opt(OTHER, T('Anders…')));
       if (sel._combo) sel._combo.syncState();
     });
   }
   function renderPicker(box) {
     var p = box.getAttribute('data-motorpick') || 'mp';
     var cta = box.querySelector('[data-mp-cta]');
-    var title = box.getAttribute('data-title') || 'Kies je motor';
+    var title = box.getAttribute('data-title') || T('Kies je motor');
     box.innerHTML =
       '<div class="mp__view" hidden>' +
         '<div class="mp__sil-wrap" aria-hidden="false"></div>' +
-        '<div class="mp__id"><p class="mp__label">Jouw motor</p>' +
+        '<div class="mp__id"><p class="mp__label">' + T('Jouw motor') + '</p>' +
         '<p class="mp__name" data-motor-label data-rich></p></div>' +
-        '<button type="button" class="mp__edit" aria-label="Wijzig je motor">Wijzig</button>' +
+        '<button type="button" class="mp__edit" aria-label="' + T('Wijzig je motor') + '">' + T('Wijzig') + '</button>' +
         '<fieldset class="klus" data-klus="' + p + '"></fieldset>' +
         '<div class="mp__cta"></div>' +
       '</div>' +
       '<form class="mp__form" novalidate>' +
         '<h2 class="mp__title" id="' + p + '-titel">' + title + '</h2>' +
-        '<p class="mp__hint">Dan zie je meteen wat bij jouw motor hoort. We onthouden je keuze alleen op dit apparaat.</p>' +
+        '<p class="mp__hint">' + T('Dan zie je meteen wat bij jouw motor hoort. We onthouden je keuze alleen op dit apparaat.') + '</p>' +
         '<div class="sheet__grid">' + fieldsHTML(p) + '</div>' +
-        '<button type="button" class="mp__manual" id="' + p + '-handmatig">Mijn motor staat er niet tussen</button>' +
-        '<p class="mp__manualhint" id="' + p + '-handmatig-hint" hidden>Vul merk en model dan zelf in. Voor banden helpt je bandenmaat ook: <a class="link" href="/banden/bandenmaat/">zo lees je je bandenmaat</a>.</p>' +
-        '<div class="mp__actions"><button type="submit" class="btn btn--wa">Dit is mijn motor</button>' +
-        '<button type="button" class="btn btn--ghost mp__cancel" hidden>Annuleren</button></div>' +
+        '<button type="button" class="mp__manual" id="' + p + '-handmatig">' + T('Mijn motor staat er niet tussen') + '</button>' +
+        '<p class="mp__manualhint" id="' + p + '-handmatig-hint" hidden>' + T('Vul merk en model dan zelf in. Voor banden helpt je bandenmaat ook:') + ' <a class="link" href="' + I18N.p('/banden/bandenmaat/') + '">' + T('zo lees je je bandenmaat') + '</a>.</p>' +
+        '<div class="mp__actions"><button type="submit" class="btn btn--wa">' + T('Dit is mijn motor') + '</button>' +
+        '<button type="button" class="btn btn--ghost mp__cancel" hidden>' + T('Annuleren') + '</button></div>' +
       '</form>';
     box.classList.add('mp--ready');
     box.setAttribute('aria-labelledby', p + '-titel');
@@ -447,10 +455,10 @@
         else { input.setAttribute('aria-invalid', 'true'); if (err) err.textContent = msg; first = first || input; }
       }
       var mOther = b.el.merk.value === OTHER;
-      need(!!s.merk, mOther ? b.el.merkO : b.el.merk, mOther ? 'Vul het merk in.' : 'Kies het merk.');
+      need(!!s.merk, mOther ? b.el.merkO : b.el.merk, mOther ? T('Vul het merk in.') : T('Kies het merk.'));
       var modelText = !b.el.modelO.hidden;
-      need(!!s.model, modelText ? b.el.modelO : b.el.model, modelText ? 'Vul het model in.' : 'Kies het model.');
-      need(!!s.bouwjaar, b.el.by, 'Kies het bouwjaar.');
+      need(!!s.model, modelText ? b.el.modelO : b.el.model, modelText ? T('Vul het model in.') : T('Kies het model.'));
+      need(!!s.bouwjaar, b.el.by, T('Kies het bouwjaar.'));
       if (first) { first.focus(); return; }
       set(s); show(get() || s, true);
     });
@@ -475,7 +483,7 @@
   function on(fn) { listeners.push(fn); }
   on(paint);
 
-  window.OGMotor = { load: load, get: get, set: set, clear: clear, label: label, name: name, yearText: yearText,
+  window.OGMotor = { T: T, i18n: I18N, uvTxt: uvTxt, load: load, get: get, set: set, clear: clear, label: label, name: name, yearText: yearText,
                      bind: bind, tip: tip, type: motorType, silhouette: silhouette,
                      klus: { list: KLUS, get: klusGet, set: klusSet, add: klusAdd, lines: klusLines, opening: klusOpening, winter: { list: WINTER, set: winterSet, info: winterInfo, vroegboek: vroegboek }, fromDienst: function (d) { return DIENST_KLUS[clean(d)] || null; }, on: function (fn) { klusListeners.push(fn); } }, interval: interval, loadOnderhoud: loadOnderhoud, on: on, OTHER: OTHER, data: function () { return data; } };
 
