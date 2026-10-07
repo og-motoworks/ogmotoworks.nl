@@ -25,8 +25,8 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-<link rel="preload" href="assets/fonts/oswald-700.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="preload" href="/assets/fonts/oswald-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/style.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -97,315 +97,42 @@
   }
 }
 </script>
+<script>/* oude ankers lange homepage -> nieuwe pagina */(function(){var m={"#diensten":"/diensten/","#prijzen":"/tarieven/","#zo-werken-wij":"/over-ons/#werkwijze","#werk":"/werk/","#waarom":"/over-ons/","#werkgebied":"/over-ons/#werkgebied","#reviews":"/over-ons/#reviews","#over-ons":"/over-ons/","#contact":"/contact/","#kies-je-motor":"/afspraak/#kies-je-motor","#afspraak":"/afspraak/"};function g(){var u=m[location.hash];if(u){document.documentElement.setAttribute("data-redirect","");location.replace(u);}}g();addEventListener("hashchange",g);})();</script>
 </head>
-<body>
+<body data-ui="v2" data-page="home">
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-wa" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></symbol>
   <symbol id="i-ig" viewBox="0 0 24 24"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></symbol>
 </svg>
 
 
-<header class="header">
+<header class="header header--v2">
   <div class="wrap">
-    <a class="brand" href="/" aria-label="OG MotoWorks – naar de homepage">
+    <a class="brand" href="/" data-home aria-label="OG MotoWorks – naar de homepage">
       <picture><source srcset="/assets/img/logo-192.webp" type="image/webp"><img src="/assets/img/logo-192.png" width="44" height="44" alt=""></picture>
       <span><b>OG</b> MotoWorks</span>
     </a>
-    <nav class="nav" id="hoofdmenu" aria-label="Hoofdmenu">
-      <ul class="nav__list">
-        <li class="nav__item">
-          <a class="nav__link" href="/diensten/">Diensten</a>
-          <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="sub-diensten"><span class="sr-only">Submenu Diensten</span><svg viewBox="0 0 14 9" aria-hidden="true"><path d="M1 1l6 6 6-6"/></svg></button>
-          <ul class="nav__sub nav__sub--wide" id="sub-diensten"><li class="nav__group" role="presentation">Diensten</li><li><a href="/diensten/">Alle diensten</a></li><li><a href="/tarieven/">Tarieven</a></li><li><a href="/diensten/onderhoud/">Onderhoud &amp; grote beurt</a></li><li><a href="/diensten/diagnose/">Diagnose &amp; storingen</a></li><li><a href="/diensten/reparatie/">Reparatie</a></li><li><a href="/banden/">Banden</a></li><li><a href="/diensten/kettingset/">Kettingset vervangen</a></li><li><a href="/diensten/voorvorkkeerringen/">Voorvorkkeerringen</a></li><li><a href="/diensten/tuning/">Tuning &amp; afstellen</a></li><li><a href="/diensten/schade-repareren/">Schade repareren</a></li><li><a href="/diensten/verlichting-knipperlichten/">Verlichting &amp; knipperlichten</a></li><li class="nav__group" role="presentation">Probleem met je motor?</li><li><a href="/problemen/">Alle problemen</a></li><li><a href="/problemen/lampje-brandt/">Lampje brandt?</a></li><li><a href="/problemen/motor-start-niet/">Motor start niet?</a></li><li><a href="/problemen/olie-lekt/">Motor lekt olie?</a></li><li><a href="/problemen/ketting-rammelt/">Ketting rammelt?</a></li><li><a href="/problemen/remmen/">Remmen piepen of slap?</a></li><li><a href="/problemen/motor-hapert/">Motor hapert?</a></li></ul>
-        </li>
-        <li class="nav__item">
-          <a class="nav__link" href="/banden/">Banden</a>
-          <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="sub-banden"><span class="sr-only">Submenu Banden</span><svg viewBox="0 0 14 9" aria-hidden="true"><path d="M1 1l6 6 6-6"/></svg></button>
-          <ul class="nav__sub" id="sub-banden"><li><a href="/banden/#advies">Bandenadvies voor jouw motor</a></li><li><a href="/banden/#soorten">Welke band past bij jou?</a></li><li><a href="/banden/#montage">Banden monteren</a></li><li><a href="/banden/#wanneer">Wanneer nieuwe banden?</a></li><li><a href="/banden/bandenmaat/">Hoe lees ik mijn bandenmaat?</a></li></ul>
-        </li>
-        <li class="nav__item">
-          <a class="nav__link" href="/werk/">Werk</a>
-          <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="sub-werk"><span class="sr-only">Submenu Werk</span><svg viewBox="0 0 14 9" aria-hidden="true"><path d="M1 1l6 6 6-6"/></svg></button>
-          <ul class="nav__sub" id="sub-werk"><li><a href="/werk/">Recente projecten</a></li><li><a href="/werk/#bmw-r1200gs-adventure">BMW R1200GS Adventure</a></li><li><a href="/werk/#instagram">Volg ons op Instagram</a></li></ul>
-        </li>
-        <li class="nav__item">
-          <a class="nav__link" href="/over-ons/">Over ons</a>
-          <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="sub-over-ons"><span class="sr-only">Submenu Over ons</span><svg viewBox="0 0 14 9" aria-hidden="true"><path d="M1 1l6 6 6-6"/></svg></button>
-          <ul class="nav__sub" id="sub-over-ons"><li><a href="/over-ons/">Ons verhaal</a></li><li><a href="/over-ons/#werkplaats">Monteur &amp; werkplaats</a></li><li><a href="/over-ons/#werkwijze">Zo werken wij</a></li><li><a href="/over-ons/#werkgebied">Werkgebied</a></li><li><a href="/#reviews">Reviews</a></li></ul>
-        </li>
-        <li class="nav__item">
-          <a class="nav__link" href="/contact/">Contact</a>
-          <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="sub-contact"><span class="sr-only">Submenu Contact</span><svg viewBox="0 0 14 9" aria-hidden="true"><path d="M1 1l6 6 6-6"/></svg></button>
-          <ul class="nav__sub" id="sub-contact"><li><a href="/contact/#afspraak">Afspraak maken</a></li><li><a href="/contact/#adres">Adres &amp; route</a></li><li><a href="/contact/#openingstijden">Openingstijden</a></li></ul>
-        </li>
-      </ul>
+    <nav class="nav nav--simple" id="hoofdmenu" aria-label="Hoofdmenu">
+      <ul class="nav__list"><li class="nav__item"><a class="nav__link" href="/" data-home aria-current="page">Home</a></li><li class="nav__item"><a class="nav__link" href="/afspraak/">Afspraak</a></li><li class="nav__item"><a class="nav__link" href="/banden/">Banden</a></li><li class="nav__item"><a class="nav__link" href="/contact/">Contact</a></li></ul>
     </nav>
+    <button class="mchip" type="button" data-motor-chip hidden><svg class="mchip__ico" viewBox="0 0 26 16" aria-hidden="true"><circle cx="5" cy="11" r="4"/><circle cx="21" cy="11" r="4"/><path d="M5 11l5-5h6l5 5M14 6l2-3h3"/></svg><span class="mchip__txt" data-motor-chip-txt></span></button>
     <nav class="lang" aria-label="Taal"><a href="/" lang="nl" hreflang="nl" title="Nederlands" aria-current="true">NL</a><a href="/en/" lang="en" hreflang="en" title="English">EN</a></nav>
-    <a class="btn btn--wa" href="https://wa.me/31642939555?text=Hoi%20OG%20MotoWorks%21%20Ik%20wil%20graag%20een%20afspraak%20maken.%0AKenteken%3A%20%0AMerk%2Fmodel%3A%20%0ABouwjaar%3A%20%0AKilometerstand%3A%20%0AVraag%3A%20" target="_blank" rel="noopener" aria-label="App ons via WhatsApp">
-      <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg><span class="btn__txt">App ons</span>
-    </a>
     <button class="nav-burger" type="button" aria-expanded="false" aria-controls="hoofdmenu" aria-label="Menu openen"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="b-open" d="M3 6h18M3 12h18M3 18h18"/><path class="b-close" d="M5 5l14 14M19 5L5 19"/></svg></button>
   </div>
 </header>
 
-<main id="top">
-  <section class="hero">
-    <div class="wrap hero__grid">
-      <div>
-        <h1><span class="kicker" style="display:block">Motorwerkplaats Waalwijk</span> Onderhoud, tuning <em>&amp;</em> reparaties voor je motor</h1>
-        <p class="lead">Motorwerkplaats OG MotoWorks in Waalwijk. Stuur ons een appje en we plannen het samen in.</p>
-        <div class="mp" id="kies-je-motor" data-motorpick="mp" data-title="Kies je motor">
-          <div class="mp__ctas" data-mp-cta>
-            <a class="btn btn--wa" href="https://wa.me/31642939555?text=Hoi%20OG%20MotoWorks%21%20Ik%20wil%20graag%20een%20afspraak%20maken.%0AKenteken%3A%20%0AMerk%2Fmodel%3A%20%0ABouwjaar%3A%20%0AKilometerstand%3A%20%0AVraag%3A%20" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>App ons over je motor</a>
-            <a class="btn btn--ghost" href="/diensten/">Wat we doen</a>
-          </div>
-        </div>
-        <div class="hero__cta">
-          <a class="btn btn--wa btn--xl" href="https://wa.me/31642939555?text=Hoi%20OG%20MotoWorks%21%20Ik%20wil%20graag%20een%20afspraak%20maken.%0AKenteken%3A%20%0AMerk%2Fmodel%3A%20%0ABouwjaar%3A%20%0AKilometerstand%3A%20%0AVraag%3A%20" target="_blank" rel="noopener">
-            <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>App voor een afspraak
-          </a>
-          <a class="btn btn--ghost btn--xl" href="#prijzen">Bekijk prijzen</a>
-        </div>
-        <ul class="facts">
-          <li>Arbeid €60 per uur</li>
-          <li>Prijzen incl. btw</li>
-          <li>± 50 km rond Waalwijk</li>
-        </ul>
-      </div>
-      <figure class="hero__photo hero__photo--full" style="margin:0">
-        <picture>
-          <source type="image/webp" srcset="assets/img/og-motoworks-werkplaats-ktm-waalwijk-640.webp 640w, assets/img/og-motoworks-werkplaats-ktm-waalwijk-1122.webp 1122w" sizes="(min-width:900px) 460px, 100vw">
-          <img src="assets/img/og-motoworks-werkplaats-ktm-waalwijk-1122.jpg" srcset="assets/img/og-motoworks-werkplaats-ktm-waalwijk-640.jpg 640w, assets/img/og-motoworks-werkplaats-ktm-waalwijk-1122.jpg 1122w" sizes="(min-width:900px) 460px, 100vw" width="1122" height="1402" style="object-position:50% 30%" alt="Monteur van OG MotoWorks met een zwarte KTM Super Duke voor de werkplaats (units 58 en 59) in Waalwijk, met een vliegtuigje met OG MotoWorks-banner in de lucht" fetchpriority="high" decoding="async">
-        </picture>
-        <!-- Bijschrift toevoegen? Zet hier: <figcaption>Korte tekst</figcaption> -->
-      </figure>
-    </div>
-  </section>
-
-  <section class="section" id="diensten">
-    <div class="wrap">
-      <span class="kicker">Diensten</span>
-      <h2>Wat we doen</h2>
-      <p class="lead">Van een onderhoudsbeurt tot een lastige storing: alles voor je motor, in Waalwijk.</p>
-      <div class="cards">
-        <article class="card">
-          <svg class="big" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.2L3 17.8V21h3.2l6.3-6.3a4 4 0 0 0 5.2-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/></svg>
-          <h3>Onderhoud</h3>
-          <p>Periodiek onderhoud zodat je zorgeloos blijft rijden. Ketting, banden en voorvork horen erbij.</p>
-          <a class="link" href="/diensten/onderhoud/">Meer over onderhoud →</a>
-        </article>
-        <article class="card">
-          <svg class="big" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21a9 9 0 1 1 9-9"/><path d="M12 12l5-4"/><circle cx="12" cy="12" r="1.5"/><path d="M3.5 12h2M12 3.5v2M18.5 12h2"/></svg>
-          <h3>Tuning</h3>
-          <p>Afstellen en finetunen, zodat je motor weer soepel en strak loopt.</p>
-          <a class="link" href="/diensten/tuning/">Meer over tuning →</a>
-        </article>
-        <article class="card">
-          <svg class="big" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l6-6M14 4l6 6M9 9l6 6M12 6l6 6-3 3-6-6z"/><path d="M4 20l2 0 0-2"/></svg>
-          <h3>Reparaties</h3>
-          <p>Loopt hij niet lekker of lekt er iets? We zoeken het uit en maken het.</p>
-          <a class="link" href="/diensten/reparatie/">Meer over reparaties →</a>
-        </article>
-      </div>
-      <ul class="tags" aria-label="Voorbeelden van werk">
-        <li><a href="/diensten/kettingset/">Kettingset vervangen</a></li>
-        <li><a href="/diensten/voorvorkkeerringen/">Voorvorkkeerringen vervangen</a></li>
-        <li><a href="/banden/">Banden monteren</a></li>
-        <li><a href="/diensten/tuning/">Carburateurs reinigen &amp; synchroniseren</a></li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="section section--alt" id="prijzen">
-    <div class="wrap">
-      <span class="kicker">Prijzen</span>
-      <h2>Duidelijke prijzen</h2>
-      <p class="lead">Vooraf weten waar je aan toe bent. Dit zijn ons uurtarief, de montageprijs en onze vanaf-prijzen (richtprijzen).</p>
-      <ul class="prices">
-        <li><span class="what">Arbeid<small>Uurtarief werkplaats</small></span><span class="amount">€60<span>/ uur</span></span></li>
-        <li><span class="what">Kettingset vervangen<small>Prijs afhankelijk van je motor</small></span><span class="amount"><small>vanaf</small>€150</span></li>
-        <li><span class="what">Voorvorkkeerringen vervangen<small>Bij een lekkende voorvork</small></span><span class="amount"><small>vanaf</small>€350</span></li>
-        <li><span class="what">Banden monteren<small>Banden worden apart berekend</small></span><span class="amount">€50<span>/ wiel</span></span></li>
-      </ul>
-      <p class="note"><strong>Alle prijzen zijn incl. 21% btw.</strong> Iets anders nodig? <a class="link" data-wa-intent="prijs" href="https://wa.me/31642939555?text=Hoi%20OG%20MotoWorks%21%20Ik%20wil%20graag%20een%20prijs%20weten%20voor%3A%20" target="_blank" rel="noopener">App je vraag</a> voor een prijs op maat. <a class="link" href="/tarieven/">Alle tarieven →</a></p>
-    </div>
-  </section>
-
-  <section class="section" id="zo-werken-wij"><div class="wrap"><span class="kicker">Geen verrassingen</span><h2>Zo werken wij</h2><ol class="steps"><li><h3>App ons met je motor</h3><p>Merk, model, bouwjaar en wat er speelt. Via de site staat je bericht al klaar.</p></li><li><h3>Prijs en planning</h3><p>Je hoort vooraf wat het ongeveer kost en wanneer je terechtkunt.</p></li><li><h3>Foto-updates tijdens het werk</h3><p>We sturen foto's via WhatsApp, zodat je ziet wat wij zien.</p></li><li><h3>Extra werk alleen na akkoord</h3><p>Vinden we iets anders, dan overleggen we eerst. Zonder jouw akkoord doen we niets extra.</p></li><li><h3>Duidelijke factuur</h3><p>Arbeid en onderdelen staan apart op je factuur.</p></li></ol></div></section>
-
-  <section class="section" id="werk">
-    <div class="wrap">
-      <span class="kicker">Recent werk</span>
-      <h2>Net uit de werkplaats</h2>
-      <div class="job">
-        <div class="job__meta">
-          <h3>BMW R1200GS Adventure (2008)</h3>
-          <p>Oliebeurt voor een motorweekend in het buitenland. Daarnaast gaf het dashboard de neutraalstand niet meer aan: motor uitgelezen, schakelwaardes gereset en de versnellingsposities opnieuw ingeleerd. Alles wordt weer correct weergegeven.</p>
-          <a class="link" href="https://www.instagram.com/og_motoworks/p/DdpJSUMDkw2/" target="_blank" rel="noopener">Bekijk op Instagram →</a>
-        </div>
-        <figure class="photo photo--wide">
-          <picture><source type="image/webp" srcset="assets/img/og-motoworks-bmw-r1200gs-adventure-640.webp 640w, assets/img/og-motoworks-bmw-r1200gs-adventure-1086.webp 1086w" sizes="(min-width:1140px) 1100px, 100vw"><img src="assets/img/og-motoworks-bmw-r1200gs-adventure-1086.jpg" srcset="assets/img/og-motoworks-bmw-r1200gs-adventure-640.jpg 640w, assets/img/og-motoworks-bmw-r1200gs-adventure-1086.jpg 1086w" sizes="(min-width:1140px) 1100px, 100vw" width="1086" height="1448" loading="lazy" decoding="async" style="object-position:50% 80%" alt="BMW R1200GS Adventure (2008) na onderhoud door OG MotoWorks, buiten in de natuur"></picture>
-          <!-- Bijschrift toevoegen? Zet hier: <figcaption>Korte tekst</figcaption> -->
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--alt" id="waarom">
-    <div class="wrap">
-      <span class="kicker">Waarom OG MotoWorks</span>
-      <h2>Gewoon goed geregeld</h2>
-      <div class="area area--why">
-        <figure class="photo photo--portrait">
-          <picture><source type="image/webp" srcset="assets/img/og-motoworks-bmw-r1200gs-werkplaats-600.webp 600w, assets/img/og-motoworks-bmw-r1200gs-werkplaats-941.webp 941w" sizes="(min-width:900px) 520px, 100vw"><img src="assets/img/og-motoworks-bmw-r1200gs-werkplaats-941.jpg" srcset="assets/img/og-motoworks-bmw-r1200gs-werkplaats-600.jpg 600w, assets/img/og-motoworks-bmw-r1200gs-werkplaats-941.jpg 941w" sizes="(min-width:900px) 520px, 100vw" width="941" height="1672" loading="lazy" decoding="async" style="object-position:50% 28%" alt="Monteur van OG MotoWorks in de werkplaats in Waalwijk met een diagnosetablet bij een BMW R1200GS Adventure"></picture>
-          <figcaption>BMW R1200GS Adventure wordt uitgelezen</figcaption>
-        </figure>
-        <div class="why why--duo">
-          <div class="card"><h3>Direct contact</h3><p>Je appt rechtstreeks met ons. Kort lijntje, snel duidelijk.</p></div>
-          <div class="card"><h3>Heldere prijzen</h3><p>Uurtarief en vanaf-prijzen, altijd incl. btw.</p></div>
-          <div class="card"><h3>Alles onder één dak</h3><p>Onderhoud, tuning én reparaties op één adres.</p></div>
-          <div class="card"><h3>Lokaal</h3><p>In Waalwijk, voor motorrijders uit de regio.</p></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="werkgebied">
-    <div class="wrap area">
-      <div>
-        <span class="kicker">Werkgebied</span>
-        <h2>Waalwijk en ± 50 km</h2>
-        <p class="lead">Rijd je in de regio? Dan ben je welkom. We helpen motorrijders binnen zo'n 50 km rond Waalwijk: van Sprang-Capelle en Kaatsheuvel tot Tilburg en <span style="white-space:nowrap">'s-Hertogenbosch</span>.</p>
-        <ul class="towns">
-          <li class="home">Waalwijk</li>
-          <li>'s-Hertogenbosch</li>
-          <li>Tilburg</li>
-          <li>Kaatsheuvel</li>
-          <li>Drunen</li>
-          <li>Sprang-Capelle</li>
-          <li>Loon op Zand</li>
-          <li>Oosterhout</li>
-        </ul>
-      </div>
-      <div class="radar" aria-hidden="true">
-        <svg viewBox="0 0 200 200">
-          <circle cx="100" cy="100" r="96" fill="none" stroke="#2a2e34" stroke-width="1.5"/>
-          <circle cx="100" cy="100" r="66" fill="none" stroke="#2a2e34" stroke-width="1.5" stroke-dasharray="4 5"/>
-          <circle cx="100" cy="100" r="46" fill="rgba(225,37,27,.12)" stroke="#e1251b" stroke-width="1.5"/>
-          <path d="M100 4v192M4 100h192" stroke="#1f2227" stroke-width="1"/>
-        </svg>
-        <div class="radar__label"><b>50 km</b><span>rond Waalwijk</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="reviews">
-    <div class="wrap">
-      <span class="kicker">Reviews</span>
-      <h2>Wat klanten zeggen</h2>
-      <div class="rating">
-        <span class="rating__score">4,7</span>
-        <span class="stars stars--lg" style="--rating:4.7" role="img" aria-label="4,7 van 5 sterren"></span>
-        <span class="rating__meta">4,7 / 5 op Google · 28 reviews</span>
-      </div>
-      <div class="reviews">
-        <figure class="card review">
-          <div class="review__head"><span class="stars" style="--rating:5" role="img" aria-label="5 van 5 sterren"></span><span class="review__date">een week geleden</span></div>
-          <blockquote><p>Ik had een lekke band en gelukkig kon ik dezelfde dag nog terecht bij OG Motoworks. De communicatie verloopt erg fijn en er word graag meegedacht naar een passende oplossing wat ik niet echt gewend was bij andere garages die liever kozen voor de duurste oplossing. Ik kom zeker terug voor mijn onderhoud in de toekomst. Top bedrijf!</p></blockquote>
-          <figcaption>Ismael B.</figcaption>
-        </figure>
-        <figure class="card review">
-          <div class="review__head"><span class="stars" style="--rating:5" role="img" aria-label="5 van 5 sterren"></span><span class="review__date">een maand geleden</span></div>
-          <blockquote><p>Goede service, werkt best snel! Denkt graag met je mee en is eerlijk in adviezen!</p></blockquote>
-          <figcaption>Dyrich V.</figcaption>
-        </figure>
-        <figure class="card review">
-          <div class="review__head"><span class="stars" style="--rating:5" role="img" aria-label="5 van 5 sterren"></span><span class="review__date">een maand geleden</span></div>
-          <blockquote><p>Met al mijn motoren ben ik hier altijd welkom. Er wordt altijd duidelijk gecommuniceerd en kan er zeker altijd met spoed terecht indien dat echt noodzakelijk is voor mijn werk! Afspraken worden ook altijd nagekomen zoals het is beloofd! Zeker een aanrader voor als je een juiste motor monteur zoekt!!!!!</p></blockquote>
-          <figcaption>Emin U.</figcaption>
-        </figure>
-        <figure class="card review">
-          <div class="review__head"><span class="stars" style="--rating:5" role="img" aria-label="5 van 5 sterren"></span><span class="review__date">een maand geleden</span></div>
-          <blockquote><p>Fijne motorzaak en is bereid om mee te denken! Persoonlijk contact en service. Een aanrader als je een betrouwbaar adres zoekt voor je motorbike!</p></blockquote>
-          <figcaption>Linda G.</figcaption>
-        </figure>
-        <figure class="card review">
-          <div class="review__head"><span class="stars" style="--rating:5" role="img" aria-label="5 van 5 sterren"></span><span class="review__date">3 maanden geleden</span></div>
-          <blockquote><p>Na meerdere teleurstellende ervaringen met grotere shops en dealers, eindelijk iemand gevonden die met passie én oog voor detail werkt. … Kleine shop, persoonlijke aandacht, verstand van zaken, transparantie en een monteur om vaker bij terug te komen!</p></blockquote>
-          <figcaption>Darko A.</figcaption>
-        </figure>
-        <figure class="card review">
-          <div class="review__head"><span class="stars" style="--rating:5" role="img" aria-label="5 van 5 sterren"></span><span class="review__date">Bewerkt: 5 maanden geleden</span></div>
-          <blockquote><p>Mega tevreden! Freddy is kundig, was heel duidelijk in zijn uitleg en heeft echt het beste voor met de klant. Hij neemt de tijd voor je en is geduldig. Fijne, complete communicatie. Zou hem zeker (!) aanraden voor zowel klein en groot onderhoud, als reparatie.</p></blockquote>
-          <figcaption>Pleun van D.</figcaption>
-        </figure>
-        <figure class="card review">
-          <div class="review__head"><span class="stars" style="--rating:5" role="img" aria-label="5 van 5 sterren"></span><span class="review__date">9 maanden geleden</span></div>
-          <blockquote><p>Ik kom regelmatig bij OG Motoworks voor onderhoud aan mijn motor. Er wordt echt de tijd genomen om goed naar eventuele problemen te kijken en een gepaste oplossing hiervoor te vinden. Naast het onderhouden en repareren van mijn FZ6 krijg ik ook goed advies en duidelijke antwoorden op de vragen die ik heb. Kortom: een aanrader</p></blockquote>
-          <figcaption>Ili H.</figcaption>
-        </figure>
-        <figure class="card review">
-          <div class="review__head"><span class="stars" style="--rating:5" role="img" aria-label="5 van 5 sterren"></span><span class="review__date">2 jaar geleden</span></div>
-          <blockquote><p>Al meerdere malen hier geweest, onderhoud, olie lekkage, nieuwe bandjes. Elke keer alles netjes geregeld. Goede prijs, wordt netjes op de hoogte gehouden en alle puntjes op de i worden waargemaakt. Schoon, vakkundig en snel!</p></blockquote>
-          <figcaption>Robin Van D.</figcaption>
-        </figure>
-      </div>
-      <p class="note">Reviews letterlijk overgenomen van ons Google Bedrijfsprofiel (stand 1 oktober 2026); lange reviews ingekort met “…”.</p>
-      <div class="hero__cta" style="margin-top:22px">
-        <a class="btn btn--wa btn--xl" href="https://share.google/mfVz03Qhs4EkLpyDO" target="_blank" rel="noopener">Bekijk alle reviews op Google</a>
-        <a class="btn btn--ghost btn--xl" href="https://g.page/r/CcwNZlk_nz-kEBM/review" target="_blank" rel="noopener">Schrijf een review</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--alt" id="over-ons">
-    <div class="wrap">
-      <span class="kicker">Over ons</span>
-      <h2>Van de schuur naar de werkplaats</h2>
-      <div class="area area--over">
-        <div class="over__text">
-          <p class="lead">"Waarom?" Die vraag stel ik al zolang ik sleutel.</p>
-          <p>Ik ben Freddy Oliveira Gomes, de OG van OG MotoWorks. Ik kom uit Rotterdam en ben opgegroeid naast mijn vader in de autogarage, met olie aan mijn handen. Op mijn 21e haalde ik mijn motorrijbewijs, en vanaf dat moment draaide alles om motoren.</p>
-          <p>Ik neem een werkplaatshandboek nooit zomaar over. Ik wil weten waarom een band trilt, waarom je een ketting smeert en wat er gebeurt als je je olie laat zitten. Die nieuwsgierigheid viel op. Vrienden kwamen met hun motor naar mij, en later ook hun vrienden. Tot er een zei: "Freddy, waarom begin je hier geen bedrijf mee?"</p>
-          <p>Zo begon het in de schuur thuis. Sinds januari 2026 hebben we onze eigen werkplaats in Waalwijk, en ik blijf investeren in gereedschap, apparatuur en kennis.</p>
-          <p><strong>Geen dealerprijzen, wel eerlijk advies.</strong> Veel motorrijders voelen zich bij de dealer niet gehoord, en daar wordt vaak meteen vervangen tegen nieuwprijs. Wij kijken eerst of het gerepareerd kan worden, of een goed tweedehands onderdeel ook kan, en wat jij echt nodig hebt. Dat geldt ook voor banden: scheur je elke bocht zo diep mogelijk door, of wil je vooral veel kilometers? Wij vertalen jouw rijstijl naar het juiste product.</p>
-          <p>Mijn eerste motor was een Suzuki GSX-R 1000 uit 2002. Daarna kwamen een Suzuki GSR 750 uit 2006, een Yamaha XT660 en een Honda VTR 1000 F Firestorm, en met die Firestorm begon mijn liefde voor V2-blokken. Nu rijd ik een gitzwarte KTM 1290 Super Duke R uit 2019.</p>
-          <h3>Waarom ik dit doe</h3>
-          <p>Een motor is voor de meeste rijders veel meer dan vervoer. Het is vrijheid, je hoofd leegmaken, op zondag een rondje met vrienden. Dan wil je kunnen vertrouwen op wat je onder je hebt. Daarom vind ik niets mooier dan een probleem kraken waar een ander niet uitkomt. Dat rare tikje, die trilling die niemand kon vinden, die storing die steeds terugkomt. Uitzoeken waar het echt zit, het netjes oplossen en de klant uitleggen wat er aan de hand was.</p>
-          <p>En dan dat moment bij het ophalen. Iemand stapt op, start zijn motor, en je ziet aan zijn gezicht dat het weer goed voelt. Dat hij weer met een gerust hart de weg op gaat, zonder zorgen, zonder dat hij te veel heeft betaald. Daar doe ik het voor. Elke motor die hier binnenkomt, behandel ik alsof het mijn eigen is.</p>
-          <div class="over__cta">
-            <a class="btn btn--wa btn--xl" href="https://wa.me/31642939555?text=Hoi%20OG%20MotoWorks%21%20Ik%20wil%20graag%20een%20afspraak%20maken.%0AKenteken%3A%20%0AMerk%2Fmodel%3A%20%0ABouwjaar%3A%20%0AKilometerstand%3A%20%0AVraag%3A%20" target="_blank" rel="noopener">
-              <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>App ons
-            </a>
-          </div>
-        </div>
-        <figure class="photo photo--over">
-          <picture><source type="image/webp" srcset="assets/img/og-motoworks-werkplaats-ktm-waalwijk-640.webp 640w, assets/img/og-motoworks-werkplaats-ktm-waalwijk-1122.webp 1122w" sizes="(min-width:900px) 520px, 100vw"><img src="assets/img/og-motoworks-werkplaats-ktm-waalwijk-1122.jpg" srcset="assets/img/og-motoworks-werkplaats-ktm-waalwijk-640.jpg 640w, assets/img/og-motoworks-werkplaats-ktm-waalwijk-1122.jpg 1122w" sizes="(min-width:900px) 520px, 100vw" width="1122" height="1402" loading="lazy" decoding="async" style="object-position:50% 40%" alt="Freddy Oliveira Gomes van OG MotoWorks met zijn zwarte KTM 1290 Super Duke R voor de werkplaats in Waalwijk"></picture>
-          <!-- Bijschrift toevoegen? Zet hier: <figcaption>Korte tekst</figcaption> -->
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--alt" id="contact">
-    <div class="wrap">
-      <span class="kicker">Contact</span>
-      <h2>Afspraak maken?</h2>
-      <p class="lead">WhatsApp werkt het snelst. Zet merk, model en bouwjaar erbij, dan weten we meteen waar het om gaat.</p>
-      <div class="contact">
-        <div class="contact__main">
-          <p style="margin:0">WhatsApp ons</p>
-          <a class="num" href="https://wa.me/31642939555?text=Hoi%20OG%20MotoWorks%21%20Ik%20wil%20graag%20een%20afspraak%20maken.%0AKenteken%3A%20%0AMerk%2Fmodel%3A%20%0ABouwjaar%3A%20%0AKilometerstand%3A%20%0AVraag%3A%20" target="_blank" rel="noopener">+31 6 42 93 95 55</a>
-          <a class="btn btn--wa btn--xl" href="https://wa.me/31642939555?text=Hoi%20OG%20MotoWorks%21%20Ik%20wil%20graag%20een%20afspraak%20maken.%0AKenteken%3A%20%0AMerk%2Fmodel%3A%20%0ABouwjaar%3A%20%0AKilometerstand%3A%20%0AVraag%3A%20" target="_blank" rel="noopener">
-            <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>Stuur een appje
-          </a>
-        </div>
-        <dl class="dl">
-          <div><dt>Adres</dt><dd><a href="https://www.google.com/maps/search/?api=1&amp;query=Professor+Zeemanweg+6-10%2C+5144+NN+Waalwijk" target="_blank" rel="noopener"><span>Professor <span style="white-space:nowrap">Zeemanweg 6-10</span></span></a><br><span class="muted" style="margin-left:0">5144&nbsp;NN Waalwijk</span></dd></div>
-          <div><dt>Open</dt><dd>Wij werken op afspraak. App ons voor een afspraak.</dd></div>
-          <div><dt>E-mail</dt><dd><a href="mailto:info@ogmotoworks.nl">info@ogmotoworks.nl</a></dd></div>
-          <div><dt>Instagram</dt><dd><a href="https://www.instagram.com/og_motoworks" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-ig"/></svg>@og_motoworks</a></dd></div>
-        </dl>
+<main id="top" class="home">
+  <section class="home__hero">
+    <div class="wrap home__grid">
+      <figure class="home__photo"><picture><source type="image/webp" srcset="/assets/img/og-motoworks-werkplaats-ktm-waalwijk-640.webp 640w, /assets/img/og-motoworks-werkplaats-ktm-waalwijk-1122.webp 1122w" sizes="(min-width:900px) 480px, 100vw"><img src="/assets/img/og-motoworks-werkplaats-ktm-waalwijk-1122.jpg" srcset="/assets/img/og-motoworks-werkplaats-ktm-waalwijk-640.jpg 640w, /assets/img/og-motoworks-werkplaats-ktm-waalwijk-1122.jpg 1122w" sizes="(min-width:900px) 480px, 100vw" width="1122" height="1402" alt="Monteur van OG MotoWorks met een zwarte KTM Super Duke voor de werkplaats (units 58 en 59) in Waalwijk, met een vliegtuigje met OG MotoWorks-banner in de lucht" fetchpriority="high" decoding="async"></picture></figure>
+      <div class="home__intro">
+        <div class="home__head"><picture class="home__logo"><source srcset="/assets/img/logo-192.webp" type="image/webp"><img src="/assets/img/logo-192.png" width="192" height="192" alt="OG MotoWorks"></picture>
+        <h1 class="home__zin">Motorwerkplaats in Waalwijk voor onderhoud, reparaties en banden, met eerlijk advies.</h1></div>
+        <nav class="home__btns" aria-label="Snel naar">
+          <a class="btn btn--xl btn--primary" href="/afspraak/"><svg class="ico ico--line" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M8 14.5l2.5 2.5 5-5"/></svg><span>Afspraak maken</span></a>
+          <a class="btn btn--xl btn--ghost" href="/banden/"><svg class="ico ico--line" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.5"/><path d="M12 3v5.5M12 15.5V21M3 12h5.5M15.5 12H21"/></svg><span>Banden kiezen</span></a>
+          <a class="btn btn--xl btn--ghost" href="/over-ons/"><svg class="ico ico--line" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17.5" cy="9" r="2.5"/><path d="M16 14.3a5 5 0 0 1 5.5 4.9"/></svg><span>Over ons</span></a>
+        </nav>
       </div>
     </div>
   </section>
@@ -418,7 +145,7 @@
       <span><b>OG</b> MotoWorks</span>
     </a>
     <nav aria-label="Footer">
-      <a href="/diensten/">Diensten</a><a href="/banden/">Banden</a><a href="/tarieven/">Tarieven</a><a href="/problemen/">Problemen</a><a href="/werk/">Werk</a><a href="/over-ons/">Over ons</a><a href="/#reviews">Reviews</a><a href="/contact/">Contact</a>
+      <a href="/afspraak/">Afspraak maken</a><a href="/banden/">Banden</a><a href="/diensten/">Diensten</a><a href="/tarieven/">Tarieven</a><a href="/problemen/">Problemen</a><a href="/werk/">Werk</a><a href="/over-ons/">Over ons</a><a href="/over-ons/#reviews">Reviews</a><a href="/contact/">Contact</a>
       <a href="https://www.instagram.com/og_motoworks" target="_blank" rel="noopener">Instagram</a><a href="/privacy/">Privacy</a>
     </nav>
     <p class="footer__nap">OG MotoWorks · <a href="https://www.google.com/maps/search/?api=1&amp;query=Professor+Zeemanweg+6-10%2C+5144+NN+Waalwijk" target="_blank" rel="noopener">Professor Zeemanweg 6-10, 5144&nbsp;NN Waalwijk</a> · <a href="tel:+31642939555">06 42 93 95 55</a></p>
@@ -427,8 +154,8 @@
   </div>
 </footer>
 
-<a class="fab" href="https://wa.me/31642939555?text=Hoi%20OG%20MotoWorks%21%20Ik%20wil%20graag%20een%20afspraak%20maken.%0AKenteken%3A%20%0AMerk%2Fmodel%3A%20%0ABouwjaar%3A%20%0AKilometerstand%3A%20%0AVraag%3A%20" target="_blank" rel="noopener" aria-label="WhatsApp OG MotoWorks">
-  <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>
+<a class="fab" href="https://wa.me/31642939555?text=Hoi%20OG%20MotoWorks%21%20Ik%20wil%20graag%20een%20afspraak%20maken.%0AKenteken%3A%20%0AMerk%2Fmodel%3A%20%0ABouwjaar%3A%20%0AKilometerstand%3A%20%0AVraag%3A%20" target="_blank" rel="noopener" aria-label="App ons via WhatsApp">
+  <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg><span class="fab__txt">App ons</span>
 </a>
 <dialog class="sheet" id="wa-dialog" aria-labelledby="wa-title" aria-describedby="wa-desc">
   <form class="sheet__panel" id="wa-form" novalidate>
@@ -555,10 +282,10 @@
     </div>
   </form>
 </dialog>
-<script src="assets/js/combo.js" defer></script>
-<script src="assets/js/motor.js" defer></script>
-<script src="assets/js/wa-form.js" defer></script>
-<script src="assets/js/nav.js" defer></script>
+<script src="/assets/js/combo.js" defer></script>
+<script src="/assets/js/motor.js" defer></script>
+<script src="/assets/js/wa-form.js" defer></script>
+<script src="/assets/js/nav.js" defer></script>
 <!-- Bezoekersteller: GoatCounter (cookieloos, geen persoonsgegevens) -->
 <script data-goatcounter="https://ogmotoworks.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
