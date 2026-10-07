@@ -231,11 +231,26 @@
   // ---------- weergave ----------
   var adv = null; // huidig advies (per render berekend)
   function info(id, lab) { return '<button type="button" class="bm__i" data-pop="' + id + '" aria-label="' + esc(lab) + '" aria-haspopup="dialog">i</button>'; }
+  // Rijstijl-iconen bij de typeknoppen (redesign, <body data-ui="v2">; verzoek Freddy 7 okt 2026). Alleen weergave: de typen, de banden en
+  // de adviesregels blijven precies gelijk. Koppeling rijstijl -> bandtype volgt het eerste type per categorie in de adviesregels
+  // (klassiek -> Toer, toer/GT -> Sporttoer, sport + naked -> Sport, circuit -> Hypersport, adventure -> Adventure).
+  var V2UI = document.body && document.body.getAttribute('data-ui') === 'v2';
+  var STIJL = { toer: [['klassiek'], 'klassiek · café racer'], sporttoer: [['toer'], 'toer · GT · allround'], sport: [['sport', 'naked'], 'sport · naked'],
+                hypersport: [['race'], 'race · circuit'], adventure: [['adventure'], 'adventure · allroad'] };
+  function stijlIco(sil) {
+    return '<svg class="bm__ico" viewBox="0 0 240 140" aria-hidden="true" data-stijl="' + sil + '"><g class="w"><circle cx="55" cy="106" r="27"/><circle cx="187" cy="106" r="27"/></g>' +
+      '<g class="b">' + OGMotor.sil(sil) + '</g></svg>';
+  }
+  function typeLabel(val, txt) {
+    var st = V2UI && STIJL[val] && OGMotor.sil ? STIJL[val] : null;
+    if (!st) return esc(txt);
+    return '<span class="bm__icos">' + st[0].map(stijlIco).join('') + '</span><span class="bm__tl">' + esc(txt) + '</span><span class="bm__tsub">' + esc(T(st[1])) + '</span>';
+  }
   function chip(kind, val, txt, extra) {
     var on = state.f[kind] === val, merk = kind === 'merk' ? val : state.f.merk, type = kind === 'type' ? val : state.f.type;
     var ok = leverbaar(merk, type), isAdv = adv && (kind === 'type' ? adv.type === val : POS.some(function (p) { var i = adv.idx[p]; return i != null && lijst(p)[i] && lijst(p)[i].merk === val; }));
     return '<button type="button" class="bm__chip' + (isAdv ? ' has-adv' : '') + '" id="bm-f-' + kind + '-' + esc(val) + '" data-f="' + kind + '" data-v="' + esc(val) + '" aria-pressed="' + on + '"' + (ok ? '' : ' disabled') + '>' +
-      esc(txt) + (isAdv ? '<span class="bm__badge">' + T('Advies') + '</span>' : '') + (ok ? '' : '<span class="sr-only"> – ' + NL + '</span>') + '</button>';
+      (kind === 'type' ? typeLabel(val, txt) : esc(txt)) + (isAdv ? '<span class="bm__badge">' + T('Advies') + '</span>' : '') + (ok ? '' : '<span class="sr-only"> – ' + NL + '</span>') + '</button>';
   }
   function filtersHTML() {
     if (!assort) return '';
@@ -243,7 +258,7 @@
     var t = assort.types.map(function (x) { return chip('type', x[0], T(x[1])); }).join('');
     var actief = state.f.merk || state.f.type || state.f.q;
     return '<div class="bm__frow"><div class="bm__fkop" id="bm-f-merk-kop">' + T('Merk') + ' ' + info('merk', T('Uitleg over A-merken en budgetmerken')) + '</div><div class="bm__chips" role="group" aria-labelledby="bm-f-merk-kop">' + m + '</div></div>' +
-      '<div class="bm__frow"><div class="bm__fkop" id="bm-f-type-kop">' + T('Type') + ' ' + info('type', T('Uitleg over de soorten banden')) + '</div><div class="bm__chips" role="group" aria-labelledby="bm-f-type-kop">' + t + '</div></div>' +
+      '<div class="bm__frow"><div class="bm__fkop" id="bm-f-type-kop">' + T(V2UI ? 'Type (rijstijl)' : 'Type') + ' ' + info('type', T('Uitleg over de soorten banden')) + '</div><div class="bm__chips' + (V2UI ? ' bm__chips--type' : '') + '" role="group" aria-labelledby="bm-f-type-kop">' + t + '</div></div>' +
       '<p class="bm__fnote"><span>' + T('Grijs') + ' = ' + NL + '.</span>' + (actief ? ' <button type="button" class="bm__reset" data-reset>' + T('Alles tonen') + '</button>' : '') + '</p>';
   }
   function rij(p, t, i, isAdv) {

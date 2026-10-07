@@ -226,7 +226,10 @@
     adventure: '<path d="M44 62l52-4 10-12 40-4 20 6-6 16-18 14-6 22h-34l-8-18-32-6z"/><path d="M166 48l18 10-8 4z"/><path class="s" d="M160 44l10-18 8 4M187 106l-21-62M55 106l50-12M110 102h28"/>',
     scooter: '<path d="M38 94l6-26 54-4 6 26h44l12-50 16-6 6 10-10 52-12 12H78z"/><path class="s" d="M164 42l-4-14h14"/>',
     klassiek: '<path d="M44 70l56-4 6-10q18-10 40-2l4 12-16 14-4 24h-28l-8-22-34-2z"/><path class="s" d="M187 106l-21-46M152 46l18-4M55 106l48-8M28 96a30 30 0 0 1 50-14M166 84a30 30 0 0 1 44 14"/><circle cx="168" cy="60" r="9"/>',
-    generiek: '<path d="M46 68l54-6 10-10h30l16 10-10 16-14 8-4 18h-30l-8-20-36-6z"/><path class="s" d="M187 106l-22-50M55 106l48-10"/>'
+    generiek: '<path d="M46 68l54-6 10-10h30l16 10-10 16-14 8-4 18h-30l-8-20-36-6z"/><path class="s" d="M187 106l-22-50M55 106l48-10"/>',
+    // alleen voor het bandenmenu (rijstijl 'race / circuit'): sportmotor met gebukte rijder
+    race: '<path d="M30 58l40 4 34-4 16-12 30-2 26 8 16 20-16 12-26 6-12 14h-38l-10-18-32-4z"/><path class="s" d="M150 44l20-7 10 16M55 106l50-10M187 106l-18-40"/>' +
+          '<path d="M70 50q22-26 64-24l12 14-30 8-12 14-22 0z"/><circle cx="150" cy="24" r="13"/>'
   };
   function motorType(s) { return (s && !s.handmatig && data && data.types && data.types[s.merk] && data.types[s.merk][s.model]) || 'generiek'; }
   function silhouette(type) {
@@ -415,7 +418,7 @@
         '<div class="mp__id"><p class="mp__label">' + T('Jouw motor') + '</p>' +
         '<p class="mp__name" data-motor-label data-rich></p></div>' +
         '<button type="button" class="mp__edit" aria-label="' + T('Wijzig je motor') + '">' + T('Wijzig') + '</button>' +
-        '<fieldset class="klus" data-klus="' + p + '"></fieldset>' +
+        (box.hasAttribute('data-noklus') ? '' : '<fieldset class="klus" data-klus="' + p + '"></fieldset>') +
         '<div class="mp__cta"></div>' +
       '</div>' +
       '<form class="mp__form" novalidate>' +
@@ -433,7 +436,7 @@
     var form = box.querySelector('form'), view = box.querySelector('.mp__view');
     var b = bind(p);
     merkOptions(b.el.merk);
-    renderKlus(box.querySelector('[data-klus]'));
+    if (box.querySelector('[data-klus]')) renderKlus(box.querySelector('[data-klus]'));
     function show(s, focus) {
       var editing = !s;
       view.hidden = editing; form.hidden = !editing;
@@ -441,10 +444,12 @@
       if (s) paintView(s);
       if (focus) (editing ? b.el.merk : view.querySelector('.mp__edit')).focus();
     }
-    view.querySelector('.mp__edit').addEventListener('click', function () {
+    function edit() {
       var s = get(); show(null);
-      load().then(function () { return b.fill(s); }).then(function () { b.el.merk.focus(); });
-    });
+      return load().then(function () { return b.fill(s); }).then(function () { b.el.merk.focus(); });
+    }
+    view.querySelector('.mp__edit').addEventListener('click', edit);
+    box._ogEdit = edit; // motorchip in de header (redesign) opent hiermee de motorkeuze weer
     box.querySelector('.mp__cancel').addEventListener('click', function () { show(get(), true); });
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -473,8 +478,32 @@
     show(get());
   }
 
+  /* ---------- motorchip in de header (redesign, <body data-ui="v2">) ---------- */
+  // Klein label rechtsboven, bv. 'KTM 1290 Super Duke R 2019'. Klik = motorkeuze op deze pagina weer openen; pagina zonder motorkeuze -> /afspraak/.
+  function chipText(s) { return s ? clean([s.merk, s.model, uvTxt(s.uitvoering || ''), s.bouwjaar ? yearText(s.bouwjaar) : ''].join(' ')) : ''; }
+  function paintChip(s) {
+    document.querySelectorAll('[data-motor-chip]').forEach(function (c) {
+      c.hidden = !s; if (!s) return;
+      var t = chipText(s); c.querySelector('[data-motor-chip-txt]').textContent = t; c.title = t;
+      c.setAttribute('aria-label', T('Jouw motor: {naam}. Wijzig je motor', { naam: t }));
+    });
+  }
+  function openPicker() {
+    var box = document.querySelector('.mp--ready[data-motorpick]');
+    if (!box || !box._ogEdit) { location.href = I18N.p('/afspraak/') + '?motor=wijzig#kies-je-motor'; return; }
+    box.scrollIntoView({ block: 'start', behavior: 'smooth' });
+    box._ogEdit();
+  }
+  document.addEventListener('click', function (e) {
+    if (e.target.closest && e.target.closest('[data-motor-chip]')) { e.preventDefault(); openPicker(); }
+    // Home (logo of menu) = altijd de rustige startpagina zonder gekozen motor (verzoek Freddy 7 okt 2026)
+    var a = e.target.closest && e.target.closest('a[data-home]');
+    if (a && !e.defaultPrevented) { try { localStorage.removeItem(KEY); } catch (err) {} }
+  });
+
   /* ---------- labels elders op de pagina ---------- */
   function paint(s) {
+    paintChip(s);
     document.querySelectorAll('[data-motor-label]').forEach(function (n) { if (s) { if (n.hasAttribute('data-rich')) n.innerHTML = richLabel(s); else n.textContent = label(s); } });
     document.querySelectorAll('[data-motor-if]').forEach(function (n) { n.hidden = !s; });
     document.querySelectorAll('[data-motor-unless]').forEach(function (n) { n.hidden = !!s; });
@@ -484,11 +513,17 @@
   on(paint);
 
   window.OGMotor = { T: T, i18n: I18N, uvTxt: uvTxt, load: load, get: get, set: set, clear: clear, label: label, name: name, yearText: yearText,
-                     bind: bind, tip: tip, type: motorType, silhouette: silhouette,
+                     bind: bind, tip: tip, openPicker: openPicker, chipText: chipText, sil: function (t) { return SIL[t] || ''; }, type: motorType, silhouette: silhouette,
                      klus: { list: KLUS, get: klusGet, set: klusSet, add: klusAdd, lines: klusLines, opening: klusOpening, winter: { list: WINTER, set: winterSet, info: winterInfo, vroegboek: vroegboek }, fromDienst: function (d) { return DIENST_KLUS[clean(d)] || null; }, on: function (fn) { klusListeners.push(fn); } }, interval: interval, loadOnderhoud: loadOnderhoud, on: on, OTHER: OTHER, data: function () { return data; } };
 
+  function homeReset() { // homepage (redesign): gekozen motor vergeten; niet als een oud #anker hier net doorstuurt naar een andere pagina
+    if (document.body && document.body.getAttribute('data-page') === 'home' && !document.documentElement.hasAttribute('data-redirect') && get()) clear();
+  }
+  window.addEventListener('pageshow', function (e) { if (e.persisted) homeReset(); });
   function init() {
+    homeReset();
     document.querySelectorAll('[data-motorpick]').forEach(renderPicker);
+    if (/[?&]motor=wijzig\b/.test(location.search)) { var b0 = document.querySelector('.mp--ready[data-motorpick]'); if (b0 && b0._ogEdit) b0._ogEdit(); }
     document.querySelectorAll('[data-klus]').forEach(function (b) { if (!b.children.length) renderKlus(b); });
     paint(get());
   }
