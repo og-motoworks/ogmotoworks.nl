@@ -1,11 +1,77 @@
 {
  "versie": 1,
- "bron": "Startarchief: Google-reviews zoals op de site sinds 1 oktober 2026 (ingekort)",
+ "bron": "Google Maps (Places API New)",
  "place_id": "ChIJwTtwaLGVxkcRzA1mWT-fP6Q",
- "bijgewerkt": "2026-10-01T00:00:00Z",
+ "bijgewerkt": "2026-10-08T21:12:07Z",
  "toon": 8,
  "alle_reviews_url": "https://share.google/mfVz03Qhs4EkLpyDO",
  "reviews": [
+  {
+   "id": "places/ChIJwTtwaLGVxkcRzA1mWT-fP6Q/reviews/Ci9DQUlRQUNvZENodHljRjlvT21waFUyOWhjRVZPVFZCVWVISjRSMGQ1UTJVNFVWRRAB",
+   "naam": "Dyrich Vrutaal",
+   "sterren": 5,
+   "tekst": "Goede service, werkt best snel! Denkt graag met je mee en is eerlijk in adviezen!",
+   "taal": "nl",
+   "datum": "2026-08-29T10:40:01Z",
+   "auteur_url": "https://www.google.com/maps/contrib/109557389570576795570/reviews",
+   "google_url": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sCi9DQUlRQUNvZENodHljRjlvT21waFUyOWhjRVZPVFZCVWVISjRSMGQ1UTJVNFVWRRAB!2m1!1s0x47c695b168703bc1:0xa43f9f3f59660dcc",
+   "bron": "google",
+   "seed": {
+    "id": "seed-2",
+    "naam": "Dyrich V.",
+    "sterren": 5,
+    "tekst": "Goede service, werkt best snel! Denkt graag met je mee en is eerlijk in adviezen!",
+    "taal": "nl",
+    "datum": "",
+    "auteur_url": "",
+    "google_url": "",
+    "bron": "seed"
+   }
+  },
+  {
+   "id": "places/ChIJwTtwaLGVxkcRzA1mWT-fP6Q/reviews/Ci9DQUlRQUNvZENodHljRjlvT2psRGVWQnhTMTl1T0c0MGJETnZNVk5mYm01UFZYYxAB",
+   "naam": "Emin Ugur",
+   "sterren": 5,
+   "tekst": "Met al mijn motoren ben ik hier altijd welkom. Er wordt altijd duidelijk gecommuniceerd en kan er zeker altijd met spoed terecht indien dat echt noodzakelijk is voor mijn werk! Afspraken worden ook altijd nagekomen zoals het is beloofd! Zeker een aanrader voor als je een juiste motor monteur zoekt!!!!!",
+   "taal": "nl",
+   "datum": "2026-08-26T14:21:06Z",
+   "auteur_url": "https://www.google.com/maps/contrib/104828337829802619636/reviews",
+   "google_url": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sCi9DQUlRQUNvZENodHljRjlvT2psRGVWQnhTMTl1T0c0MGJETnZNVk5mYm01UFZYYxAB!2m1!1s0x47c695b168703bc1:0xa43f9f3f59660dcc",
+   "bron": "google",
+   "seed": {
+    "id": "seed-3",
+    "naam": "Emin U.",
+    "sterren": 5,
+    "tekst": "Met al mijn motoren ben ik hier altijd welkom. Er wordt altijd duidelijk gecommuniceerd en kan er zeker altijd met spoed terecht …",
+    "taal": "nl",
+    "datum": "",
+    "auteur_url": "",
+    "google_url": "",
+    "bron": "seed"
+   }
+  },
+  {
+   "id": "places/ChIJwTtwaLGVxkcRzA1mWT-fP6Q/reviews/Ci9DQUlRQUNvZENodHljRjlvT2tWSGNtNW1OR05IY205eGRWZFNZVWxGTm5oMVoyYxAB",
+   "naam": "Darko A.",
+   "sterren": 5,
+   "tekst": "Na meerdere teleurstellende ervaringen met grotere shops en dealers, eindelijk iemand gevonden die met passie én oog voor detail werkt.\n\nIk ben ontzettend tevreden over het hele proces bij OG MotoWorks, van A tot Z. Ik ben up to date gehouden over de stand van zaken, met foto's, soms met tekst en uitleg. De hele tijd heb ik het gevoel gehad dat mijn motor in goede handen was. Kleine shop, persoonlijke aandacht, verstand van zaken, transparantie en een monteur om vaker bij terug te komen!\n\nAl met al, voor mij genoeg reden om mijn motor vanuit Amsterdam bij hem te laten onderhouden.",
+   "taal": "nl",
+   "datum": "2026-06-07T22:28:38Z",
+   "auteur_url": "https://www.google.com/maps/contrib/101962388717299429633/reviews",
+   "google_url": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sCi9DQUlRQUNvZENodHljRjlvT2tWSGNtNW1OR05IY205eGRWZFNZVWxGTm5oMVoyYxAB!2m1!1s0x47c695b168703bc1:0xa43f9f3f59660dcc",
+   "bron": "google",
+   "seed": {
+    "id": "seed-5",
+    "naam": "Darko A.",
+    "sterren": 5,
+    "tekst": "Na meerdere teleurstellende ervaringen met grotere shops en dealers, eindelijk iemand gevonden die met passie én oog voor detail werkt. … Kleine …",
+    "taal": "nl",
+    "datum": "",
+    "auteur_url": "",
+    "google_url": "",
+    "bron": "seed"
+   }
+  },
   {
    "id": "seed-1",
    "naam": "Ismael B.",
@@ -18,43 +84,10 @@
    "bron": "seed"
   },
   {
-   "id": "seed-2",
-   "naam": "Dyrich V.",
-   "sterren": 5,
-   "tekst": "Goede service, werkt best snel! Denkt graag met je mee en is eerlijk in adviezen!",
-   "taal": "nl",
-   "datum": "",
-   "auteur_url": "",
-   "google_url": "",
-   "bron": "seed"
-  },
-  {
-   "id": "seed-3",
-   "naam": "Emin U.",
-   "sterren": 5,
-   "tekst": "Met al mijn motoren ben ik hier altijd welkom. Er wordt altijd duidelijk gecommuniceerd en kan er zeker altijd met spoed terecht …",
-   "taal": "nl",
-   "datum": "",
-   "auteur_url": "",
-   "google_url": "",
-   "bron": "seed"
-  },
-  {
    "id": "seed-4",
    "naam": "Linda G.",
    "sterren": 5,
    "tekst": "Fijne motorzaak en is bereid om mee te denken! Persoonlijk contact en service. Een aanrader als je een betrouwbaar adres zoekt voor …",
-   "taal": "nl",
-   "datum": "",
-   "auteur_url": "",
-   "google_url": "",
-   "bron": "seed"
-  },
-  {
-   "id": "seed-5",
-   "naam": "Darko A.",
-   "sterren": 5,
-   "tekst": "Na meerdere teleurstellende ervaringen met grotere shops en dealers, eindelijk iemand gevonden die met passie én oog voor detail werkt. … Kleine …",
    "taal": "nl",
    "datum": "",
    "auteur_url": "",
@@ -94,5 +127,7 @@
    "google_url": "",
    "bron": "seed"
   }
- ]
+ ],
+ "rating": 4.7,
+ "aantal": 29
 }
