@@ -425,12 +425,47 @@ pickRow.setAttribute("role", "group");
 pickRow.tabIndex = -1; // scrollbare rij niet in de Tab-volgorde (typen kan altijd)
 let pickField = null,
   pickTimer = 0;
+// Merk/model/uitvoering herkennen zoals een klant ze typt (8 okt 2026, 'Harley heeft geen motoren?'):
+// hoofdletters, spaties, (zachte/vaste) koppeltekens en accenten tellen niet mee ("harley davidson", "HARLEY-DAVIDSON",
+// "bmw", "cf moto", "Harley\u2011Davidson"). Merk mag ook een eenduidig begin zijn ("harley", "royal"). Zonder treffer blijft de
+// eigen tekst staan (handmatige motor).
+const norm = (s) =>
+  String(s ?? "")
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, "");
+const MERK_ALIAS = { hd: "Harley-Davidson" };
+function canonMerk(v) {
+  const raw = String(v ?? "").trim(),
+    n = norm(raw);
+  if (!n || !DATA) return raw;
+  const keys = Object.keys(DATA.motoren.merken);
+  const exact = keys.find((k) => norm(k) === n);
+  if (exact) return exact;
+  if (MERK_ALIAS[n] && DATA.motoren.merken[MERK_ALIAS[n]]) return MERK_ALIAS[n];
+  const pre = n.length >= 3 ? keys.filter((k) => norm(k).startsWith(n)) : [];
+  return pre.length === 1 ? pre[0] : raw;
+}
+function canonIn(list, v) {
+  const raw = String(v ?? "").trim(),
+    n = norm(raw);
+  return (n && list.find((x) => norm(x) === n)) || raw;
+}
+const modelsOf = (merk) => DATA.motoren.merken[canonMerk(merk)] || [];
+function variantsOf(merk, model) {
+  const m = canonMerk(merk);
+  return DATA.motoren.uitvoeringen[m]?.[canonIn(DATA.motoren.merken[m] || [], model)] || [];
+}
+function canonMotor(m) {
+  const merk = canonMerk(m.merk),
+    model = canonIn(modelsOf(merk), m.model);
+  return { ...m, merk, model, uitvoering: canonIn(variantsOf(merk, model), m.uitvoering) };
+}
 function pickOptions(k) {
-  const merk = $("#merk").value.trim(),
-    model = $("#model").value.trim();
   if (k === "merk") return Object.keys(DATA.motoren.merken);
-  if (k === "model") return DATA.motoren.merken[merk] || [];
-  return DATA.motoren.uitvoeringen[merk]?.[model] || [];
+  if (k === "model") return modelsOf($("#merk").value);
+  return variantsOf($("#merk").value, $("#model").value);
 }
 function hidePick() {
   pickRow.hidden = true;
@@ -445,13 +480,13 @@ function showPick(el) {
   clearTimeout(pickTimer);
   if (!DATA || !PICK[el.id]) return hidePick();
   const all = pickOptions(el.id),
-    v = el.value.trim().toLowerCase(),
-    exact = all.some((o) => o.toLowerCase() === v),
-    list = !v || exact ? all : all.filter((o) => o.toLowerCase().includes(v));
+    v = norm(el.value),
+    exact = all.some((o) => norm(o) === v),
+    list = !v || exact ? all : all.filter((o) => norm(o).includes(v));
   if (!list.length) return hidePick();
   pickField = el;
   pickRow.setAttribute("aria-label", PICK[el.id]);
-  pickRow.innerHTML = list.map((o) => `<button type="button" class="pill" tabindex="-1" data-v="${escapeHTML(o)}" aria-pressed="${o.toLowerCase() === v}">${escapeHTML(o)}</button>`).join("");
+  pickRow.innerHTML = list.map((o) => `<button type="button" class="pill" tabindex="-1" data-v="${escapeHTML(o)}" aria-pressed="${norm(o) === v}">${escapeHTML(o)}</button>`).join("");
   el.parentElement.after(pickRow);
   pickRow.hidden = false;
   placePick();
@@ -464,6 +499,21 @@ function initPick() {
     for (const ev of ["focus", "click", "input"]) el.addEventListener(ev, () => showPick(el));
   });
   $("#jaar").addEventListener("focus", hidePick);
+  // na typen (veld verlaten): officiële schrijfwijze invullen, zodat modellen en bandenmaten gevonden worden
+  $("#merk").addEventListener("change", () => {
+    const c = canonMerk($("#merk").value);
+    if (c !== $("#merk").value) $("#merk").value = c;
+    fillModelLists();
+  });
+  $("#model").addEventListener("change", () => {
+    const c = canonIn(modelsOf($("#merk").value), $("#model").value);
+    if (c !== $("#model").value) $("#model").value = c;
+    fillModelLists();
+  });
+  $("#uitvoering").addEventListener("change", () => {
+    const c = canonIn(variantsOf($("#merk").value, $("#model").value), $("#uitvoering").value);
+    if (c !== $("#uitvoering").value) $("#uitvoering").value = c;
+  });
   // focus weg uit de velden (en niet naar de rij): rij weg
   $("#motor-dialog").addEventListener("focusout", (e) => {
     const to = e.relatedTarget;
@@ -484,14 +534,14 @@ function initPick() {
     if (!b || !el) return;
     clearTimeout(pickTimer);
     const k = el.id,
-      old = { merk: $("#merk").value.trim(), model: $("#model").value.trim() };
+      old = { merk: $("#merk").value, model: $("#model").value };
     el.value = b.dataset.v;
     // ander merk gekozen: een bekend model van het vorige merk past niet meer
-    if (k === "merk" && (DATA.motoren.merken[old.merk] || []).includes(old.model) && !(DATA.motoren.merken[el.value] || []).includes(old.model)) {
+    if (k === "merk" && modelsOf(old.merk).some((x) => norm(x) === norm(old.model)) && !modelsOf(el.value).some((x) => norm(x) === norm(old.model))) {
       $("#model").value = "";
       $("#uitvoering").value = "";
     }
-    if (k === "model" && !(DATA.motoren.uitvoeringen[$("#merk").value.trim()]?.[el.value] || []).includes($("#uitvoering").value.trim())) $("#uitvoering").value = "";
+    if (k === "model" && !variantsOf($("#merk").value, el.value).some((x) => norm(x) === norm($("#uitvoering").value))) $("#uitvoering").value = "";
     fillModelLists();
     const next = k === "merk" ? $("#model") : k === "model" && pickOptions("uitvoering").length ? $("#uitvoering") : $("#jaar");
     next.focus();
@@ -506,12 +556,10 @@ function initPick() {
 function fillModelLists() {
   const merk = $("#merk").value,
     model = $("#model").value;
-  $("#modellen").innerHTML = (DATA.motoren.merken[merk] || [])
+  $("#modellen").innerHTML = modelsOf(merk)
     .map((x) => `<option value="${escapeHTML(x)}"></option>`)
     .join("");
-  $("#uitvoeringen").innerHTML = (
-    DATA.motoren.uitvoeringen[merk]?.[model] || []
-  )
+  $("#uitvoeringen").innerHTML = variantsOf(merk, model)
     .map((x) => `<option value="${escapeHTML(x)}"></option>`)
     .join("");
 }
@@ -927,9 +975,10 @@ $(".close").onclick = () => $("#motor-dialog").close();
 $("#motor-form").onsubmit = (e) => {
   e.preventDefault();
   hidePick();
-  const d = Object.fromEntries(new FormData(e.target));
+  let d = Object.fromEntries(new FormData(e.target));
   for (const k of ["merk", "model", "uitvoering"]) d[k] = d[k].trim();
   if (!d.merk || !d.model) return;
+  d = canonMotor(d);
   saveDraft();
   applyMotor(d);
   $("#request-form")?.remove();
@@ -976,6 +1025,7 @@ async function boot() {
     banden: { maten: banden.maten, montage: banden.montage_per_band, datum: banden.prijzen_bijgewerkt, assortiment, types: assort.types.map((t) => [t[0], t[1]]) },
   };
   motor = loadMotor();
+  if (motor) motor = canonMotor(motor); // eerder opgeslagen 'harley davidson' e.d. alsnog herkennen
   initPick();
   $("#merken").innerHTML = Object.keys(DATA.motoren.merken)
     .map((m) => `<option value="${escapeHTML(m)}"></option>`)
