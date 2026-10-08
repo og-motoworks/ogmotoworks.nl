@@ -3,6 +3,9 @@ let DATA = null; // geladen uit /assets/data/*.json (zelfde bron en formule als 
 const BODY = document.body.dataset;
 const R = window.OG_ROUTES; // route -> echte URL (per taal), uit de build
 const FORMSPREE = "https://formspree.io/f/myezrojv";
+// Extra's bij banden (incl. btw, standaard uit): haakse ventielen per set (één keer per aanvraag), oude band afvoeren per band.
+const VENTIELEN = 20,
+  AFVOEREN = 5;
 const EN = document.documentElement.lang === "en";
 const $ = (q) => document.querySelector(q),
   $$ = (q) => Array.from(document.querySelectorAll(q));
@@ -326,7 +329,7 @@ function tyreFields() {
     .map((m) => `<option value="${escapeHTML(m)}">${escapeHTML(m)}</option>`)
     .join(
       "",
-    )}</select></div><div><label for="sortering">Sorteren</label><select id="sortering" name="sortering"><option value="naam">Naam A–Z</option><option value="laag">Prijs laag–hoog</option><option value="hoog">Prijs hoog–laag</option></select></div><div class="full"><label for="positie">Welke band wil je vervangen?</label><select id="positie" name="positie"><option value="beide">Voor en achter</option><option value="voor">Alleen voor</option><option value="achter">Alleen achter</option></select></div></div><p class="note" style="margin-top:15px">Controleer de maten op je motor. Prijzen zijn richtprijzen uit ${escapeHTML(DATA.banden.datum)}; voorraad en definitieve prijs worden bevestigd in de offerte.</p><div id="tyre-results"></div><div id="tyre-total" class="panel" style="margin-top:20px"></div><label for="toelichting" style="margin-top:20px">Toelichting (optioneel)</label><textarea name="toelichting" id="toelichting" maxlength="2000" placeholder="Bijvoorbeeld: ik wil advies over mijn keuze."></textarea>`;
+    )}</select></div><div><label for="sortering">Sorteren</label><select id="sortering" name="sortering"><option value="naam">Naam A–Z</option><option value="laag">Prijs laag–hoog</option><option value="hoog">Prijs hoog–laag</option></select></div><div class="full"><label for="positie">Welke band wil je vervangen?</label><select id="positie" name="positie"><option value="beide">Voor en achter</option><option value="voor">Alleen voor</option><option value="achter">Alleen achter</option></select></div></div><p class="note" style="margin-top:15px">Controleer de maten op je motor. Prijzen zijn richtprijzen uit ${escapeHTML(DATA.banden.datum)}; voorraad en definitieve prijs worden bevestigd in de offerte.</p><div id="tyre-results"></div><fieldset class="tyre-extras"><legend class="heading smallhead">Extra's (optioneel)</legend><div class="optlist"><label class="tyre"><input type="checkbox" name="ventielen" value="ja"><strong>Haakse ventielen</strong><span class="money">+${euro(VENTIELEN)} per set</span><small>Alleen als ze passen. Makkelijker je bandenspanning checken en bijpompen.</small></label><label class="tyre"><input type="checkbox" name="afvoer" value="ja"><strong>Oude band afvoeren</strong><span class="money">+${euro(AFVOEREN)} per band</span><small>Je mag je oude band ook zelf meenemen.</small></label></div></fieldset><div id="tyre-total" class="panel" style="margin-top:20px"></div><label for="toelichting" style="margin-top:20px">Toelichting (optioneel)</label><textarea name="toelichting" id="toelichting" maxlength="2000" placeholder="Bijvoorbeeld: ik wil advies over mijn keuze."></textarea>`;
 }
 function tariffs() {
   return (
@@ -336,7 +339,7 @@ function tariffs() {
       "onderhoud",
       true,
     ) +
-    `<div class="wrap workgrid"><div class="panel"><h2>Onze tarieven</h2><div class="line"><span>Arbeid</span><strong>€60 / uur</strong></div><div class="line"><span>Banden monteren, band apart</span><strong>€50 / band</strong></div><div class="line"><span>Voorvorkkeerringen vervangen</span><strong>€350 vast</strong></div><div class="line"><span>Onderdelen</span><strong>Adviesprijs</strong></div><div class="line"><span>Kettingset vervangen</span><strong>Offerte</strong></div><p class="note" style="margin-top:20px">Prijzen incl. btw. Bij de offerte staat welk werk en materiaal inbegrepen is.</p></div><div class="panel"><h2>Zo werken wij</h2><p>Vertel welke motor je rijdt en wat je nodig hebt. Je krijgt vooraf een offerte.</p><p class="muted">Komt er tijdens het werk iets extra's naar voren? Dan overleggen we eerst.</p><a href="${R.afspraak}" class="btn">Vraag een offerte →</a></div></div>`
+    `<div class="wrap workgrid"><div class="panel"><h2>Onze tarieven</h2><div class="line"><span>Arbeid</span><strong>€60 / uur</strong></div><div class="line"><span>Banden monteren, band apart</span><strong>€50 / band</strong></div><div class="line"><span>Haakse ventielen, alleen als ze passen</span><strong>€20 / set</strong></div><div class="line"><span>Oude band afvoeren (optioneel)</span><strong>€5 / band</strong></div><div class="line"><span>Voorvorkkeerringen vervangen</span><strong>€350 vast</strong></div><div class="line"><span>Onderdelen</span><strong>Adviesprijs</strong></div><div class="line"><span>Kettingset vervangen</span><strong>Offerte</strong></div><p class="note" style="margin-top:20px">Prijzen incl. btw. Bij de offerte staat welk werk en materiaal inbegrepen is.</p></div><div class="panel"><h2>Zo werken wij</h2><p>Vertel welke motor je rijdt en wat je nodig hebt. Je krijgt vooraf een offerte.</p><p class="muted">Komt er tijdens het werk iets extra's naar voren? Dan overleggen we eerst.</p><a href="${R.afspraak}" class="btn">Vraag een offerte →</a></div></div>`
   );
 }
 function about() {
@@ -373,6 +376,10 @@ function saveDraft() {
   const k = f.dataset.intent;
   const values = Object.fromEntries(new FormData(f));
   drafts[k] = { ...drafts[k], ...values };
+  f.querySelectorAll('input[type="checkbox"]').forEach((el) => {
+    if (el.checked) drafts[k][el.name] = el.value;
+    else delete drafts[k][el.name];
+  });
   for (const key of Object.keys(customer))
     if (key in values) customer[key] = String(values[key]).trim();
   persist();
@@ -382,7 +389,8 @@ function restoreDraft(k) {
   if (!f) return;
   for (const [key, val] of Object.entries({ ...drafts[k], ...customer })) {
     const el = f.elements.namedItem(key);
-    if (el && el.type !== "radio") {
+    if (el && el.type === "checkbox") el.checked = val === el.value;
+    else if (el && el.type !== "radio") {
       el.value = val;
       if (el.tagName === "SELECT" && el.selectedIndex < 0) el.selectedIndex = 0;
     }
@@ -391,6 +399,7 @@ function restoreDraft(k) {
 function updateChip() {
   const b = $("#chip");
   b.hidden = !motor;
+  document.body.classList.toggle("has-motor", !!motor);
   b.textContent = motorLabel(motor);
   b.title = motorLabel(motor) + " — wijzigen";
 }
@@ -401,7 +410,44 @@ function openMotor(next = "") {
     $("#" + k).value = motor?.[k] || "";
   fillModelLists();
   d.showModal();
-  $("#merk").focus();
+  // Met een gekozen motor niet automatisch in Merk springen: dan tikt de klant zelf in het veld en komen de suggesties (iOS) gewoon.
+  if (motor) $("#motor-title").focus();
+  else $("#merk").focus();
+}
+// iPhone/iPad: Safari toont <datalist>-suggesties alleen voor opties die op de huidige waarde lijken en verbergt een optie die
+// precies gelijk is aan de waarde. Na een keuze (veld vol) kwam de veegbare rij met merken bij opnieuw tikken dus niet meer terug.
+// Daarom: bij focus het veld tijdelijk leegmaken (oude waarde als placeholder zichtbaar), zodat altijd de hele lijst verschijnt;
+// bij verlaten zonder nieuwe keuze komt de oude waarde terug. Geldt voor merk, model en uitvoering (jaar heeft geen lijst).
+function suggestFresh(el) {
+  const restore = () => {
+    if (el.dataset.prev === undefined) return false;
+    const prev = el.dataset.prev;
+    delete el.dataset.prev;
+    el.placeholder = el.dataset.ph || "";
+    if (!el.value.trim()) {
+      el.value = prev;
+      return true;
+    }
+    return false;
+  };
+  el.dataset.ph = el.placeholder;
+  el.addEventListener("focus", () => {
+    if (!el.value || el.dataset.prev !== undefined) return;
+    el.dataset.prev = el.value;
+    el.placeholder = el.value;
+    el.value = "";
+  });
+  el.addEventListener("blur", restore);
+  // Enter / 'Ga' op het toetsenbord terwijl het veld nog leeg is: eerst de oude waarde terugzetten.
+  el.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") restore();
+  });
+  el.addEventListener("invalid", (e) => {
+    if (restore()) {
+      e.preventDefault();
+      setTimeout(() => $("#motor-form").requestSubmit(), 0);
+    }
+  });
 }
 function fillModelLists() {
   const merk = $("#merk").value,
@@ -513,10 +559,18 @@ function chosenTyres(d) {
       ) || null,
   }));
 }
+// Aangevinkte extra's: [omschrijving, bedrag]. Afvoeren telt per band die vervangen wordt (voor/achter/beide).
+function tyreExtras(d, rows) {
+  const out = [];
+  if (d.ventielen === "ja") out.push(["Haakse ventielen (alleen als ze passen), per set", VENTIELEN]);
+  if (d.afvoer === "ja") out.push(["Oude band afvoeren " + rows.length + " × " + euro(AFVOEREN), AFVOEREN * rows.length]);
+  return out;
+}
 function renderTotal() {
   saveDraft();
   const rows = chosenTyres(drafts.banden);
-  let total = 0,
+  const extras = tyreExtras(drafts.banden, rows);
+  let total = extras.reduce((n, e) => n + e[1], 0),
     complete = true;
   $("#tyre-total").innerHTML =
     "<h3>Jouw richtprijs</h3>" +
@@ -538,7 +592,8 @@ function renderTotal() {
         return `<div class="line"><span>${r.pos === "voor" ? "Voor" : "Achter"} · band</span><strong>${r.band.prijs ? euro(r.band.prijs) : "Op aanvraag"}</strong></div><div class="line"><span>Montage</span><strong>${euro(DATA.banden.montage)}</strong></div>`;
       })
       .join("") +
-    `<p style="margin-top:18px"><strong>${complete ? "Totaal incl. montage: " + euro(total) : "Complete prijs na keuze en offerte"}</strong></p><p class="note">Incl. btw. Beschikbaarheid en eventuele extra werkzaamheden in overleg.</p>`;
+    extras.map((e) => `<div class="line"><span>${escapeHTML(e[0])}</span><strong>${euro(e[1])}</strong></div>`).join("") +
+    `<p style="margin-top:18px"><strong>${complete ? (extras.length ? "Totaal incl. montage en extra's: " : "Totaal incl. montage: ") + euro(total) : "Complete prijs na keuze en offerte"}</strong></p><p class="note">Incl. btw. Beschikbaarheid en eventuele extra werkzaamheden in overleg.</p>`;
 }
 function initTyres() {
   const d = drafts.banden,
@@ -559,6 +614,7 @@ function initTyres() {
       renderTyres();
     }),
   );
+  $$('.tyre-extras input[type="checkbox"]').forEach((el) => el.addEventListener("change", renderTotal));
   ["rijtype", "zoek", "positie", "bandmerk", "sortering"].forEach((p) =>
     $("#" + p).addEventListener(p === "zoek" ? "input" : "change", () => {
       limits = { voor: 8, achter: 8 };
@@ -611,11 +667,13 @@ function buildMessage(k, m, d) {
                 " montage"),
         ),
       );
+    const extras = tyreExtras(d, rows);
+    extras.forEach((e) => lines.push(e[0] + ": " + euro(e[1])));
     if (rows.every((r) => r.band && r.band.prijs != null))
       lines.push(
-        "Richtprijs incl. montage en btw: " +
+        (extras.length ? "Richtprijs incl. montage, extra's en btw: " : "Richtprijs incl. montage en btw: ") +
           euro(
-            rows.reduce((n, r) => n + r.band.prijs + DATA.banden.montage, 0),
+            rows.reduce((n, r) => n + r.band.prijs + DATA.banden.montage, 0) + extras.reduce((n, e) => n + e[1], 0),
           ),
       );
     lines.push("Definitieve prijs en beschikbaarheid graag bevestigen.");
@@ -663,7 +721,9 @@ function formspreeData(k, m, d) {
     motorTxt = [m?.merk, m?.model].filter(Boolean).join(" "),
     email = String(d.email || "").trim(),
     tyres = k === "banden" ? chosenTyres(d) : [],
-    full = tyres.length && tyres.every((r) => r.band && r.band.prijs != null);
+    full = tyres.length && tyres.every((r) => r.band && r.band.prijs != null),
+    extras = k === "banden" ? tyreExtras(d, tyres) : [],
+    extraSum = extras.reduce((n, e) => n + e[1], 0);
   const fields = {
     _subject: "Nieuwe aanvraag via ogmotoworks.nl – " + (naam || "onbekend") + " – " + (motorTxt || "motor") + (EN ? " [EN]" : ""),
     Taal: EN ? "EN" : "NL",
@@ -679,7 +739,9 @@ function formspreeData(k, m, d) {
     "Laten doen": k === "onderhoud" ? d.beurt || "" : "",
     Wanneer: k === "probleem" ? String(d.wanneer || "").trim() : "",
     "Banden overzicht": tyres.map((r) => (r.pos === "voor" ? "Voorband: " : "Achterband: ") + (r.size || "Maat nog controleren") + (r.band ? " · " + r.band.merk + " " + r.band.band + (r.band.prijs != null ? " (" + euro(r.band.prijs) + ")" : "") : " · graag advies")).join("\n"),
-    "Richtprijs banden": full ? euro(tyres.reduce((n, r) => n + r.band.prijs + DATA.banden.montage, 0)) + " incl. montage en btw" : "",
+    "Haakse ventielen": k === "banden" && d.ventielen === "ja" ? "ja, alleen als ze passen (" + euro(VENTIELEN) + " per set)" : "",
+    "Oude band afvoeren": k === "banden" && d.afvoer === "ja" ? "ja, " + tyres.length + " × " + euro(AFVOEREN) + " = " + euro(AFVOEREN * tyres.length) : "",
+    "Richtprijs banden": full ? euro(tyres.reduce((n, r) => n + r.band.prijs + DATA.banden.montage, 0) + extraSum) + (extras.length ? " incl. montage, extra's en btw" : " incl. montage en btw") : "",
     Vraag: String(d.toelichting || "").trim(),
     Voorkeursdag: String(d.voorkeur || "").trim(),
     ...winterFields(k, d),
@@ -797,9 +859,6 @@ function render() {
   $(".nav").classList.remove("open");
   $(".burger").setAttribute("aria-expanded", "false");
   updateChip();
-  const show = ["diensten", "tarieven", "over-ons", "contact"].includes(page);
-  $("#mobilebar").hidden = !show;
-  document.body.classList.toggle("has-mobilebar", show);
   document.title = page === "overzicht" ? "Jouw aanvraag | OG MotoWorks" : BASE_TITLE;
 }
 $(".skiplink").onclick = (e) => {
@@ -808,11 +867,15 @@ $(".skiplink").onclick = (e) => {
   $("#main").scrollIntoView();
 };
 $("#merk").addEventListener("input", fillModelLists);
+["merk", "model", "uitvoering"].forEach((k) => suggestFresh($("#" + k)));
+$("#motor-title").setAttribute("tabindex", "-1");
 $("#model").addEventListener("input", fillModelLists);
 $("#chip").onclick = () => openMotor();
 $(".close").onclick = () => $("#motor-dialog").close();
 $("#motor-form").onsubmit = (e) => {
   e.preventDefault();
+  // veld dat nog tijdelijk leeg is (suggesties) eerst terugzetten
+  if (document.activeElement && document.activeElement.form === e.target) document.activeElement.blur();
   const d = Object.fromEntries(new FormData(e.target));
   for (const k of ["merk", "model", "uitvoering"]) d[k] = d[k].trim();
   if (!d.merk || !d.model) return;
