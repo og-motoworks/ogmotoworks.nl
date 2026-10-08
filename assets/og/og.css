@@ -84,3 +84,11 @@
 .pill[aria-pressed=true]{border-color:#ff5146;background:#2c1c1b}
 @media(max-width:720px){.pickrow{position:fixed;left:0;right:0;bottom:var(--kb,0px);z-index:5;margin:0;padding:8px 12px calc(8px + env(safe-area-inset-bottom));background:#101113f7;border-top:1px solid #45484e}}
 .fields>.pickrow{grid-column:1/-1}
+/* optioneel reviewvinkje onder 'Jouw gegevens' (8 okt 2026), zelfde optiekaart als de banden-extra's */
+.review-opt{display:grid;grid-template-columns:1fr;margin-top:16px}
+.review-opt .tyre{display:flex;align-items:flex-start;gap:10px;font:inherit;letter-spacing:normal}
+.review-opt .tyre input{flex:none;width:20px;height:20px;margin:1px 0 0}
+.review-opt .tyre strong{font-size:15px;line-height:1.45;font-weight:600}
+.review-opt .tyre:has(input:focus-visible){outline:2px solid #ff5146;outline-offset:2px}
+.review-note:empty{display:none}
+.review-note{margin-top:10px;color:#ffb3ad}
