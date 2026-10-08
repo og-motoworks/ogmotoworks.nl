@@ -253,7 +253,7 @@
     { id: 'kleine-beurt', label: 'Kleine beurt', zin: 'Ik wil graag een afspraak voor een kleine beurt.', wat: 'een kleine beurt' },
     { id: 'grote-beurt', label: 'Grote beurt', zin: 'Ik wil graag een afspraak voor een grote beurt.', wat: 'een grote beurt' },
     { id: 'banden', label: 'Banden', prijs: '+ €50 montage per band', link: '/banden/#advies', linkText: 'Naar bandenadvies', zin: 'Ik wil graag banden laten monteren.', wat: 'banden + montage' },
-    { id: 'ketting', label: 'Ketting / kettingset', prijs: 'vanaf €150', zin: 'Ik wil graag een ketting / kettingset laten vervangen.', wat: 'een ketting / kettingset' },
+    { id: 'ketting', label: 'Ketting / kettingset', prijs: 'op offerte', zin: 'Ik wil graag een ketting / kettingset laten vervangen.', wat: 'een ketting / kettingset' },
     { id: 'remmen', label: 'Remmen', zin: 'Ik wil graag een afspraak voor mijn remmen.', wat: 'mijn remmen' },
     { id: 'voorvork', label: 'Voorvorkkeerringen', prijs: 'vanaf €350', zin: 'Ik wil graag mijn voorvorkkeerringen laten vervangen.', wat: 'voorvorkkeerringen vervangen' },
     { id: 'storing', label: 'Storing / lampje / diagnose', zin: 'Ik wil graag een afspraak voor een storing / diagnose.', wat: 'een storing / diagnose' },
