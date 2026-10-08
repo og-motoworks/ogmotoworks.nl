@@ -1,0 +1,98 @@
+{
+ "versie": 1,
+ "bron": "Startarchief: Google-reviews zoals op de site sinds 1 oktober 2026 (ingekort)",
+ "place_id": "ChIJwTtwaLGVxkcRzA1mWT-fP6Q",
+ "bijgewerkt": "2026-10-01T00:00:00Z",
+ "toon": 8,
+ "alle_reviews_url": "https://share.google/mfVz03Qhs4EkLpyDO",
+ "reviews": [
+  {
+   "id": "seed-1",
+   "naam": "Ismael B.",
+   "sterren": 5,
+   "tekst": "Ik had een lekke band en gelukkig kon ik dezelfde dag nog terecht bij OG Motoworks. De communicatie verloopt erg fijn en …",
+   "taal": "nl",
+   "datum": "",
+   "auteur_url": "",
+   "google_url": "",
+   "bron": "seed"
+  },
+  {
+   "id": "seed-2",
+   "naam": "Dyrich V.",
+   "sterren": 5,
+   "tekst": "Goede service, werkt best snel! Denkt graag met je mee en is eerlijk in adviezen!",
+   "taal": "nl",
+   "datum": "",
+   "auteur_url": "",
+   "google_url": "",
+   "bron": "seed"
+  },
+  {
+   "id": "seed-3",
+   "naam": "Emin U.",
+   "sterren": 5,
+   "tekst": "Met al mijn motoren ben ik hier altijd welkom. Er wordt altijd duidelijk gecommuniceerd en kan er zeker altijd met spoed terecht …",
+   "taal": "nl",
+   "datum": "",
+   "auteur_url": "",
+   "google_url": "",
+   "bron": "seed"
+  },
+  {
+   "id": "seed-4",
+   "naam": "Linda G.",
+   "sterren": 5,
+   "tekst": "Fijne motorzaak en is bereid om mee te denken! Persoonlijk contact en service. Een aanrader als je een betrouwbaar adres zoekt voor …",
+   "taal": "nl",
+   "datum": "",
+   "auteur_url": "",
+   "google_url": "",
+   "bron": "seed"
+  },
+  {
+   "id": "seed-5",
+   "naam": "Darko A.",
+   "sterren": 5,
+   "tekst": "Na meerdere teleurstellende ervaringen met grotere shops en dealers, eindelijk iemand gevonden die met passie én oog voor detail werkt. … Kleine …",
+   "taal": "nl",
+   "datum": "",
+   "auteur_url": "",
+   "google_url": "",
+   "bron": "seed"
+  },
+  {
+   "id": "seed-6",
+   "naam": "Pleun van D.",
+   "sterren": 5,
+   "tekst": "Mega tevreden! Freddy is kundig, was heel duidelijk in zijn uitleg en heeft echt het beste voor met de klant. Hij neemt …",
+   "taal": "nl",
+   "datum": "",
+   "auteur_url": "",
+   "google_url": "",
+   "bron": "seed"
+  },
+  {
+   "id": "seed-7",
+   "naam": "Ili H.",
+   "sterren": 5,
+   "tekst": "Ik kom regelmatig bij OG Motoworks voor onderhoud aan mijn motor. Er wordt echt de tijd genomen om goed naar eventuele problemen …",
+   "taal": "nl",
+   "datum": "",
+   "auteur_url": "",
+   "google_url": "",
+   "bron": "seed"
+  },
+  {
+   "id": "seed-8",
+   "naam": "Robin Van D.",
+   "sterren": 5,
+   "tekst": "Al meerdere malen hier geweest, onderhoud, olie lekkage, nieuwe bandjes. Elke keer alles netjes geregeld. Goede prijs, wordt netjes op de hoogte …",
+   "taal": "nl",
+   "datum": "",
+   "auteur_url": "",
+   "google_url": "",
+   "bron": "seed"
+  }
+ ]
+}

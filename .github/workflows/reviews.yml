@@ -1,0 +1,56 @@
+# Google-reviews 's nachts bijwerken (assets/data/reviews.json) — zie HANDOVER-website.md, "Google-reviews automatisch".
+# Sleutel: repo-secret GOOGLE_PLACES_KEY (nooit in de repo/HTML/JS). Place ID + instellingen: .github/reviews-config.json.
+# Zonder sleutel of bij een API-fout verandert er niets en eindigt de run groen met een waarschuwing.
+# Commit alleen als reviews.json echt verandert, als OG MotoWorks <ogmotoworks@proton.me>; geen force-push.
+# Een push met GITHUB_TOKEN start geen GitHub Pages-build; daarom vraagt de laatste stap er zelf één aan (pages: write).
+name: Google-reviews bijwerken
+on:
+  schedule:
+    - cron: '17 3 * * *'
+      timezone: 'Europe/Amsterdam'
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+concurrency:
+  group: google-reviews
+  cancel-in-progress: false
+jobs:
+  reviews:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Repo ophalen
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Reviews ophalen en samenvoegen
+        env:
+          GOOGLE_PLACES_KEY: ${{ secrets.GOOGLE_PLACES_KEY }}
+        run: python3 .github/scripts/update_reviews.py
+      - name: Committen en pushen (alleen bij wijziging)
+        id: push
+        run: |
+          set -euo pipefail
+          other=$(git status --porcelain | grep -v ' assets/data/reviews.json$' || true)
+          if [ -n "$other" ]; then echo "::error::Onverwachte wijzigingen, niets gepusht:"; echo "$other"; exit 1; fi
+          if git diff --quiet -- assets/data/reviews.json; then echo "Geen wijziging in reviews.json."; echo "pushed=no" >> "$GITHUB_OUTPUT"; exit 0; fi
+          python3 -c "import json; d=json.load(open('assets/data/reviews.json')); assert d['reviews']"
+          git add -- assets/data/reviews.json
+          # identiteit alleen in deze runner-checkout (nodig voor commit EN voor pull --rebase)
+          git config user.name "OG MotoWorks"
+          git config user.email "ogmotoworks@proton.me"
+          git commit -q -m "Google-reviews bijgewerkt (automatisch)"
+          for i in 1 2 3; do
+            git pull --rebase -q origin main && git push origin HEAD:main && { echo "pushed=yes" >> "$GITHUB_OUTPUT"; exit 0; }
+            echo "Push mislukt, poging $i; opnieuw over 20 s."; sleep 20
+          done
+          echo "::error::Push na 3 pogingen mislukt."; exit 1
+      - name: GitHub Pages-build aanvragen
+        if: steps.push.outputs.pushed == 'yes'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api -X POST "repos/${GITHUB_REPOSITORY}/pages/builds" --jq '.status' \
+            || echo "::warning::Pages-build aanvragen mislukt; de site werkt bij bij de volgende push."

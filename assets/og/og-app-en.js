@@ -217,6 +217,40 @@ const REVIEWS = [
   },
 ];
 let reviewTimer = null;
+// Google-reviews (8 okt 2026): de nachtelijke GitHub Action zet ze in /assets/data/reviews.json (archief, nieuwste eerst).
+// Lukt het laden niet of is het bestand ongeldig, dan tonen we REVIEWS hierboven (stand 1 oktober 2026).
+// Teksten nooit aanpassen of vertalen; alleen inkorten met een link naar Google.
+let reviewData = null;
+const REVIEW_MAX = 220;
+function reviewList() {
+  const ok = (r) => r && typeof r.tekst === "string" && r.tekst.trim() && r.naam && Number(r.sterren) >= 4 && Number(r.sterren) <= 5;
+  const list = Array.isArray(reviewData?.reviews) ? reviewData.reviews.filter(ok) : [];
+  if (!list.length) return { items: REVIEWS.map((r) => ({ naam: r.name, tekst: r.text, sterren: 5, taal: "nl" })), datum: "2026-10-01", alle: "https://share.google/mfVz03Qhs4EkLpyDO" };
+  const n = Math.min(Math.max(Number(reviewData.toon) || 8, 3), 12);
+  return { items: list.slice(0, n), datum: reviewData.bijgewerkt || "2026-10-01", alle: /^https:\/\//.test(reviewData.alle_reviews_url || "") ? reviewData.alle_reviews_url : "https://share.google/mfVz03Qhs4EkLpyDO" };
+}
+function reviewDate(iso) {
+  const d = new Date(iso);
+  if (!iso || isNaN(d)) return "";
+  const days = Math.floor((Date.now() - d) / 864e5),
+    rtf = new Intl.RelativeTimeFormat(EN ? "en" : "nl", { numeric: days < 2 ? "auto" : "always" }); // vandaag, gisteren, 2 dagen geleden
+  if (days < 0) return "";
+  if (days < 7) return rtf.format(-days, "day");
+  if (days < 35) return rtf.format(-Math.floor(days / 7), "week");
+  return d.toLocaleDateString(EN ? "en-GB" : "nl-NL", { month: "short", year: "numeric" }).replace(".", "");
+}
+const safeUrl = (u) => (/^https:\/\/[^\s"'<>]+$/.test(u || "") ? u : "");
+function reviewCard(r, alle) {
+  const stars = Math.round(Number(r.sterren)),
+    full = r.tekst.trim(),
+    cut = full.length > REVIEW_MAX ? full.slice(0, full.lastIndexOf(" ", REVIEW_MAX - 1) > 120 ? full.lastIndexOf(" ", REVIEW_MAX - 1) : REVIEW_MAX - 1).trim() + " …" : full,
+    more = cut !== full || /…$/.test(full),
+    when = reviewDate(r.datum),
+    name = escapeHTML(r.naam),
+    who = safeUrl(r.auteur_url) ? `<a href="${escapeHTML(r.auteur_url)}" target="_blank" rel="noopener">${name}</a>` : name,
+    lang = /^[a-z]{2}(-[A-Z]{2})?$/.test(r.taal || "") ? ` lang="${r.taal}"` : "";
+  return `<figure class="quote-card"><div class="review-stars" aria-label="${stars} out of 5 stars">${"★".repeat(stars)}${"☆".repeat(5 - stars)} <span>Google</span></div><blockquote${lang}>${escapeHTML(cut)}</blockquote>${more ? `<a class="rv-more" href="${escapeHTML(safeUrl(r.google_url) || alle)}" target="_blank" rel="noopener">Read more on Google ↗</a>` : ""}<figcaption>${who}${when ? `<span class="rv-date">${escapeHTML(when)}</span>` : ""}</figcaption></figure>`;
+}
 function initGallery() {
   const styles = getComputedStyle(document.documentElement);
   const names = {
@@ -235,7 +269,8 @@ function initGallery() {
   });
 }
 function socialReviews() {
-  return `<section class="section social-section"><div class="wrap"><div class="social-head"><div><span class="eyebrow">A look inside the workshop</span><h2>Bikes, work & stories.</h2></div><a class="btn secondary instagram-btn" href="https://www.instagram.com/og_motoworks" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1" fill="currentColor" stroke="none"/></svg>Follow OG MotoWorks on Instagram ↗</a></div><div class="photo-mix"><figure><img data-gallery-photo="MAINTENANCE_URI" alt="Freddy working on a BMW motorcycle" loading="lazy"><figcaption>Attention to the work</figcaption></figure><figure><img data-gallery-photo="CHAIN_URI" alt="Checking the chain slack on a motorcycle" loading="lazy"><figcaption>It's in the details</figcaption></figure><figure><img data-gallery-photo="HONDA_URI" alt="White Honda in front of the workshop" loading="lazy"><figcaption>Different bikes, the same attention</figcaption></figure><figure><img data-gallery-photo="TYRE_URI" alt="Motorcycle from behind with a wide rear tyre" loading="lazy"><figcaption>Tyres and personal contact</figcaption></figure><figure><img data-gallery-photo="GROUP_URI" alt="Three riders on different motorcycles" loading="lazy"><figcaption>The passion behind OG MotoWorks</figcaption></figure></div></div></section><section class="section customer-reviews" id="reviews" aria-labelledby="reviews-title"><div class="wrap"><div class="social-head"><div><span class="eyebrow">Customers in their own words</span><h2 id="reviews-title">Reviews on Google</h2></div><button class="btn secondary" id="reviews-pause" type="button" aria-pressed="false">Pause reviews</button></div><div class="review-viewport" id="review-viewport" role="region" aria-label="Customer reviews, changing automatically" tabindex="0"><div class="review-track">${REVIEWS.map((r) => `<figure class="quote-card"><div class="review-stars" aria-label="5 out of 5 stars">★★★★★ <span>Google</span></div><blockquote>${escapeHTML(r.text)}</blockquote><figcaption>${escapeHTML(r.name)}</figcaption></figure>`).join("")}</div></div><p class="note" style="margin-top:18px">Short excerpts from our Google reviews (in Dutch) · as of 1 October 2026.</p><div class="actions"><a class="btn secondary" href="https://share.google/mfVz03Qhs4EkLpyDO" target="_blank" rel="noopener">All reviews on Google ↗</a><a class="btn text" href="https://g.page/r/CcwNZlk_nz-kEBM/review" target="_blank" rel="noopener">Write a review ↗</a></div></div></section>`;
+  const rv = reviewList();
+  return `<section class="section social-section"><div class="wrap"><div class="social-head"><div><span class="eyebrow">A look inside the workshop</span><h2>Bikes, work & stories.</h2></div><a class="btn secondary instagram-btn" href="https://www.instagram.com/og_motoworks" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1" fill="currentColor" stroke="none"/></svg>Follow OG MotoWorks on Instagram ↗</a></div><div class="photo-mix"><figure><img data-gallery-photo="MAINTENANCE_URI" alt="Freddy working on a BMW motorcycle" loading="lazy"><figcaption>Attention to the work</figcaption></figure><figure><img data-gallery-photo="CHAIN_URI" alt="Checking the chain slack on a motorcycle" loading="lazy"><figcaption>It's in the details</figcaption></figure><figure><img data-gallery-photo="HONDA_URI" alt="White Honda in front of the workshop" loading="lazy"><figcaption>Different bikes, the same attention</figcaption></figure><figure><img data-gallery-photo="TYRE_URI" alt="Motorcycle from behind with a wide rear tyre" loading="lazy"><figcaption>Tyres and personal contact</figcaption></figure><figure><img data-gallery-photo="GROUP_URI" alt="Three riders on different motorcycles" loading="lazy"><figcaption>The passion behind OG MotoWorks</figcaption></figure></div></div></section><section class="section customer-reviews" id="reviews" aria-labelledby="reviews-title"><div class="wrap"><div class="social-head"><div><span class="eyebrow">Customers in their own words</span><h2 id="reviews-title">Reviews on Google</h2></div><button class="btn secondary" id="reviews-pause" type="button" aria-pressed="false">Pause reviews</button></div><div class="review-viewport" id="review-viewport" role="region" aria-label="Customer reviews, changing automatically" tabindex="0"><div class="review-track">${rv.items.map((r) => reviewCard(r, rv.alle)).join("")}</div></div><p class="note" id="reviews-updated" style="margin-top:18px">Reviews via Google Maps (in Dutch) · Last updated: ${escapeHTML(new Date(rv.datum).toLocaleDateString(EN ? "en-GB" : "nl-NL", { day: "numeric", month: "long", year: "numeric" }))}</p><div class="actions"><a class="btn secondary" href="${escapeHTML(rv.alle)}" target="_blank" rel="noopener">All reviews on Google ↗</a><a class="btn text" href="https://g.page/r/CcwNZlk_nz-kEBM/review" target="_blank" rel="noopener">Write a review ↗</a></div></div></section>`;
 }
 function initReviews() {
   if (reviewTimer) {
@@ -1033,7 +1068,8 @@ async function boot() {
     if (!r.ok) throw new Error(f);
     return r.json();
   });
-  const [motoren, banden, assort] = await Promise.all([get("motoren.json"), get("banden.json"), get("banden-assortiment.json")]);
+  const [motoren, banden, assort, reviews] = await Promise.all([get("motoren.json"), get("banden.json"), get("banden-assortiment.json"), get("reviews.json").catch(() => null)]);
+  reviewData = reviews && typeof reviews === "object" ? reviews : null;
   const f = banden.formule,
     prijs = (t) => (t.inkoop_excl_btw > 0 ? round(t.inkoop_excl_btw * (1 + f.marge) * (1 + f.buffer) * f.btw) : null),
     assortiment = {};

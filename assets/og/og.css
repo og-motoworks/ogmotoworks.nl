@@ -92,3 +92,8 @@
 .review-opt .tyre:has(input:focus-visible){outline:2px solid #ff5146;outline-offset:2px}
 .review-note:empty{display:none}
 .review-note{margin-top:10px;color:#ffb3ad}
+/* Google-reviews uit reviews.json (8 okt 2026): auteur met link, datum, 'lees meer' */
+.quote-card figcaption{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.quote-card figcaption a{color:#fff;text-decoration:underline;text-underline-offset:3px}
+.quote-card .rv-date{font-weight:normal;color:#aaaeb7;font-size:12px}
+.quote-card .rv-more{display:inline-block;margin:-10px 0 18px;font-size:13px;color:#ff5146;text-underline-offset:3px}
