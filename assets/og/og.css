@@ -75,5 +75,12 @@
 }
 @media(max-width:480px){body.has-motor .brand span{display:none}}
 @media(max-width:360px){.brand{gap:8px}.brand img{width:40px;height:40px}.brand span{font-size:15px}.chip{max-width:96px;padding:8px 10px}.header .appointment{padding:8px 10px}}
-/* 8 okt 2026: dialoogtitel krijgt focus bij Wijzig motor (geen rand nodig) */
-#motor-title:focus{outline:none}
+/* 8 okt 2026: keuzerij merken/modellen in de motordialoog (zelfde knoppen als Freddy's ontwerp) */
+.pickrow{display:flex;gap:8px;overflow-x:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:10px 0 2px;touch-action:pan-x}
+.pickrow::-webkit-scrollbar{display:none}
+.pickrow[hidden]{display:none}
+.pill{flex:none;min-height:40px;padding:8px 14px;background:#22252a;border:1px solid #43464c;border-radius:7px;color:#f4f4f4;font:inherit;font-size:14px;font-weight:bold;white-space:nowrap;cursor:pointer}
+.pill:hover{background:#30343a}
+.pill[aria-pressed=true]{border-color:#ff5146;background:#2c1c1b}
+@media(max-width:720px){.pickrow{position:fixed;left:0;right:0;bottom:var(--kb,0px);z-index:5;margin:0;padding:8px 12px calc(8px + env(safe-area-inset-bottom));background:#101113f7;border-top:1px solid #45484e}}
+.fields>.pickrow{grid-column:1/-1}

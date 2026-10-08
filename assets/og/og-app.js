@@ -410,44 +410,98 @@ function openMotor(next = "") {
     $("#" + k).value = motor?.[k] || "";
   fillModelLists();
   d.showModal();
-  // Met een gekozen motor niet automatisch in Merk springen: dan tikt de klant zelf in het veld en komen de suggesties (iOS) gewoon.
-  if (motor) $("#motor-title").focus();
-  else $("#merk").focus();
+  $("#merk").focus();
 }
-// iPhone/iPad: Safari toont <datalist>-suggesties alleen voor opties die op de huidige waarde lijken en verbergt een optie die
-// precies gelijk is aan de waarde. Na een keuze (veld vol) kwam de veegbare rij met merken bij opnieuw tikken dus niet meer terug.
-// Daarom: bij focus het veld tijdelijk leegmaken (oude waarde als placeholder zichtbaar), zodat altijd de hele lijst verschijnt;
-// bij verlaten zonder nieuwe keuze komt de oude waarde terug. Geldt voor merk, model en uitvoering (jaar heeft geen lijst).
-function suggestFresh(el) {
-  const restore = () => {
-    if (el.dataset.prev === undefined) return false;
-    const prev = el.dataset.prev;
-    delete el.dataset.prev;
-    el.placeholder = el.dataset.ph || "";
-    if (!el.value.trim()) {
-      el.value = prev;
-      return true;
+// Keuzerij (8 okt 2026): veegbare rij met merken / modellen / uitvoeringen zolang dat veld focus heeft.
+// Vervangt de <datalist>-suggesties van de browser: Chrome op Android toont die als chips boven het toetsenbord,
+// maar alleen bij de eerste focus (daarna niet meer tot je typt), en dat is vanuit de site niet te sturen.
+// Mobiel staat de rij vast boven het toetsenbord (visualViewport), op desktop direct onder het veld.
+const PICK = { merk: "Kies een merk", model: "Kies een model", uitvoering: "Kies een uitvoering" };
+const pickRow = document.createElement("div");
+pickRow.className = "pickrow";
+pickRow.id = "pickrow";
+pickRow.hidden = true;
+pickRow.setAttribute("role", "group");
+pickRow.tabIndex = -1; // scrollbare rij niet in de Tab-volgorde (typen kan altijd)
+let pickField = null,
+  pickTimer = 0;
+function pickOptions(k) {
+  const merk = $("#merk").value.trim(),
+    model = $("#model").value.trim();
+  if (k === "merk") return Object.keys(DATA.motoren.merken);
+  if (k === "model") return DATA.motoren.merken[merk] || [];
+  return DATA.motoren.uitvoeringen[merk]?.[model] || [];
+}
+function hidePick() {
+  pickRow.hidden = true;
+  pickField = null;
+}
+function placePick() {
+  const vv = window.visualViewport;
+  const kb = vv ? Math.max(0, Math.round(window.innerHeight - vv.height - vv.offsetTop)) : 0;
+  pickRow.style.setProperty("--kb", kb + "px");
+}
+function showPick(el) {
+  clearTimeout(pickTimer);
+  if (!DATA || !PICK[el.id]) return hidePick();
+  const all = pickOptions(el.id),
+    v = el.value.trim().toLowerCase(),
+    exact = all.some((o) => o.toLowerCase() === v),
+    list = !v || exact ? all : all.filter((o) => o.toLowerCase().includes(v));
+  if (!list.length) return hidePick();
+  pickField = el;
+  pickRow.setAttribute("aria-label", PICK[el.id]);
+  pickRow.innerHTML = list.map((o) => `<button type="button" class="pill" tabindex="-1" data-v="${escapeHTML(o)}" aria-pressed="${o.toLowerCase() === v}">${escapeHTML(o)}</button>`).join("");
+  el.parentElement.after(pickRow);
+  pickRow.hidden = false;
+  placePick();
+}
+function initPick() {
+  const fields = ["merk", "model", "uitvoering"].map((k) => $("#" + k));
+  fields.forEach((el) => {
+    el.removeAttribute("list"); // geen tweede (browser)rij ernaast
+    el.setAttribute("autocomplete", "off");
+    for (const ev of ["focus", "click", "input"]) el.addEventListener(ev, () => showPick(el));
+  });
+  $("#jaar").addEventListener("focus", hidePick);
+  // focus weg uit de velden (en niet naar de rij): rij weg
+  $("#motor-dialog").addEventListener("focusout", (e) => {
+    const to = e.relatedTarget;
+    if (fields.includes(to) || pickRow.contains(to)) return;
+    // focus naar een ander element: direct weg. Focus 'nergens' (tik op lege plek, of een telefoon die bij het tikken
+    // op een knop in de rij toch even de focus weghaalt): heel even wachten, zodat de tik op de knop nog doorkomt.
+    clearTimeout(pickTimer);
+    if (to) hidePick();
+    else pickTimer = setTimeout(hidePick, 200);
+  });
+  $("#motor-dialog").addEventListener("close", hidePick);
+  // tikken/klikken op de rij mag de focus niet uit het veld halen: alleen mousedown tegenhouden
+  // (niet pointerdown/touchstart, dan blijven vegen en de klik op iOS/Android werken)
+  pickRow.addEventListener("mousedown", (e) => e.preventDefault());
+  pickRow.addEventListener("click", (e) => {
+    const b = e.target.closest(".pill"),
+      el = pickField;
+    if (!b || !el) return;
+    clearTimeout(pickTimer);
+    const k = el.id,
+      old = { merk: $("#merk").value.trim(), model: $("#model").value.trim() };
+    el.value = b.dataset.v;
+    // ander merk gekozen: een bekend model van het vorige merk past niet meer
+    if (k === "merk" && (DATA.motoren.merken[old.merk] || []).includes(old.model) && !(DATA.motoren.merken[el.value] || []).includes(old.model)) {
+      $("#model").value = "";
+      $("#uitvoering").value = "";
     }
-    return false;
-  };
-  el.dataset.ph = el.placeholder;
-  el.addEventListener("focus", () => {
-    if (!el.value || el.dataset.prev !== undefined) return;
-    el.dataset.prev = el.value;
-    el.placeholder = el.value;
-    el.value = "";
+    if (k === "model" && !(DATA.motoren.uitvoeringen[$("#merk").value.trim()]?.[el.value] || []).includes($("#uitvoering").value.trim())) $("#uitvoering").value = "";
+    fillModelLists();
+    const next = k === "merk" ? $("#model") : k === "model" && pickOptions("uitvoering").length ? $("#uitvoering") : $("#jaar");
+    next.focus();
+    if (next !== $("#jaar")) showPick(next);
   });
-  el.addEventListener("blur", restore);
-  // Enter / 'Ga' op het toetsenbord terwijl het veld nog leeg is: eerst de oude waarde terugzetten.
-  el.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") restore();
-  });
-  el.addEventListener("invalid", (e) => {
-    if (restore()) {
-      e.preventDefault();
-      setTimeout(() => $("#motor-form").requestSubmit(), 0);
-    }
-  });
+  if (window.visualViewport) {
+    visualViewport.addEventListener("resize", placePick);
+    visualViewport.addEventListener("scroll", placePick);
+  }
+  window.addEventListener("resize", placePick);
 }
 function fillModelLists() {
   const merk = $("#merk").value,
@@ -867,15 +921,12 @@ $(".skiplink").onclick = (e) => {
   $("#main").scrollIntoView();
 };
 $("#merk").addEventListener("input", fillModelLists);
-["merk", "model", "uitvoering"].forEach((k) => suggestFresh($("#" + k)));
-$("#motor-title").setAttribute("tabindex", "-1");
 $("#model").addEventListener("input", fillModelLists);
 $("#chip").onclick = () => openMotor();
 $(".close").onclick = () => $("#motor-dialog").close();
 $("#motor-form").onsubmit = (e) => {
   e.preventDefault();
-  // veld dat nog tijdelijk leeg is (suggesties) eerst terugzetten
-  if (document.activeElement && document.activeElement.form === e.target) document.activeElement.blur();
+  hidePick();
   const d = Object.fromEntries(new FormData(e.target));
   for (const k of ["merk", "model", "uitvoering"]) d[k] = d[k].trim();
   if (!d.merk || !d.model) return;
@@ -925,6 +976,7 @@ async function boot() {
     banden: { maten: banden.maten, montage: banden.montage_per_band, datum: banden.prijzen_bijgewerkt, assortiment, types: assort.types.map((t) => [t[0], t[1]]) },
   };
   motor = loadMotor();
+  initPick();
   $("#merken").innerHTML = Object.keys(DATA.motoren.merken)
     .map((m) => `<option value="${escapeHTML(m)}"></option>`)
     .join("");
