@@ -17,12 +17,13 @@ const escapeHTML = (s) =>
         c
       ],
   );
-const euro = (n) =>
-  new Intl.NumberFormat("nl-NL", {
-    style: "currency",
-    currency: "EUR",
-    maximumFractionDigits: 0,
-  }).format(n);
+// Bedrag als €20 / €1.234 (zelfde notatie als de vaste teksten: €60, €350), zonder spatie na het euroteken.
+const euro = (n) => "€" + new Intl.NumberFormat("nl-NL", { maximumFractionDigits: 0 }).format(n);
+// Datum voluit: 3 oktober 2026 / 3 October 2026
+const datumLang = (iso) => {
+  const d = new Date(iso);
+  return isNaN(d) ? String(iso ?? "") : d.toLocaleDateString(EN ? "en-GB" : "nl-NL", { day: "numeric", month: "long", year: "numeric" });
+};
 const motorLabel = (m) =>
   m
     ? [m.merk, m.model, m.uitvoering, m.jaar && `(${m.jaar})`]
@@ -92,7 +93,7 @@ const winterOf = (beurt) => WINTER.find((w) => beurt && beurt.startsWith(w.naam 
 const SERVICES = {
   onderhoud: {
     title: "Maintenance",
-    description: "Service by the schedule",
+    description: "Scheduled servicing",
     text: "Tell us which service you want. You get a quote up front that fits your bike.",
     price: "€60 / hour",
     priceNote: "Parts are charged separately.",
@@ -103,7 +104,7 @@ const SERVICES = {
     text: "Tell us what you notice. Freddy looks into it with you and discusses the next step.",
     price: "€60 / hour",
     priceNote:
-      "Diagnosis and repair in consultation. First you know where you stand.",
+      "Diagnosis and repairs in consultation with you. You know where you stand first.",
   },
   banden: {
     title: "Tyres",
@@ -314,7 +315,7 @@ function initReviews() {
 }
 
 function home() {
-  return `<section class="wrap hero reception"><div class="welcome"><span class="eyebrow">Motorcycle workshop · Waalwijk</span><h1>Welcome to<br>OG MotoWorks.</h1><p class="welcome-story">I'm Freddy. At OG MotoWorks you can come for maintenance, repairs, tyres and custom work on your motorcycle. We discuss together what's needed, so you know where you stand up front.</p><p class="welcome-note">Personal contact, honest advice and work by appointment.</p><a href="${R.afspraak}" class="btn" data-start>${motor ? "Continue with your bike" : "Choose your bike"} →</a><p class="welcome-help">Then you calmly choose what you need.</p></div><figure><img src="/assets/og/c927c25d6be18e37.jpg" width="941" height="1672" alt="Freddy with a BMW in the OG MotoWorks workshop"><figcaption class="reception-caption">Freddy · OG MotoWorks</figcaption></figure></section><section class="reception-bottom"><div class="wrap reception-info"><span>Maintenance · Repairs · Tyres · Custom work</span><a href="${R.contact}">Waalwijk, by appointment ↗</a><a href="https://share.google/mfVz03Qhs4EkLpyDO" target="_blank" rel="noopener">Reviews on Google ↗</a></div></section>${socialReviews()}`;
+  return `<section class="wrap hero reception"><div class="welcome"><span class="eyebrow">Motorcycle workshop · Waalwijk</span><h1>Welcome to<br>OG MotoWorks.</h1><p class="welcome-story">Our workshop in Waalwijk takes care of maintenance, repairs, tyres and custom work on your motorcycle. Owner Freddy talks you through what's needed up front, so you know where you stand.</p><p class="welcome-note">Personal contact, honest advice and work by appointment.</p><a href="${R.afspraak}" class="btn" data-start>${motor ? "Continue with your bike" : "Choose your bike"} →</a><p class="welcome-help">Then choose what you need, at your own pace.</p></div><figure><img src="/assets/og/c927c25d6be18e37.jpg" width="941" height="1672" alt="Freddy with a BMW in the OG MotoWorks workshop"><figcaption class="reception-caption">Freddy · OG MotoWorks</figcaption></figure></section><section class="reception-bottom"><div class="wrap reception-info"><span>Maintenance · Repairs · Tyres · Custom work</span><a href="${R.contact}">Waalwijk, by appointment ↗</a><a href="https://share.google/mfVz03Qhs4EkLpyDO" target="_blank" rel="noopener">Reviews on Google ↗</a></div></section>${socialReviews()}`;
 }
 function services() {
   return (
@@ -364,7 +365,7 @@ function tyreFields() {
     .map((m) => `<option value="${escapeHTML(m)}">${escapeHTML(m)}</option>`)
     .join(
       "",
-    )}</select></div><div><label for="sortering">Sort</label><select id="sortering" name="sortering"><option value="naam">Name A–Z</option><option value="laag">Price low–high</option><option value="hoog">Price high–low</option></select></div><div class="full"><label for="positie">Which tyre do you want to replace?</label><select id="positie" name="positie"><option value="beide">Front and rear</option><option value="voor">Front only</option><option value="achter">Rear only</option></select></div></div><p class="note" style="margin-top:15px">Check the sizes on your bike. Prices are indicative prices from ${escapeHTML(DATA.banden.datum)}; stock and the final price are confirmed in the quote.</p><div id="tyre-results"></div><fieldset class="tyre-extras"><legend class="heading smallhead">Extras (optional)</legend><div class="optlist"><label class="tyre"><input type="checkbox" name="ventielen" value="ja"><strong>Right-angle valves</strong><span class="money">+${euro(VENTIELEN)} per set</span><small>Only if they fit. Easier to check and top up your tyre pressure.</small></label><label class="tyre"><input type="checkbox" name="afvoer" value="ja"><strong>Old tyre disposal</strong><span class="money">+${euro(AFVOEREN)} per tyre</span><small>You can also take your old tyre home yourself.</small></label></div></fieldset><div id="tyre-total" class="panel" style="margin-top:20px"></div><label for="toelichting" style="margin-top:20px">Notes (optional)</label><textarea name="toelichting" id="toelichting" maxlength="2000" placeholder="For example: I'd like advice on my choice."></textarea>`;
+    )}</select></div><div><label for="sortering">Sort</label><select id="sortering" name="sortering"><option value="naam">Name A–Z</option><option value="laag">Price low–high</option><option value="hoog">Price high–low</option></select></div><div class="full"><label for="positie">Which tyre do you want to replace?</label><select id="positie" name="positie"><option value="beide">Front and rear</option><option value="voor">Front only</option><option value="achter">Rear only</option></select></div></div><p class="note" style="margin-top:15px">Check the sizes on your bike. Prices are indicative, as of ${escapeHTML(datumLang(DATA.banden.datum))}; stock and the final price are confirmed in the quote.</p><div id="tyre-results"></div><fieldset class="tyre-extras"><legend class="heading smallhead">Extras (optional)</legend><div class="optlist"><label class="tyre"><input type="checkbox" name="ventielen" value="ja"><strong>Right-angle valves</strong><span class="money">+${euro(VENTIELEN)} per set</span><small>Only if they fit. Easier to check and top up your tyre pressure.</small></label><label class="tyre"><input type="checkbox" name="afvoer" value="ja"><strong>Old tyre disposal</strong><span class="money">+${euro(AFVOEREN)} per tyre</span><small>You can also take your old tyre home yourself.</small></label></div></fieldset><div id="tyre-total" class="panel" style="margin-top:20px"></div><label for="toelichting" style="margin-top:20px">Notes (optional)</label><textarea name="toelichting" id="toelichting" maxlength="2000" placeholder="For example: I'd like advice on my choice."></textarea>`;
 }
 function tariffs() {
   return (
@@ -374,25 +375,25 @@ function tariffs() {
       "onderhoud",
       true,
     ) +
-    `<div class="wrap workgrid"><div class="panel"><h2>Our prices</h2><div class="line"><span>Labour</span><strong>€60 / hour</strong></div><div class="line"><span>Tyre fitting, tyre extra</span><strong>€50 / tyre</strong></div><div class="line"><span>Right-angle valves, only if they fit</span><strong>€20 / set</strong></div><div class="line"><span>Old tyre disposal (optional)</span><strong>€5 / tyre</strong></div><div class="line"><span>Replace fork seals</span><strong>€350 fixed</strong></div><div class="line"><span>Parts</span><strong>List price</strong></div><div class="line"><span>Replace chain and sprockets</span><strong>Quotation</strong></div><p class="note" style="margin-top:20px">Prices incl. VAT. The quote states which work and materials are included.</p></div><div class="panel"><h2>How we work</h2><p>Tell us which bike you ride and what you need. You get a quote up front.</p><p class="muted">Does something extra come up during the work? Then we consult you first.</p><a href="${R.afspraak}" class="btn">Ask for a quote →</a></div></div>`
+    `<div class="wrap workgrid"><div class="panel"><h2>Our prices</h2><div class="line"><span>Labour</span><strong>€60 / hour</strong></div><div class="line"><span>Tyre fitting (tyre not included)</span><strong>€50 / tyre</strong></div><div class="line"><span>Right-angle valves (optional, only if they fit)</span><strong>€20 / set</strong></div><div class="line"><span>Old tyre disposal (optional)</span><strong>€5 / tyre</strong></div><div class="line"><span>Replace fork seals</span><strong>€350 fixed</strong></div><div class="line"><span>Parts</span><strong>List price</strong></div><div class="line"><span>Replace chain and sprockets</span><strong>Quotation</strong></div><p class="note" style="margin-top:20px">Prices incl. VAT. The quote states which work and materials are included.</p></div><div class="panel"><h2>How we work</h2><p>Tell us which bike you ride and what you need. You get a quote up front.</p><p class="muted">If something extra comes up during the work, we consult you first.</p><a href="${R.afspraak}" class="btn">Ask for a quote →</a></div></div>`
   );
 }
 function about() {
   return (
     pagehead(
       "Freddy. OG MotoWorks.",
-      "Personal contact, attention for your bike.",
+      "Personal contact and attention to your bike.",
       "probleem",
       true,
     ) +
-    `<div class="wrap about"><img src="/assets/og/c927c25d6be18e37.jpg" width="941" height="1672" alt="Freddy at work on a motorcycle"><div><span class="eyebrow">The mechanic behind OG MotoWorks</span><h2>You talk to the man<br>who works on your bike.</h2><p>I'm Freddy, mechanic at OG MotoWorks. You can come to me for maintenance, repairs, tyres and custom work on your motorcycle.</p><p class="muted">The workshop is in Waalwijk. We work by appointment, so we can discuss your question and the work up front.</p><p>Honest advice, a quote up front and consultation on extra work.</p><a href="${R.contact}" class="btn">Get in touch →</a></div></div>`
+    `<div class="wrap about"><img src="/assets/og/c927c25d6be18e37.jpg" width="941" height="1672" alt="Freddy at work on a motorcycle"><div><span class="eyebrow">The mechanic behind OG MotoWorks</span><h2>You talk to the man<br>who works on your bike.</h2><p>Freddy is the owner and mechanic of OG MotoWorks. We take care of maintenance, repairs, tyres and custom work on your motorcycle.</p><p class="muted">The workshop is in Waalwijk. We work by appointment, so we can discuss your question and the work up front.</p><p>Honest advice, a quote up front and consultation on extra work.</p><a href="${R.contact}" class="btn">Get in touch →</a></div></div>`
   );
 }
 function contact() {
   return (
     pagehead(
       "Contact",
-      "Message Freddy and tell him what your bike needs.",
+      "Message us and tell us what your bike needs.",
       "probleem",
       true,
     ) +
@@ -665,7 +666,7 @@ function renderTyres() {
     .map((pos) => {
       const items = tyreItems(pos),
         visible = items.slice(0, limits[pos]);
-      return `<h3 class="smallhead" style="margin-top:24px">${pos === "voor" ? "Front tyre" : "Rear tyre"}</h3><p class="note" role="status">${items.length} results · ${Math.min(items.length, limits[pos])} shown. Fitment is still checked.</p><div class="tyrelist">${
+      return `<h3 class="smallhead" style="margin-top:24px">${pos === "voor" ? "Front tyre" : "Rear tyre"}</h3><p class="note" role="status">${items.length} results · ${Math.min(items.length, limits[pos])} shown. Fitment will still be checked.</p><div class="tyrelist">${
         visible
           .map((t) => {
             const id = t.merk + "|" + t.band;
