@@ -3,6 +3,8 @@ let DATA = null; // geladen uit /assets/data/*.json (zelfde bron en formule als 
 const BODY = document.body.dataset;
 const R = window.OG_ROUTES; // route -> echte URL (per taal), uit de build
 const FORMSPREE = "https://formspree.io/f/myezrojv";
+// /motor-schade/ (9 okt 2026): vraag in "Goed om te weten" op de probleempagina's en link op de homepage. EN via app_en.py.
+const SCHADE = { faq: ["Crashed or dropped your bike?", `We inspect the damage, consult your insurer's assessor and help you find the best repair. <a href="${R.schade}">Read what to do about motorcycle damage</a>.`], home: "Damage after a fall? ↗" };
 // Extra's bij banden (incl. btw, standaard uit): haakse ventielen per set (één keer per aanvraag), oude band afvoeren per band.
 const VENTIELEN = 20,
   AFVOEREN = 5;
@@ -100,7 +102,7 @@ const SERVICES = {
   },
   probleem: {
     title: "Problem or fault",
-    description: "Warning light, leak or starting problems",
+    description: "Warning light, leak or crash damage",
     text: "Tell us what you notice. We'll look into it with you and discuss the next step.",
     price: "€60 / hour",
     priceNote:
@@ -180,6 +182,7 @@ function faqBlock(k = "algemeen") {
             "Extra work is discussed with you first. You know the costs up front.",
           ],
         ];
+  if (k === "probleem" && location.pathname !== R.schade) rows.unshift(SCHADE.faq);
   return `<div class="faq"><h2>Good to know</h2>${rows.map(([q, a]) => `<details><summary>${q}</summary><p>${a}</p></details>`).join("")}</div>`;
 }
 
@@ -315,7 +318,7 @@ function initReviews() {
 }
 
 function home() {
-  return `<section class="wrap hero reception"><div class="welcome"><span class="eyebrow">Motorcycle workshop · Waalwijk</span><h1>Welcome to<br>OG MotoWorks.</h1><p class="welcome-story">Our workshop in Waalwijk takes care of servicing, repairs, tyres and custom work on your motorcycle. Owner Freddy talks you through what's needed up front, so you know where you stand.</p><p class="welcome-note">Personal contact, honest advice and work by appointment.</p><a href="${R.afspraak}" class="btn" data-start>${motor ? "Continue with your bike" : "Choose your bike"} →</a><p class="welcome-help">Then choose what you need in a few steps.</p></div><figure><img src="/assets/og/c927c25d6be18e37.jpg" width="941" height="1672" alt="Freddy with a BMW in the OG MotoWorks workshop"><figcaption class="reception-caption">Freddy · OG MotoWorks</figcaption></figure></section><section class="reception-bottom"><div class="wrap reception-info"><span>Maintenance · Repairs · Tyres · Custom work</span><a href="${R.contact}">Waalwijk, by appointment ↗</a><a href="https://share.google/mfVz03Qhs4EkLpyDO" target="_blank" rel="noopener">Reviews on Google ↗</a></div></section>${socialReviews()}`;
+  return `<section class="wrap hero reception"><div class="welcome"><span class="eyebrow">Motorcycle workshop · Waalwijk</span><h1>Welcome to<br>OG MotoWorks.</h1><p class="welcome-story">Our workshop in Waalwijk takes care of servicing, repairs, tyres and custom work on your motorcycle. Owner Freddy talks you through what's needed up front, so you know where you stand.</p><p class="welcome-note">Personal contact, honest advice and work by appointment.</p><a href="${R.afspraak}" class="btn" data-start>${motor ? "Continue with your bike" : "Choose your bike"} →</a><p class="welcome-help">Then choose what you need in a few steps.</p></div><figure><img src="/assets/og/c927c25d6be18e37.jpg" width="941" height="1672" alt="Freddy with a BMW in the OG MotoWorks workshop"><figcaption class="reception-caption">Freddy · OG MotoWorks</figcaption></figure></section><section class="reception-bottom"><div class="wrap reception-info"><span>Maintenance · Repairs · Tyres · Custom work</span><a href="${R.contact}">Waalwijk, by appointment ↗</a><a href="https://share.google/mfVz03Qhs4EkLpyDO" target="_blank" rel="noopener">Reviews on Google ↗</a><a href="${R.schade}">${SCHADE.home}</a></div></section>${socialReviews()}`;
 }
 function services() {
   return (
@@ -334,7 +337,7 @@ function requestFields(k) {
   if (k === "onderhoud")
     return `<div class="fields"><div><label for="km">Mileage in km (optional)</label><input id="km" name="km" type="number" min="0" max="999999"></div><div><label for="beurt">Which service?</label><select name="beurt" id="beurt">${BODY.winterpage === "1" ? winterOptions() : ""}<option>Scheduled maintenance</option><option>Oil change</option><option>Major service</option><option>Replace fork seals (from €350)</option><option>Replace chain and sprockets (quotation)</option><option>I don't know yet</option>${winterOn() && BODY.winterpage !== "1" ? winterOptions() : ""}</select></div><div class="full"><label for="toelichting">Notes (optional)</label><textarea name="toelichting" id="toelichting" maxlength="2000" placeholder="What would you like done?"></textarea></div></div>`;
   if (k === "probleem")
-    return `<label for="toelichting">What do you notice?</label><textarea name="toelichting" id="toelichting" required maxlength="2000" placeholder="For example: the bike is hard to start when it's warm."></textarea><label for="wanneer" style="margin-top:20px">When does it happen? (optional)</label><input name="wanneer" id="wanneer" maxlength="200" placeholder="Since when, cold or warm, while riding…">`;
+    return `<label for="toelichting">What do you notice?</label><textarea name="toelichting" id="toelichting" required maxlength="2000" placeholder="${BODY.placeholder ? escapeHTML(BODY.placeholder) : "For example: the bike is hard to start when it's warm."}"></textarea><label for="wanneer" style="margin-top:20px">When does it happen? (optional)</label><input name="wanneer" id="wanneer" maxlength="200" placeholder="Since when, cold or warm, while riding…">`;
   return `<label for="toelichting">What would you like to change?</label><textarea name="toelichting" id="toelichting" required maxlength="2000" placeholder="For example different indicators or heated grips."></textarea>`;
 }
 function winterOptions() {

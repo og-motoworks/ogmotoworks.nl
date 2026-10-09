@@ -3,6 +3,8 @@ let DATA = null; // geladen uit /assets/data/*.json (zelfde bron en formule als 
 const BODY = document.body.dataset;
 const R = window.OG_ROUTES; // route -> echte URL (per taal), uit de build
 const FORMSPREE = "https://formspree.io/f/myezrojv";
+// /motor-schade/ (9 okt 2026): vraag in "Goed om te weten" op de probleempagina's en link op de homepage. EN via app_en.py.
+const SCHADE = { faq: ["Gevallen of aangereden?", `We bekijken de schade, overleggen met de expert van je verzekeraar en zoeken mee naar de beste reparatie. <a href="${R.schade}">Lees wat je doet bij motorschade</a>.`], home: "Schade na een val? ↗" };
 // Extra's bij banden (incl. btw, standaard uit): haakse ventielen per set (één keer per aanvraag), oude band afvoeren per band.
 const VENTIELEN = 20,
   AFVOEREN = 5;
@@ -100,7 +102,7 @@ const SERVICES = {
   },
   probleem: {
     title: "Probleem of storing",
-    description: "Waarschuwingslampje, lekkage of startproblemen",
+    description: "Waarschuwingslampje, lekkage of schade na een val",
     text: "Vertel wat je merkt. We kijken met je mee en bespreken de volgende stap.",
     price: "€60 / uur",
     priceNote:
@@ -180,6 +182,7 @@ function faqBlock(k = "algemeen") {
             "Meerwerk wordt eerst met je besproken. Je krijgt vooraf duidelijkheid over de kosten.",
           ],
         ];
+  if (k === "probleem" && location.pathname !== R.schade) rows.unshift(SCHADE.faq);
   return `<div class="faq"><h2>Goed om te weten</h2>${rows.map(([q, a]) => `<details><summary>${q}</summary><p>${a}</p></details>`).join("")}</div>`;
 }
 
@@ -315,7 +318,7 @@ function initReviews() {
 }
 
 function home() {
-  return `<section class="wrap hero reception"><div class="welcome"><span class="eyebrow">Motorwerkplaats · Waalwijk</span><h1>Welkom bij<br>OG MotoWorks.</h1><p class="welcome-story">In onze werkplaats in Waalwijk kun je terecht voor onderhoud, reparatie, banden en ombouw van je motor. Eigenaar Freddy bespreekt vooraf met je wat er nodig is, zodat je weet waar je aan toe bent.</p><p class="welcome-note">Persoonlijk contact, eerlijk advies en werk op afspraak.</p><a href="${R.afspraak}" class="btn" data-start>${motor ? "Verder met jouw motor" : "Kies je motor"} →</a><p class="welcome-help">Daarna kies je in een paar stappen wat je nodig hebt.</p></div><figure><img src="/assets/og/c927c25d6be18e37.jpg" width="941" height="1672" alt="Freddy bij een BMW in de werkplaats van OG MotoWorks"><figcaption class="reception-caption">Freddy · OG MotoWorks</figcaption></figure></section><section class="reception-bottom"><div class="wrap reception-info"><span>Onderhoud · Reparatie · Banden · Ombouw</span><a href="${R.contact}">Waalwijk, op afspraak ↗</a><a href="https://share.google/mfVz03Qhs4EkLpyDO" target="_blank" rel="noopener">Ervaringen op Google ↗</a></div></section>${socialReviews()}`;
+  return `<section class="wrap hero reception"><div class="welcome"><span class="eyebrow">Motorwerkplaats · Waalwijk</span><h1>Welkom bij<br>OG MotoWorks.</h1><p class="welcome-story">In onze werkplaats in Waalwijk kun je terecht voor onderhoud, reparatie, banden en ombouw van je motor. Eigenaar Freddy bespreekt vooraf met je wat er nodig is, zodat je weet waar je aan toe bent.</p><p class="welcome-note">Persoonlijk contact, eerlijk advies en werk op afspraak.</p><a href="${R.afspraak}" class="btn" data-start>${motor ? "Verder met jouw motor" : "Kies je motor"} →</a><p class="welcome-help">Daarna kies je in een paar stappen wat je nodig hebt.</p></div><figure><img src="/assets/og/c927c25d6be18e37.jpg" width="941" height="1672" alt="Freddy bij een BMW in de werkplaats van OG MotoWorks"><figcaption class="reception-caption">Freddy · OG MotoWorks</figcaption></figure></section><section class="reception-bottom"><div class="wrap reception-info"><span>Onderhoud · Reparatie · Banden · Ombouw</span><a href="${R.contact}">Waalwijk, op afspraak ↗</a><a href="https://share.google/mfVz03Qhs4EkLpyDO" target="_blank" rel="noopener">Ervaringen op Google ↗</a><a href="${R.schade}">${SCHADE.home}</a></div></section>${socialReviews()}`;
 }
 function services() {
   return (
@@ -334,7 +337,7 @@ function requestFields(k) {
   if (k === "onderhoud")
     return `<div class="fields"><div><label for="km">Kilometerstand (optioneel)</label><input id="km" name="km" type="number" min="0" max="999999"></div><div><label for="beurt">Welke beurt?</label><select name="beurt" id="beurt">${BODY.winterpage === "1" ? winterOptions() : ""}<option>Onderhoud volgens schema</option><option>Oliewissel</option><option>Grote beurt</option><option>Voorvorkkeerringen vervangen (vanaf €350)</option><option>Kettingset vervangen (offerte)</option><option>Ik weet het nog niet</option>${winterOn() && BODY.winterpage !== "1" ? winterOptions() : ""}</select></div><div class="full"><label for="toelichting">Toelichting (optioneel)</label><textarea name="toelichting" id="toelichting" maxlength="2000" placeholder="Wat wil je laten doen?"></textarea></div></div>`;
   if (k === "probleem")
-    return `<label for="toelichting">Wat merk je?</label><textarea name="toelichting" id="toelichting" required maxlength="2000" placeholder="Bijvoorbeeld: de motor start moeilijk als hij warm is."></textarea><label for="wanneer" style="margin-top:20px">Wanneer gebeurt het? (optioneel)</label><input name="wanneer" id="wanneer" maxlength="200" placeholder="Sinds wanneer, koud of warm, tijdens het rijden…">`;
+    return `<label for="toelichting">Wat merk je?</label><textarea name="toelichting" id="toelichting" required maxlength="2000" placeholder="${BODY.placeholder ? escapeHTML(BODY.placeholder) : "Bijvoorbeeld: de motor start moeilijk als hij warm is."}"></textarea><label for="wanneer" style="margin-top:20px">Wanneer gebeurt het? (optioneel)</label><input name="wanneer" id="wanneer" maxlength="200" placeholder="Sinds wanneer, koud of warm, tijdens het rijden…">`;
   return `<label for="toelichting">Wat wil je veranderen?</label><textarea name="toelichting" id="toelichting" required maxlength="2000" placeholder="Bijvoorbeeld andere knipperlichten of handvatverwarming."></textarea>`;
 }
 function winterOptions() {
