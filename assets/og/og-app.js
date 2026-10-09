@@ -88,7 +88,7 @@ function vroegboek() {
   return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2) <= VROEG_TOT;
 }
 const winterOn = () => BODY.winterpage === "1" || BODY.winter === "live";
-const winterLabel = (w) => w.naam + " (" + (vroegboek() ? "vroegboek " + euro(w.vroeg) + " i.p.v. " + euro(w.prijs) : euro(w.prijs)) + ")";
+const winterLabel = (w) => w.naam + " (" + (vroegboek() ? "vroegboekprijs " + euro(w.vroeg) + ", normaal " + euro(w.prijs) : euro(w.prijs)) + ")";
 const winterOf = (beurt) => WINTER.find((w) => beurt && beurt.startsWith(w.naam + " ("));
 const SERVICES = {
   onderhoud: {
@@ -99,9 +99,9 @@ const SERVICES = {
     priceNote: "Onderdelen worden apart berekend.",
   },
   probleem: {
-    title: "Er is iets mis",
-    description: "Lampje, lekkage, start niet",
-    text: "Vertel wat je merkt. Freddy kijkt met je mee en bespreekt de volgende stap.",
+    title: "Probleem of storing",
+    description: "Waarschuwingslampje, lekkage of startproblemen",
+    text: "Vertel wat je merkt. We kijken met je mee en bespreken de volgende stap.",
     price: "€60 / uur",
     priceNote:
       "Onderzoek en reparatie in overleg. Eerst weten waar je aan toe bent.",
@@ -109,7 +109,7 @@ const SERVICES = {
   banden: {
     title: "Banden",
     description: "Advies en prijs voor jouw maat",
-    text: "Kies passende maten en bekijk het assortiment. Freddy controleert de keuze en prijs in je offerte.",
+    text: "Kies passende maten en bekijk het assortiment. In de offerte controleren we je keuze en de prijs.",
     price: "€50 / band",
     priceNote: "Montage incl. btw. De band zelf komt erbij.",
   },
@@ -147,7 +147,7 @@ function pagehead(title, text, bg, own = false) {
 const own = (t) => (BODY.h1 ? escapeHTML(BODY.h1) : t),
   ownText = (t) => (BODY.lead ? escapeHTML(BODY.lead) : t);
 function processSteps() {
-  return `<div class="steps"><div class="step"><h3><b>01</b> Jouw motor</h3><p>Kies je motor en vertel wat je nodig hebt.</p></div><div class="step"><h3><b>02</b> Offerte & datum</h3><p>Freddy bespreekt de prijs en een beschikbare datum.</p></div><div class="step"><h3><b>03</b> Aan de slag</h3><p>Werk op afspraak. Meerwerk alleen na overleg.</p></div></div>`;
+  return `<div class="steps"><div class="step"><h3><b>01</b> Jouw motor</h3><p>Kies je motor en vertel wat je nodig hebt.</p></div><div class="step"><h3><b>02</b> Offerte & datum</h3><p>We bespreken de prijs en een beschikbare datum.</p></div><div class="step"><h3><b>03</b> Aan de slag</h3><p>Werk op afspraak. Meerwerk alleen na overleg.</p></div></div>`;
 }
 function faqBlock(k = "algemeen") {
   const rows =
@@ -155,7 +155,7 @@ function faqBlock(k = "algemeen") {
       ? [
           [
             "Ik weet mijn bandenmaat niet. Wat nu?",
-            "Je kunt zonder bandenkeuze advies aanvragen. Vul je motor in en vertel dat je hulp wilt; Freddy controleert de maat met je.",
+            "Je kunt zonder bandenkeuze advies aanvragen. Vul je motor in en vertel dat je hulp wilt; we controleren de maat met je.",
           ],
           [
             "Is montage inbegrepen in de bandprijs?",
@@ -163,24 +163,24 @@ function faqBlock(k = "algemeen") {
           ],
           [
             "Zijn de banden direct beschikbaar?",
-            "De lijst is een assortiment, geen live voorraad. Freddy bevestigt beschikbaarheid en definitieve prijs in de offerte.",
+            "De lijst is een assortiment, geen live voorraad. We bevestigen beschikbaarheid en definitieve prijs in de offerte.",
           ],
         ]
       : [
           [
             "Moet ik precies weten wat er nodig is?",
-            "Nee. Kies de route die het beste past en beschrijf kort je vraag. Freddy denkt met je mee.",
+            "Nee. Kies wat het beste past en beschrijf kort je vraag. We denken met je mee.",
           ],
           [
             "Wanneer staat mijn afspraak vast?",
-            "Na bevestiging door Freddy. Een WhatsApp-aanvraag is nog geen boeking.",
+            "Na onze bevestiging. Een WhatsApp-aanvraag is nog geen boeking.",
           ],
           [
             "Wat gebeurt er bij extra werk?",
             "Meerwerk wordt eerst met je besproken. Je krijgt vooraf duidelijkheid over de kosten.",
           ],
         ];
-  return `<div class="faq"><h2>Even handig om te weten</h2>${rows.map(([q, a]) => `<details><summary>${q}</summary><p>${a}</p></details>`).join("")}</div>`;
+  return `<div class="faq"><h2>Goed om te weten</h2>${rows.map(([q, a]) => `<details><summary>${q}</summary><p>${a}</p></details>`).join("")}</div>`;
 }
 
 const REVIEWS = [
@@ -271,7 +271,7 @@ function initGallery() {
 }
 function socialReviews() {
   const rv = reviewList();
-  return `<section class="section social-section"><div class="wrap"><div class="social-head"><div><span class="eyebrow">Een kijkje in de werkplaats</span><h2>Motoren, werk & verhalen.</h2></div><a class="btn secondary instagram-btn" href="https://www.instagram.com/og_motoworks" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1" fill="currentColor" stroke="none"/></svg>Volg OG MotoWorks op Instagram ↗</a></div><div class="photo-mix"><figure><img data-gallery-photo="MAINTENANCE_URI" alt="Freddy sleutelt aan een BMW-motor" loading="lazy"><figcaption>Aandacht voor het werk</figcaption></figure><figure><img data-gallery-photo="CHAIN_URI" alt="Controle van de kettingspeling op een motor" loading="lazy"><figcaption>Het zit in de details</figcaption></figure><figure><img data-gallery-photo="HONDA_URI" alt="Witte Honda voor de werkplaats" loading="lazy"><figcaption>Verschillende motoren, dezelfde aandacht</figcaption></figure><figure><img data-gallery-photo="TYRE_URI" alt="Motor van achteren met brede achterband" loading="lazy"><figcaption>Banden en persoonlijk contact</figcaption></figure><figure><img data-gallery-photo="GROUP_URI" alt="Drie motorrijders op verschillende motoren" loading="lazy"><figcaption>De passie achter OG MotoWorks</figcaption></figure></div></div></section><section class="section customer-reviews" id="reviews" aria-labelledby="reviews-title"><div class="wrap"><div class="social-head"><div><span class="eyebrow">Klanten aan het woord</span><h2 id="reviews-title">Ervaringen op Google</h2></div><button class="btn secondary" id="reviews-pause" type="button" aria-pressed="false">Pauzeer reviews</button></div><div class="review-viewport" id="review-viewport" role="region" aria-label="Klantreviews, automatisch wisselend" tabindex="0"><div class="review-track">${rv.items.map((r) => reviewCard(r, rv.alle)).join("")}</div></div><p class="note" id="reviews-updated" style="margin-top:18px">Reviews via Google Maps · Laatst bijgewerkt: ${escapeHTML(new Date(rv.datum).toLocaleDateString(EN ? "en-GB" : "nl-NL", { day: "numeric", month: "long", year: "numeric" }))}</p><div class="actions"><a class="btn secondary" href="${escapeHTML(rv.alle)}" target="_blank" rel="noopener">Alle reviews op Google ↗</a><a class="btn text" href="https://g.page/r/CcwNZlk_nz-kEBM/review" target="_blank" rel="noopener">Schrijf een review ↗</a></div></div></section>`;
+  return `<section class="section social-section"><div class="wrap"><div class="social-head"><div><span class="eyebrow">Een kijkje in de werkplaats</span><h2>Motoren, werk & verhalen.</h2></div><a class="btn secondary instagram-btn" href="https://www.instagram.com/og_motoworks" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1" fill="currentColor" stroke="none"/></svg>Volg OG MotoWorks op Instagram ↗</a></div><div class="photo-mix"><figure><img data-gallery-photo="MAINTENANCE_URI" alt="Freddy sleutelt aan een BMW-motor" loading="lazy"><figcaption>Aandacht voor het werk</figcaption></figure><figure><img data-gallery-photo="CHAIN_URI" alt="Controle van de kettingspeling op een motor" loading="lazy"><figcaption>Het zit in de details</figcaption></figure><figure><img data-gallery-photo="HONDA_URI" alt="Witte Honda voor de werkplaats" loading="lazy"><figcaption>Verschillende motoren, dezelfde aandacht</figcaption></figure><figure><img data-gallery-photo="TYRE_URI" alt="Motor van achteren met brede achterband" loading="lazy"><figcaption>Banden: advies en montage</figcaption></figure><figure><img data-gallery-photo="GROUP_URI" alt="Drie motorrijders op verschillende motoren" loading="lazy"><figcaption>De passie achter OG MotoWorks</figcaption></figure></div></div></section><section class="section customer-reviews" id="reviews" aria-labelledby="reviews-title"><div class="wrap"><div class="social-head"><div><span class="eyebrow">Klanten aan het woord</span><h2 id="reviews-title">Ervaringen op Google</h2></div><button class="btn secondary" id="reviews-pause" type="button" aria-pressed="false">Pauzeer reviews</button></div><div class="review-viewport" id="review-viewport" role="region" aria-label="Klantreviews, automatisch wisselend" tabindex="0"><div class="review-track">${rv.items.map((r) => reviewCard(r, rv.alle)).join("")}</div></div><p class="note" id="reviews-updated" style="margin-top:18px">Reviews via Google Maps · Laatst bijgewerkt: ${escapeHTML(new Date(rv.datum).toLocaleDateString(EN ? "en-GB" : "nl-NL", { day: "numeric", month: "long", year: "numeric" }))}</p><div class="actions"><a class="btn secondary" href="${escapeHTML(rv.alle)}" target="_blank" rel="noopener">Alle reviews op Google ↗</a><a class="btn text" href="https://g.page/r/CcwNZlk_nz-kEBM/review" target="_blank" rel="noopener">Schrijf een review ↗</a></div></div></section>`;
 }
 function initReviews() {
   if (reviewTimer) {
@@ -315,24 +315,24 @@ function initReviews() {
 }
 
 function home() {
-  return `<section class="wrap hero reception"><div class="welcome"><span class="eyebrow">Motorwerkplaats · Waalwijk</span><h1>Welkom bij<br>OG MotoWorks.</h1><p class="welcome-story">In onze werkplaats in Waalwijk kun je terecht voor onderhoud, reparatie, banden en ombouw van je motor. Eigenaar Freddy bespreekt vooraf met je wat er nodig is, zodat je weet waar je aan toe bent.</p><p class="welcome-note">Persoonlijk contact, eerlijk advies en werk op afspraak.</p><a href="${R.afspraak}" class="btn" data-start>${motor ? "Verder met jouw motor" : "Kies je motor"} →</a><p class="welcome-help">Daarna kies je rustig wat je nodig hebt.</p></div><figure><img src="/assets/og/c927c25d6be18e37.jpg" width="941" height="1672" alt="Freddy bij een BMW in de werkplaats van OG MotoWorks"><figcaption class="reception-caption">Freddy · OG MotoWorks</figcaption></figure></section><section class="reception-bottom"><div class="wrap reception-info"><span>Onderhoud · Reparatie · Banden · Ombouw</span><a href="${R.contact}">Waalwijk, op afspraak ↗</a><a href="https://share.google/mfVz03Qhs4EkLpyDO" target="_blank" rel="noopener">Ervaringen op Google ↗</a></div></section>${socialReviews()}`;
+  return `<section class="wrap hero reception"><div class="welcome"><span class="eyebrow">Motorwerkplaats · Waalwijk</span><h1>Welkom bij<br>OG MotoWorks.</h1><p class="welcome-story">In onze werkplaats in Waalwijk kun je terecht voor onderhoud, reparatie, banden en ombouw van je motor. Eigenaar Freddy bespreekt vooraf met je wat er nodig is, zodat je weet waar je aan toe bent.</p><p class="welcome-note">Persoonlijk contact, eerlijk advies en werk op afspraak.</p><a href="${R.afspraak}" class="btn" data-start>${motor ? "Verder met jouw motor" : "Kies je motor"} →</a><p class="welcome-help">Daarna kies je in een paar stappen wat je nodig hebt.</p></div><figure><img src="/assets/og/c927c25d6be18e37.jpg" width="941" height="1672" alt="Freddy bij een BMW in de werkplaats van OG MotoWorks"><figcaption class="reception-caption">Freddy · OG MotoWorks</figcaption></figure></section><section class="reception-bottom"><div class="wrap reception-info"><span>Onderhoud · Reparatie · Banden · Ombouw</span><a href="${R.contact}">Waalwijk, op afspraak ↗</a><a href="https://share.google/mfVz03Qhs4EkLpyDO" target="_blank" rel="noopener">Ervaringen op Google ↗</a></div></section>${socialReviews()}`;
 }
 function services() {
   return (
     pagehead(
       own("Wat heb je nodig?"),
-      ownText("Kies de route die past bij jouw vraag."),
+      ownText("Kies wat het beste bij je vraag past."),
       "onderhoud",
       true,
     ) + `<div class="wrap section">${selected()}${cards()}</div>`
   );
 }
 function commonFields() {
-  return `<fieldset class="customer-fields" style="border:0;border-top:1px solid #3a3d44;padding:24px 0 0;margin:26px 0 0"><legend class="heading" style="padding:0 10px 0 0;font-size:23px">Jouw gegevens</legend><p class="note">Zo kan Freddy je aanvraag bespreken en een afspraak met je maken.</p><div class="fields"><div class="full"><label for="naam">Naam</label><input id="naam" name="naam" autocomplete="name" required maxlength="120" placeholder="Voor- en achternaam"></div><div><label for="telefoon">Mobiel nummer</label><input id="telefoon" name="telefoon" type="tel" autocomplete="tel" required maxlength="30" minlength="6" placeholder="06… of +31…"></div><div><label for="email">E-mailadres (optioneel)</label><input id="email" name="email" type="email" autocomplete="email" maxlength="180" placeholder="Voor een offerte per mail"></div><div><label for="kenteken">Kenteken (optioneel)</label><input id="kenteken" name="kenteken" maxlength="14" autocomplete="off" autocapitalize="characters" placeholder="AB-12-CD"></div><div><label for="voorkeur">Voorkeursdag (optioneel)</label><input id="voorkeur" name="voorkeur" placeholder="Bijvoorbeeld vrijdagmiddag" maxlength="100"></div></div><p class="note" style="margin-top:15px">We gebruiken deze gegevens om jouw aanvraag af te handelen. <a href="${R.privacy}">Meer over privacy</a>.</p><div class="optlist review-opt"><label class="tyre"><input type="checkbox" id="review" name="review" value="ja" aria-describedby="review-note"><strong>Ik ga ermee akkoord dat OG MotoWorks mij na afloop mag mailen voor een review</strong></label></div><p class="note review-note" id="review-note" aria-live="polite"></p></fieldset>`;
+  return `<fieldset class="customer-fields" style="border:0;border-top:1px solid #3a3d44;padding:24px 0 0;margin:26px 0 0"><legend class="heading" style="padding:0 10px 0 0;font-size:23px">Jouw gegevens</legend><p class="note">Zo kunnen we je aanvraag bespreken en een afspraak met je maken.</p><div class="fields"><div class="full"><label for="naam">Naam</label><input id="naam" name="naam" autocomplete="name" required maxlength="120" placeholder="Voor- en achternaam"></div><div><label for="telefoon">Mobiel nummer</label><input id="telefoon" name="telefoon" type="tel" autocomplete="tel" required maxlength="30" minlength="6" placeholder="06… of +31…"></div><div><label for="email">E-mailadres (optioneel)</label><input id="email" name="email" type="email" autocomplete="email" maxlength="180" placeholder="Voor een offerte per mail"></div><div><label for="kenteken">Kenteken (optioneel)</label><input id="kenteken" name="kenteken" maxlength="14" autocomplete="off" autocapitalize="characters" placeholder="AB-12-CD"></div><div><label for="voorkeur">Voorkeursdag (optioneel)</label><input id="voorkeur" name="voorkeur" placeholder="Bijvoorbeeld vrijdagmiddag" maxlength="100"></div></div><p class="note" style="margin-top:15px">We gebruiken deze gegevens om jouw aanvraag af te handelen. <a href="${R.privacy}">Meer over privacy</a>.</p><div class="optlist review-opt"><label class="tyre"><input type="checkbox" id="review" name="review" value="ja" aria-describedby="review-note"><strong>Ik ga ermee akkoord dat OG MotoWorks mij na afloop mag mailen voor een review</strong></label></div><p class="note review-note" id="review-note" aria-live="polite"></p></fieldset>`;
 }
 function requestFields(k) {
   if (k === "onderhoud")
-    return `<div class="fields"><div><label for="km">Kilometerstand (optioneel)</label><input id="km" name="km" type="number" min="0" max="999999"></div><div><label for="beurt">Welke beurt?</label><select name="beurt" id="beurt">${BODY.winterpage === "1" ? winterOptions() : ""}<option>Onderhoud volgens schema</option><option>Oliewissel</option><option>Grote beurt</option><option>Voorvorkkeerringen vervangen (€350 vast)</option><option>Kettingset vervangen (offerte)</option><option>Ik weet het nog niet</option>${winterOn() && BODY.winterpage !== "1" ? winterOptions() : ""}</select></div><div class="full"><label for="toelichting">Toelichting (optioneel)</label><textarea name="toelichting" id="toelichting" maxlength="2000" placeholder="Wat wil je laten doen?"></textarea></div></div>`;
+    return `<div class="fields"><div><label for="km">Kilometerstand (optioneel)</label><input id="km" name="km" type="number" min="0" max="999999"></div><div><label for="beurt">Welke beurt?</label><select name="beurt" id="beurt">${BODY.winterpage === "1" ? winterOptions() : ""}<option>Onderhoud volgens schema</option><option>Oliewissel</option><option>Grote beurt</option><option>Voorvorkkeerringen vervangen (vanaf €350)</option><option>Kettingset vervangen (offerte)</option><option>Ik weet het nog niet</option>${winterOn() && BODY.winterpage !== "1" ? winterOptions() : ""}</select></div><div class="full"><label for="toelichting">Toelichting (optioneel)</label><textarea name="toelichting" id="toelichting" maxlength="2000" placeholder="Wat wil je laten doen?"></textarea></div></div>`;
   if (k === "probleem")
     return `<label for="toelichting">Wat merk je?</label><textarea name="toelichting" id="toelichting" required maxlength="2000" placeholder="Bijvoorbeeld: de motor start moeilijk als hij warm is."></textarea><label for="wanneer" style="margin-top:20px">Wanneer gebeurt het? (optioneel)</label><input name="wanneer" id="wanneer" maxlength="200" placeholder="Sinds wanneer, koud of warm, tijdens het rijden…">`;
   return `<label for="toelichting">Wat wil je veranderen?</label><textarea name="toelichting" id="toelichting" required maxlength="2000" placeholder="Bijvoorbeeld andere knipperlichten of handvatverwarming."></textarea>`;
@@ -348,7 +348,7 @@ function routePage(k) {
   );
 }
 function tyreFields() {
-  return `<details class="hintbox"><summary>Waar vind ik mijn bandenmaat?</summary><p>Op de zijkant van je motorband, bijvoorbeeld 120/70 ZR17. 120 is de breedte in millimeters, 70 de hoogteverhouding en 17 de velgmaat in inches. Neem de volledige notatie over; Freddy controleert ook de uitvoering en de overige aanduidingen.</p><p>Weet je het niet? Laat de maat leeg en vraag advies.</p></details><p class="note" id="oem-note"></p><div class="fields"><div><label for="voor">Voorbandmaat</label><input id="voor" name="voor" list="sizes" maxlength="40" placeholder="120/70 ZR17"></div><div><label for="achter">Achterbandmaat</label><input id="achter" name="achter" list="sizes" maxlength="40" placeholder="180/55 ZR17"></div><datalist id="sizes">${Object.keys(
+  return `<details class="hintbox"><summary>Waar vind ik mijn bandenmaat?</summary><p>Op de zijkant van je motorband, bijvoorbeeld 120/70 ZR17. 120 is de breedte in millimeters, 70 de hoogteverhouding en 17 de velgmaat in inches. Neem de volledige notatie over; we controleren ook de uitvoering en de overige aanduidingen.</p><p>Weet je het niet? Laat de maat leeg en vraag advies.</p></details><p class="note" id="oem-note"></p><div class="fields"><div><label for="voor">Voorbandmaat</label><input id="voor" name="voor" list="sizes" maxlength="40" placeholder="120/70 ZR17"></div><div><label for="achter">Achterbandmaat</label><input id="achter" name="achter" list="sizes" maxlength="40" placeholder="180/55 ZR17"></div><datalist id="sizes">${Object.keys(
     DATA.banden.assortiment,
   )
     .map((s) => `<option value="${s}"></option>`)
@@ -365,7 +365,7 @@ function tyreFields() {
     .map((m) => `<option value="${escapeHTML(m)}">${escapeHTML(m)}</option>`)
     .join(
       "",
-    )}</select></div><div><label for="sortering">Sorteren</label><select id="sortering" name="sortering"><option value="naam">Naam A–Z</option><option value="laag">Prijs laag–hoog</option><option value="hoog">Prijs hoog–laag</option></select></div><div class="full"><label for="positie">Welke band wil je vervangen?</label><select id="positie" name="positie"><option value="beide">Voor en achter</option><option value="voor">Alleen voor</option><option value="achter">Alleen achter</option></select></div></div><p class="note" style="margin-top:15px">Controleer de maten op je motor. De prijzen zijn richtprijzen van ${escapeHTML(datumLang(DATA.banden.datum))}; voorraad en definitieve prijs worden bevestigd in de offerte.</p><div id="tyre-results"></div><fieldset class="tyre-extras"><legend class="heading smallhead">Extra's (optioneel)</legend><div class="optlist"><label class="tyre"><input type="checkbox" name="ventielen" value="ja"><strong>Haakse ventielen</strong><span class="money">+${euro(VENTIELEN)} per set</span><small>Alleen als ze passen. Makkelijker je bandenspanning checken en bijpompen.</small></label><label class="tyre"><input type="checkbox" name="afvoer" value="ja"><strong>Oude band afvoeren</strong><span class="money">+${euro(AFVOEREN)} per band</span><small>Je mag je oude band ook zelf meenemen.</small></label></div></fieldset><div id="tyre-total" class="panel" style="margin-top:20px"></div><label for="toelichting" style="margin-top:20px">Toelichting (optioneel)</label><textarea name="toelichting" id="toelichting" maxlength="2000" placeholder="Bijvoorbeeld: ik wil advies over mijn keuze."></textarea>`;
+    )}</select></div><div><label for="sortering">Sorteren</label><select id="sortering" name="sortering"><option value="naam">Naam A–Z</option><option value="laag">Prijs laag–hoog</option><option value="hoog">Prijs hoog–laag</option></select></div><div class="full"><label for="positie">Welke band wil je vervangen?</label><select id="positie" name="positie"><option value="beide">Voor en achter</option><option value="voor">Alleen voor</option><option value="achter">Alleen achter</option></select></div></div><p class="note" style="margin-top:15px">Controleer de maten op je motor. De prijzen zijn richtprijzen van ${escapeHTML(datumLang(DATA.banden.datum))}; voorraad en definitieve prijs worden bevestigd in de offerte.</p><div id="tyre-results"></div><fieldset class="tyre-extras"><legend class="heading smallhead">Extra's (optioneel)</legend><div class="optlist"><label class="tyre"><input type="checkbox" name="ventielen" value="ja"><strong>Haakse ventielen</strong><span class="money">+${euro(VENTIELEN)} per set</span><small>Alleen als ze passen. Zo controleer en pomp je je banden makkelijker op.</small></label><label class="tyre"><input type="checkbox" name="afvoer" value="ja"><strong>Oude band afvoeren</strong><span class="money">+${euro(AFVOEREN)} per band</span><small>Je mag je oude band ook zelf meenemen.</small></label></div></fieldset><div id="tyre-total" class="panel" style="margin-top:20px"></div><label for="toelichting" style="margin-top:20px">Toelichting (optioneel)</label><textarea name="toelichting" id="toelichting" maxlength="2000" placeholder="Bijvoorbeeld: ik wil advies over mijn keuze."></textarea>`;
 }
 function tariffs() {
   return (
@@ -375,18 +375,18 @@ function tariffs() {
       "onderhoud",
       true,
     ) +
-    `<div class="wrap workgrid"><div class="panel"><h2>Onze tarieven</h2><div class="line"><span>Arbeid</span><strong>€60 / uur</strong></div><div class="line"><span>Banden monteren, band apart</span><strong>€50 / band</strong></div><div class="line"><span>Haakse ventielen (optioneel, alleen als ze passen)</span><strong>€20 / set</strong></div><div class="line"><span>Oude band afvoeren (optioneel)</span><strong>€5 / band</strong></div><div class="line"><span>Voorvorkkeerringen vervangen</span><strong>€350 vast</strong></div><div class="line"><span>Onderdelen</span><strong>Adviesprijs</strong></div><div class="line"><span>Kettingset vervangen</span><strong>Offerte</strong></div><p class="note" style="margin-top:20px">Prijzen incl. btw. Bij de offerte staat welk werk en materiaal inbegrepen is.</p></div><div class="panel"><h2>Zo werken wij</h2><p>Vertel welke motor je rijdt en wat je nodig hebt. Je krijgt vooraf een offerte.</p><p class="muted">Komt er tijdens het werk iets extra's naar voren? Dan overleggen we eerst.</p><a href="${R.afspraak}" class="btn">Vraag een offerte →</a></div></div>`
+    `<div class="wrap workgrid"><div class="panel"><h2>Onze tarieven</h2><div class="line"><span>Arbeid</span><strong>€60 / uur</strong></div><div class="line"><span>Bandenmontage (exclusief band)</span><strong>€50 / band</strong></div><div class="line"><span>Haakse ventielen (optioneel, alleen als ze passen)</span><strong>€20 / set</strong></div><div class="line"><span>Oude band afvoeren (optioneel)</span><strong>€5 / band</strong></div><div class="line"><span>Voorvorkkeerringen vervangen</span><strong>vanaf €350</strong></div><div class="line"><span>Onderdelen</span><strong>Adviesprijs</strong></div><div class="line"><span>Kettingset vervangen</span><strong>Offerte</strong></div><p class="note" style="margin-top:20px">Prijzen incl. btw. In de offerte staat welk werk en welk materiaal zijn inbegrepen.</p></div><div class="panel"><h2>Zo werken wij</h2><p>Vertel welke motor je rijdt en wat je nodig hebt. Je krijgt vooraf een offerte.</p><p class="muted">Komen we tijdens het werk iets extra's tegen? Dan overleggen we eerst met je.</p><a href="${R.afspraak}" class="btn">Vraag een offerte →</a></div></div>`
   );
 }
 function about() {
   return (
     pagehead(
-      "Freddy. OG MotoWorks.",
-      "Persoonlijk contact, aandacht voor jouw motor.",
+      "Over OG MotoWorks",
+      "Persoonlijk contact en aandacht voor je motor.",
       "probleem",
       true,
     ) +
-    `<div class="wrap about"><img src="/assets/og/c927c25d6be18e37.jpg" width="941" height="1672" alt="Freddy aan het werk met een motor"><div><span class="eyebrow">De monteur achter OG MotoWorks</span><h2>Je spreekt met de man<br>die aan je motor werkt.</h2><p>Freddy is eigenaar en monteur van OG MotoWorks. Bij ons kun je terecht voor onderhoud, reparatie, banden en ombouw van je motor.</p><p class="muted">De werkplaats zit in Waalwijk. We werken op afspraak, zodat we jouw vraag en het werk vooraf kunnen bespreken.</p><p>Eerlijk advies, een offerte vooraf en overleg bij meerwerk.</p><a href="${R.contact}" class="btn">Neem contact op →</a></div></div>`
+    `<div class="wrap about"><img src="/assets/og/c927c25d6be18e37.jpg" width="941" height="1672" alt="Freddy aan het werk met een motor"><div><span class="eyebrow">De eigenaar achter OG MotoWorks</span><h2>Je spreekt direct met degene<br>die aan je motor werkt.</h2><p>Freddy is eigenaar en monteur van OG MotoWorks. Bij ons kun je terecht voor onderhoud, reparatie, banden en ombouw van je motor.</p><p class="muted">De werkplaats zit in Waalwijk. We werken op afspraak, zodat we jouw vraag en het werk vooraf kunnen bespreken.</p><p>Eerlijk advies, een offerte vooraf en overleg bij meerwerk.</p><a href="${R.contact}" class="btn">Neem contact op →</a></div></div>`
   );
 }
 function contact() {
@@ -397,7 +397,7 @@ function contact() {
       "probleem",
       true,
     ) +
-    `<div class="wrap workgrid"><div class="panel"><h2>Hier vind je ons</h2><p>Professor Zeemanweg 6-10<br>5144 NN Waalwijk</p><p class="muted">Op afspraak. Stuur een bericht voor een beschikbare datum.</p><p class="hours">Wij werken op afspraak. App ons voor een afspraak.</p><div class="actions"><a class="btn" href="${R.afspraak}">Afspraak aanvragen</a><a class="btn secondary" href="https://www.google.com/maps/search/?api=1&query=Professor+Zeemanweg+6-10%2C+5144+NN+Waalwijk" target="_blank" rel="noopener">Route</a></div></div><div class="panel"><h2>Direct contact</h2><p>06 42 93 95 55<br><a href="mailto:info@ogmotoworks.nl">info@ogmotoworks.nl</a></p><a href="https://wa.me/31642939555?text=Hoi%20Freddy%2C%20ik%20heb%20een%20vraag%20over%20mijn%20motor." class="btn" target="_blank" rel="noopener">Open WhatsApp ↗</a></div></div>`
+    `<div class="wrap workgrid"><div class="panel"><h2>Hier vind je ons</h2><p>Professor Zeemanweg 6-10<br>5144 NN Waalwijk</p><p class="hours">Wij werken op afspraak. App ons voor een afspraak.</p><div class="actions"><a class="btn" href="${R.afspraak}">Afspraak aanvragen</a><a class="btn secondary" href="https://www.google.com/maps/search/?api=1&query=Professor+Zeemanweg+6-10%2C+5144+NN+Waalwijk" target="_blank" rel="noopener">Route plannen</a></div></div><div class="panel"><h2>Direct contact</h2><p>06 42 93 95 55<br><a href="mailto:info@ogmotoworks.nl">info@ogmotoworks.nl</a></p><a href="https://wa.me/31642939555?text=Hoi%20Freddy%2C%20ik%20heb%20een%20vraag%20over%20mijn%20motor." class="btn" target="_blank" rel="noopener">Open WhatsApp ↗</a></div></div>`
   );
 }
 function privacy() {
@@ -666,7 +666,7 @@ function renderTyres() {
     .map((pos) => {
       const items = tyreItems(pos),
         visible = items.slice(0, limits[pos]);
-      return `<h3 class="smallhead" style="margin-top:24px">${pos === "voor" ? "Voorband" : "Achterband"}</h3><p class="note" role="status">${items.length} resultaten · ${Math.min(items.length, limits[pos])} getoond. Toepasbaarheid wordt nog gecontroleerd.</p><div class="tyrelist">${
+      return `<h3 class="smallhead" style="margin-top:24px">${pos === "voor" ? "Voorband" : "Achterband"}</h3><p class="note" role="status">${items.length ? `${items.length} resultaten · ${Math.min(items.length, limits[pos])} getoond. Toepasbaarheid wordt nog gecontroleerd.` : "Geen banden gevonden voor deze maat. App ons, dan zoeken we het voor je uit."}</p><div class="tyrelist">${
         visible
           .map((t) => {
             const id = t.merk + "|" + t.band;
@@ -734,7 +734,7 @@ function renderTotal() {
       .map((r) => {
         if (!r.band) {
           complete = false;
-          return `<div class="line"><span>${r.pos === "voor" ? "Voor" : "Achter"}</span><strong>Nog kiezen / advies</strong></div>`;
+          return `<div class="line"><span>${r.pos === "voor" ? "Voor" : "Achter"}</span><strong>Nog te kiezen of advies</strong></div>`;
         }
         if (r.band.prijs == null) complete = false;
         else total += r.band.prijs + DATA.banden.montage;
@@ -742,7 +742,7 @@ function renderTotal() {
       })
       .join("") +
     extras.map((e) => `<div class="line"><span>${escapeHTML(e[0])}</span><strong>${euro(e[1])}</strong></div>`).join("") +
-    `<p style="margin-top:18px"><strong>${complete ? (extras.length ? "Totaal incl. montage en extra's: " : "Totaal incl. montage: ") + euro(total) : "Complete prijs na keuze en offerte"}</strong></p><p class="note">Incl. btw. Beschikbaarheid en eventuele extra werkzaamheden in overleg.</p>`;
+    `<p style="margin-top:18px"><strong>${complete ? (extras.length ? "Totaal incl. montage en extra's: " : "Totaal incl. montage: ") + euro(total) : "De totaalprijs volgt na je keuze, in de offerte."}</strong></p><p class="note">Incl. btw. Beschikbaarheid en eventuele extra werkzaamheden in overleg.</p>`;
 }
 function initTyres() {
   const d = drafts.banden,
@@ -755,7 +755,7 @@ function initTyres() {
   }
   $("#oem-note").textContent = o
     ? "Maten uit het bestaande motoroverzicht. Controleer ze op je motor; pas ze aan als jouw uitvoering afwijkt."
-    : "Geen eenduidige maten voor deze motor in het overzicht. Vul de maat van je banden in, of vraag Freddy om advies.";
+    : "Voor deze motor hebben we geen vaste bandenmaten. Vul de maten van je banden in, of vraag ons om advies.";
   ["voor", "achter"].forEach((p) =>
     $("#" + p).addEventListener("input", () => {
       $$('input[name="band-' + p + '"]').forEach((el) => (el.checked = false));
@@ -921,7 +921,7 @@ function summary() {
       "Alles klopt? Open WhatsApp en verstuur zelf het bericht.",
       "probleem",
     ) +
-    `<div class="wrap workgrid"><div class="panel"><h2>Jouw bericht aan Freddy</h2><div class="summary">${escapeHTML(summaryText)}</div><div class="actions"><a class="btn" id="wa-open" href="https://wa.me/31642939555?text=${encodeURIComponent(summaryText)}" target="_blank" rel="noopener">Open WhatsApp ↗</a><a class="btn secondary" href="#formulier">Aanpassen</a></div></div><div class="panel">${selected()}<p>Je aanvraag wordt pas verstuurd wanneer je in WhatsApp op verzenden drukt.</p><p class="muted">Freddy bevestigt de prijs en beschikbare datum. Je hebt daarmee nog geen automatische boeking.</p></div></div>`
+    `<div class="wrap workgrid"><div class="panel"><h2>Jouw bericht aan OG MotoWorks</h2><div class="summary">${escapeHTML(summaryText)}</div><div class="actions"><a class="btn" id="wa-open" href="https://wa.me/31642939555?text=${encodeURIComponent(summaryText)}" target="_blank" rel="noopener">Open WhatsApp ↗</a><a class="btn secondary" href="#formulier">Aanpassen</a></div></div><div class="panel">${selected()}<p>Je aanvraag wordt pas verstuurd wanneer je in WhatsApp op verzenden drukt.</p><p class="muted">We bevestigen de prijs en een beschikbare datum. Je hebt daarmee nog geen automatische boeking.</p></div></div>`
   );
 }
 const ROUTES = ["home", "diensten", "onderhoud", "probleem", "banden", "ombouw", "tarieven", "over-ons", "contact", "privacy", "info"];

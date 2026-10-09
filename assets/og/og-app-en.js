@@ -88,7 +88,7 @@ function vroegboek() {
   return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2) <= VROEG_TOT;
 }
 const winterOn = () => BODY.winterpage === "1" || BODY.winter === "live";
-const winterLabel = (w) => w.naam + " (" + (vroegboek() ? "early booking " + euro(w.vroeg) + " instead of " + euro(w.prijs) : euro(w.prijs)) + ")";
+const winterLabel = (w) => w.naam + " (" + (vroegboek() ? "early-booking price " + euro(w.vroeg) + ", normally " + euro(w.prijs) : euro(w.prijs)) + ")";
 const winterOf = (beurt) => WINTER.find((w) => beurt && beurt.startsWith(w.naam + " ("));
 const SERVICES = {
   onderhoud: {
@@ -99,24 +99,24 @@ const SERVICES = {
     priceNote: "Parts are charged separately.",
   },
   probleem: {
-    title: "Something's wrong",
-    description: "Warning light, leak, won't start",
-    text: "Tell us what you notice. Freddy looks into it with you and discusses the next step.",
+    title: "Problem or fault",
+    description: "Warning light, leak or starting problems",
+    text: "Tell us what you notice. We'll look into it with you and discuss the next step.",
     price: "€60 / hour",
     priceNote:
-      "Diagnosis and repairs in consultation with you. You know where you stand first.",
+      "We agree on diagnosis and repairs with you, so you always know where you stand.",
   },
   banden: {
     title: "Tyres",
     description: "Advice and price for your size",
-    text: "Choose matching sizes and browse the range. Freddy checks the choice and price in your quote.",
+    text: "Choose matching sizes and browse the range. We'll check your choice and the price in the quote.",
     price: "€50 / tyre",
     priceNote: "Fitting incl. VAT. The tyre itself is extra.",
   },
   ombouw: {
     title: "Custom work & lights",
     description: "Indicators and accessories",
-    text: "Make your bike the way you want it. Tell us which lights or accessories you want fitted.",
+    text: "Make your bike your own. Tell us which lights or accessories you want fitted.",
     price: "On request",
     priceNote: "A quote up front. Extra work always after consultation.",
   },
@@ -147,7 +147,7 @@ function pagehead(title, text, bg, own = false) {
 const own = (t) => (BODY.h1 ? escapeHTML(BODY.h1) : t),
   ownText = (t) => (BODY.lead ? escapeHTML(BODY.lead) : t);
 function processSteps() {
-  return `<div class="steps"><div class="step"><h3><b>01</b> Your bike</h3><p>Choose your bike and tell us what you need.</p></div><div class="step"><h3><b>02</b> Quote & date</h3><p>Freddy discusses the price and an available date.</p></div><div class="step"><h3><b>03</b> Getting to work</h3><p>Work by appointment. Extra work only after consultation.</p></div></div>`;
+  return `<div class="steps"><div class="step"><h3><b>01</b> Your bike</h3><p>Choose your bike and tell us what you need.</p></div><div class="step"><h3><b>02</b> Quote & date</h3><p>We discuss the price and an available date.</p></div><div class="step"><h3><b>03</b> Getting to work</h3><p>Work by appointment. Extra work only after consultation.</p></div></div>`;
 }
 function faqBlock(k = "algemeen") {
   const rows =
@@ -155,7 +155,7 @@ function faqBlock(k = "algemeen") {
       ? [
           [
             "I don't know my tyre size. What now?",
-            "You can ask for advice without choosing tyres. Enter your bike and say you'd like help; Freddy checks the size with you.",
+            "You can ask for advice without choosing tyres. Enter your bike and say you'd like help; we check the size with you.",
           ],
           [
             "Is fitting included in the tyre price?",
@@ -163,17 +163,17 @@ function faqBlock(k = "algemeen") {
           ],
           [
             "Are the tyres available right away?",
-            "The list is a range, not live stock. Freddy confirms availability and the final price in the quote.",
+            "The list is a range, not live stock. We confirm availability and the final price in the quote.",
           ],
         ]
       : [
           [
             "Do I need to know exactly what's needed?",
-            "No. Pick the route that fits best and briefly describe your question. Freddy thinks along with you.",
+            "No. Pick what fits best and briefly describe your question. We think along with you.",
           ],
           [
             "When is my appointment confirmed?",
-            "Once Freddy confirms it. A WhatsApp request is not a booking yet.",
+            "Once we confirm it. A WhatsApp request is not a booking yet.",
           ],
           [
             "What happens with extra work?",
@@ -271,7 +271,7 @@ function initGallery() {
 }
 function socialReviews() {
   const rv = reviewList();
-  return `<section class="section social-section"><div class="wrap"><div class="social-head"><div><span class="eyebrow">A look inside the workshop</span><h2>Bikes, work & stories.</h2></div><a class="btn secondary instagram-btn" href="https://www.instagram.com/og_motoworks" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1" fill="currentColor" stroke="none"/></svg>Follow OG MotoWorks on Instagram ↗</a></div><div class="photo-mix"><figure><img data-gallery-photo="MAINTENANCE_URI" alt="Freddy working on a BMW motorcycle" loading="lazy"><figcaption>Attention to the work</figcaption></figure><figure><img data-gallery-photo="CHAIN_URI" alt="Checking the chain slack on a motorcycle" loading="lazy"><figcaption>It's in the details</figcaption></figure><figure><img data-gallery-photo="HONDA_URI" alt="White Honda in front of the workshop" loading="lazy"><figcaption>Different bikes, the same attention</figcaption></figure><figure><img data-gallery-photo="TYRE_URI" alt="Motorcycle from behind with a wide rear tyre" loading="lazy"><figcaption>Tyres and personal contact</figcaption></figure><figure><img data-gallery-photo="GROUP_URI" alt="Three riders on different motorcycles" loading="lazy"><figcaption>The passion behind OG MotoWorks</figcaption></figure></div></div></section><section class="section customer-reviews" id="reviews" aria-labelledby="reviews-title"><div class="wrap"><div class="social-head"><div><span class="eyebrow">Customers in their own words</span><h2 id="reviews-title">Reviews on Google</h2></div><button class="btn secondary" id="reviews-pause" type="button" aria-pressed="false">Pause reviews</button></div><div class="review-viewport" id="review-viewport" role="region" aria-label="Customer reviews, changing automatically" tabindex="0"><div class="review-track">${rv.items.map((r) => reviewCard(r, rv.alle)).join("")}</div></div><p class="note" id="reviews-updated" style="margin-top:18px">Reviews via Google Maps (in Dutch) · Last updated: ${escapeHTML(new Date(rv.datum).toLocaleDateString(EN ? "en-GB" : "nl-NL", { day: "numeric", month: "long", year: "numeric" }))}</p><div class="actions"><a class="btn secondary" href="${escapeHTML(rv.alle)}" target="_blank" rel="noopener">All reviews on Google ↗</a><a class="btn text" href="https://g.page/r/CcwNZlk_nz-kEBM/review" target="_blank" rel="noopener">Write a review ↗</a></div></div></section>`;
+  return `<section class="section social-section"><div class="wrap"><div class="social-head"><div><span class="eyebrow">A look inside the workshop</span><h2>Bikes, work & stories.</h2></div><a class="btn secondary instagram-btn" href="https://www.instagram.com/og_motoworks" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1" fill="currentColor" stroke="none"/></svg>Follow OG MotoWorks on Instagram ↗</a></div><div class="photo-mix"><figure><img data-gallery-photo="MAINTENANCE_URI" alt="Freddy working on a BMW motorcycle" loading="lazy"><figcaption>Attention to the work</figcaption></figure><figure><img data-gallery-photo="CHAIN_URI" alt="Checking the chain slack on a motorcycle" loading="lazy"><figcaption>It's in the details</figcaption></figure><figure><img data-gallery-photo="HONDA_URI" alt="White Honda in front of the workshop" loading="lazy"><figcaption>Different bikes, the same attention</figcaption></figure><figure><img data-gallery-photo="TYRE_URI" alt="Motorcycle from behind with a wide rear tyre" loading="lazy"><figcaption>Tyres: advice and fitting</figcaption></figure><figure><img data-gallery-photo="GROUP_URI" alt="Three riders on different motorcycles" loading="lazy"><figcaption>The passion behind OG MotoWorks</figcaption></figure></div></div></section><section class="section customer-reviews" id="reviews" aria-labelledby="reviews-title"><div class="wrap"><div class="social-head"><div><span class="eyebrow">Customers in their own words</span><h2 id="reviews-title">Reviews on Google</h2></div><button class="btn secondary" id="reviews-pause" type="button" aria-pressed="false">Pause reviews</button></div><div class="review-viewport" id="review-viewport" role="region" aria-label="Customer reviews, changing automatically" tabindex="0"><div class="review-track">${rv.items.map((r) => reviewCard(r, rv.alle)).join("")}</div></div><p class="note" id="reviews-updated" style="margin-top:18px">Reviews via Google Maps (in Dutch) · Last updated: ${escapeHTML(new Date(rv.datum).toLocaleDateString(EN ? "en-GB" : "nl-NL", { day: "numeric", month: "long", year: "numeric" }))}</p><div class="actions"><a class="btn secondary" href="${escapeHTML(rv.alle)}" target="_blank" rel="noopener">All reviews on Google ↗</a><a class="btn text" href="https://g.page/r/CcwNZlk_nz-kEBM/review" target="_blank" rel="noopener">Write a review ↗</a></div></div></section>`;
 }
 function initReviews() {
   if (reviewTimer) {
@@ -315,24 +315,24 @@ function initReviews() {
 }
 
 function home() {
-  return `<section class="wrap hero reception"><div class="welcome"><span class="eyebrow">Motorcycle workshop · Waalwijk</span><h1>Welcome to<br>OG MotoWorks.</h1><p class="welcome-story">Our workshop in Waalwijk takes care of maintenance, repairs, tyres and custom work on your motorcycle. Owner Freddy talks you through what's needed up front, so you know where you stand.</p><p class="welcome-note">Personal contact, honest advice and work by appointment.</p><a href="${R.afspraak}" class="btn" data-start>${motor ? "Continue with your bike" : "Choose your bike"} →</a><p class="welcome-help">Then choose what you need, at your own pace.</p></div><figure><img src="/assets/og/c927c25d6be18e37.jpg" width="941" height="1672" alt="Freddy with a BMW in the OG MotoWorks workshop"><figcaption class="reception-caption">Freddy · OG MotoWorks</figcaption></figure></section><section class="reception-bottom"><div class="wrap reception-info"><span>Maintenance · Repairs · Tyres · Custom work</span><a href="${R.contact}">Waalwijk, by appointment ↗</a><a href="https://share.google/mfVz03Qhs4EkLpyDO" target="_blank" rel="noopener">Reviews on Google ↗</a></div></section>${socialReviews()}`;
+  return `<section class="wrap hero reception"><div class="welcome"><span class="eyebrow">Motorcycle workshop · Waalwijk</span><h1>Welcome to<br>OG MotoWorks.</h1><p class="welcome-story">Our workshop in Waalwijk takes care of servicing, repairs, tyres and custom work on your motorcycle. Owner Freddy talks you through what's needed up front, so you know where you stand.</p><p class="welcome-note">Personal contact, honest advice and work by appointment.</p><a href="${R.afspraak}" class="btn" data-start>${motor ? "Continue with your bike" : "Choose your bike"} →</a><p class="welcome-help">Then choose what you need in a few steps.</p></div><figure><img src="/assets/og/c927c25d6be18e37.jpg" width="941" height="1672" alt="Freddy with a BMW in the OG MotoWorks workshop"><figcaption class="reception-caption">Freddy · OG MotoWorks</figcaption></figure></section><section class="reception-bottom"><div class="wrap reception-info"><span>Maintenance · Repairs · Tyres · Custom work</span><a href="${R.contact}">Waalwijk, by appointment ↗</a><a href="https://share.google/mfVz03Qhs4EkLpyDO" target="_blank" rel="noopener">Reviews on Google ↗</a></div></section>${socialReviews()}`;
 }
 function services() {
   return (
     pagehead(
       own("What do you need?"),
-      ownText("Choose the route that fits your question."),
+      ownText("Choose what best fits your question."),
       "onderhoud",
       true,
     ) + `<div class="wrap section">${selected()}${cards()}</div>`
   );
 }
 function commonFields() {
-  return `<fieldset class="customer-fields" style="border:0;border-top:1px solid #3a3d44;padding:24px 0 0;margin:26px 0 0"><legend class="heading" style="padding:0 10px 0 0;font-size:23px">Your details</legend><p class="note">So Freddy can discuss your request and make an appointment with you.</p><div class="fields"><div class="full"><label for="naam">Name</label><input id="naam" name="naam" autocomplete="name" required maxlength="120" placeholder="First and last name"></div><div><label for="telefoon">Mobile number</label><input id="telefoon" name="telefoon" type="tel" autocomplete="tel" required maxlength="30" minlength="6" placeholder="06… or +31…"></div><div><label for="email">Email address (optional)</label><input id="email" name="email" type="email" autocomplete="email" maxlength="180" placeholder="For a quote by email"></div><div><label for="kenteken">Registration (optional)</label><input id="kenteken" name="kenteken" maxlength="14" autocomplete="off" autocapitalize="characters" placeholder="AB-12-CD"></div><div><label for="voorkeur">Preferred day (optional)</label><input id="voorkeur" name="voorkeur" placeholder="For example Friday afternoon" maxlength="100"></div></div><p class="note" style="margin-top:15px">We use these details to handle your request. <a href="${R.privacy}">More about privacy</a>.</p><div class="optlist review-opt"><label class="tyre"><input type="checkbox" id="review" name="review" value="ja" aria-describedby="review-note"><strong>I agree that OG MotoWorks may email me afterwards to ask for a review</strong></label></div><p class="note review-note" id="review-note" aria-live="polite"></p></fieldset>`;
+  return `<fieldset class="customer-fields" style="border:0;border-top:1px solid #3a3d44;padding:24px 0 0;margin:26px 0 0"><legend class="heading" style="padding:0 10px 0 0;font-size:23px">Your details</legend><p class="note">So we can discuss your request and make an appointment with you.</p><div class="fields"><div class="full"><label for="naam">Name</label><input id="naam" name="naam" autocomplete="name" required maxlength="120" placeholder="First and last name"></div><div><label for="telefoon">Mobile number</label><input id="telefoon" name="telefoon" type="tel" autocomplete="tel" required maxlength="30" minlength="6" placeholder="06… or +31…"></div><div><label for="email">Email address (optional)</label><input id="email" name="email" type="email" autocomplete="email" maxlength="180" placeholder="For a quote by email"></div><div><label for="kenteken">Registration (optional)</label><input id="kenteken" name="kenteken" maxlength="14" autocomplete="off" autocapitalize="characters" placeholder="AB-12-CD"></div><div><label for="voorkeur">Preferred day (optional)</label><input id="voorkeur" name="voorkeur" placeholder="For example Friday afternoon" maxlength="100"></div></div><p class="note" style="margin-top:15px">We use these details to handle your request. <a href="${R.privacy}">More about privacy</a>.</p><div class="optlist review-opt"><label class="tyre"><input type="checkbox" id="review" name="review" value="ja" aria-describedby="review-note"><strong>I agree that OG MotoWorks may email me afterwards to ask for a review</strong></label></div><p class="note review-note" id="review-note" aria-live="polite"></p></fieldset>`;
 }
 function requestFields(k) {
   if (k === "onderhoud")
-    return `<div class="fields"><div><label for="km">Mileage in km (optional)</label><input id="km" name="km" type="number" min="0" max="999999"></div><div><label for="beurt">Which service?</label><select name="beurt" id="beurt">${BODY.winterpage === "1" ? winterOptions() : ""}<option>Scheduled maintenance</option><option>Oil change</option><option>Major service</option><option>Replace fork seals (€350 fixed)</option><option>Replace chain and sprockets (quotation)</option><option>I don't know yet</option>${winterOn() && BODY.winterpage !== "1" ? winterOptions() : ""}</select></div><div class="full"><label for="toelichting">Notes (optional)</label><textarea name="toelichting" id="toelichting" maxlength="2000" placeholder="What would you like done?"></textarea></div></div>`;
+    return `<div class="fields"><div><label for="km">Mileage in km (optional)</label><input id="km" name="km" type="number" min="0" max="999999"></div><div><label for="beurt">Which service?</label><select name="beurt" id="beurt">${BODY.winterpage === "1" ? winterOptions() : ""}<option>Scheduled maintenance</option><option>Oil change</option><option>Major service</option><option>Replace fork seals (from €350)</option><option>Replace chain and sprockets (quotation)</option><option>I don't know yet</option>${winterOn() && BODY.winterpage !== "1" ? winterOptions() : ""}</select></div><div class="full"><label for="toelichting">Notes (optional)</label><textarea name="toelichting" id="toelichting" maxlength="2000" placeholder="What would you like done?"></textarea></div></div>`;
   if (k === "probleem")
     return `<label for="toelichting">What do you notice?</label><textarea name="toelichting" id="toelichting" required maxlength="2000" placeholder="For example: the bike is hard to start when it's warm."></textarea><label for="wanneer" style="margin-top:20px">When does it happen? (optional)</label><input name="wanneer" id="wanneer" maxlength="200" placeholder="Since when, cold or warm, while riding…">`;
   return `<label for="toelichting">What would you like to change?</label><textarea name="toelichting" id="toelichting" required maxlength="2000" placeholder="For example different indicators or heated grips."></textarea>`;
@@ -348,7 +348,7 @@ function routePage(k) {
   );
 }
 function tyreFields() {
-  return `<details class="hintbox"><summary>Where do I find my tyre size?</summary><p>On the sidewall of your tyre, for example 120/70 ZR17. 120 is the width in millimetres, 70 the aspect ratio and 17 the rim size in inches. Copy the full marking; Freddy also checks the version and the other markings.</p><p>Not sure? Leave the size empty and ask for advice.</p></details><p class="note" id="oem-note"></p><div class="fields"><div><label for="voor">Front tyre size</label><input id="voor" name="voor" list="sizes" maxlength="40" placeholder="120/70 ZR17"></div><div><label for="achter">Rear tyre size</label><input id="achter" name="achter" list="sizes" maxlength="40" placeholder="180/55 ZR17"></div><datalist id="sizes">${Object.keys(
+  return `<details class="hintbox"><summary>Where do I find my tyre size?</summary><p>On the sidewall of your tyre, for example 120/70 ZR17. 120 is the width in millimetres, 70 the aspect ratio and 17 the rim size in inches. Copy the full marking; we also check the version and the other markings.</p><p>Not sure? Leave the size empty and ask for advice.</p></details><p class="note" id="oem-note"></p><div class="fields"><div><label for="voor">Front tyre size</label><input id="voor" name="voor" list="sizes" maxlength="40" placeholder="120/70 ZR17"></div><div><label for="achter">Rear tyre size</label><input id="achter" name="achter" list="sizes" maxlength="40" placeholder="180/55 ZR17"></div><datalist id="sizes">${Object.keys(
     DATA.banden.assortiment,
   )
     .map((s) => `<option value="${s}"></option>`)
@@ -375,18 +375,18 @@ function tariffs() {
       "onderhoud",
       true,
     ) +
-    `<div class="wrap workgrid"><div class="panel"><h2>Our prices</h2><div class="line"><span>Labour</span><strong>€60 / hour</strong></div><div class="line"><span>Tyre fitting (tyre not included)</span><strong>€50 / tyre</strong></div><div class="line"><span>Right-angle valves (optional, only if they fit)</span><strong>€20 / set</strong></div><div class="line"><span>Old tyre disposal (optional)</span><strong>€5 / tyre</strong></div><div class="line"><span>Replace fork seals</span><strong>€350 fixed</strong></div><div class="line"><span>Parts</span><strong>List price</strong></div><div class="line"><span>Replace chain and sprockets</span><strong>Quotation</strong></div><p class="note" style="margin-top:20px">Prices incl. VAT. The quote states which work and materials are included.</p></div><div class="panel"><h2>How we work</h2><p>Tell us which bike you ride and what you need. You get a quote up front.</p><p class="muted">If something extra comes up during the work, we consult you first.</p><a href="${R.afspraak}" class="btn">Ask for a quote →</a></div></div>`
+    `<div class="wrap workgrid"><div class="panel"><h2>Our prices</h2><div class="line"><span>Labour</span><strong>€60 / hour</strong></div><div class="line"><span>Tyre fitting (tyre not included)</span><strong>€50 / tyre</strong></div><div class="line"><span>Right-angle valves (optional, only if they fit)</span><strong>€20 / set</strong></div><div class="line"><span>Old tyre disposal (optional)</span><strong>€5 / tyre</strong></div><div class="line"><span>Replace fork seals</span><strong>from €350</strong></div><div class="line"><span>Parts</span><strong>List price</strong></div><div class="line"><span>Replace chain and sprockets</span><strong>Quotation</strong></div><p class="note" style="margin-top:20px">Prices incl. VAT. The quote states which work and materials are included.</p></div><div class="panel"><h2>How we work</h2><p>Tell us which bike you ride and what you need. You get a quote up front.</p><p class="muted">If something extra comes up during the work, we consult you first.</p><a href="${R.afspraak}" class="btn">Ask for a quote →</a></div></div>`
   );
 }
 function about() {
   return (
     pagehead(
-      "Freddy. OG MotoWorks.",
+      "About OG MotoWorks",
       "Personal contact and attention to your bike.",
       "probleem",
       true,
     ) +
-    `<div class="wrap about"><img src="/assets/og/c927c25d6be18e37.jpg" width="941" height="1672" alt="Freddy at work on a motorcycle"><div><span class="eyebrow">The mechanic behind OG MotoWorks</span><h2>You talk to the man<br>who works on your bike.</h2><p>Freddy is the owner and mechanic of OG MotoWorks. We take care of maintenance, repairs, tyres and custom work on your motorcycle.</p><p class="muted">The workshop is in Waalwijk. We work by appointment, so we can discuss your question and the work up front.</p><p>Honest advice, a quote up front and consultation on extra work.</p><a href="${R.contact}" class="btn">Get in touch →</a></div></div>`
+    `<div class="wrap about"><img src="/assets/og/c927c25d6be18e37.jpg" width="941" height="1672" alt="Freddy at work on a motorcycle"><div><span class="eyebrow">The owner behind OG MotoWorks</span><h2>You talk directly to the person<br>who works on your bike.</h2><p>Freddy is the owner and mechanic of OG MotoWorks. We take care of servicing, repairs, tyres and custom work on your motorcycle.</p><p class="muted">The workshop is in Waalwijk. We work by appointment, so we can discuss your question and the work up front.</p><p>Honest advice, a quote up front and consultation on extra work.</p><a href="${R.contact}" class="btn">Get in touch →</a></div></div>`
   );
 }
 function contact() {
@@ -397,7 +397,7 @@ function contact() {
       "probleem",
       true,
     ) +
-    `<div class="wrap workgrid"><div class="panel"><h2>Where to find us</h2><p>Professor Zeemanweg 6-10<br>5144 NN Waalwijk</p><p class="muted">By appointment. Send a message for an available date.</p><p class="hours">We work by appointment. Message us on WhatsApp to book.</p><div class="actions"><a class="btn" href="${R.afspraak}">Request an appointment</a><a class="btn secondary" href="https://www.google.com/maps/search/?api=1&query=Professor+Zeemanweg+6-10%2C+5144+NN+Waalwijk" target="_blank" rel="noopener">Directions</a></div></div><div class="panel"><h2>Direct contact</h2><p>06 42 93 95 55<br><a href="mailto:info@ogmotoworks.nl">info@ogmotoworks.nl</a></p><a href="https://wa.me/31642939555?text=Hi%20Freddy%2C%20I%20have%20a%20question%20about%20my%20motorcycle." class="btn" target="_blank" rel="noopener">Open WhatsApp ↗</a></div></div>`
+    `<div class="wrap workgrid"><div class="panel"><h2>Where to find us</h2><p>Professor Zeemanweg 6-10<br>5144 NN Waalwijk</p><p class="hours">We work by appointment. Message us on WhatsApp to book.</p><div class="actions"><a class="btn" href="${R.afspraak}">Request an appointment</a><a class="btn secondary" href="https://www.google.com/maps/search/?api=1&query=Professor+Zeemanweg+6-10%2C+5144+NN+Waalwijk" target="_blank" rel="noopener">Directions</a></div></div><div class="panel"><h2>Direct contact</h2><p>06 42 93 95 55<br><a href="mailto:info@ogmotoworks.nl">info@ogmotoworks.nl</a></p><a href="https://wa.me/31642939555?text=Hi%20Freddy%2C%20I%20have%20a%20question%20about%20my%20motorcycle." class="btn" target="_blank" rel="noopener">Open WhatsApp ↗</a></div></div>`
   );
 }
 function privacy() {
@@ -666,7 +666,7 @@ function renderTyres() {
     .map((pos) => {
       const items = tyreItems(pos),
         visible = items.slice(0, limits[pos]);
-      return `<h3 class="smallhead" style="margin-top:24px">${pos === "voor" ? "Front tyre" : "Rear tyre"}</h3><p class="note" role="status">${items.length} results · ${Math.min(items.length, limits[pos])} shown. Fitment will still be checked.</p><div class="tyrelist">${
+      return `<h3 class="smallhead" style="margin-top:24px">${pos === "voor" ? "Front tyre" : "Rear tyre"}</h3><p class="note" role="status">${items.length ? `${items.length} results · ${Math.min(items.length, limits[pos])} shown. Fitment will still be checked.` : "No tyres found for this size. Message us and we'll find out for you."}</p><div class="tyrelist">${
         visible
           .map((t) => {
             const id = t.merk + "|" + t.band;
@@ -734,7 +734,7 @@ function renderTotal() {
       .map((r) => {
         if (!r.band) {
           complete = false;
-          return `<div class="line"><span>${r.pos === "voor" ? "Front" : "Rear"}</span><strong>Still to choose / advice</strong></div>`;
+          return `<div class="line"><span>${r.pos === "voor" ? "Front" : "Rear"}</span><strong>Still to choose or advice</strong></div>`;
         }
         if (r.band.prijs == null) complete = false;
         else total += r.band.prijs + DATA.banden.montage;
@@ -742,7 +742,7 @@ function renderTotal() {
       })
       .join("") +
     extras.map((e) => `<div class="line"><span>${escapeHTML(e[0])}</span><strong>${euro(e[1])}</strong></div>`).join("") +
-    `<p style="margin-top:18px"><strong>${complete ? (extras.length ? "Total incl. fitting and extras: " : "Total incl. fitting: ") + euro(total) : "Complete price after choice and quote"}</strong></p><p class="note">Incl. VAT. Availability and any extra work in consultation.</p>`;
+    `<p style="margin-top:18px"><strong>${complete ? (extras.length ? "Total incl. fitting and extras: " : "Total incl. fitting: ") + euro(total) : "The total price follows after your choice, in the quote."}</strong></p><p class="note">Incl. VAT. Availability and any extra work in consultation.</p>`;
 }
 function initTyres() {
   const d = drafts.banden,
@@ -755,7 +755,7 @@ function initTyres() {
   }
   $("#oem-note").textContent = o
     ? "Sizes from our motorcycle overview. Check them on your bike; adjust them if your version differs."
-    : "No single set of sizes for this bike in the overview. Enter your tyre sizes, or ask Freddy for advice.";
+    : "We have no fixed tyre sizes for this bike. Enter your tyre sizes, or ask us for advice.";
   ["voor", "achter"].forEach((p) =>
     $("#" + p).addEventListener("input", () => {
       $$('input[name="band-' + p + '"]').forEach((el) => (el.checked = false));
@@ -921,7 +921,7 @@ function summary() {
       "All correct? Open WhatsApp and send the message yourself.",
       "probleem",
     ) +
-    `<div class="wrap workgrid"><div class="panel"><h2>Your message to Freddy</h2><div class="summary">${escapeHTML(summaryText)}</div><div class="actions"><a class="btn" id="wa-open" href="https://wa.me/31642939555?text=${encodeURIComponent(summaryText)}" target="_blank" rel="noopener">Open WhatsApp ↗</a><a class="btn secondary" href="#formulier">Edit</a></div></div><div class="panel">${selected()}<p>Your request is only sent when you press send in WhatsApp.</p><p class="muted">Freddy confirms the price and an available date. This is not an automatic booking.</p></div></div>`
+    `<div class="wrap workgrid"><div class="panel"><h2>Your message to OG MotoWorks</h2><div class="summary">${escapeHTML(summaryText)}</div><div class="actions"><a class="btn" id="wa-open" href="https://wa.me/31642939555?text=${encodeURIComponent(summaryText)}" target="_blank" rel="noopener">Open WhatsApp ↗</a><a class="btn secondary" href="#formulier">Edit</a></div></div><div class="panel">${selected()}<p>Your request is only sent when you press send in WhatsApp.</p><p class="muted">We confirm the price and an available date. This is not an automatic booking.</p></div></div>`
   );
 }
 const ROUTES = ["home", "diensten", "onderhoud", "probleem", "banden", "ombouw", "tarieven", "over-ons", "contact", "privacy", "info"];
