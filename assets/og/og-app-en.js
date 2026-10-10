@@ -19,7 +19,7 @@ const escapeHTML = (s) =>
         c
       ],
   );
-// Bedrag als €20 / €1.234 (zelfde notatie als de vaste teksten: €60, €350), zonder spatie na het euroteken.
+// Bedrag als €20 / €1.234 (zelfde notatie als de vaste teksten: €75, €350), zonder spatie na het euroteken.
 const euro = (n) => "€" + new Intl.NumberFormat("nl-NL", { maximumFractionDigits: 0 }).format(n);
 // Datum voluit: 3 oktober 2026 / 3 October 2026
 const datumLang = (iso) => {
@@ -97,14 +97,14 @@ const SERVICES = {
     title: "Maintenance",
     description: "Scheduled servicing",
     text: "Tell us which service you want. You get a quote up front that fits your bike.",
-    price: "€60 / hour",
+    price: "€75 / hour",
     priceNote: "Parts are charged separately.",
   },
   probleem: {
     title: "Problem or fault",
     description: "Warning light, leak or crash damage",
     text: "Tell us what you notice. We'll look into it with you and discuss the next step.",
-    price: "€60 / hour",
+    price: "€75 / hour",
     priceNote:
       "We agree on diagnosis and repairs with you, so you always know where you stand.",
   },
@@ -378,7 +378,7 @@ function tariffs() {
       "onderhoud",
       true,
     ) +
-    `<div class="wrap workgrid"><div class="panel"><h2>Our prices</h2><div class="line"><span>Labour</span><strong>€60 / hour</strong></div><div class="line"><span>Tyre fitting (tyre not included)</span><strong>€50 / tyre</strong></div><div class="line"><span>Right-angle valves (optional, only if they fit)</span><strong>€20 / set</strong></div><div class="line"><span>Old tyre disposal (optional)</span><strong>€5 / tyre</strong></div><div class="line"><span>Replace fork seals</span><strong>from €350</strong></div><div class="line"><span>Parts</span><strong>List price</strong></div><div class="line"><span>Replace chain and sprockets</span><strong>Quotation</strong></div><p class="note" style="margin-top:20px">Prices incl. VAT. The quote states which work and materials are included.</p></div><div class="panel"><h2>How we work</h2><p>Tell us which bike you ride and what you need. You get a quote up front.</p><p class="muted">If something extra comes up during the work, we consult you first.</p><a href="${R.afspraak}" class="btn">Ask for a quote →</a></div></div>`
+    `<div class="wrap workgrid"><div class="panel"><h2>Our prices</h2><div class="line"><span>Labour</span><strong>€75 / hour</strong></div><div class="line"><span>Tyre fitting (tyre not included)</span><strong>€50 / tyre</strong></div><div class="line"><span>Right-angle valves (optional, only if they fit)</span><strong>€20 / set</strong></div><div class="line"><span>Old tyre disposal (optional)</span><strong>€5 / tyre</strong></div><div class="line"><span>Replace fork seals</span><strong>from €350</strong></div><div class="line"><span>Parts</span><strong>List price</strong></div><div class="line"><span>Replace chain and sprockets</span><strong>Quotation</strong></div><p class="note" style="margin-top:20px">Prices incl. VAT. The quote states which work and materials are included.</p></div><div class="panel"><h2>How we work</h2><p>Tell us which bike you ride and what you need. You get a quote up front.</p><p class="muted">If something extra comes up during the work, we consult you first.</p><a href="${R.afspraak}" class="btn">Ask for a quote →</a></div></div>`
   );
 }
 function about() {

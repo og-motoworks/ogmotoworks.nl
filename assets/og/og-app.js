@@ -19,7 +19,7 @@ const escapeHTML = (s) =>
         c
       ],
   );
-// Bedrag als €20 / €1.234 (zelfde notatie als de vaste teksten: €60, €350), zonder spatie na het euroteken.
+// Bedrag als €20 / €1.234 (zelfde notatie als de vaste teksten: €75, €350), zonder spatie na het euroteken.
 const euro = (n) => "€" + new Intl.NumberFormat("nl-NL", { maximumFractionDigits: 0 }).format(n);
 // Datum voluit: 3 oktober 2026 / 3 October 2026
 const datumLang = (iso) => {
@@ -97,14 +97,14 @@ const SERVICES = {
     title: "Onderhoud",
     description: "Beurt volgens schema",
     text: "Vertel ons welke beurt je wilt. Je krijgt vooraf een offerte die past bij jouw motor.",
-    price: "€60 / uur",
+    price: "€75 / uur",
     priceNote: "Onderdelen worden apart berekend.",
   },
   probleem: {
     title: "Probleem of storing",
     description: "Waarschuwingslampje, lekkage of schade na een val",
     text: "Vertel wat je merkt. We kijken met je mee en bespreken de volgende stap.",
-    price: "€60 / uur",
+    price: "€75 / uur",
     priceNote:
       "Onderzoek en reparatie in overleg. Eerst weten waar je aan toe bent.",
   },
@@ -378,7 +378,7 @@ function tariffs() {
       "onderhoud",
       true,
     ) +
-    `<div class="wrap workgrid"><div class="panel"><h2>Onze tarieven</h2><div class="line"><span>Arbeid</span><strong>€60 / uur</strong></div><div class="line"><span>Bandenmontage (exclusief band)</span><strong>€50 / band</strong></div><div class="line"><span>Haakse ventielen (optioneel, alleen als ze passen)</span><strong>€20 / set</strong></div><div class="line"><span>Oude band afvoeren (optioneel)</span><strong>€5 / band</strong></div><div class="line"><span>Voorvorkkeerringen vervangen</span><strong>vanaf €350</strong></div><div class="line"><span>Onderdelen</span><strong>Adviesprijs</strong></div><div class="line"><span>Kettingset vervangen</span><strong>Offerte</strong></div><p class="note" style="margin-top:20px">Prijzen incl. btw. In de offerte staat welk werk en welk materiaal zijn inbegrepen.</p></div><div class="panel"><h2>Zo werken wij</h2><p>Vertel welke motor je rijdt en wat je nodig hebt. Je krijgt vooraf een offerte.</p><p class="muted">Komen we tijdens het werk iets extra's tegen? Dan overleggen we eerst met je.</p><a href="${R.afspraak}" class="btn">Vraag een offerte →</a></div></div>`
+    `<div class="wrap workgrid"><div class="panel"><h2>Onze tarieven</h2><div class="line"><span>Arbeid</span><strong>€75 / uur</strong></div><div class="line"><span>Bandenmontage (exclusief band)</span><strong>€50 / band</strong></div><div class="line"><span>Haakse ventielen (optioneel, alleen als ze passen)</span><strong>€20 / set</strong></div><div class="line"><span>Oude band afvoeren (optioneel)</span><strong>€5 / band</strong></div><div class="line"><span>Voorvorkkeerringen vervangen</span><strong>vanaf €350</strong></div><div class="line"><span>Onderdelen</span><strong>Adviesprijs</strong></div><div class="line"><span>Kettingset vervangen</span><strong>Offerte</strong></div><p class="note" style="margin-top:20px">Prijzen incl. btw. In de offerte staat welk werk en welk materiaal zijn inbegrepen.</p></div><div class="panel"><h2>Zo werken wij</h2><p>Vertel welke motor je rijdt en wat je nodig hebt. Je krijgt vooraf een offerte.</p><p class="muted">Komen we tijdens het werk iets extra's tegen? Dan overleggen we eerst met je.</p><a href="${R.afspraak}" class="btn">Vraag een offerte →</a></div></div>`
   );
 }
 function about() {
