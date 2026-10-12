@@ -93,7 +93,6 @@
     var op = OGMotor.klus.opening(d.intent);
     var lines = [T('Hoi OG MotoWorks! ') + op.zin + (op.lijst.length && /:$/.test(op.zin) ? '\n' + op.lijst.map(function (x) { return '- ' + x; }).join('\n') : '')];
     if (op.lijst.length && !/:$/.test(op.zin)) lines.push(T('Laten doen:') + '\n' + op.lijst.map(function (x) { return '- ' + x; }).join('\n'));
-    if (d.winter) lines.push(T('Vroegboek: ') + (d.winter.vroegboek ? T('ja (geboekt t/m 30 november, afspraak t/m januari)') : T('nee')));
     if (d.naam) lines.push(T('Naam: ') + d.naam);
     if (d.telefoon) lines.push(T('Telefoon: ') + d.telefoon);
     if (d.email) lines.push(T('E-mail: ') + d.email);
@@ -146,7 +145,7 @@
     }
     if (bo) { put('Banden overzicht', bo.regels.map(function (r) { return r[0] + ': ' + r[1]; }).join('\n')); put('Richtprijs banden', bo.tekst + ' (incl. btw). ' + DEF); }
     put('Vraag', d.vraag);
-    if (d.winter) { put('Winterpakket', d.winter.naam || '(nog kiezen)'); put('Vroegboek', d.winter.vroegboek ? 'ja' : 'nee'); }
+    if (d.winter) { put('Winterpakket', d.winter.naam || '(nog kiezen)'); }
     put('Akkoord gegevens voor deze aanvraag', d.akkoord ? 'ja' : 'nee');
     put('Toestemming reviewverzoek per mail', d.review ? 'ja' : 'nee');
     put('Pagina', location.pathname);

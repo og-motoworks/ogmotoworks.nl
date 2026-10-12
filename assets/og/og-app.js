@@ -78,19 +78,14 @@ function persist() {
     sessionStorage.setItem(STORE, JSON.stringify({ intent, customer, drafts }));
   } catch {}
 }
-// Winterpakketten (goedgekeurde prijzen incl. btw). Vroegboek: boeken t/m 30 november, afspraak t/m januari.
+// Winterpakketten 2026 v2.2 (prijzen incl. btw, 'vanaf'). Boeken t/m 30 november 2026. Geen vroegboekkorting.
 const WINTER = [
-  { naam: "Winterbeurt", prijs: 179, vroeg: 159 },
-  { naam: "Winterbeurt + Voorjaarsklaar", prijs: 219, vroeg: 199 },
-  { naam: "Winter Compleet", prijs: 279, vroeg: 259 },
+  { naam: "Winterklaar Basis", prijs: 89 },
+  { naam: "Winterklaar Plus", prijs: 209 },
+  { naam: "Winterklaar Compleet", prijs: 329 },
 ];
-const VROEG_TOT = "2026-11-30";
-function vroegboek() {
-  const d = new Date();
-  return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2) <= VROEG_TOT;
-}
 const winterOn = () => BODY.winterpage === "1" || BODY.winter === "live";
-const winterLabel = (w) => w.naam + " (" + (vroegboek() ? "vroegboekprijs " + euro(w.vroeg) + ", normaal " + euro(w.prijs) : euro(w.prijs)) + ")";
+const winterLabel = (w) => w.naam + " (vanaf " + euro(w.prijs) + ")";
 const winterOf = (beurt) => WINTER.find((w) => beurt && beurt.startsWith(w.naam + " ("));
 const SERVICES = {
   onderhoud: {
@@ -866,8 +861,7 @@ function customerRecord(k, m, d) {
 function winterFields(k, d) {
   const w = k === "onderhoud" ? winterOf(d.beurt) : null;
   if (!w) return {};
-  const v = vroegboek();
-  return { Winterpakket: w.naam + " (" + euro(v ? w.vroeg : w.prijs) + ")", Vroegboek: v ? "ja (" + euro(w.vroeg) + " i.p.v. " + euro(w.prijs) + ")" : "nee" };
+  return { Winterpakket: w.naam + " (vanaf " + euro(w.prijs) + ")" };
 }
 function formspreeData(k, m, d) {
   const naam = String(d.naam || "").trim(),

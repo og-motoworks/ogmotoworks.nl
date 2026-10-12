@@ -263,15 +263,14 @@
     { id: 'anders', label: 'Iets anders' }
   ];
   KLUS.forEach(function (k) { ['label', 'prijs', 'linkText', 'zin', 'wat'].forEach(function (f) { if (k[f]) k[f] = T(k[f]); }); if (k.link) k.link = I18N.p(k.link); });
-  // Winterpakketten (goedgekeurde prijzen incl. btw). Vroegboek: boeken t/m 30 november, afspraak t/m januari.
-  var WINTER = [{ id: 'winterbeurt', naam: 'Winterbeurt', prijs: 179, vroeg: 159 },
-                { id: 'voorjaarsklaar', naam: 'Winterbeurt + Voorjaarsklaar', prijs: 219, vroeg: 199 },
-                { id: 'compleet', naam: 'Winter Compleet', prijs: 279, vroeg: 259 }];
+  // Winterpakketten 2026 v2.2 (prijzen incl. btw, 'vanaf'). Boeken t/m 30 november 2026, uitvoeren t/m 20 december. Geen vroegboekkorting.
+  var WINTER = [{ id: 'basis', naam: 'Winterklaar Basis', prijs: 89 },
+                { id: 'plus', naam: 'Winterklaar Plus', prijs: 209 },
+                { id: 'compleet', naam: 'Winterklaar Compleet', prijs: 329 }];
   WINTER.forEach(function (w) { w.naam = T(w.naam); });
   function opWinter() { return location.pathname.indexOf(I18N.p('/winter/')) === 0; }
-  var VROEG_TOT = '2026-11-30';
   function today() { var d = new Date(); return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); }
-  function vroegboek() { return today() <= VROEG_TOT; }
+  function vroegboek() { return false; } // geen vroegboekkorting meer (winterplan v2.2)
   function winterPakket(id) { return WINTER.filter(function (w) { return w.id === id; })[0] || null; }
   // Winterpakket staat in de lijst op /winter/, als de actie live is (<body data-winter="live">) of als het al is gekozen
   function winterZichtbaar(k) {
@@ -306,11 +305,11 @@
   function winterInfo() {
     var k = klusGet(); if (k.items.indexOf('winter') === -1) return null;
     var w = winterPakket(k.winter), v = vroegboek();
-    return { id: w ? w.id : '', naam: w ? w.naam : '', prijs: w ? (v ? w.vroeg : w.prijs) : null, normaal: w ? w.prijs : null, vroegboek: v };
+    return { id: w ? w.id : '', naam: w ? w.naam : '', prijs: w ? w.prijs : null, normaal: w ? w.prijs : null, vroegboek: v };
   }
   function winterTekst(w) {
     if (!w.naam) return T('Winterpakket (welk pakket nog kiezen)');
-    return w.vroegboek ? T('Winterpakket: {naam} (vroegboek €{p} i.p.v. €{n})', { naam: w.naam, p: w.prijs, n: w.normaal }) : T('Winterpakket: {naam} (€{p})', { naam: w.naam, p: w.prijs });
+    return T('Winterpakket: {naam} (vanaf €{p})', { naam: w.naam, p: w.prijs });
   }
   function klusPrijs(item, k) {
     if (item.id === 'banden' && k.bandPrijs) return T('band vanaf €{p} + €50 montage per band', { p: k.bandPrijs });
@@ -349,8 +348,8 @@
         if (i.id === 'winter') return '<li data-klus-winter><input type="checkbox" id="' + id + '" value="winter"><label for="' + id + '">' + i.label + '</label>' +
           '<fieldset class="klus__sub" hidden><legend>' + T('Welk pakket?') + '</legend>' + WINTER.map(function (w) {
             return '<label class="klus__radio"><input type="radio" name="' + p + '-winter" id="' + p + '-winter-' + w.id + '" value="' + w.id + '"><span>' + w.naam +
-              '<span class="klus__prijs">€' + w.prijs + (vroegboek() ? T(' · vroegboek €{p}', { p: w.vroeg }) : '') + '</span></span></label>';
-          }).join('') + '<p class="klus__note">' + (vroegboek() ? T('Vroegboekprijs bij boeken t/m 30 november, voor een afspraak t/m januari.') : T('Prijzen incl. btw.')) +
+              '<span class="klus__prijs">' + T('vanaf €{p}', { p: w.prijs }) + '</span></span></label>';
+          }).join('') + '<p class="klus__note">' + T('Prijzen incl. btw. Boeken t/m 30 november 2026.') +
           (opWinter() ? '' : ' <a class="link" href="' + I18N.p('/winter/') + '">' + T('Bekijk de pakketten →') + '</a>') + '</p></fieldset></li>';
         return '<li><input type="checkbox" id="' + id + '" value="' + i.id + '"><label for="' + id + '">' + i.label + '</label>' +
           (i.link && here !== i.link.split('#')[0] ? ' <a class="link klus__link" href="' + i.link + '" hidden>' + i.linkText + ' →</a>' : '') + '</li>';
