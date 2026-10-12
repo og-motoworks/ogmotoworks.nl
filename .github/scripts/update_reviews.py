@@ -8,6 +8,8 @@ Haalt de reviews van OG MotoWorks op via de Google Places API en voegt ze samen 
 - positieve reviews blijven staan als ze uit Google's 5 vallen (archief, max. max_archief); met "archief": false
   in de config niet: dan staan alleen Google's huidige reviews erin (plus de start-reviews die Google niet teruggaf),
   conform het Places-beleid ("must not ... store Places API content");
+- handmatige reviews ("handmatig": true, bv. nog niet via de API zichtbaar) blijven altijd staan, ook met
+  "archief": false, tot Google dezelfde review teruggeeft (naam past + zelfde tekstbegin): dan vervangt die versie ze;
 - nieuwste eerst; reviews zonder datum (seed) achteraan in hun oorspronkelijke volgorde.
 Bij een fout (geen sleutel, netwerk, quota, onverwacht antwoord, geen reviews) verandert er NIETS: exit 0 met een
 waarschuwing (::warning:: in GitHub Actions). Er wordt nooit een leeg of ongeldig bestand geschreven.
@@ -136,10 +138,18 @@ def seed_matches(seed, r):
     return len(first) >= 20 and norm(r.get('tekst')).startswith(first)
 
 
+def manual_matches(m, r):
+    """Handmatig toegevoegde review ("handmatig": true) = de Google-versie als naam past en de tekst gelijk begint."""
+    if not m.get('handmatig') or not name_compatible(m.get('naam'), r.get('naam')):
+        return False
+    first = norm(m.get('tekst'))[:60]
+    return len(first) >= 20 and norm(r.get('tekst')).startswith(first)
+
+
 def merge(archive, fresh, min_sterren=4, max_archief=40, archief=True):
     out = [dict(r) for r in archive if positive(r, min_sterren)]
     if not archief:  # oude Google-reviews niet bewaren; een vervangen start-review komt terug als seed
-        out = [r if r.get('bron') == 'seed' else dict(r['seed']) for r in out if r.get('bron') == 'seed' or isinstance(r.get('seed'), dict)]
+        out = [r if r.get('bron') == 'seed' or r.get('handmatig') else dict(r['seed']) for r in out if r.get('bron') == 'seed' or r.get('handmatig') or isinstance(r.get('seed'), dict)]
     for r in fresh:
         if not positive(r, min_sterren):
             continue
@@ -149,13 +159,20 @@ def merge(archive, fresh, min_sterren=4, max_archief=40, archief=True):
             hit = next((i for i, a in enumerate(out) if seed_matches(a, r)), None)
             if hit is not None:
                 r = {**r, 'seed': {k2: v for k2, v in out[hit].items() if k2 != 'seed'}}
+        if hit is None:  # handmatige review die Google nu zelf teruggeeft: vervangen door de Google-versie
+            hit = next((i for i, a in enumerate(out) if manual_matches(a, r)), None)
+            if hit is not None:
+                out[hit] = {k2: v for k2, v in r.items()}
+                continue
         if hit is None:
             out.append(r)
         else:
             out[hit] = {**out[hit], **{k2: v for k2, v in r.items() if v not in ('', None)}}
     dated = sorted([r for r in out if r.get('datum')], key=lambda r: r['datum'], reverse=True)
     undated = [r for r in out if not r.get('datum')]
-    return (dated + undated)[:max_archief]
+    res = (dated + undated)[:max_archief]
+    res += [r for r in dated + undated if r.get('handmatig') and r not in res]  # handmatige reviews nooit wegsnoeien
+    return res
 
 
 def load(path):
