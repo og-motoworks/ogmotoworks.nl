@@ -10,7 +10,8 @@ Haalt de reviews van OG MotoWorks op via de Google Places API en voegt ze samen 
   conform het Places-beleid ("must not ... store Places API content");
 - handmatige reviews ("handmatig": true, bv. nog niet via de API zichtbaar) blijven altijd staan, ook met
   "archief": false, tot Google dezelfde review teruggeeft (naam past + zelfde tekstbegin): dan vervangt die versie ze;
-- nieuwste eerst; reviews zonder datum (seed) achteraan in hun oorspronkelijke volgorde.
+- nieuwste eerst; reviews zonder datum (seed) achteraan in hun oorspronkelijke volgorde;
+- 'toon' (aantal op de site) is maximaal 6 (MAX_TOON); het archief (max_archief) wordt daar niet door ingekort.
 Bij een fout (geen sleutel, netwerk, quota, onverwacht antwoord, geen reviews) verandert er NIETS: exit 0 met een
 waarschuwing (::warning:: in GitHub Actions). Er wordt nooit een leeg of ongeldig bestand geschreven.
 Geen extra pakketten nodig (alleen de standaardbibliotheek van Python 3).
@@ -175,6 +176,18 @@ def merge(archive, fresh, min_sterren=4, max_archief=40, archief=True):
     return res
 
 
+MAX_TOON = 6  # regel Freddy (13 okt 2026): op de site maximaal de 6 nieuwste reviews met 4-5 sterren; het archief blijft heel
+
+
+def toon_of(cfg, cur):
+    """Aantal te tonen reviews (veld 'toon' in reviews.json): uit de config, begrensd op 1..MAX_TOON."""
+    try:
+        n = int(cfg.get('toon', cur.get('toon', MAX_TOON)))
+    except (TypeError, ValueError):
+        n = MAX_TOON
+    return max(1, min(n, MAX_TOON))
+
+
 def load(path):
     with open(path, encoding='utf-8') as f:
         return json.load(f)
@@ -220,8 +233,9 @@ def main():
     for k in ('rating', 'aantal'):
         if info.get(k) is not None:
             new[k] = info[k]
-    new['toon'] = int(cfg.get('toon', cur.get('toon', 8)))
-    new['alle_reviews_url'] = cfg.get('alle_reviews_url') or cur.get('alle_reviews_url', '')
+    new['toon'] = toon_of(cfg, cur)
+    url = cfg.get('alle_reviews_url') or cur.get('alle_reviews_url', '')
+    new['alle_reviews_url'] = url if str(url).startswith('https://') else ''
     if {k: v for k, v in new.items() if k != 'bijgewerkt'} == {k: v for k, v in cur.items() if k != 'bijgewerkt'}:
         print('Geen nieuwe of gewijzigde reviews; reviews.json blijft gelijk.')
         return 0

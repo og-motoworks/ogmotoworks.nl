@@ -221,12 +221,16 @@ let reviewTimer = null;
 // Teksten nooit aanpassen of vertalen; alleen inkorten met een link naar Google.
 let reviewData = null;
 const REVIEW_MAX = 220;
+// Regel Freddy (13 okt 2026): maximaal de 6 nieuwste reviews met 4 of 5 sterren (Google en handmatig gelijk), nieuwste eerst.
+const REVIEW_TOON = 6;
+const REVIEWS_ALLE = "https://www.google.com/maps/search/?api=1&query=OG%20MotoWorks&query_place_id=ChIJwTtwaLGVxkcRzA1mWT-fP6Q";
 function reviewList() {
   const ok = (r) => r && typeof r.tekst === "string" && r.tekst.trim() && r.naam && Number(r.sterren) >= 4 && Number(r.sterren) <= 5;
-  const list = Array.isArray(reviewData?.reviews) ? reviewData.reviews.filter(ok) : [];
-  if (!list.length) return { items: REVIEWS.map((r) => ({ naam: r.name, tekst: r.text, sterren: 5, taal: "nl" })), datum: "2026-10-01", alle: "https://share.google/mfVz03Qhs4EkLpyDO" };
-  const n = Math.min(Math.max(Number(reviewData.toon) || 8, 3), 12);
-  return { items: list.slice(0, n), datum: reviewData.bijgewerkt || "2026-10-01", alle: /^https:\/\//.test(reviewData.alle_reviews_url || "") ? reviewData.alle_reviews_url : "https://share.google/mfVz03Qhs4EkLpyDO" };
+  const t = (r) => { const d = Date.parse(r.datum || ""); return isNaN(d) ? -Infinity : d; }; // zonder datum (seed) achteraan
+  const list = Array.isArray(reviewData?.reviews) ? reviewData.reviews.filter(ok).map((r, i) => [r, i]).sort((a, b) => t(b[0]) - t(a[0]) || a[1] - b[1]).map((x) => x[0]) : [];
+  if (!list.length) return { items: REVIEWS.slice(0, REVIEW_TOON).map((r) => ({ naam: r.name, tekst: r.text, sterren: 5, taal: "nl" })), datum: "2026-10-01", alle: REVIEWS_ALLE };
+  const n = Math.min(Math.max(Number(reviewData.toon) || REVIEW_TOON, 1), REVIEW_TOON);
+  return { items: list.slice(0, n), datum: reviewData.bijgewerkt || "2026-10-01", alle: /^https:\/\//.test(reviewData.alle_reviews_url || "") ? reviewData.alle_reviews_url : REVIEWS_ALLE };
 }
 function reviewDate(iso) {
   const d = new Date(iso);
@@ -269,7 +273,7 @@ function initGallery() {
 }
 function socialReviews() {
   const rv = reviewList();
-  return `<section class="section social-section"><div class="wrap"><div class="social-head"><div><span class="eyebrow">Een kijkje in de werkplaats</span><h2>Motoren, werk & verhalen.</h2></div><a class="btn secondary instagram-btn" href="https://www.instagram.com/og_motoworks" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1" fill="currentColor" stroke="none"/></svg>Volg OG MotoWorks op Instagram ↗</a></div><div class="photo-mix"><figure><img data-gallery-photo="MAINTENANCE_URI" alt="Freddy sleutelt aan een BMW-motor" loading="lazy"><figcaption>Aandacht voor het werk</figcaption></figure><figure><img data-gallery-photo="CHAIN_URI" alt="Controle van de kettingspeling op een motor" loading="lazy"><figcaption>Het zit in de details</figcaption></figure><figure><img data-gallery-photo="HONDA_URI" alt="Witte Honda voor de werkplaats" loading="lazy"><figcaption>Verschillende motoren, dezelfde aandacht</figcaption></figure><figure><img data-gallery-photo="TYRE_URI" alt="Motor van achteren met brede achterband" loading="lazy"><figcaption>Banden: advies en montage</figcaption></figure><figure><img data-gallery-photo="GROUP_URI" alt="Drie motorrijders op verschillende motoren" loading="lazy"><figcaption>De passie achter OG MotoWorks</figcaption></figure></div></div></section><section class="section customer-reviews" id="reviews" aria-labelledby="reviews-title"><div class="wrap"><div class="social-head"><div><span class="eyebrow">Klanten aan het woord</span><h2 id="reviews-title">Ervaringen op Google</h2></div><button class="btn secondary" id="reviews-pause" type="button" aria-pressed="false">Pauzeer reviews</button></div><div class="review-viewport" id="review-viewport" role="region" aria-label="Klantreviews, automatisch wisselend" tabindex="0"><div class="review-track">${rv.items.map((r) => reviewCard(r, rv.alle)).join("")}</div></div><p class="note" id="reviews-updated" style="margin-top:18px">Reviews via Google Maps · Laatst bijgewerkt: ${escapeHTML(new Date(rv.datum).toLocaleDateString(EN ? "en-GB" : "nl-NL", { day: "numeric", month: "long", year: "numeric" }))}</p><div class="actions"><a class="btn secondary" href="${escapeHTML(rv.alle)}" target="_blank" rel="noopener">Alle reviews op Google ↗</a><a class="btn text" href="https://g.page/r/CcwNZlk_nz-kEBM/review" target="_blank" rel="noopener">Schrijf een review ↗</a></div></div></section>`;
+  return `<section class="section social-section"><div class="wrap"><div class="social-head"><div><span class="eyebrow">Een kijkje in de werkplaats</span><h2>Motoren, werk & verhalen.</h2></div><a class="btn secondary instagram-btn" href="https://www.instagram.com/og_motoworks" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1" fill="currentColor" stroke="none"/></svg>Volg OG MotoWorks op Instagram ↗</a></div><div class="photo-mix"><figure><img data-gallery-photo="MAINTENANCE_URI" alt="Freddy sleutelt aan een BMW-motor" loading="lazy"><figcaption>Aandacht voor het werk</figcaption></figure><figure><img data-gallery-photo="CHAIN_URI" alt="Controle van de kettingspeling op een motor" loading="lazy"><figcaption>Het zit in de details</figcaption></figure><figure><img data-gallery-photo="HONDA_URI" alt="Witte Honda voor de werkplaats" loading="lazy"><figcaption>Verschillende motoren, dezelfde aandacht</figcaption></figure><figure><img data-gallery-photo="TYRE_URI" alt="Motor van achteren met brede achterband" loading="lazy"><figcaption>Banden: advies en montage</figcaption></figure><figure><img data-gallery-photo="GROUP_URI" alt="Drie motorrijders op verschillende motoren" loading="lazy"><figcaption>De passie achter OG MotoWorks</figcaption></figure></div></div></section><section class="section customer-reviews" id="reviews" aria-labelledby="reviews-title"><div class="wrap"><div class="social-head"><div><span class="eyebrow">Klanten aan het woord</span><h2 id="reviews-title">Ervaringen op Google</h2></div><button class="btn secondary" id="reviews-pause" type="button" aria-pressed="false">Pauzeer reviews</button></div><div class="review-viewport" id="review-viewport" role="region" aria-label="Klantreviews, automatisch wisselend" tabindex="0"><div class="review-track">${rv.items.map((r) => reviewCard(r, rv.alle)).join("")}</div></div><p class="note" id="reviews-updated" style="margin-top:18px">Reviews via Google Maps · Laatst bijgewerkt: ${escapeHTML(new Date(rv.datum).toLocaleDateString(EN ? "en-GB" : "nl-NL", { day: "numeric", month: "long", year: "numeric" }))}</p><div class="actions"><a class="btn secondary" id="reviews-alle" href="${escapeHTML(rv.alle)}" target="_blank" rel="noopener">Bekijk alle reviews op Google ↗</a><a class="btn text" href="https://g.page/r/CcwNZlk_nz-kEBM/review" target="_blank" rel="noopener">Schrijf een review ↗</a></div></div></section>`;
 }
 function initReviews() {
   if (reviewTimer) {
@@ -1088,6 +1092,22 @@ async function boot() {
     if (t) t.scrollIntoView();
   }
 }
+// Klikteller (13 okt 2026): cookieloze GoatCounter-events (goatcounter.count met event: true) voor WhatsApp en bellen.
+// Geen cookies, geen persoonsgegevens, geen extra diensten. Zonder GoatCounter (preview, blocker) gebeurt er niets.
+function gcEvent(path) {
+  try {
+    if (window.goatcounter && typeof window.goatcounter.count === "function") window.goatcounter.count({ path, title: path, event: true });
+  } catch (e) {}
+}
+document.addEventListener(
+  "click",
+  (e) => {
+    const a = e.target.closest?.('a[href^="https://wa.me/"], a[href^="tel:"]');
+    if (!a) return;
+    gcEvent(a.id === "wa-open" ? "klik-whatsapp-formulier" : /^tel:/.test(a.getAttribute("href")) ? "klik-bellen" : "klik-whatsapp");
+  },
+  true,
+);
 window.OG_READY = boot().catch(() => {
   document.documentElement.classList.add("og-nodata");
 });
