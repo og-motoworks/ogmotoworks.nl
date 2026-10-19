@@ -169,3 +169,8 @@
 .info .prose .werkfotos figure{margin:0}
 .info .prose .werkfotos img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
 @media(max-width:720px){.werkfotos__grid{grid-template-columns:1fr 1fr;gap:10px}.info .prose .werkfotos figcaption{font-size:12px}}
+
+/* ===== WINTERFOTO (19 okt 2026): KTM in de winterhero, <picture> mobiel 16:7 / desktop 2:3 ===== */
+.wh-photo picture{display:block;height:100%}
+figure.wh-photo picture img{object-position:50% 50%}
+@media(max-width:900px){.wh-photo picture{position:absolute;inset:0}figure.wh-photo picture img{height:100%;object-position:50% 50%}}
