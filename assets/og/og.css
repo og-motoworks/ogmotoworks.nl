@@ -143,3 +143,29 @@
 .btn-mail{white-space:nowrap}
 .actions:has(.btn-mail) .btn{justify-content:center;text-align:center}
 @media(max-width:720px){.actions:has(.btn-mail) .btn{flex:1 1 auto;white-space:nowrap;padding-left:16px;padding-right:16px}}
+
+/* ===== FOTOS24 (19 okt 2026): foto's uit Drive 'Gebruiken voor website' ===== */
+.service.has-photo:before{display:none}
+.service-photo{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.service:hover .service-photo{transform:scale(1.05)}
+.service:nth-child(2) .service-photo{object-position:50% 45%}
+.service:nth-child(3) .service-photo{object-position:50% 50%}
+.pagehead[data-bg=onderhoud-olie]:before{background-image:url('/assets/og/96a789c045be9ac0.webp');background-size:cover;background-position:50% 55%}
+.pagehead[data-bg=winter]:before{background-image:url('/assets/og/94bc5081e4b5532f.webp');background-size:cover;background-position:50% 50%}
+.pagehead[data-bg=reparatie]:before{background-image:url('/assets/og/5279f68543082adb.webp');background-size:cover;background-position:50% 50%}
+.pagehead[data-bg=diagnose]:before{background-image:url('/assets/og/cc48989d280885e9.webp');background-size:cover;background-position:50% 50%}
+.pagehead[data-bg=ketting]:before{background-image:url('/assets/og/238e91567f8baee1.webp');background-size:cover;background-position:50% 50%}
+.pagehead[data-bg=ketting-rammelt]:before{background-image:url('/assets/og/71e6523186f707ad.webp');background-size:cover;background-position:50% 55%}
+.pagehead[data-bg=voorvork]:before{background-image:url('/assets/og/b03e800dfc48c309.webp');background-size:cover;background-position:50% 50%}
+.pagehead[data-bg=remmen]:before{background-image:url('/assets/og/69d5a1782e5cf9d7.webp');background-size:cover;background-position:50% 45%}
+.pagehead[data-bg=carburateur]:before{background-image:url('/assets/og/850c10c716072cde.webp');background-size:cover;background-position:50% 50%}
+.pagehead[data-bg=olie]:before{background-image:url('/assets/og/2b83c71250f2c6f2.webp');background-size:cover;background-position:50% 50%}
+.pagehead[data-bg=tuning]:before{background-image:url('/assets/og/71b23c2d57449c96.webp');background-size:cover;background-position:50% 50%}
+.pagehead[data-bg=werkplaats]:before{background-image:url('/assets/og/1a544208d5bae89f.webp');background-size:cover;background-position:50% 60%}
+.pagehead[data-bg=banden]:before{background-image:url('/assets/og/8a9cd78f384bf79b.webp');background-size:cover;background-position:50% 45%}
+@media(max-width:720px){.pagehead[data-bg=onderhoud-olie]:before{background-image:url('/assets/og/663d34ca1d2f802c.webp')}.pagehead[data-bg=reparatie]:before{background-image:url('/assets/og/9eaf11b44b8b4d67.webp')}.pagehead[data-bg=ketting]:before{background-image:url('/assets/og/4103146e54f06dee.webp')}.pagehead[data-bg=ketting-rammelt]:before{background-image:url('/assets/og/39ce9b438cd462a0.webp')}.pagehead[data-bg=carburateur]:before{background-image:url('/assets/og/f48d835a548683f7.webp')}.pagehead[data-bg=werkplaats]:before{background-image:url('/assets/og/285bee9cb0b7b2cf.webp')}}
+.info .prose>.werkfotos{max-width:none;margin:36px 0}
+.werkfotos__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+.info .prose .werkfotos figure{margin:0}
+.info .prose .werkfotos img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
+@media(max-width:720px){.werkfotos__grid{grid-template-columns:1fr 1fr;gap:10px}.info .prose .werkfotos figcaption{font-size:12px}}
