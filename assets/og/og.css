@@ -174,3 +174,13 @@
 .wh-photo picture{display:block;height:100%}
 figure.wh-photo picture img{object-position:50% 50%}
 @media(max-width:900px){.wh-photo picture{position:absolute;inset:0}figure.wh-photo picture img{height:100%;object-position:50% 50%}}
+
+/* ===== PAKKETFOTOS (19 okt 2026): foto per Winterklaar-kaart ===== */
+.info .prose .wp__card{overflow:hidden}
+.info .prose .wp__card>img{display:block;width:calc(100% + 40px);max-width:none;height:auto;aspect-ratio:16/9;object-fit:cover;margin:-20px -20px 16px;border:0;border-radius:0;box-shadow:none}
+.wh-cards a{overflow:hidden}
+.wh-photo{position:relative}
+@media(min-width:901px){.wh-photo{min-height:420px}.wh-photo picture{position:absolute;inset:0}figure.wh-photo picture img{height:100%;max-height:none}}
+.wh-cards .wh-cardpic{display:block;margin:-20px -18px 10px;aspect-ratio:2/1;overflow:hidden;background:#24272d}
+.wh-cards .wh-cardpic img{display:block;width:100%;height:100%;object-fit:cover}
+@media(max-width:900px){.wh-cards a{align-items:center}.wh-cards .wh-cardpic{flex:0 0 52px;width:52px;height:52px;aspect-ratio:1;margin:-4px 12px -4px -6px;border-radius:6px}}
