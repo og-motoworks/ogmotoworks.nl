@@ -138,3 +138,8 @@
  .wh-cards strong{font-size:19px;margin-right:auto}.wh-cards span{margin:0 6px 0 0}.wh-cards b{font-size:30px}
  .wh-actions{flex-direction:column}.wh-big{width:100%;box-sizing:border-box}
  .wh-photo{order:-1;min-height:0;aspect-ratio:16/7}.wh-photo img{max-height:none;object-position:50% 28%}.wh-photo figcaption{display:none}}
+
+/* ===== Mailknop naast WhatsApp (19 okt 2026) ===== */
+.btn-mail{white-space:nowrap}
+.actions:has(.btn-mail) .btn{justify-content:center;text-align:center}
+@media(max-width:720px){.actions:has(.btn-mail) .btn{flex:1 1 auto;white-space:nowrap;padding-left:16px;padding-right:16px}}

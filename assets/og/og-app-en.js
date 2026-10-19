@@ -3,6 +3,11 @@ let DATA = null; // geladen uit /assets/data/*.json (zelfde bron en formule als 
 const BODY = document.body.dataset;
 const R = window.OG_ROUTES; // route -> echte URL (per taal), uit de build
 const FORMSPREE = "https://formspree.io/f/myezrojv";
+// Mailknop naast elke WhatsApp-aanvraagknop (19 okt 2026). Teksten in MAIL_T (EN via app_en.py); regeleinden %0D%0A.
+const MAIL = "info@ogmotoworks.nl";
+const MAIL_T = { btn: "Email us", std: "Request via website", winter: "Winter package request via website", lines: ["Name:", "Motorcycle (make, model, year):", "Registration number:", "What needs to be done:"], winterLine: "Winter package (Basic, Plus or Complete):" };
+const mailTpl = (winter) => (winter ? [...MAIL_T.lines.slice(0, 3), MAIL_T.winterLine, MAIL_T.lines[3]] : MAIL_T.lines).map((l) => l + " \n").join("");
+const mailHref = (subject, body) => "mailto:" + MAIL + "?subject=" + encodeURIComponent(subject) + "&amp;body=" + encodeURIComponent(String(body).replace(/\r?\n/g, "\r\n"));
 // /motor-schade/ (9 okt 2026): vraag in "Goed om te weten" op de probleempagina's en link op de homepage. EN via app_en.py.
 const SCHADE = { faq: ["Crashed or dropped your bike?", `We inspect the damage, consult your insurer's assessor and help you find the best repair. <a href="${R.schade}">Read what to do about motorcycle damage</a>.`], home: "Damage after a fall? ↗" };
 // Extra's bij banden (incl. btw, standaard uit): haakse ventielen per set (één keer per aanvraag), oude band afvoeren per band.
@@ -318,12 +323,12 @@ function initReviews() {
 
 function winterHome() {
   if (BODY.winter !== "live") return "";
-  return `<section class="wrap winterhome" aria-labelledby="winterhome-h"><div class="winterhome-text"><span class="eyebrow">Winter offer 2026</span><h2 id="winterhome-h">Get your bike winter-ready</h2><p>Three fixed packages at a fixed price. Book by 30 November, we carry them out until 20 December.</p></div><ul class="winterhome-list">${WINTER.map((w) => `<li><strong>${w.naam}</strong><span>from ${euro(w.prijs)}</span></li>`).join("")}</ul><div class="winterhome-actions"><a href="${R.winter}" class="btn">View the winter packages →</a><a href="https://wa.me/31642939555?text=Hi%20OG%20MotoWorks%2C%20I%20would%20like%20to%20book%20a%20winter%20package." class="btn secondary btn-wa" target="_blank" rel="noopener">Book via WhatsApp ↗</a></div></section>`;
+  return `<section class="wrap winterhome" aria-labelledby="winterhome-h"><div class="winterhome-text"><span class="eyebrow">Winter offer 2026</span><h2 id="winterhome-h">Get your bike winter-ready</h2><p>Three fixed packages at a fixed price. Book by 30 November, we carry them out until 20 December.</p></div><ul class="winterhome-list">${WINTER.map((w) => `<li><strong>${w.naam}</strong><span>from ${euro(w.prijs)}</span></li>`).join("")}</ul><div class="winterhome-actions"><a href="${R.winter}" class="btn">View the winter packages →</a><a href="https://wa.me/31642939555?text=Hi%20OG%20MotoWorks%2C%20I%20would%20like%20to%20book%20a%20winter%20package." class="btn secondary btn-wa" target="_blank" rel="noopener">Book via WhatsApp ↗</a><a href="${mailHref(MAIL_T.winter, mailTpl(true))}" class="btn secondary btn-mail">${MAIL_T.btn}</a></div></section>`;
 }
 function winterHero() {
   if (BODY.winter !== "live") return "";
   const k = (w) => `<li><a href="${R.winter}"><strong>${w.naam.replace("Winterklaar ", "").replace("Basis", "Basic").replace("Compleet", "Complete")}</strong><span>from</span><b>${euro(w.prijs)}</b></a></li>`;
-  return `<section class="wrap hero winterhero" aria-labelledby="wh-h1"><div class="wh-main"><span class="eyebrow">❄ Winter offer 2026 · Waalwijk</span><h1 id="wh-h1">Winter-ready</h1><p class="wh-lead">Get your bike ready for winter at OG MotoWorks. Three fixed packages at a fixed price.</p><ul class="wh-cards">${WINTER.map(k).join("")}</ul><p class="wh-date"><b>Book by 30 November</b> · we carry them out until 20 December</p><div class="wh-actions"><a href="https://wa.me/31642939555?text=Hi%20OG%20MotoWorks%2C%20I%20would%20like%20to%20book%20a%20winter%20package." class="btn btn-wa wh-big" target="_blank" rel="noopener">Book via WhatsApp ↗</a><a href="${R.winter}" class="btn secondary wh-big">View the winter packages →</a></div><a href="${R.afspraak}" class="wh-other" data-start>Other work on your bike? ${motor ? "Continue with your bike" : "Choose your bike"} →</a></div><figure class="wh-photo"><img src="/assets/og/c927c25d6be18e37.jpg" width="941" height="1672" alt="Freddy with a BMW in the OG MotoWorks workshop" fetchpriority="high"><figcaption class="reception-caption">Freddy · OG MotoWorks</figcaption></figure></section>`;
+  return `<section class="wrap hero winterhero" aria-labelledby="wh-h1"><div class="wh-main"><span class="eyebrow">❄ Winter offer 2026 · Waalwijk</span><h1 id="wh-h1">Winter-ready</h1><p class="wh-lead">Get your bike ready for winter at OG MotoWorks. Three fixed packages at a fixed price.</p><ul class="wh-cards">${WINTER.map(k).join("")}</ul><p class="wh-date"><b>Book by 30 November</b> · we carry them out until 20 December</p><div class="wh-actions"><a href="https://wa.me/31642939555?text=Hi%20OG%20MotoWorks%2C%20I%20would%20like%20to%20book%20a%20winter%20package." class="btn btn-wa wh-big" target="_blank" rel="noopener">Book via WhatsApp ↗</a><a href="${mailHref(MAIL_T.winter, mailTpl(true))}" class="btn secondary wh-big btn-mail">${MAIL_T.btn}</a><a href="${R.winter}" class="btn secondary wh-big">View the winter packages →</a></div><a href="${R.afspraak}" class="wh-other" data-start>Other work on your bike? ${motor ? "Continue with your bike" : "Choose your bike"} →</a></div><figure class="wh-photo"><img src="/assets/og/c927c25d6be18e37.jpg" width="941" height="1672" alt="Freddy with a BMW in the OG MotoWorks workshop" fetchpriority="high"><figcaption class="reception-caption">Freddy · OG MotoWorks</figcaption></figure></section>`;
 }
 function home() {
   if (winterHero()) return winterHero() + homeRest();
@@ -362,7 +367,7 @@ function routePage(k) {
   const s = SERVICES[k];
   return (
     pagehead(own(s.title), ownText(s.text), k, true) +
-    `<div class="wrap workgrid"><div>${selected()}<form id="request-form" data-intent="${k}" class="panel"><h2>${k === "banden" ? "Choose your tyres" : "Your request"}</h2>${k === "banden" ? tyreFields() : requestFields(k)}${commonFields()}<div class="actions"><button class="btn" type="submit">Review my request →</button></div><p class="note" style="margin-top:15px">You send it yourself via WhatsApp. A request is not a confirmed appointment yet.</p><input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true"></form></div><aside class="panel"><span class="eyebrow">Clear up front</span><p class="price">${BODY.price ? escapeHTML(BODY.price) : s.price}</p><p class="muted">${BODY.pricenote ? escapeHTML(BODY.pricenote) : s.priceNote}</p><div class="line"><span>Parts</span><strong>List price</strong></div><div class="line"><span>Up front</span><strong>Quote</strong></div><div class="line"><span>Extra work</span><strong>After consultation</strong></div><p class="note" style="margin-top:18px">Prices incl. VAT. We agree the work with you first.</p><a class="btn secondary" href="${R.tarieven}">All prices</a></aside></div><section class="section"><div class="wrap">${faqBlock(k)}</div></section>`
+    `<div class="wrap workgrid"><div>${selected()}<form id="request-form" data-intent="${k}" class="panel"><h2>${k === "banden" ? "Choose your tyres" : "Your request"}</h2>${k === "banden" ? tyreFields() : requestFields(k)}${commonFields()}<div class="actions"><button class="btn" type="submit">Review my request →</button></div><p class="note" style="margin-top:15px">You send it yourself via WhatsApp or email. A request is not a confirmed appointment yet.</p><input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true"></form></div><aside class="panel"><span class="eyebrow">Clear up front</span><p class="price">${BODY.price ? escapeHTML(BODY.price) : s.price}</p><p class="muted">${BODY.pricenote ? escapeHTML(BODY.pricenote) : s.priceNote}</p><div class="line"><span>Parts</span><strong>List price</strong></div><div class="line"><span>Up front</span><strong>Quote</strong></div><div class="line"><span>Extra work</span><strong>After consultation</strong></div><p class="note" style="margin-top:18px">Prices incl. VAT. We agree the work with you first.</p><a class="btn secondary" href="${R.tarieven}">All prices</a></aside></div><section class="section"><div class="wrap">${faqBlock(k)}</div></section>`
   );
 }
 function tyreFields() {
@@ -411,17 +416,17 @@ function contact() {
   return (
     pagehead(
       "Contact",
-      "Message us and tell us what your bike needs.",
+      "Message or email us and tell us what your bike needs.",
       "probleem",
       true,
     ) +
-    `<div class="wrap workgrid"><div class="panel"><h2>Where to find us</h2><p>Professor Zeemanweg 6-10<br>5144 NN Waalwijk</p><p class="hours">We work by appointment. Message us on WhatsApp to book.</p><div class="actions"><a class="btn" href="${R.afspraak}">Request an appointment</a><a class="btn secondary" href="https://www.google.com/maps/search/?api=1&query=Professor+Zeemanweg+6-10%2C+5144+NN+Waalwijk" target="_blank" rel="noopener">Directions</a></div></div><div class="panel"><h2>Direct contact</h2><p>06 42 93 95 55<br><a href="mailto:info@ogmotoworks.nl">info@ogmotoworks.nl</a></p><a href="https://wa.me/31642939555?text=Hi%20Freddy%2C%20I%20have%20a%20question%20about%20my%20motorcycle." class="btn" target="_blank" rel="noopener">Open WhatsApp ↗</a></div></div>`
+    `<div class="wrap workgrid"><div class="panel"><h2>Where to find us</h2><p>Professor Zeemanweg 6-10<br>5144 NN Waalwijk</p><p class="hours">We work by appointment. Message us on WhatsApp to book.</p><div class="actions"><a class="btn" href="${R.afspraak}">Request an appointment</a><a class="btn secondary" href="https://www.google.com/maps/search/?api=1&query=Professor+Zeemanweg+6-10%2C+5144+NN+Waalwijk" target="_blank" rel="noopener">Directions</a></div></div><div class="panel"><h2>Direct contact</h2><p>06 42 93 95 55<br><a href="mailto:info@ogmotoworks.nl">info@ogmotoworks.nl</a></p><div class="actions"><a href="https://wa.me/31642939555?text=Hi%20Freddy%2C%20I%20have%20a%20question%20about%20my%20motorcycle." class="btn" target="_blank" rel="noopener">Open WhatsApp ↗</a><a href="${mailHref(MAIL_T.std, mailTpl())}" class="btn secondary btn-mail">${MAIL_T.btn}</a></div></div></div>`
   );
 }
 function privacy() {
   return (
     pagehead(own("Privacy"), ownText("Your data at OG MotoWorks."), "onderhoud", true) +
-    `<div class="wrap section"><div class="panel"><h2>On your device</h2><p>We only keep your chosen bike in your browser's local storage. What you fill in on the request form stays in this tab's session storage during your visit and is gone when you close the tab.</p><p>When you click 'Open WhatsApp', the composed message goes to WhatsApp; you decide there whether to send it. At the same time we email a copy of your request to OG MotoWorks (via Formspree), so your request doesn't get lost.</p><button class="btn secondary" id="clear-motor">Clear my bike choice</button></div></div>`
+    `<div class="wrap section"><div class="panel"><h2>On your device</h2><p>We only keep your chosen bike in your browser's local storage. What you fill in on the request form stays in this tab's session storage during your visit and is gone when you close the tab.</p><p>When you click 'Open WhatsApp', the composed message goes to WhatsApp; you decide there whether to send it. At the same time we email a copy of your request to OG MotoWorks (via Formspree), so your request doesn't get lost.</p><p>When you click 'Email us', your own email app opens with the same message. There too, you decide whether to send it.</p><button class="btn secondary" id="clear-motor">Clear my bike choice</button></div></div>`
   );
 }
 function saveDraft() {
@@ -935,10 +940,10 @@ function summary() {
   return (
     pagehead(
       "Check your request",
-      "All correct? Open WhatsApp and send the message yourself.",
+      "All correct? Send the message yourself via WhatsApp or email.",
       "probleem",
     ) +
-    `<div class="wrap workgrid"><div class="panel"><h2>Your message to OG MotoWorks</h2><div class="summary">${escapeHTML(summaryText)}</div><div class="actions"><a class="btn" id="wa-open" href="https://wa.me/31642939555?text=${encodeURIComponent(summaryText)}" target="_blank" rel="noopener">Open WhatsApp ↗</a><a class="btn secondary" href="#formulier">Edit</a></div></div><div class="panel">${selected()}<p>Your request is only sent when you press send in WhatsApp.</p><p class="muted">We confirm the price and an available date. This is not an automatic booking.</p></div></div>`
+    `<div class="wrap workgrid"><div class="panel"><h2>Your message to OG MotoWorks</h2><div class="summary">${escapeHTML(summaryText)}</div><div class="actions"><a class="btn" id="wa-open" href="https://wa.me/31642939555?text=${encodeURIComponent(summaryText)}" target="_blank" rel="noopener">Open WhatsApp ↗</a><a class="btn secondary btn-mail" id="mail-open" href="${mailHref(intent === "onderhoud" && winterOf(drafts.onderhoud?.beurt) ? MAIL_T.winter : MAIL_T.std, summaryText)}">${MAIL_T.btn}</a><a class="btn secondary" href="#formulier">Edit</a></div></div><div class="panel">${selected()}<p>Your request is only sent when you press send in WhatsApp or in your email app.</p><p class="muted">We confirm the price and an available date. This is not an automatic booking.</p></div></div>`
   );
 }
 const ROUTES = ["home", "diensten", "onderhoud", "probleem", "banden", "ombouw", "tarieven", "over-ons", "contact", "privacy", "info"];
@@ -1108,7 +1113,7 @@ async function boot() {
     if (t) t.scrollIntoView();
   }
 }
-// Klikteller (13 okt 2026): cookieloze GoatCounter-events (goatcounter.count met event: true) voor WhatsApp en bellen.
+// Klikteller (13 okt 2026): cookieloze GoatCounter-events (goatcounter.count met event: true) voor WhatsApp en bellen; sinds 19 okt 2026 ook mail (klik-mail / klik-mail-formulier).
 // Geen cookies, geen persoonsgegevens, geen extra diensten. Zonder GoatCounter (preview, blocker) gebeurt er niets.
 function gcEvent(path) {
   try {
@@ -1118,9 +1123,10 @@ function gcEvent(path) {
 document.addEventListener(
   "click",
   (e) => {
-    const a = e.target.closest?.('a[href^="https://wa.me/"], a[href^="tel:"]');
+    const a = e.target.closest?.('a[href^="https://wa.me/"], a[href^="tel:"], a[href^="mailto:"]');
     if (!a) return;
-    gcEvent(a.id === "wa-open" ? "klik-whatsapp-formulier" : /^tel:/.test(a.getAttribute("href")) ? "klik-bellen" : "klik-whatsapp");
+    const h = a.getAttribute("href");
+    gcEvent(a.id === "wa-open" ? "klik-whatsapp-formulier" : a.id === "mail-open" ? "klik-mail-formulier" : /^mailto:/.test(h) ? "klik-mail" : /^tel:/.test(h) ? "klik-bellen" : "klik-whatsapp");
   },
   true,
 );
