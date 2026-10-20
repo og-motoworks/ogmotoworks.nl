@@ -207,3 +207,10 @@ figure.wh-photo picture img{object-position:50% 50%}
 .tyre-auto .tyrelist{margin-top:8px}
 .tyre-auto .rear-change{display:inline-block;margin-top:10px;padding:8px 0;background:none;border:0;color:inherit;text-decoration:underline;text-underline-offset:3px;font-weight:600;cursor:pointer;min-height:44px}
 .rear-miss{border-left:3px solid currentColor;padding-left:10px}
+
+/* FOTOSTRIP-BIJSCHRIFT 20 okt 2026: elke tegel 4:5, rand tot rand gevuld (cover); 6 tegels: 3x2 desktop, 2x3 mobiel */
+.photo-mix{grid-template-columns:repeat(3,1fr)}
+.photo-mix figure:nth-child(n){grid-column:auto;margin:0}
+.photo-mix figure:nth-child(n) img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 50%;border-radius:8px;background:#15171a}
+.photo-mix figure:nth-child(n) img.mix-over{aspect-ratio:auto;border-radius:0}
+@media(max-width:720px){.photo-mix{grid-template-columns:1fr 1fr}}
