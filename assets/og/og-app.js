@@ -761,21 +761,32 @@ function renderTyres() {
       : d.positie === "achter"
         ? ["achter"]
         : ["voor", "achter"];
+  const auto = positions.length === 2 && d["achter-auto"] && d["band-achter"] && !d["achter-open"] ? rearAuto(d) : null;
   $("#tyre-results").innerHTML = positions
     .map((pos) => {
-      const items = tyreItems(pos),
-        visible = items.slice(0, limits[pos]);
-      return `<h3 class="smallhead" style="margin-top:24px">${pos === "voor" ? "Voorband" : "Achterband"}</h3><p class="note" role="status">${items.length ? `${items.length} resultaten · ${Math.min(items.length, limits[pos])} getoond. Toepasbaarheid wordt nog gecontroleerd.` : "Geen banden gevonden voor deze maat. App ons, dan zoeken we het voor je uit."}</p><div class="tyrelist">${
+      if (pos === "achter" && auto)
+        return `<h3 class="smallhead" style="margin-top:24px">${pos === "voor" ? "Voorband" : "Achterband"}</h3><div class="tyre-auto" id="rear-auto"><p class="note" role="status">Automatisch gekozen: zelfde merk en type als je voorband. Je kunt hem altijd wijzigen.</p><div class="tyrelist">${tyreCard(auto, "achter", true)}</div><button class="btn text rear-change" type="button" id="rear-change">Andere achterband kiezen</button></div>`;
+      const items = tyreItems(pos);
+      let visible = items.slice(0, limits[pos]);
+      const gekozen = items.find((t) => tyreId(t) === d["band-" + pos]);
+      if (gekozen && !visible.includes(gekozen)) visible = [gekozen, ...visible.slice(0, -1)];
+      const mis = pos === "achter" && positions.length === 2 && d["band-voor"] && !d["band-achter"] ? rearMissNote(d) : "";
+      return `<h3 class="smallhead" style="margin-top:24px">${pos === "voor" ? "Voorband" : "Achterband"}</h3>${mis}<p class="note" role="status">${items.length ? `${items.length} resultaten · ${Math.min(items.length, limits[pos])} getoond. Toepasbaarheid wordt nog gecontroleerd.` : "Geen banden gevonden voor deze maat. App ons, dan zoeken we het voor je uit."}</p><div class="tyrelist">${
         visible
-          .map((t) => {
-            const id = t.merk + "|" + t.band;
-            return `<label class="tyre"><input type="radio" name="band-${pos}" value="${escapeHTML(id)}" ${d["band-" + pos] === id ? "checked" : ""}><strong>${escapeHTML(t.merk + " " + t.band)}</strong><small>${escapeHTML(t.notatie)} · ${escapeHTML(DATA.banden.types.find((x) => x[0] === t.type)?.[1] || t.type)}</small><span class="money">${t.prijs ? euro(t.prijs) + " voor de band" : "Prijs op aanvraag"}</span><small>Montage: ${euro(DATA.banden.montage)}</small><span class="included">${t.prijs ? euro(t.prijs + DATA.banden.montage) + " samen incl. btw" : "Definitieve prijs via offerte"}</span></label>`;
-          })
+          .map((t) => tyreCard(t, pos, d["band-" + pos] === tyreId(t)))
           .join("") ||
         '<p class="note">Geen resultaat? Pas de filters aan of vraag hieronder advies zonder bandenkeuze.</p>'
       }</div>${items.length > limits[pos] ? `<button class="btn secondary showmore" type="button" data-more="${pos}">Toon meer ${pos === "voor" ? "voorbanden" : "achterbanden"}</button>` : ""}`;
     })
     .join("");
+  const rc = $("#rear-change");
+  if (rc)
+    rc.onclick = () => {
+      drafts.banden["achter-open"] = "1";
+      renderTyres();
+      const first = $('input[name="band-achter"]');
+      if (first) first.focus();
+    };
   $$("[data-more]").forEach(
     (b) =>
       (b.onclick = () => {
@@ -786,10 +797,51 @@ function renderTyres() {
   $$('input[name^="band-"]').forEach((el) =>
     el.addEventListener("change", () => {
       drafts.banden[el.name] = el.value;
-      renderTotal();
+      if (el.name === "band-achter") {
+        delete drafts.banden["achter-auto"];
+        delete drafts.banden["achter-mis"];
+        return renderTotal();
+      }
+      autoRear();
+      renderTyres();
+      const back = $('input[name="band-voor"]:checked');
+      if (back) back.focus({ preventScroll: true });
     }),
   );
   renderTotal();
+}
+function tyreCard(t, pos, checked) {
+            const id = tyreId(t);
+            return `<label class="tyre"><input type="radio" name="band-${pos}" value="${escapeHTML(id)}" ${checked ? "checked" : ""}><strong>${escapeHTML(t.merk + " " + t.band)}</strong><small>${escapeHTML(t.notatie)} · ${escapeHTML(DATA.banden.types.find((x) => x[0] === t.type)?.[1] || t.type)}</small><span class="money">${t.prijs ? euro(t.prijs) + " voor de band" : "Prijs op aanvraag"}</span><small>Montage: ${euro(DATA.banden.montage)}</small><span class="included">${t.prijs ? euro(t.prijs + DATA.banden.montage) + " samen incl. btw" : "Definitieve prijs via offerte"}</span></label>`;
+}
+// BANDENSET (20 okt 2026): kiest de klant voor en achter, dan krijgt de achterband automatisch hetzelfde merk en type
+// (zelfde merk|band in de achtermaat). Een zelf gekozen achterband blijft staan. Prijzen lopen via chosenTyres (ongewijzigd).
+const tyreId = (t) => t.merk + "|" + t.band;
+function rearAuto(d) {
+  return (DATA.banden.assortiment[sizeKey(d.achter)] || []).find((t) => tyreId(t) === d["band-achter"]) || null;
+}
+function autoRear() {
+  const d = drafts.banden;
+  delete d["achter-mis"];
+  if ((d.positie || "beide") !== "beide" || !d["band-voor"]) return;
+  if (d["band-achter"] && !d["achter-auto"]) return;
+  const m = (DATA.banden.assortiment[sizeKey(d.achter)] || []).find((t) => tyreId(t) === d["band-voor"]);
+  if (m) {
+    d["band-achter"] = tyreId(m);
+    d["achter-auto"] = "1";
+    delete d["achter-open"];
+  } else {
+    delete d["band-achter"];
+    delete d["achter-auto"];
+    d["achter-mis"] = d["band-voor"];
+  }
+}
+function rearMissNote(d) {
+  if (d["achter-mis"] !== d["band-voor"]) return "";
+  const naam = escapeHTML(d["band-voor"].replace("|", " "));
+  return sizeKey(d.achter)
+    ? `<p class="note rear-miss" role="status">De ${naam} hebben we niet in jouw achtermaat. Kies hieronder een achterband.</p>`
+    : `<p class="note rear-miss" role="status">Vul je achterbandmaat in, dan kiezen we dezelfde band voor achter.</p>`;
 }
 function chosenTyres(d) {
   const pos =
@@ -859,6 +911,11 @@ function initTyres() {
     $("#" + p).addEventListener("input", () => {
       $$('input[name="band-' + p + '"]').forEach((el) => (el.checked = false));
       delete drafts.banden["band-" + p];
+      if (p === "voor" && drafts.banden["achter-auto"]) delete drafts.banden["band-achter"];
+      delete drafts.banden["achter-auto"];
+      delete drafts.banden["achter-open"];
+      saveDraft();
+      autoRear();
       renderTyres();
     }),
   );
@@ -866,6 +923,10 @@ function initTyres() {
   ["rijtype", "zoek", "positie", "bandmerk", "sortering"].forEach((p) =>
     $("#" + p).addEventListener(p === "zoek" ? "input" : "change", () => {
       limits = { voor: 8, achter: 8 };
+      if (p === "positie") {
+        saveDraft();
+        autoRear();
+      }
       renderTyres();
     }),
   );

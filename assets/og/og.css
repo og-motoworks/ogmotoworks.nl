@@ -202,3 +202,8 @@ figure.wh-photo picture img{object-position:50% 50%}
 .photo-mix figure{position:relative;overflow:hidden;border-radius:8px}
 .photo-mix figure img.mix-over{position:absolute;left:0;top:0;width:100%;z-index:1;transition:transform .45s cubic-bezier(.2,.7,.2,1);will-change:transform}
 @media (prefers-reduced-motion:reduce){.photo-mix figure img.mix-over{transition:none}}
+
+/* BANDENSET (20 okt 2026): automatisch gekozen achterband */
+.tyre-auto .tyrelist{margin-top:8px}
+.tyre-auto .rear-change{display:inline-block;margin-top:10px;padding:8px 0;background:none;border:0;color:inherit;text-decoration:underline;text-underline-offset:3px;font-weight:600;cursor:pointer;min-height:44px}
+.rear-miss{border-left:3px solid currentColor;padding-left:10px}
