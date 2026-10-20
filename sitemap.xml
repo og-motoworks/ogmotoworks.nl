@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://ogmotoworks.nl/</loc>
     <lastmod>2026-10-20</lastmod>
@@ -17,11 +17,95 @@
     <lastmod>2026-10-20</lastmod>
   </url>
   <url>
+    <loc>https://ogmotoworks.nl/blog/</loc>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ogmotoworks.nl/blog/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogmotoworks.nl/en/blog/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogmotoworks.nl/blog/"/>
+    <lastmod>2026-10-20</lastmod>
+  </url>
+  <url>
+    <loc>https://ogmotoworks.nl/blog/gebruikte-motor-kopen-checklist/</loc>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ogmotoworks.nl/blog/gebruikte-motor-kopen-checklist/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogmotoworks.nl/en/blog/used-motorcycle-buying-checklist/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogmotoworks.nl/blog/gebruikte-motor-kopen-checklist/"/>
+    <lastmod>2026-10-20</lastmod>
+  </url>
+  <url>
+    <loc>https://ogmotoworks.nl/blog/grote-of-kleine-beurt-motor/</loc>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ogmotoworks.nl/blog/grote-of-kleine-beurt-motor/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogmotoworks.nl/en/blog/major-vs-minor-service/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogmotoworks.nl/blog/grote-of-kleine-beurt-motor/"/>
+    <lastmod>2026-10-20</lastmod>
+  </url>
+  <url>
+    <loc>https://ogmotoworks.nl/blog/hoe-oud-mogen-motorbanden-zijn/</loc>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ogmotoworks.nl/blog/hoe-oud-mogen-motorbanden-zijn/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogmotoworks.nl/en/blog/how-old-can-motorcycle-tyres-be/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogmotoworks.nl/blog/hoe-oud-mogen-motorbanden-zijn/"/>
+    <lastmod>2026-10-20</lastmod>
+  </url>
+  <url>
+    <loc>https://ogmotoworks.nl/blog/kosten-grote-beurt-motor/</loc>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ogmotoworks.nl/blog/kosten-grote-beurt-motor/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogmotoworks.nl/en/blog/motorcycle-service-cost/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogmotoworks.nl/blog/kosten-grote-beurt-motor/"/>
+    <lastmod>2026-10-20</lastmod>
+  </url>
+  <url>
+    <loc>https://ogmotoworks.nl/blog/motor-beurt-hoeveel-km/</loc>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ogmotoworks.nl/blog/motor-beurt-hoeveel-km/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogmotoworks.nl/en/blog/service-interval-km/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogmotoworks.nl/blog/motor-beurt-hoeveel-km/"/>
+    <lastmod>2026-10-20</lastmod>
+  </url>
+  <url>
+    <loc>https://ogmotoworks.nl/blog/motor-laten-uitlezen/</loc>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ogmotoworks.nl/blog/motor-laten-uitlezen/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogmotoworks.nl/en/blog/motorcycle-diagnostics/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogmotoworks.nl/blog/motor-laten-uitlezen/"/>
+    <lastmod>2026-10-20</lastmod>
+  </url>
+  <url>
+    <loc>https://ogmotoworks.nl/blog/motor-lekt-olie-of-benzine/</loc>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ogmotoworks.nl/blog/motor-lekt-olie-of-benzine/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogmotoworks.nl/en/blog/motorcycle-leaking-oil-or-fuel/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogmotoworks.nl/blog/motor-lekt-olie-of-benzine/"/>
+    <lastmod>2026-10-20</lastmod>
+  </url>
+  <url>
+    <loc>https://ogmotoworks.nl/blog/motor-slaat-af-als-hij-warm-is/</loc>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ogmotoworks.nl/blog/motor-slaat-af-als-hij-warm-is/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogmotoworks.nl/en/blog/motorcycle-stalls-when-warm/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogmotoworks.nl/blog/motor-slaat-af-als-hij-warm-is/"/>
+    <lastmod>2026-10-20</lastmod>
+  </url>
+  <url>
+    <loc>https://ogmotoworks.nl/blog/motor-winterklaar-maken/</loc>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ogmotoworks.nl/blog/motor-winterklaar-maken/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogmotoworks.nl/en/blog/get-your-motorcycle-winter-ready/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogmotoworks.nl/blog/motor-winterklaar-maken/"/>
+    <lastmod>2026-10-20</lastmod>
+  </url>
+  <url>
+    <loc>https://ogmotoworks.nl/blog/wanneer-motorbanden-vervangen/</loc>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ogmotoworks.nl/blog/wanneer-motorbanden-vervangen/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogmotoworks.nl/en/blog/when-to-replace-motorcycle-tyres/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogmotoworks.nl/blog/wanneer-motorbanden-vervangen/"/>
+    <lastmod>2026-10-20</lastmod>
+  </url>
+  <url>
     <loc>https://ogmotoworks.nl/contact/</loc>
     <lastmod>2026-10-20</lastmod>
   </url>
   <url>
     <loc>https://ogmotoworks.nl/diensten/</loc>
+    <lastmod>2026-10-20</lastmod>
+  </url>
+  <url>
+    <loc>https://ogmotoworks.nl/diensten/aankoopkeuring/</loc>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ogmotoworks.nl/diensten/aankoopkeuring/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogmotoworks.nl/en/services/pre-purchase-inspection/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogmotoworks.nl/diensten/aankoopkeuring/"/>
     <lastmod>2026-10-20</lastmod>
   </url>
   <url>
@@ -69,11 +153,95 @@
     <lastmod>2026-10-20</lastmod>
   </url>
   <url>
+    <loc>https://ogmotoworks.nl/en/blog/</loc>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ogmotoworks.nl/blog/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogmotoworks.nl/en/blog/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogmotoworks.nl/blog/"/>
+    <lastmod>2026-10-20</lastmod>
+  </url>
+  <url>
+    <loc>https://ogmotoworks.nl/en/blog/get-your-motorcycle-winter-ready/</loc>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ogmotoworks.nl/blog/motor-winterklaar-maken/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogmotoworks.nl/en/blog/get-your-motorcycle-winter-ready/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogmotoworks.nl/blog/motor-winterklaar-maken/"/>
+    <lastmod>2026-10-20</lastmod>
+  </url>
+  <url>
+    <loc>https://ogmotoworks.nl/en/blog/how-old-can-motorcycle-tyres-be/</loc>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ogmotoworks.nl/blog/hoe-oud-mogen-motorbanden-zijn/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogmotoworks.nl/en/blog/how-old-can-motorcycle-tyres-be/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogmotoworks.nl/blog/hoe-oud-mogen-motorbanden-zijn/"/>
+    <lastmod>2026-10-20</lastmod>
+  </url>
+  <url>
+    <loc>https://ogmotoworks.nl/en/blog/major-vs-minor-service/</loc>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ogmotoworks.nl/blog/grote-of-kleine-beurt-motor/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogmotoworks.nl/en/blog/major-vs-minor-service/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogmotoworks.nl/blog/grote-of-kleine-beurt-motor/"/>
+    <lastmod>2026-10-20</lastmod>
+  </url>
+  <url>
+    <loc>https://ogmotoworks.nl/en/blog/motorcycle-diagnostics/</loc>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ogmotoworks.nl/blog/motor-laten-uitlezen/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogmotoworks.nl/en/blog/motorcycle-diagnostics/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogmotoworks.nl/blog/motor-laten-uitlezen/"/>
+    <lastmod>2026-10-20</lastmod>
+  </url>
+  <url>
+    <loc>https://ogmotoworks.nl/en/blog/motorcycle-leaking-oil-or-fuel/</loc>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ogmotoworks.nl/blog/motor-lekt-olie-of-benzine/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogmotoworks.nl/en/blog/motorcycle-leaking-oil-or-fuel/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogmotoworks.nl/blog/motor-lekt-olie-of-benzine/"/>
+    <lastmod>2026-10-20</lastmod>
+  </url>
+  <url>
+    <loc>https://ogmotoworks.nl/en/blog/motorcycle-service-cost/</loc>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ogmotoworks.nl/blog/kosten-grote-beurt-motor/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogmotoworks.nl/en/blog/motorcycle-service-cost/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogmotoworks.nl/blog/kosten-grote-beurt-motor/"/>
+    <lastmod>2026-10-20</lastmod>
+  </url>
+  <url>
+    <loc>https://ogmotoworks.nl/en/blog/motorcycle-stalls-when-warm/</loc>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ogmotoworks.nl/blog/motor-slaat-af-als-hij-warm-is/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogmotoworks.nl/en/blog/motorcycle-stalls-when-warm/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogmotoworks.nl/blog/motor-slaat-af-als-hij-warm-is/"/>
+    <lastmod>2026-10-20</lastmod>
+  </url>
+  <url>
+    <loc>https://ogmotoworks.nl/en/blog/service-interval-km/</loc>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ogmotoworks.nl/blog/motor-beurt-hoeveel-km/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogmotoworks.nl/en/blog/service-interval-km/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogmotoworks.nl/blog/motor-beurt-hoeveel-km/"/>
+    <lastmod>2026-10-20</lastmod>
+  </url>
+  <url>
+    <loc>https://ogmotoworks.nl/en/blog/used-motorcycle-buying-checklist/</loc>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ogmotoworks.nl/blog/gebruikte-motor-kopen-checklist/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogmotoworks.nl/en/blog/used-motorcycle-buying-checklist/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogmotoworks.nl/blog/gebruikte-motor-kopen-checklist/"/>
+    <lastmod>2026-10-20</lastmod>
+  </url>
+  <url>
+    <loc>https://ogmotoworks.nl/en/blog/when-to-replace-motorcycle-tyres/</loc>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ogmotoworks.nl/blog/wanneer-motorbanden-vervangen/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogmotoworks.nl/en/blog/when-to-replace-motorcycle-tyres/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogmotoworks.nl/blog/wanneer-motorbanden-vervangen/"/>
+    <lastmod>2026-10-20</lastmod>
+  </url>
+  <url>
     <loc>https://ogmotoworks.nl/en/book/</loc>
     <lastmod>2026-10-20</lastmod>
   </url>
   <url>
     <loc>https://ogmotoworks.nl/en/contact/</loc>
+    <lastmod>2026-10-20</lastmod>
+  </url>
+  <url>
+    <loc>https://ogmotoworks.nl/en/makes/</loc>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ogmotoworks.nl/merken/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogmotoworks.nl/en/makes/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogmotoworks.nl/merken/"/>
     <lastmod>2026-10-20</lastmod>
   </url>
   <url>
@@ -86,6 +254,20 @@
   </url>
   <url>
     <loc>https://ogmotoworks.nl/en/motorcycle-maintenance-guide/</loc>
+    <lastmod>2026-10-20</lastmod>
+  </url>
+  <url>
+    <loc>https://ogmotoworks.nl/en/motorcycle-servicing-region/</loc>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ogmotoworks.nl/motoronderhoud-regio/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogmotoworks.nl/en/motorcycle-servicing-region/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogmotoworks.nl/motoronderhoud-regio/"/>
+    <lastmod>2026-10-20</lastmod>
+  </url>
+  <url>
+    <loc>https://ogmotoworks.nl/en/motorcycle-servicing-tilburg/</loc>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ogmotoworks.nl/motoronderhoud-tilburg/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogmotoworks.nl/en/motorcycle-servicing-tilburg/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogmotoworks.nl/motoronderhoud-tilburg/"/>
     <lastmod>2026-10-20</lastmod>
   </url>
   <url>
@@ -157,6 +339,13 @@
     <lastmod>2026-10-20</lastmod>
   </url>
   <url>
+    <loc>https://ogmotoworks.nl/en/services/pre-purchase-inspection/</loc>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ogmotoworks.nl/diensten/aankoopkeuring/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogmotoworks.nl/en/services/pre-purchase-inspection/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogmotoworks.nl/diensten/aankoopkeuring/"/>
+    <lastmod>2026-10-20</lastmod>
+  </url>
+  <url>
     <loc>https://ogmotoworks.nl/en/services/repairs/</loc>
     <lastmod>2026-10-20</lastmod>
   </url>
@@ -181,11 +370,32 @@
     <lastmod>2026-10-20</lastmod>
   </url>
   <url>
+    <loc>https://ogmotoworks.nl/merken/</loc>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ogmotoworks.nl/merken/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogmotoworks.nl/en/makes/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogmotoworks.nl/merken/"/>
+    <lastmod>2026-10-20</lastmod>
+  </url>
+  <url>
     <loc>https://ogmotoworks.nl/motor-schade/</loc>
     <lastmod>2026-10-20</lastmod>
   </url>
   <url>
     <loc>https://ogmotoworks.nl/motorgarage-waalwijk/</loc>
+    <lastmod>2026-10-20</lastmod>
+  </url>
+  <url>
+    <loc>https://ogmotoworks.nl/motoronderhoud-regio/</loc>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ogmotoworks.nl/motoronderhoud-regio/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogmotoworks.nl/en/motorcycle-servicing-region/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogmotoworks.nl/motoronderhoud-regio/"/>
+    <lastmod>2026-10-20</lastmod>
+  </url>
+  <url>
+    <loc>https://ogmotoworks.nl/motoronderhoud-tilburg/</loc>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ogmotoworks.nl/motoronderhoud-tilburg/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ogmotoworks.nl/en/motorcycle-servicing-tilburg/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ogmotoworks.nl/motoronderhoud-tilburg/"/>
     <lastmod>2026-10-20</lastmod>
   </url>
   <url>
