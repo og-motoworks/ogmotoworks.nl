@@ -427,7 +427,7 @@ function services() {
   );
 }
 function commonFields() {
-  return `<fieldset class="customer-fields" style="border:0;border-top:1px solid #3a3d44;padding:24px 0 0;margin:26px 0 0"><legend class="heading" style="padding:0 10px 0 0;font-size:23px">Your details</legend><p class="note">So we can discuss your request and make an appointment with you.</p><div class="fields"><div class="full"><label for="naam">Name</label><input id="naam" name="naam" autocomplete="name" required maxlength="120" placeholder="First and last name"></div><div><label for="telefoon">Mobile number</label><input id="telefoon" name="telefoon" type="tel" autocomplete="tel" required maxlength="30" minlength="6" placeholder="06… or +31…"></div><div><label for="email">Email address (optional)</label><input id="email" name="email" type="email" autocomplete="email" maxlength="180" placeholder="For a quote by email"></div><div><label for="kenteken">Registration (optional)</label><input id="kenteken" name="kenteken" maxlength="14" autocomplete="off" autocapitalize="characters" placeholder="AB-12-CD"></div><div><label for="voorkeur">Preferred day (optional)</label><input id="voorkeur" name="voorkeur" placeholder="For example Friday afternoon" maxlength="100"></div></div><p class="note" style="margin-top:15px">We use these details to handle your request. <a href="${R.privacy}">More about privacy</a>.</p><div class="optlist review-opt"><label class="tyre"><input type="checkbox" id="review" name="review" value="ja" aria-describedby="review-note"><strong>I agree that OG MotoWorks may email me afterwards to ask for a review</strong></label></div><p class="note review-note" id="review-note" aria-live="polite"></p></fieldset>`;
+  return `<fieldset class="customer-fields" style="border:0;border-top:1px solid #3a3d44;padding:24px 0 0;margin:26px 0 0"><legend class="heading" style="padding:0 10px 0 0;font-size:23px">Your details</legend><p class="note">So we can discuss your request and make an appointment with you.</p><div class="fields"><div class="full"><label for="naam">Name</label><input id="naam" name="naam" autocomplete="name" required maxlength="120" placeholder="First and last name"></div><div><label for="telefoon">Mobile number</label><input id="telefoon" name="telefoon" type="tel" autocomplete="tel" required maxlength="30" minlength="6" placeholder="06… or +31…"></div><div><label for="email">Email address (optional)</label><input id="email" name="email" type="email" autocomplete="email" maxlength="180" placeholder="For a quote by email"></div><div><label for="kenteken">Registration (optional)</label><input id="kenteken" name="kenteken" maxlength="14" autocomplete="off" autocapitalize="characters" placeholder="AB-12-CD"></div><div><label for="voorkeur">Preferred day (optional)</label><input id="voorkeur" name="voorkeur" placeholder="For example Friday afternoon" maxlength="100"></div></div><p class="note" style="margin-top:15px">We use these details to handle your request. <a href="${R.privacy}">More about privacy</a>.</p><div class="optlist review-opt"><label class="tyre"><input type="checkbox" id="review" name="review" value="ja" aria-describedby="review-note"><strong>I agree that OG MotoWorks may ask me for a review afterwards by email or WhatsApp</strong></label></div><p class="note review-note" id="review-note" aria-live="polite"></p></fieldset>`;
 }
 function requestFields(k) {
   if (k === "onderhoud")
@@ -535,12 +535,11 @@ function restoreDraft(k) {
   }
   reviewNote();
 }
-// Zachte melding (blokkeert niet): reviewverzoek aangevinkt maar geen e-mailadres
+// REVIEWVINKJE_WA (20 okt 2026): reviewverzoek kan per mail of WhatsApp; telefoon is altijd verplicht,
+// dus geen melding meer bij een leeg e-mailadres. Functie blijft (leegt #review-note) zodat aanroepen werken.
 function reviewNote() {
-  const r = $("#review"),
-    note = $("#review-note");
-  if (!r || !note) return;
-  note.textContent = r.checked && !$("#email").value.trim() ? "For the review email we need your email address. Fill it in above if you'd like to receive it." : "";
+  const note = $("#review-note");
+  if (note) note.textContent = "";
 }
 function updateChip() {
   const b = $("#chip");
@@ -989,7 +988,7 @@ function buildMessage(k, m, d) {
   }
   if (d.toelichting?.trim()) lines.push("Notes: " + d.toelichting.trim());
   if (d.voorkeur?.trim()) lines.push("Preference: " + d.voorkeur.trim());
-  if (d.review === "ja") lines.push("Review request by email: yes");
+  if (d.review === "ja") lines.push("Review request (email/WhatsApp): yes");
   lines.push("Could you send me a price indication and an available date?");
   return lines.join("\n");
 }
@@ -1054,7 +1053,7 @@ function formspreeData(k, m, d) {
     Vraag: String(d.toelichting || "").trim(),
     Voorkeursdag: String(d.voorkeur || "").trim(),
     ...winterFields(k, d),
-    "Toestemming reviewverzoek per mail": d.review === "ja" ? "ja" : "nee",
+    "Toestemming reviewverzoek (mail/WhatsApp)": d.review === "ja" ? "ja" : "nee",
     Pagina: location.pathname,
   };
   const fd = new FormData();
