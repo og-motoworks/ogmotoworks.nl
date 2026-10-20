@@ -1,0 +1,216 @@
+/* OG MotoWorks — ontwerp Freddy (testversie 8 okt 2026), ongewijzigd behalve paden. */
+:root{--bike-photo:url('/p-4164f2998d7156f9/assets/og/1bb4416165c79902.jpg');--work-photo:url('/p-4164f2998d7156f9/assets/og/c927c25d6be18e37.jpg')}
+@font-face{font-family:Oswald;src:url('/p-4164f2998d7156f9/assets/og/aae665c75af89ea7.woff2') format('woff2');font-weight:700;font-display:swap}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:105px}body{margin:0;background:#101113;color:#f4f4f4;font:16px/1.6 Arial,sans-serif}button,input,select,textarea{font:inherit}button,a,input,select,textarea{touch-action:manipulation}a{color:inherit}button,a{ -webkit-tap-highlight-color:transparent}button{cursor:pointer}h1,h2,h3,.heading{font-family:Oswald,Arial,sans-serif;line-height:1.15;text-transform:uppercase}h1{font-size:clamp(44px,6vw,76px);margin:14px 0 24px}h2{font-size:clamp(30px,4vw,44px);margin:0 0 20px}h3{font-size:24px;margin:0 0 8px}p{margin:0 0 18px}.wrap{width:min(1180px,calc(100% - 48px));margin:auto}.muted{color:#b7b9bd}.eyebrow{display:block;color:#e6261c;font-size:12px;letter-spacing:2.2px;font-weight:bold;text-transform:uppercase}.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:48px;background:#e6261c;color:white;border:1px solid #e6261c;border-radius:7px;padding:12px 22px;font-weight:bold;text-decoration:none}.btn:hover{background:#e6261c}.btn.secondary{background:#22252a;border-color:#43464c}.btn.secondary:hover{background:#30343a}.btn.text{background:transparent;border-color:transparent;padding:8px}.btn:disabled{opacity:.5;cursor:default}:focus-visible{outline:3px solid #e6261c;outline-offset:4px}[hidden]{display:none!important}.testbar{background:#25272b;border-bottom:1px solid #34373b;color:#c8c9cc;text-align:center;font-size:12px;padding:6px 16px}.header{position:sticky;top:0;z-index:10;background:#101113f5;backdrop-filter:blur(14px);border-bottom:1px solid #2b2d32}.headrow{display:flex;align-items:center;gap:20px;min-height:82px}.brand{display:flex;align-items:center;gap:12px;text-decoration:none;white-space:nowrap}.brand img{width:52px;height:52px}.brand span{font:700 21px Oswald,Arial,sans-serif}.brand b{color:#e6261c}.nav{display:flex;gap:20px;margin-left:auto;align-items:center}.nav a{text-decoration:none;font-size:14px;font-weight:bold;color:#c6c7cb}.nav a:hover,.nav a[aria-current=page]{color:#e6261c}.chip{background:#231919;border:1px solid #6d302b;color:#f4f4f4;border-radius:40px;padding:8px 13px;max-width:210px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px}.burger{display:none}.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:68px;align-items:center;padding:64px 0 72px}.hero h1{font-size:clamp(40px,5vw,64px)}.hero .mark{display:flex;align-items:center;gap:20px}.mark img{width:104px;height:104px}.mark h1{margin:0}.hero figure{margin:0;position:relative}.hero figure img{width:100%;height:570px;object-fit:cover;object-position:center 36%;border-radius:10px}.caption{position:absolute;bottom:20px;left:20px;right:20px;background:#101113df;padding:16px 20px;border-left:3px solid #e6261c;border-radius:4px;font-size:13px}.intro{margin:26px 0}.intro div{display:grid;grid-template-columns:90px 1fr;gap:14px;padding:13px 0;border-bottom:1px solid #303238}.intro dt{color:#93969e;font-size:12px;text-transform:uppercase;letter-spacing:1px;font-weight:bold}.intro dd{margin:0}.section{padding:64px 0;border-top:1px solid #2b2d32}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.service{position:relative;display:flex;flex-direction:column;justify-content:end;min-height:250px;padding:25px;border-radius:9px;border:1px solid #3c3f44;text-decoration:none;overflow:hidden;isolation:isolate;background:#21242a}.service:before{content:'';position:absolute;inset:0;z-index:-2;background-image:var(--bike-photo);background-size:cover;background-position:center 80%;transition:transform .3s}.service:after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,#0b0c0ffa 0%,#10111391 75%,#10111380)}.service:hover{border-color:#e6261c}.service:hover:before{transform:scale(1.05)}.service:nth-child(1):before{background-size:260%;background-position:59% 76%}.service:nth-child(2):before{background-image:var(--work-photo);background-position:20% 83%;background-size:180%}.service:nth-child(3):before{background-size:300%;background-position:90% 83%}.service:nth-child(4):before{background-size:230%;background-position:75% 55%}.service .num{color:#e6261c;font:700 17px Oswald;margin-bottom:auto}.service p{font-size:14px;color:#c7c9ce;margin:0}.service h3{font-size:23px}.selected{display:flex;align-items:center;justify-content:space-between;gap:16px;background:#1a1c20;border:1px solid #34373d;border-left:3px solid #e6261c;border-radius:8px;padding:16px 20px;margin-bottom:30px}.selected small{color:#e6261c;letter-spacing:1px;font-size:11px;font-weight:bold}.selected strong{display:block}.pagehead{position:relative;isolation:isolate;padding:64px 0 54px;overflow:hidden;border-bottom:1px solid #333}.pagehead:before{content:'';position:absolute;inset:0;z-index:-2;background-image:var(--bike-photo);background-size:cover;background-position:50% 75%}.pagehead:after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#101113f5,#101113bf 65%,#10111355)}.pagehead[data-bg=onderhoud]:before{background-size:160%;background-position:60% 76%}.pagehead[data-bg=probleem]:before{background-image:var(--work-photo);background-position:center 65%}.pagehead[data-bg=banden]:before{background-size:220%;background-position:92% 82%}.pagehead[data-bg=ombouw]:before{background-size:170%;background-position:80% 52%}.pagehead p{max-width:620px;font-size:18px;color:#c9cbd0}.breadcrumbs{font-size:13px;color:#adb0b6;margin-bottom:24px}.workgrid{display:grid;grid-template-columns:1.5fr 1fr;gap:32px;padding:42px 0 70px;align-items:start}.panel{background:#1b1e23;border:1px solid #33373e;border-radius:9px;padding:28px}.panel h2{font-size:27px}.note{font-size:13px;color:#adb0b7}.fields{display:grid;grid-template-columns:1fr 1fr;gap:18px}.full{grid-column:1/-1}label{display:block;font-size:14px;font-weight:bold;margin-bottom:7px}input,select,textarea{width:100%;border:1px solid #555b64;border-radius:5px;background:#101216;color:#f4f4f4;padding:12px;min-height:48px}textarea{resize:vertical;min-height:105px}input::placeholder,textarea::placeholder{color:#9297a0}.price{font:700 40px Oswald;color:#fff}.price small{font:14px Arial;color:#b6bac1}.line{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid #353940}.line strong{white-space:nowrap}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}.tyrelist{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}.tyre{display:block;padding:16px;background:#14161a;border:1px solid #40444c;border-radius:7px;cursor:pointer}.tyre:has(input:checked){border-color:#ff5146;background:#2c1c1b}.tyre input{width:auto;min-height:auto;margin:0 8px 0 0}.tyre strong{font-size:14px}.tyre small{display:block;font-weight:normal;color:#b9bdc5;margin:8px 0}.tyre .money{color:#fff;font-weight:bold}.summary{white-space:pre-wrap;overflow-wrap:anywhere;background:#111317;padding:22px;border:1px solid #353a42;border-radius:7px;font:15px/1.8 Arial}.footer{padding:40px 0;border-top:1px solid #303239;color:#a3a6ae;font-size:13px}.footrow{display:flex;justify-content:space-between;align-items:center;gap:22px;margin-bottom:24px}.footlinks{display:flex;gap:18px;flex-wrap:wrap}.footlinks a{text-decoration:none}.about{display:grid;grid-template-columns:1fr 1fr;gap:50px;padding:50px 0 70px;align-items:center}.about img{width:100%;max-height:650px;object-fit:cover;border-radius:8px}.badge{display:inline-block;padding:6px 10px;border:1px solid #43302d;color:#e6261c;font-size:12px;border-radius:4px;margin-bottom:12px}.status{color:#e6261c;font-size:14px}dialog{width:min(660px,calc(100% - 28px));max-height:90vh;border:1px solid #4a4f58;border-radius:12px;padding:30px;background:#1b1e23;color:#f2f2f2}dialog::backdrop{background:#000b;backdrop-filter:blur(3px)}.dialoghead{display:flex;justify-content:space-between;gap:16px;margin-bottom:22px}.dialoghead h2{font-size:30px;margin:0}.close{background:transparent;color:white;border:0;font-size:30px;padding:0 8px}.smallhead{font-size:20px;margin-bottom:16px}.strip{display:flex;gap:24px;flex-wrap:wrap;padding-top:25px;color:#b6b9c1;font-size:13px}.strip span:before{content:'•';color:#e6261c;margin-right:10px}
+@media(max-width:1050px){.nav{gap:13px}.nav a{font-size:12px}.brand span{display:none}.headrow{gap:12px}.hero{gap:32px}.cards{grid-template-columns:1fr 1fr}.workgrid{grid-template-columns:1.5fr 1fr}.chip{max-width:160px}}
+@media(max-width:720px){.wrap{width:calc(100% - 32px)}.headrow{min-height:72px;flex-wrap:wrap}.brand span{display:block;font-size:18px}.brand img{width:44px;height:44px}.chip{margin-left:auto;max-width:130px}.header .appointment{display:none}.burger{display:block;background:#24272d;color:white;border:1px solid #484b52;border-radius:5px;padding:7px 10px}.nav{display:none;order:5;flex-basis:100%;margin:0;padding:10px 0 20px;flex-wrap:wrap;gap:20px}.nav.open{display:flex}.nav a{font-size:14px}.hero{grid-template-columns:1fr;padding:30px 0 40px;gap:30px}.hero .mark img{width:80px;height:80px}.hero h1{font-size:38px}.hero figure{order:-1}.hero figure img{height:350px;object-position:center 38%}.caption{padding:10px 14px;bottom:14px;left:14px;right:14px}.section{padding:38px 0}.cards{gap:12px}.service{min-height:215px;padding:18px}.service h3{font-size:20px}.service p{font-size:12px}.pagehead{padding:36px 0 26px}.pagehead h1{font-size:44px}.pagehead p{font-size:16px}.workgrid,.about{grid-template-columns:1fr;gap:24px;padding:28px 0 40px}.panel{padding:22px}.fields,.tyrelist{grid-template-columns:1fr}.full{grid-column:auto}.selected{padding:13px 15px}.selected strong{font-size:14px}.selected .btn{padding:9px 13px;min-height:42px}.footrow{align-items:start;flex-direction:column}.about img{max-height:450px}.actions .btn{flex:1}.intro div{grid-template-columns:75px 1fr}.intro dd{font-size:15px}.strip{gap:12px}.pagehead:after{background:#101113cf}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:24px 0}.step{border-top:2px solid #383b42;padding-top:18px}.step b{color:#e6261c;margin-right:12px;font-family:Oswald}.step p{font-size:14px;color:#b7bbc3;margin:8px 0 0}.faq{max-width:800px}.faq details{border-bottom:1px solid #393d44;padding:17px 0}.faq summary{cursor:pointer;font-weight:bold;list-style-position:outside;margin-left:20px}.faq details p{padding:14px 20px 0;color:#b9bdc4;font-size:14px;margin:0}.reviewlink{display:inline-block;color:#ddd;font-size:13px;margin-top:20px;text-underline-offset:4px}.mobilebar{display:none}.selectedtyres{display:flex;gap:12px;flex-wrap:wrap;margin:12px 0}.selectedtyres span{padding:7px 10px;border-radius:5px;background:#292e35;font-size:13px}.hintbox{padding:14px 16px;background:#14161a;border-left:2px solid #e6261c;border-radius:3px;margin-bottom:20px}.hintbox summary{font-size:14px;cursor:pointer;font-weight:bold}.hintbox p{font-size:13px;color:#bbbfc6;margin:10px 0 0}.tyre .included{color:#e6261c;font-size:12px}.tyre .money{display:block}.showmore{margin-top:18px;width:100%}.mobilebar a{flex:1}.mobilebar .btn{font-size:14px;min-height:46px}.skiplink{position:absolute;left:16px;top:-100px;z-index:100;background:#fff;color:#111;padding:12px}.skiplink:focus{top:16px}@media(max-width:720px){.steps{grid-template-columns:1fr;gap:16px}.hero figure img{height:250px}.hero .mark{gap:14px}.mobilebar:not([hidden]){display:flex;gap:10px;position:fixed;bottom:0;left:0;right:0;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:#101113f7;border-top:1px solid #45484e;z-index:12}body.has-mobilebar{padding-bottom:84px}.hero{gap:22px}.steps .step{padding-top:12px}.tyrelist{grid-template-columns:1fr}.brand span{font-size:16px}.headrow{gap:8px}.chip{max-width:110px}}
+.reception{padding-top:70px;padding-bottom:80px;gap:80px;min-height:650px}.reception h1{font-size:clamp(42px,5vw,64px);line-height:1.18;margin:20px 0 28px}.welcome-story{font-size:18px;line-height:1.85;color:#eee;max-width:510px}.welcome-note{font-size:15px;color:#b7b9bd;margin:22px 0 30px}.welcome-help{font-size:12px;color:#a5a8b0;margin:14px 0 0}.reception figure img{height:500px;border-radius:8px}.reception-caption{font-size:12px;color:#a9adb4;padding:12px 0}.reception-bottom{border-top:1px solid #2b2d32}.reception-info{display:flex;justify-content:space-between;gap:24px;padding:26px 0;font-size:13px;color:#b8bbc2}.reception-info a{text-decoration:none}.reception-info a:hover{color:#fff}@media(max-width:720px){.reception{min-height:auto;padding:34px 0 32px;gap:30px}.reception h1{font-size:40px;margin:15px 0 22px}.welcome-story{font-size:16px;line-height:1.8}.reception figure{order:initial}.reception figure img{height:320px}.welcome-note{font-size:14px;margin:18px 0 24px}.reception-info{flex-direction:column;gap:12px;padding:22px 0}.reception .btn{min-width:180px}}
+.social-head{display:flex;justify-content:space-between;gap:25px;align-items:center;margin-bottom:24px}.social-head h2{margin:8px 0 0}.photo-mix{display:grid;grid-template-columns:1fr 1fr;gap:24px}.photo-mix figure{margin:0}.photo-mix img{width:100%;height:340px;object-fit:cover;border-radius:8px}.photo-mix figure:first-child img{object-position:center 38%}.photo-mix figure:last-child img{object-position:center 75%}.photo-mix figcaption{font-size:12px;color:#aeb2b9;padding:12px 0}.review-viewport{overflow-x:auto;scrollbar-width:thin;scrollbar-color:#51565f #191c21;overscroll-behavior-x:contain;padding-bottom:14px}.review-track{display:flex;gap:20px;position:relative;width:max-content}.quote-card{width:350px;flex:none;margin:0;border:1px solid #373b43;border-radius:8px;background:#1b1e23;padding:25px;display:flex;flex-direction:column;min-height:235px}.review-stars{color:#f4f4f4;font-size:20px;letter-spacing:2px}.review-stars span{float:right;font:12px Arial;letter-spacing:0;color:#aaaeb7}.quote-card blockquote{margin:18px 0 22px;font-size:16px;line-height:1.7;color:#dedfe3}.quote-card figcaption{font-size:13px;font-weight:bold;color:#fff;margin-top:auto}.instagram-btn svg{flex:none}.customer-reviews{background:#121418}@media(max-width:720px){.social-head{align-items:start;flex-direction:column;gap:18px}.social-head h2{font-size:30px}.photo-mix{gap:14px}.photo-mix img{height:240px}.quote-card{width:min(310px,calc(100vw - 65px));min-height:230px;padding:22px}.instagram-btn{font-size:13px;padding:12px 16px}.photo-mix figcaption{font-size:11px}}@media(prefers-reduced-motion:reduce){.review-viewport{scroll-behavior:auto}}
+
+:root{--service-maintenance:url('/p-4164f2998d7156f9/assets/og/fbab2b26cb8a1c67.jpg');--service-problem:url('/p-4164f2998d7156f9/assets/og/79a2c8d4a4588815.jpg');--service-tyres:url('/p-4164f2998d7156f9/assets/og/2f6178ea34d941bb.webp');--service-lights:url('/p-4164f2998d7156f9/assets/og/1ce3e2ad8f70fe0c.webp');--gallery-honda:url('/p-4164f2998d7156f9/assets/og/efb004e5476a9aac.jpg')}
+.service:nth-child(1):before{background-image:var(--service-maintenance);background-size:cover;background-position:50% 42%}.service:nth-child(2):before{background-image:var(--service-problem);background-size:cover;background-position:50% 35%}.service:nth-child(3):before{background-image:var(--service-tyres);background-size:cover;background-position:30% 70%}.service:nth-child(4):before{background-image:var(--service-lights);background-size:cover;background-position:50% 58%}.pagehead[data-bg=onderhoud]:before{background-image:var(--service-maintenance);background-size:cover;background-position:center 44%}.pagehead[data-bg=probleem]:before{background-image:var(--service-problem);background-size:cover;background-position:center 36%}.pagehead[data-bg=banden]:before{background-image:var(--service-tyres);background-size:cover;background-position:center 72%}.pagehead[data-bg=ombouw]:before{background-image:var(--service-lights);background-size:cover;background-position:center 57%}.photo-mix{grid-template-columns:repeat(3,1fr)}.photo-mix figure img{height:300px}.photo-mix figure:nth-child(1) img{object-position:50% 42%}.photo-mix figure:nth-child(2) img{object-position:50% 35%}.photo-mix figure:nth-child(3) img{object-position:50% 60%}.photo-mix figure:nth-child(4) img{object-position:40% 68%}.photo-mix figure:nth-child(5) img{object-position:50% 56%}@media(max-width:720px){.photo-mix{grid-template-columns:1fr 1fr}.photo-mix figure img{height:220px}.photo-mix figure:last-child{grid-column:1/-1}.photo-mix figure:last-child img{height:300px}}
+
+/* OG MotoWorks: aanvullingen op Freddy's testversie voor echte pagina's (zelfde kleuren, geen nieuw ontwerp). */
+.preview-bar{background:#25272b;border-bottom:1px solid #34373b;color:#c8c9cc;text-align:center;font-size:12px;padding:6px 16px}
+.hp{position:absolute!important;left:-10000px!important;width:1px;height:1px;overflow:hidden}
+.nav a.langlink{color:#8f9299;font-weight:normal}
+.nav a.langlink:hover{color:#e6261c}
+.hours{color:#f4f4f4;font-weight:bold}
+.info .prose{}
+.info .prose h2{font-size:clamp(26px,3.4vw,36px);margin:34px 0 14px}
+.info .prose h2:first-child{margin-top:0}
+.info .prose h3{font-size:21px;margin:26px 0 8px}
+.info .prose p,.info .prose li,.info .prose dd{color:#c9cbd0}
+.info .prose a{color:#f4f4f4;text-decoration-color:#e6261c;text-underline-offset:3px}
+.info .prose a:hover{color:#e6261c}
+.info .prose ul,.info .prose ol{padding-left:22px;margin:0 0 18px}
+.info .prose li{margin:0 0 6px}
+.info .prose ul.checks{list-style:none;padding-left:0}
+.info .prose ul.checks li{position:relative;padding-left:24px}
+.info .prose ul.checks li:before{content:"";position:absolute;left:2px;top:.62em;width:9px;height:9px;background:#e6261c;border-radius:2px}
+.info .prose .warn{border-left:3px solid #e6261c;padding:10px 14px;background:#1b1e23}
+.info .prose .tyre{font-family:Oswald,Arial,sans-serif;font-size:28px;letter-spacing:1px;color:#f4f4f4}
+.info .prose dl{display:grid;grid-template-columns:max-content 1fr;gap:6px 16px;margin:0 0 18px}
+.info .prose dt{font-weight:bold;color:#f4f4f4}
+.info .prose dd{margin:0}
+.info .prose .eyebrow{margin:0 0 6px}
+.info .prose figure{margin:0 0 22px}
+.info .prose img{max-width:100%;height:auto;border-radius:9px;display:block}
+.info .prose figcaption{font-size:13px;color:#adb0b7;margin-top:6px}
+.info .prose .wp{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin:0 0 22px}
+.info .prose .wp__card{background:#1b1e23;border:1px solid #33373e;border-radius:9px;padding:20px}
+.info .prose .wp__card h3{margin-top:0}
+.info .prose .wp__label{display:block;color:#e6261c;font-size:12px;letter-spacing:2px;font-weight:bold;text-transform:uppercase}
+.info .prose .wp__prijs{font-family:Oswald,Arial,sans-serif;font-size:30px;color:#f4f4f4;margin:6px 0}
+.info .prose .wp__vroeg,.info .prose .wp__extra{font-size:14px}
+.info .prose .job{background:#1b1e23;border:1px solid #33373e;border-radius:9px;padding:20px;margin:0 0 16px}
+.info .prose .job__meta{font-size:13px;color:#adb0b7}
+.info .prose .linklist{columns:2;column-gap:28px}
+@media(max-width:720px){.info .prose .linklist{columns:1}.info .prose dl{grid-template-columns:1fr}}
+.og-nodata #app .actions{display:none}
+.info .prose>*{max-width:820px}
+.info .prose>.wp{max-width:none}
+.info .prose .wp__prijs b{display:block;line-height:1.1}
+.info .prose .wp__prijs{font-size:15px}
+.info .prose .wp__prijs b{font-size:34px}
+/* 320px (iPhone SE): geen horizontale scroll bij langere (Engelse) labels */
+.workgrid>*{min-width:0}
+@media(max-width:360px){.selected{flex-wrap:wrap}}
+
+/* 8 okt 2026: extra's bij banden (zelfde kaartjes als de bandenlijst) */
+.tyre-extras{border:0;padding:0;margin:26px 0 0;min-width:0}
+.tyre-extras legend{padding:0;margin:0 0 4px}
+.tyre-extras .optlist{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
+@media(max-width:720px){.tyre-extras .optlist{grid-template-columns:1fr}}
+.tyre input{accent-color:#e6261c}
+/* 8 okt 2026: kleine rode Afspraak-knop in de kop op mobiel (vervangt de onderbalk) */
+@media(max-width:720px){
+.headrow{gap:8px}
+.brand{margin-right:auto;min-width:0}
+.chip{margin-left:0;min-height:40px}
+.header .appointment{display:inline-flex;flex:none;min-height:40px;padding:8px 12px;font-size:13px;border-radius:6px;white-space:nowrap}
+.burger{min-width:42px;min-height:42px;flex:none}
+}
+@media(max-width:480px){body.has-motor .brand span{display:none}}
+@media(max-width:360px){.brand{gap:8px}.brand img{width:40px;height:40px}.brand span{font-size:15px}.chip{max-width:96px;padding:8px 10px}.header .appointment{padding:8px 10px}}
+/* 8 okt 2026: keuzerij merken/modellen in de motordialoog (zelfde knoppen als Freddy's ontwerp) */
+.pickrow{display:flex;gap:8px;overflow-x:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:10px 0 2px;touch-action:pan-x}
+.pickrow::-webkit-scrollbar{display:none}
+.pickrow[hidden]{display:none}
+.pill{flex:none;min-height:40px;padding:8px 14px;background:#22252a;border:1px solid #43464c;border-radius:7px;color:#f4f4f4;font:inherit;font-size:14px;font-weight:bold;white-space:nowrap;cursor:pointer}
+.pill:hover{background:#30343a}
+.pill[aria-pressed=true]{border-color:#ff5146;background:#2c1c1b}
+@media(max-width:720px){.pickrow{position:fixed;left:0;right:0;bottom:var(--kb,0px);z-index:5;margin:0;padding:8px 12px calc(8px + env(safe-area-inset-bottom));background:#101113f7;border-top:1px solid #45484e}}
+.fields>.pickrow{grid-column:1/-1}
+/* optioneel reviewvinkje onder 'Jouw gegevens' (8 okt 2026), zelfde optiekaart als de banden-extra's */
+.review-opt{display:grid;grid-template-columns:1fr;margin-top:16px}
+.review-opt .tyre{display:flex;align-items:flex-start;gap:10px;font:inherit;letter-spacing:normal}
+.review-opt .tyre input{flex:none;width:20px;height:20px;margin:1px 0 0}
+.review-opt .tyre strong{font-size:15px;line-height:1.45;font-weight:600}
+.review-opt .tyre:has(input:focus-visible){outline:2px solid #ff5146;outline-offset:2px}
+.review-note:empty{display:none}
+.review-note{margin-top:10px;color:#ffb3ad}
+/* Google-reviews uit reviews.json (8 okt 2026): auteur met link, datum, 'lees meer' */
+.quote-card figcaption{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.quote-card figcaption a{color:#fff;text-decoration:underline;text-underline-offset:3px}
+.quote-card .rv-date{font-weight:normal;color:#aaaeb7;font-size:12px}
+.quote-card .rv-more{display:inline-block;margin:-10px 0 18px;font-size:13px;color:#ff5146;text-underline-offset:3px}
+
+/* ===== WINTERBALK + WINTERBLOK (preview 12 okt 2026), alleen bij WINTER_LIVE in de HTML ===== */
+.winterbar{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:4px 14px;background:#e6261c;color:#fff;text-decoration:none;font-size:16px;line-height:1.35;padding:13px 20px;text-align:center;letter-spacing:.01em;box-shadow:inset 0 -2px 0 rgba(0,0,0,.18)}
+.winterbar b{font-weight:800}.winterbar .wb-ico{font-size:18px}
+.winterbar .wb-short{display:none}.winterbar .wb-date{opacity:.95}
+.winterbar .wb-date:before{content:"·";margin-right:12px}
+.winterbar .wb-cta{font-weight:bold;background:#fff;color:#c81e15;text-decoration:none!important;padding:4px 12px;border-radius:999px;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+.winterbar:hover .wb-cta,.winterbar:focus-visible .wb-cta{text-decoration-thickness:2px}
+.winterbar:focus-visible{outline:3px solid #fff;outline-offset:-5px}
+@media(max-width:820px){.winterbar{font-size:14.5px;gap:4px 8px;padding:10px 12px}.winterbar .wb-cta{padding:3px 10px}.winterbar .wb-full{display:none}.winterbar .wb-short{display:inline}.winterbar .wb-ico{display:none}.winterbar .wb-short{flex-basis:100%}.winterbar .wb-short:before{content:"❄ "}.winterbar .wb-date:before{display:none}}
+.winterhome{display:grid;grid-template-columns:1.2fr 1fr auto;align-items:center;gap:20px 32px;margin-top:28px;margin-bottom:8px;padding:24px 28px;border:1px solid #45484e;border-left:4px solid #e6261c;border-radius:10px;background:#18191c}
+.winterhome h2{margin:6px 0 6px;font-size:clamp(22px,2.6vw,30px)}.winterhome p{margin:0;color:#c8c9cc}
+.winterhome-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.winterhome-list li{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid #34373b;padding-bottom:6px}
+.winterhome-list li span{color:#fff;font-weight:bold;white-space:nowrap}
+.winterhome-actions{display:flex;flex-direction:column;gap:10px}.winterhome-actions .btn{justify-content:center;text-align:center;white-space:nowrap}
+.nav a.navwinter{color:#fff;display:inline-flex;align-items:center;gap:6px}.nav a.navwinter:before{content:"";width:7px;height:7px;border-radius:50%;background:#e6261c;flex:none}
+.nav a.navwinter:hover,.nav a.navwinter[aria-current=page]{color:#e6261c}
+@media(max-width:900px){.winterhome{grid-template-columns:1fr;padding:20px 18px;margin-top:20px}.winterhome .btn{width:100%;white-space:normal}}
+
+/* ===== VARIANT B: winterhero (15 okt 2026) ===== */
+.winterhero{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,.75fr);gap:36px;align-items:stretch;padding-top:40px;padding-bottom:40px}
+.winterhero .eyebrow{color:#e6261c}
+.winterhero h1{font-size:clamp(46px,7vw,92px);line-height:.95;margin:10px 0 14px;letter-spacing:-.02em}
+.wh-lead{font-size:clamp(17px,1.6vw,20px);color:#c8c9cc;margin:0 0 24px;max-width:36em}
+.wh-cards{list-style:none;margin:0 0 18px;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.wh-cards a{display:flex;flex-direction:column;gap:4px;height:100%;box-sizing:border-box;padding:20px 18px;border:1px solid #45484e;border-top:5px solid #e6261c;border-radius:12px;background:#18191c;color:#fff;text-decoration:none;transition:border-color .15s,transform .15s}
+.wh-cards a:hover,.wh-cards a:focus-visible{border-color:#e6261c;transform:translateY(-2px)}
+.wh-cards strong{font-size:22px}.wh-cards span{color:#a9abb0;font-size:14px;margin-top:6px}.wh-cards b{font-size:clamp(34px,3.6vw,46px);line-height:1;color:#fff}
+.wh-date{font-size:17px;margin:0 0 22px;color:#e9e9eb}.wh-date b{color:#fff;background:#e6261c;padding:2px 8px;border-radius:4px}
+.wh-actions{display:flex;flex-wrap:wrap;gap:12px}.wh-big{font-size:18px;padding:16px 26px;justify-content:center;text-align:center}
+.wh-other{display:inline-block;margin-top:16px;color:#a9abb0;font-size:14px}
+.wh-photo{margin:0;position:relative;border-radius:12px;overflow:hidden;min-height:100%}
+.wh-photo img{width:100%;height:100%;max-height:640px;object-fit:cover;object-position:50% 30%;display:block}
+.wh-photo figcaption{position:absolute;left:12px;bottom:12px;background:rgba(0,0,0,.7);padding:4px 10px;border-radius:4px}
+@media(max-width:900px){.winterhero{grid-template-columns:1fr;gap:20px;padding-top:24px;padding-bottom:24px}
+ .winterhero h1{font-size:52px;margin:6px 0 10px}.wh-lead{font-size:16px;margin-bottom:18px}
+ .wh-cards{grid-template-columns:1fr;gap:10px}.wh-cards a{flex-direction:row;align-items:baseline;flex-wrap:wrap;padding:14px 16px;border-top-width:1px;border-left:5px solid #e6261c}
+ .wh-cards strong{font-size:19px;margin-right:auto}.wh-cards span{margin:0 6px 0 0}.wh-cards b{font-size:30px}
+ .wh-actions{flex-direction:column}.wh-big{width:100%;box-sizing:border-box}
+ .wh-photo{order:-1;min-height:0;aspect-ratio:16/7}.wh-photo img{max-height:none;object-position:50% 28%}.wh-photo figcaption{display:none}}
+
+/* ===== Mailknop naast WhatsApp (19 okt 2026) ===== */
+.btn-mail{white-space:nowrap}
+.actions:has(.btn-mail) .btn{justify-content:center;text-align:center}
+@media(max-width:720px){.actions:has(.btn-mail) .btn{flex:1 1 auto;white-space:nowrap;padding-left:16px;padding-right:16px}}
+
+/* ===== FOTOS24 (19 okt 2026): foto's uit Drive 'Gebruiken voor website' ===== */
+.service.has-photo:before{display:none}
+.service-photo{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.service:hover .service-photo{transform:scale(1.05)}
+.service:nth-child(2) .service-photo{object-position:50% 45%}
+.service:nth-child(3) .service-photo{object-position:50% 50%}
+.pagehead[data-bg=onderhoud-olie]:before{background-image:url('/p-4164f2998d7156f9/assets/og/96a789c045be9ac0.webp');background-size:cover;background-position:50% 55%}
+.pagehead[data-bg=winter]:before{background-image:url('/p-4164f2998d7156f9/assets/og/94bc5081e4b5532f.webp');background-size:cover;background-position:50% 50%}
+.pagehead[data-bg=reparatie]:before{background-image:url('/p-4164f2998d7156f9/assets/og/5279f68543082adb.webp');background-size:cover;background-position:50% 50%}
+.pagehead[data-bg=diagnose]:before{background-image:url('/p-4164f2998d7156f9/assets/og/cc48989d280885e9.webp');background-size:cover;background-position:50% 50%}
+.pagehead[data-bg=ketting]:before{background-image:url('/p-4164f2998d7156f9/assets/og/238e91567f8baee1.webp');background-size:cover;background-position:50% 50%}
+.pagehead[data-bg=ketting-rammelt]:before{background-image:url('/p-4164f2998d7156f9/assets/og/71e6523186f707ad.webp');background-size:cover;background-position:50% 55%}
+.pagehead[data-bg=voorvork]:before{background-image:url('/p-4164f2998d7156f9/assets/og/b03e800dfc48c309.webp');background-size:cover;background-position:50% 50%}
+.pagehead[data-bg=remmen]:before{background-image:url('/p-4164f2998d7156f9/assets/og/69d5a1782e5cf9d7.webp');background-size:cover;background-position:50% 45%}
+.pagehead[data-bg=carburateur]:before{background-image:url('/p-4164f2998d7156f9/assets/og/850c10c716072cde.webp');background-size:cover;background-position:50% 50%}
+.pagehead[data-bg=olie]:before{background-image:url('/p-4164f2998d7156f9/assets/og/2b83c71250f2c6f2.webp');background-size:cover;background-position:50% 50%}
+.pagehead[data-bg=tuning]:before{background-image:url('/p-4164f2998d7156f9/assets/og/71b23c2d57449c96.webp');background-size:cover;background-position:50% 50%}
+.pagehead[data-bg=werkplaats]:before{background-image:url('/p-4164f2998d7156f9/assets/og/1a544208d5bae89f.webp');background-size:cover;background-position:50% 60%}
+.pagehead[data-bg=banden]:before{background-image:url('/p-4164f2998d7156f9/assets/og/8a9cd78f384bf79b.webp');background-size:cover;background-position:50% 45%}
+@media(max-width:720px){.pagehead[data-bg=onderhoud-olie]:before{background-image:url('/p-4164f2998d7156f9/assets/og/663d34ca1d2f802c.webp')}.pagehead[data-bg=reparatie]:before{background-image:url('/p-4164f2998d7156f9/assets/og/9eaf11b44b8b4d67.webp')}.pagehead[data-bg=ketting]:before{background-image:url('/p-4164f2998d7156f9/assets/og/4103146e54f06dee.webp')}.pagehead[data-bg=ketting-rammelt]:before{background-image:url('/p-4164f2998d7156f9/assets/og/39ce9b438cd462a0.webp')}.pagehead[data-bg=carburateur]:before{background-image:url('/p-4164f2998d7156f9/assets/og/f48d835a548683f7.webp')}.pagehead[data-bg=werkplaats]:before{background-image:url('/p-4164f2998d7156f9/assets/og/285bee9cb0b7b2cf.webp')}}
+.info .prose>.werkfotos{max-width:none;margin:36px 0}
+.werkfotos__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+.info .prose .werkfotos figure{margin:0}
+.info .prose .werkfotos img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
+@media(max-width:720px){.werkfotos__grid{grid-template-columns:1fr 1fr;gap:10px}.info .prose .werkfotos figcaption{font-size:12px}}
+
+/* ===== WINTERFOTO (19 okt 2026): KTM in de winterhero, <picture> mobiel 16:7 / desktop 2:3 ===== */
+.wh-photo picture{display:block;height:100%}
+figure.wh-photo picture img{object-position:50% 50%}
+@media(max-width:900px){.wh-photo picture{position:absolute;inset:0}figure.wh-photo picture img{height:100%;object-position:50% 50%}}
+
+/* ===== PAKKETFOTOS (19 okt 2026): foto per Winterklaar-kaart ===== */
+.info .prose .wp__card{overflow:hidden}
+.info .prose .wp__card>img{display:block;width:calc(100% + 40px);max-width:none;height:auto;aspect-ratio:16/9;object-fit:cover;margin:-20px -20px 16px;border:0;border-radius:0;box-shadow:none}
+.wh-cards a{overflow:hidden}
+.wh-photo{position:relative}
+@media(min-width:901px){.wh-photo{min-height:420px}.wh-photo picture{position:absolute;inset:0}figure.wh-photo picture img{height:100%;max-height:none}}
+.wh-cards .wh-cardpic{display:block;margin:-20px -18px 10px;aspect-ratio:2/1;overflow:hidden;background:#24272d}
+.wh-cards .wh-cardpic img{display:block;width:100%;height:100%;object-fit:cover}
+@media(max-width:900px){.wh-cards a{align-items:center}.wh-cards .wh-cardpic{flex:0 0 52px;width:52px;height:52px;aspect-ratio:1;margin:-4px 12px -4px -6px;border-radius:6px}}
+
+/* SEO 20 okt 2026: vaste H1 op de homepage boven het winterblok; winterkop is nu H2 met hetzelfde uiterlijk */
+.winterhero .home-h1{font-family:Oswald,Arial,sans-serif;font-size:clamp(15px,1.6vw,19px);line-height:1.25;letter-spacing:.01em;text-transform:none;margin:0 0 10px;color:inherit;opacity:.9;font-weight:700}
+.winterhero h2.wh-title{font-size:clamp(46px,7vw,92px);line-height:.95;margin:10px 0 14px;letter-spacing:-.02em}
+@media(max-width:900px){.winterhero h2.wh-title{font-size:52px;margin:6px 0 10px}}
+.home-regio{padding:18px 0 4px}.home-diensten{padding:22px 0 8px}.home-diensten h2{margin:0 0 12px}.home-diensten-list{list-style:none;margin:0 0 10px;padding:0;display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}.home-diensten-list a{display:block;height:100%;padding:14px 16px;border:1px solid rgba(127,127,127,.35);border-radius:10px;text-decoration:none;color:inherit}.home-diensten-list a:hover,.home-diensten-list a:focus-visible{border-color:currentColor}.home-diensten-list strong{display:block;margin-bottom:4px}.home-diensten-list span{display:block;opacity:.8;font-size:.95em}.home-regio p{margin:0;max-width:760px;opacity:.85}
+
+/* HEROCARROUSEL 20 okt 2026: winterhero-crossfade */
+.wh-carousel .wh-slide{position:absolute;inset:0;display:block;opacity:0;transition:opacity 1.4s ease}
+.wh-carousel .wh-slide.is-active{opacity:1;z-index:1}
+.wh-carousel .wh-slide img{width:100%;height:100%;max-height:none;object-fit:cover;object-position:50% 50%}
+.wh-carousel figcaption{z-index:2}
+@media (prefers-reduced-motion:reduce){.wh-carousel .wh-slide{transition:opacity .2s linear}}
+
+/* FOTOSTRIP 20 okt 2026: roulerende photo-mix, strakke slide-in binnen het vak (450 ms, ease-out) */
+.photo-mix figure{position:relative;overflow:hidden;border-radius:8px}
+.photo-mix figure img.mix-over{position:absolute;left:0;top:0;width:100%;z-index:1;transition:transform .45s cubic-bezier(.2,.7,.2,1);will-change:transform}
+@media (prefers-reduced-motion:reduce){.photo-mix figure img.mix-over{transition:none}}
+
+/* BANDENSET (20 okt 2026): automatisch gekozen achterband */
+.tyre-auto .tyrelist{margin-top:8px}
+.tyre-auto .rear-change{display:inline-block;margin-top:10px;padding:8px 0;background:none;border:0;color:inherit;text-decoration:underline;text-underline-offset:3px;font-weight:600;cursor:pointer;min-height:44px}
+.rear-miss{border-left:3px solid currentColor;padding-left:10px}
+
+/* FOTOSTRIP-BIJSCHRIFT 20 okt 2026: elke tegel 4:5, rand tot rand gevuld (cover); 6 tegels: 3x2 desktop, 2x3 mobiel */
+.photo-mix{grid-template-columns:repeat(3,1fr)}
+.photo-mix figure:nth-child(n){grid-column:auto;margin:0}
+.photo-mix figure:nth-child(n) img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 50%;border-radius:8px;background:#15171a}
+.photo-mix figure:nth-child(n) img.mix-over{aspect-ratio:auto;border-radius:0}
+@media(max-width:720px){.photo-mix{grid-template-columns:1fr 1fr}}
