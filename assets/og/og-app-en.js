@@ -271,16 +271,16 @@ function initHeroCarousel() {
   const box = $("[data-carousel]");
   if (!box) return;
   const s = [...box.querySelectorAll(".wh-slide")];
-  if (s.length < 2 || (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches)) return;
+  if (s.length < 2) return; /* HERODRAAIT: ook bij reduced-motion, dan met korte fade (CSS) */
   const fill = () => box.querySelectorAll("[data-src],[data-srcset]").forEach((e) => {
     if (e.dataset.srcset) { e.srcset = e.dataset.srcset; e.removeAttribute("data-srcset"); }
     if (e.dataset.src) { e.src = e.dataset.src; e.removeAttribute("data-src"); }
   });
   if (document.readyState === "complete") setTimeout(fill, 300); else window.addEventListener("load", fill, { once: true });
-  let i = 0, paused = false, t = null;
+  let i = 0, paused = false, t = null, ht = null;
   const set = (v) => (paused = v);
-  box.addEventListener("mouseenter", () => set(true));
-  box.addEventListener("mouseleave", () => set(false));
+  box.addEventListener("mouseenter", () => { set(true); clearTimeout(ht); ht = setTimeout(() => set(false), 12000); });
+  box.addEventListener("mouseleave", () => { clearTimeout(ht); set(false); });
   box.addEventListener("focusin", () => set(true));
   box.addEventListener("focusout", () => set(false));
   box.addEventListener("touchstart", () => { clearTimeout(t); set(true); }, { passive: true });
