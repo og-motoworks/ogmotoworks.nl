@@ -189,7 +189,7 @@ figure.wh-photo picture img{object-position:50% 50%}
 .winterhero .home-h1{font-family:Oswald,Arial,sans-serif;font-size:clamp(15px,1.6vw,19px);line-height:1.25;letter-spacing:.01em;text-transform:none;margin:0 0 10px;color:inherit;opacity:.9;font-weight:700}
 .winterhero h2.wh-title{font-size:clamp(46px,7vw,92px);line-height:.95;margin:10px 0 14px;letter-spacing:-.02em}
 @media(max-width:900px){.winterhero h2.wh-title{font-size:52px;margin:6px 0 10px}}
-.home-regio{padding:18px 0 4px}.home-regio p{margin:0;max-width:760px;opacity:.85}
+.home-regio{padding:18px 0 4px}.home-diensten{padding:22px 0 8px}.home-diensten h2{margin:0 0 12px}.home-diensten-list{list-style:none;margin:0 0 10px;padding:0;display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}.home-diensten-list a{display:block;height:100%;padding:14px 16px;border:1px solid rgba(127,127,127,.35);border-radius:10px;text-decoration:none;color:inherit}.home-diensten-list a:hover,.home-diensten-list a:focus-visible{border-color:currentColor}.home-diensten-list strong{display:block;margin-bottom:4px}.home-diensten-list span{display:block;opacity:.8;font-size:.95em}.home-diensten h2+p{max-width:60ch}.gids-byline{opacity:.75;margin:0 0 14px}.home-regio p{margin:0;max-width:760px;opacity:.85}
 
 /* HEROCARROUSEL 20 okt 2026: winterhero-crossfade */
 .wh-carousel .wh-slide{position:absolute;inset:0;display:block;opacity:0;transition:opacity 1.4s ease}
