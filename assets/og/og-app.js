@@ -293,6 +293,47 @@ function initHeroCarousel() {
     s[n].classList.add("is-active"); s[n].removeAttribute("aria-hidden"); i = n;
   }, 6000);
 }
+const MIX_POOL = [["/assets/og/fbab2b26cb8a1c67.jpg", "Freddy sleutelt aan een BMW-motor", "Freddy working on a BMW motorcycle", "Aandacht voor het werk", "Attention to the work"], ["/assets/og/96faa0aebae8cc16.webp", "Goudkleurige ketting en achtertandwiel op een blauwe velg, in onze werkplaats", "Gold chain and rear sprocket on a blue wheel, in our workshop", "Het zit in de details", "It's in the details"], ["/assets/og/ac0a9ec9df792149.webp", "Motor op onze hefbrug bij OG MotoWorks, met het gereedschap klaar op de werkbank", "A motorcycle on our lift at OG MotoWorks, with the tools ready on the bench", "Verschillende motoren, dezelfde aandacht", "Different bikes, the same attention"], ["/assets/og/c23dc24f7b97c31f.webp", "Rood-wit voorwiel met sportband bij OG MotoWorks", "Red and white front wheel with a sports tyre at OG MotoWorks", "Banden: advies en montage", "Tyres: advice and fitting"], ["/assets/og/1ce3e2ad8f70fe0c.webp", "Drie motorrijders op verschillende motoren", "Three riders on different motorcycles", "De passie achter OG MotoWorks", "The passion behind OG MotoWorks"], ["/assets/og/d4c440bce03ab51e.webp", "Freddy leest met een diagnosetablet een BMW GS uit op de motorbrug", "Freddy reading out a BMW GS with a diagnostic tablet on the motorcycle lift", "Uitlezen met de diagnosetablet", "Reading out with the diagnostic tablet"], ["/assets/og/4257e6c5efa08485.webp", "Sportmotor zonder kuip en tank in onze werkplaats", "Sports bike without fairing and tank in our workshop", "Kuip eraf, alles bereikbaar", "Fairing off, everything within reach"], ["/assets/og/27aa83e9a2def04e.webp", "Motor op onze hefbrug, met gereedschap en onderdelen op de werkbank", "Motorcycle on our lift, with tools and parts on the bench", "Op de hefbrug", "On the lift"], ["/assets/og/f30af2a867cafd0e.webp", "Freddy met een onderdeel bij een gele Yamaha in onze werkplaats", "Freddy checking a part next to a yellow Yamaha in our workshop", "Elk onderdeel nagekeken", "Every part checked"], ["/assets/og/5686ce916d390d2e.webp", "Ketting en achtertandwiel van dichtbij, op een blauwe velg", "Chain and rear sprocket up close, on a blue wheel", "Ketting en tandwielen", "Chain and sprockets"], ["/assets/og/93478da69d6ff39a.webp", "Nokkenastandwielen en distributieketting met het klepdeksel eraf", "Camshaft sprockets and timing chain with the valve cover off", "Onder het klepdeksel", "Under the valve cover"], ["/assets/og/63bcc500edf3b2bf.webp", "We meten na bij het afstellen van ketting en achterwiel van een wit-rode custom motor", "We measure while adjusting the chain and rear wheel of a white and red custom bike", "Ketting en achterwiel afstellen", "Adjusting chain and rear wheel"], ["/assets/og/27ac5d0f76fb0f50.webp", "Motor van bovenaf met de tank eraf en de carburateurs uitgebouwd", "Motorcycle seen from above with the tank off and the carburettors removed", "Carburateurs eruit", "Carburettors out"], ["/assets/og/3ca9d7243c2bdbbe.webp", "BMW-motor met de tankafdekking eraf in onze werkplaats", "BMW motorcycle with the tank cover removed in our workshop", "Ook voor BMW", "BMW too"], ["/assets/og/b7b53cb96d2ef66c.webp", "Goudkleurige voorvork, remklauw en remschijf van een sportmotor op de paddockstand", "Gold front fork, brake caliper and disc of a sports bike on a paddock stand", "Voorvork en remmen", "Fork and brakes"]];
+let mixTimer = null;
+function initMix() {
+  clearInterval(mixTimer); mixTimer = null;
+  const box = $("[data-mix]");
+  if (!box || MIX_POOL.length < 6) return;
+  const reduced = () => window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const figs = [...box.querySelectorAll("figure")];
+  const shown = figs.map((f) => { const i = f.querySelector("img"); const k = MIX_POOL.findIndex((x) => i && (i.getAttribute("src") || "").endsWith(x[0]) || (i && i.alt === (EN ? x[2] : x[1]))); return k; });
+  let paused = false, last = -1, t = null;
+  const set = (v) => (paused = v);
+  box.addEventListener("mouseenter", () => set(true)); box.addEventListener("mouseleave", () => set(false));
+  box.addEventListener("focusin", () => set(true)); box.addEventListener("focusout", () => set(false));
+  box.addEventListener("touchstart", () => { clearTimeout(t); set(true); }, { passive: true });
+  box.addEventListener("touchend", () => { clearTimeout(t); t = setTimeout(() => set(false), 5000); }, { passive: true });
+  mixTimer = setInterval(() => {
+    if (paused || document.hidden) return;
+    let f; do f = Math.floor(Math.random() * figs.length); while (f === last && figs.length > 1);
+    const free = MIX_POOL.map((x, k) => k).filter((k) => !shown.includes(k));
+    if (!free.length) return;
+    const k = free[Math.floor(Math.random() * free.length)], [src, nl, en, cnl, cen] = MIX_POOL[k];
+    const fig = figs[f], img = fig.querySelector("img"), cap = fig.querySelector("figcaption"), pre = new Image();
+    last = f; shown[f] = k;
+    const swap = () => { img.removeAttribute("data-gallery-photo"); img.src = src; img.alt = EN ? en : nl; if (cap) cap.textContent = EN ? cen : cnl; };
+    pre.onload = () => {
+      if (reduced()) return swap();
+      const dir = [["100%", "0"], ["-100%", "0"], ["0", "100%"], ["0", "-100%"]][Math.floor(Math.random() * 4)];
+      const ov = document.createElement("img");
+      ov.src = src; ov.alt = ""; ov.className = "mix-over"; ov.style.height = img.offsetHeight + "px";
+      ov.style.transform = "translate(" + dir[0] + "," + dir[1] + ")";
+      fig.insertBefore(ov, img.nextSibling);
+      ov.getBoundingClientRect();
+      ov.style.transform = "translate(0,0)";
+      setTimeout(() => {
+        swap();
+        setTimeout(() => ov.remove(), 60);
+      }, 480);
+    };
+    pre.src = src;
+  }, 5000);
+}
 function initGallery() {
   const styles = getComputedStyle(document.documentElement);
   const names = {
@@ -312,7 +353,7 @@ function initGallery() {
 }
 function socialReviews() {
   const rv = reviewList();
-  return `<section class="section social-section"><div class="wrap"><div class="social-head"><div><span class="eyebrow">Een kijkje in de werkplaats</span><h2>Motoren, werk & verhalen.</h2></div><a class="btn secondary instagram-btn" href="https://www.instagram.com/og_motoworks" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1" fill="currentColor" stroke="none"/></svg>Volg OG MotoWorks op Instagram ↗</a></div><div class="photo-mix"><figure><img data-gallery-photo="MAINTENANCE_URI" alt="Freddy sleutelt aan een BMW-motor" loading="lazy"><figcaption>Aandacht voor het werk</figcaption></figure><figure><img src="/assets/og/96faa0aebae8cc16.webp" width="560" height="700" alt="Goudkleurige ketting en achtertandwiel op een blauwe velg, in onze werkplaats" loading="lazy" decoding="async"><figcaption>Het zit in de details</figcaption></figure><figure><img src="/assets/og/ac0a9ec9df792149.webp" width="560" height="700" alt="Motor op onze hefbrug bij OG MotoWorks, met het gereedschap klaar op de werkbank" loading="lazy" decoding="async"><figcaption>Verschillende motoren, dezelfde aandacht</figcaption></figure><figure><img src="/assets/og/c23dc24f7b97c31f.webp" width="560" height="700" alt="Rood-wit voorwiel met sportband bij OG MotoWorks" loading="lazy" decoding="async"><figcaption>Banden: advies en montage</figcaption></figure><figure><img data-gallery-photo="GROUP_URI" alt="Drie motorrijders op verschillende motoren" loading="lazy"><figcaption>De passie achter OG MotoWorks</figcaption></figure></div></div></section><section class="section customer-reviews" id="reviews" aria-labelledby="reviews-title"><div class="wrap"><div class="social-head"><div><span class="eyebrow">Klanten aan het woord</span><h2 id="reviews-title">Ervaringen op Google</h2></div><button class="btn secondary" id="reviews-pause" type="button" aria-pressed="false">Pauzeer reviews</button></div><div class="review-viewport" id="review-viewport" role="region" aria-label="Klantreviews, automatisch wisselend" tabindex="0"><div class="review-track">${rv.items.map((r) => reviewCard(r, rv.alle)).join("")}</div></div><p class="note" id="reviews-updated" style="margin-top:18px">Reviews via Google Maps · Laatst bijgewerkt: ${escapeHTML(new Date(rv.datum).toLocaleDateString(EN ? "en-GB" : "nl-NL", { day: "numeric", month: "long", year: "numeric" }))}</p><div class="actions"><a class="btn secondary" id="reviews-alle" href="${escapeHTML(rv.alle)}" target="_blank" rel="noopener">Bekijk alle reviews op Google ↗</a><a class="btn text" href="https://g.page/r/CcwNZlk_nz-kEBM/review" target="_blank" rel="noopener">Schrijf een review ↗</a></div></div></section>`;
+  return `<section class="section social-section"><div class="wrap"><div class="social-head"><div><span class="eyebrow">Een kijkje in de werkplaats</span><h2>Motoren, werk & verhalen.</h2></div><a class="btn secondary instagram-btn" href="https://www.instagram.com/og_motoworks" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1" fill="currentColor" stroke="none"/></svg>Volg OG MotoWorks op Instagram ↗</a></div><div class="photo-mix" data-mix><figure><img data-gallery-photo="MAINTENANCE_URI" alt="Freddy sleutelt aan een BMW-motor" loading="lazy"><figcaption>Aandacht voor het werk</figcaption></figure><figure><img src="/assets/og/96faa0aebae8cc16.webp" width="560" height="700" alt="Goudkleurige ketting en achtertandwiel op een blauwe velg, in onze werkplaats" loading="lazy" decoding="async"><figcaption>Het zit in de details</figcaption></figure><figure><img src="/assets/og/ac0a9ec9df792149.webp" width="560" height="700" alt="Motor op onze hefbrug bij OG MotoWorks, met het gereedschap klaar op de werkbank" loading="lazy" decoding="async"><figcaption>Verschillende motoren, dezelfde aandacht</figcaption></figure><figure><img src="/assets/og/c23dc24f7b97c31f.webp" width="560" height="700" alt="Rood-wit voorwiel met sportband bij OG MotoWorks" loading="lazy" decoding="async"><figcaption>Banden: advies en montage</figcaption></figure><figure><img data-gallery-photo="GROUP_URI" alt="Drie motorrijders op verschillende motoren" loading="lazy"><figcaption>De passie achter OG MotoWorks</figcaption></figure></div></div></section><section class="section customer-reviews" id="reviews" aria-labelledby="reviews-title"><div class="wrap"><div class="social-head"><div><span class="eyebrow">Klanten aan het woord</span><h2 id="reviews-title">Ervaringen op Google</h2></div><button class="btn secondary" id="reviews-pause" type="button" aria-pressed="false">Pauzeer reviews</button></div><div class="review-viewport" id="review-viewport" role="region" aria-label="Klantreviews, automatisch wisselend" tabindex="0"><div class="review-track">${rv.items.map((r) => reviewCard(r, rv.alle)).join("")}</div></div><p class="note" id="reviews-updated" style="margin-top:18px">Reviews via Google Maps · Laatst bijgewerkt: ${escapeHTML(new Date(rv.datum).toLocaleDateString(EN ? "en-GB" : "nl-NL", { day: "numeric", month: "long", year: "numeric" }))}</p><div class="actions"><a class="btn secondary" id="reviews-alle" href="${escapeHTML(rv.alle)}" target="_blank" rel="noopener">Bekijk alle reviews op Google ↗</a><a class="btn text" href="https://g.page/r/CcwNZlk_nz-kEBM/review" target="_blank" rel="noopener">Schrijf een review ↗</a></div></div></section>`;
 }
 function initReviews() {
   if (reviewTimer) {
@@ -1023,6 +1064,7 @@ function render() {
   if (extra) extra.hidden = page === "overzicht";
   initReviews();
   initGallery();
+  initMix();
   initHeroCarousel();
   const start = $("[data-start]");
   if (start && !motor)
