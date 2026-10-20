@@ -264,6 +264,35 @@ function reviewCard(r, alle) {
     lang = /^[a-z]{2}(-[A-Z]{2})?$/.test(r.taal || "") ? ` lang="${r.taal}"` : "";
   return `<figure class="quote-card"><div class="review-stars" aria-label="${stars} out of 5 stars">${"★".repeat(stars)}${"☆".repeat(5 - stars)} <span>Google</span></div><blockquote${lang}>${escapeHTML(cut)}</blockquote>${more ? `<a class="rv-more" href="${escapeHTML(safeUrl(r.google_url) || alle)}" target="_blank" rel="noopener">Read more on Google ↗</a>` : ""}<figcaption>${who}${when ? `<span class="rv-date">${escapeHTML(when)}</span>` : ""}</figcaption></figure>`;
 }
+/* HEROCARROUSEL 20 okt 2026 */
+let heroTimer = null;
+function initHeroCarousel() {
+  clearInterval(heroTimer); heroTimer = null;
+  const box = $("[data-carousel]");
+  if (!box) return;
+  const s = [...box.querySelectorAll(".wh-slide")];
+  if (s.length < 2 || (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches)) return;
+  const fill = () => box.querySelectorAll("[data-src],[data-srcset]").forEach((e) => {
+    if (e.dataset.srcset) { e.srcset = e.dataset.srcset; e.removeAttribute("data-srcset"); }
+    if (e.dataset.src) { e.src = e.dataset.src; e.removeAttribute("data-src"); }
+  });
+  if (document.readyState === "complete") setTimeout(fill, 300); else window.addEventListener("load", fill, { once: true });
+  let i = 0, paused = false, t = null;
+  const set = (v) => (paused = v);
+  box.addEventListener("mouseenter", () => set(true));
+  box.addEventListener("mouseleave", () => set(false));
+  box.addEventListener("focusin", () => set(true));
+  box.addEventListener("focusout", () => set(false));
+  box.addEventListener("touchstart", () => { clearTimeout(t); set(true); }, { passive: true });
+  box.addEventListener("touchend", () => { clearTimeout(t); t = setTimeout(() => set(false), 5000); }, { passive: true });
+  heroTimer = setInterval(() => {
+    if (paused || document.hidden) return;
+    const n = (i + 1) % s.length, img = s[n].querySelector("img");
+    if (img && (img.dataset.src || !img.complete || !img.naturalWidth || img.naturalWidth < 2)) return;
+    s[i].classList.remove("is-active"); s[i].setAttribute("aria-hidden", "true");
+    s[n].classList.add("is-active"); s[n].removeAttribute("aria-hidden"); i = n;
+  }, 6000);
+}
 function initGallery() {
   const styles = getComputedStyle(document.documentElement);
   const names = {
@@ -334,7 +363,7 @@ const PAKKETFOTO = [`<picture class="wh-cardpic"><source media="(max-width:900px
 function winterHero() {
   if (BODY.winter !== "live") return "";
   const k = (w, i) => `<li><a href="${R.winter}">${PAKKETFOTO[i] || ""}<strong>${w.naam.replace("Winterklaar ", "").replace("Basis", "Basic").replace("Compleet", "Complete")}</strong><span>from</span><b>${euro(w.prijs)}</b></a></li>`;
-  return `<section class="wrap hero winterhero" aria-labelledby="wh-h1"><div class="wh-main"><h1 class="home-h1">Motorcycle workshop in Waalwijk for servicing, repairs and tyres</h1><span class="eyebrow">❄ Winter offer 2026 · Waalwijk</span><h2 id="wh-h1" class="wh-title">Winter-ready</h2><p class="wh-lead">Get your bike ready for winter at OG MotoWorks. Three fixed packages at a fixed price.</p><ul class="wh-cards">${WINTER.map(k).join("")}</ul><p class="wh-date"><b>Book by 30 November</b> · we carry them out until 20 December</p><div class="wh-actions"><a href="https://wa.me/31642939555?text=Hi%20OG%20MotoWorks%2C%20I%20would%20like%20to%20book%20a%20winter%20package." class="btn btn-wa wh-big" target="_blank" rel="noopener">Book via WhatsApp ↗</a><a href="${mailHref(MAIL_T.winter, mailTpl(true))}" class="btn secondary wh-big btn-mail">${MAIL_T.btn}</a><a href="${R.winter}" class="btn secondary wh-big">View the winter packages →</a></div><a href="${R.afspraak}" class="wh-other" data-start>Other work on your bike? ${motor ? "Continue with your bike" : "Choose your bike"} →</a></div><figure class="wh-photo"><picture><source media="(max-width:900px)" srcset="/assets/og/cfa6457b5e49e167.webp" width="800" height="350"><img src="/assets/og/03f636bf6c7387d2.webp" width="627" height="941" alt="Freddy, owner of OG MotoWorks, with a diagnostic tablet next to a BMW in our workshop in Waalwijk" fetchpriority="high"></picture><figcaption class="reception-caption">Freddy · OG MotoWorks</figcaption></figure><!-- WINTERFOTO --></section>`;
+  return `<section class="wrap hero winterhero" aria-labelledby="wh-h1"><div class="wh-main"><h1 class="home-h1">Motorcycle workshop in Waalwijk for servicing, repairs and tyres</h1><span class="eyebrow">❄ Winter offer 2026 · Waalwijk</span><h2 id="wh-h1" class="wh-title">Winter-ready</h2><p class="wh-lead">Get your bike ready for winter at OG MotoWorks. Three fixed packages at a fixed price.</p><ul class="wh-cards">${WINTER.map(k).join("")}</ul><p class="wh-date"><b>Book by 30 November</b> · we carry them out until 20 December</p><div class="wh-actions"><a href="https://wa.me/31642939555?text=Hi%20OG%20MotoWorks%2C%20I%20would%20like%20to%20book%20a%20winter%20package." class="btn btn-wa wh-big" target="_blank" rel="noopener">Book via WhatsApp ↗</a><a href="${mailHref(MAIL_T.winter, mailTpl(true))}" class="btn secondary wh-big btn-mail">${MAIL_T.btn}</a><a href="${R.winter}" class="btn secondary wh-big">View the winter packages →</a></div><a href="${R.afspraak}" class="wh-other" data-start>Other work on your bike? ${motor ? "Continue with your bike" : "Choose your bike"} →</a></div><figure class="wh-photo wh-carousel" data-carousel><picture class="wh-slide is-active"><source media="(max-width:900px)" srcset="/assets/og/cfa6457b5e49e167.webp" width="800" height="350"><img src="/assets/og/03f636bf6c7387d2.webp" width="627" height="941" alt="Freddy, owner of OG MotoWorks, with a diagnostic tablet next to a BMW in our workshop in Waalwijk" fetchpriority="high"></picture><picture class="wh-slide" aria-hidden="true"><source media="(max-width:900px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-srcset="/assets/og/d8d40614cc6e5c7e.webp" width="800" height="350"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="/assets/og/f30af2a867cafd0e.webp" width="627" height="941" alt="${EN ? "Freddy checking a part next to a yellow Yamaha in our workshop" : "Freddy met een onderdeel bij een gele Yamaha in onze werkplaats"}" decoding="async" fetchpriority="low"></picture><picture class="wh-slide" aria-hidden="true"><source media="(max-width:900px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-srcset="/assets/og/157450d395733487.webp" width="800" height="350"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="/assets/og/d4c440bce03ab51e.webp" width="627" height="941" alt="${EN ? "Freddy reading out a BMW GS with a diagnostic tablet on the motorcycle lift" : "Freddy leest met een diagnosetablet een BMW GS uit op de motorbrug"}" decoding="async" fetchpriority="low"></picture><picture class="wh-slide" aria-hidden="true"><source media="(max-width:900px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-srcset="/assets/og/daaefedb1cd905e4.webp" width="800" height="350"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="/assets/og/fe1a104cd48e70e8.webp" width="627" height="941" alt="${EN ? "Sports bike on the lift table with tools, in our workshop in Waalwijk" : "Sportmotor op de heftafel met gereedschap, in onze werkplaats in Waalwijk"}" decoding="async" fetchpriority="low"></picture><picture class="wh-slide" aria-hidden="true"><source media="(max-width:900px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-srcset="/assets/og/6cb59f0d4359f369.webp" width="800" height="350"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="/assets/og/233926a5019f15e6.webp" width="627" height="941" alt="${EN ? "Our workshop in Waalwijk with the doors open and bikes inside" : "Onze werkplaats in Waalwijk met de deuren open en motoren binnen"}" decoding="async" fetchpriority="low"></picture><figcaption class="reception-caption">Freddy · OG MotoWorks</figcaption></figure><!-- WINTERFOTO --></section>`;
 }
 function home() {
   if (winterHero()) return winterHero() + homeRest();
@@ -994,6 +1023,7 @@ function render() {
   if (extra) extra.hidden = page === "overzicht";
   initReviews();
   initGallery();
+  initHeroCarousel();
   const start = $("[data-start]");
   if (start && !motor)
     start.onclick = (e) => {
