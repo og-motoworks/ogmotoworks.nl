@@ -5304,6 +5304,74 @@
    "bron": "https://moto.permission.jfnet.de/MICHELIN/2689-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2691-S.pdf"
   },
   {
+   "merk": "Benelli",
+   "model": "752S",
+   "uitvoering": null,
+   "van": 2022,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://www.benelli.com/int-en/products/752s-2 + https://www.michelin.it/motorbike/costruttori/benelli/752s/2022/754"
+  },
+  {
+   "merk": "Benelli",
+   "model": "Imperiale 400",
+   "uitvoering": null,
+   "van": 2022,
+   "tot": null,
+   "voor": "100/90-19",
+   "achter": "130/80-18",
+   "bron": "https://www.benelli.com/int-en/products/imperiale-400 + https://www.michelin.it/motorbike/costruttori/benelli/imperiale-400/2022/400"
+  },
+  {
+   "merk": "Benelli",
+   "model": "TRK 502",
+   "uitvoering": [
+    "Standaard"
+   ],
+   "van": 2017,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://www.benelli.com/int-en/products/trk-502-2 + https://www.michelin.it/motorbike/costruttori/benelli/trk-502/2017/500"
+  },
+  {
+   "merk": "Benelli",
+   "model": "TRK 502",
+   "uitvoering": [
+    "X"
+   ],
+   "van": 2017,
+   "tot": null,
+   "voor": "110/80 R19",
+   "achter": "150/70 R17",
+   "bron": "https://www.benelli.com/int-en/products/trk-502x-2 + https://www.michelin.it/motorbike/costruttori/benelli/trk-502-x/2017/500"
+  },
+  {
+   "merk": "Benelli",
+   "model": "TRK 702",
+   "uitvoering": [
+    "Standaard"
+   ],
+   "van": 2023,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://www.benelli.com/int-en/products/trk-702 + https://www.michelin.it/motorbike/costruttori/benelli/trk-702/2023/698"
+  },
+  {
+   "merk": "Benelli",
+   "model": "TRK 702",
+   "uitvoering": [
+    "X"
+   ],
+   "van": 2023,
+   "tot": null,
+   "voor": "110/80 R19",
+   "achter": "150/70 R17",
+   "bron": "https://www.benelli.com/int-en/products/trk-702x + https://www.michelin.it/motorbike/costruttori/benelli/trk-702-x/2023/698"
+  },
+  {
    "merk": "CFMoto",
    "model": "450NK",
    "uitvoering": null,
