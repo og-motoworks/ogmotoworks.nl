@@ -1,7 +1,7 @@
 /* OG MotoWorks huisstijl 2026-10 (preview): zwart met rood, Montserrat, ronde logobadge. Laadt na og.css. */
-@font-face{font-family:Montserrat;src:url('/p-28fe84672379caff/assets/og/177d25f2f90a25a0.woff2') format('woff2');font-weight:500;font-display:swap}
-@font-face{font-family:Montserrat;src:url('/p-28fe84672379caff/assets/og/d1661bc847518225.woff2') format('woff2');font-weight:700;font-display:swap}
-@font-face{font-family:Montserrat;src:url('/p-28fe84672379caff/assets/og/9571ea1392242e0f.woff2') format('woff2');font-weight:800;font-style:italic;font-display:swap}
+@font-face{font-family:Montserrat;src:url('/assets/og/177d25f2f90a25a0.woff2') format('woff2');font-weight:500;font-display:swap}
+@font-face{font-family:Montserrat;src:url('/assets/og/d1661bc847518225.woff2') format('woff2');font-weight:700;font-display:swap}
+@font-face{font-family:Montserrat;src:url('/assets/og/9571ea1392242e0f.woff2') format('woff2');font-weight:800;font-style:italic;font-display:swap}
 :root{--og-red:#e10600;--og-red-hi:#ff2a1f;--og-black:#0a0a0b;--og-panel:#121214;--og-line:#26262b}
 body{background:var(--og-black);font-family:Montserrat,Arial,sans-serif;font-weight:500;font-size:15.5px}
 b,strong{font-weight:700}
