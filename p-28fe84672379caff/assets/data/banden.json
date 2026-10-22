@@ -1,0 +1,6081 @@
+{
+ "versie": 1,
+ "bijgewerkt": "2026-10-03",
+ "prijzen_bijgewerkt": "2026-10-03",
+ "toelichting": "Bandenmenu. 'maten': OEM-bandenmaten per motor (alleen met bron). 'advies': per bandenmaat 3 adviesbanden (zuinig / allround / sportief). 'inkoop_excl_btw': publieke Bandenleader-prijs excl. btw (null = 'prijs op aanvraag'). Vanaf-/richtprijs op de site: zie 'formule' (marge, buffer en btw staan alleen daar). Montage wordt apart getoond: montage_per_band. Prijzen maandelijks bijwerken, alleen voor de meest voorkomende maten, met site-build/update_bandenprijzen.py (zie BANDEN-JSON.md); zonder prijs = 'prijs op aanvraag'. Aanleverformaat: OG Command met de Bandenleader-bot, als /workspace/og_motoworks/site-build/banden-prijzen.csv.",
+ "formule": {
+  "marge": 0.1,
+  "buffer": 0,
+  "btw": 1.21,
+  "afronden": "op hele euro's (half naar boven)",
+  "uitleg": "richtprijs per band incl. btw = afronden(inkoop_excl_btw x (1 + marge) x (1 + buffer) x btw). inkoop_excl_btw in de CSV is de PUBLIEKE Bandenleader-prijs excl. btw (geen echte inkoopprijs), dus richtprijs = Bandenleader-prijs excl. btw x 1,10 x 1,21. marge = opslag als fractie (0,10 = 10%), buffer = opslag voor prijsschommelingen (0,05 = 5%); marge 0,10 en buffer 0 op keuze van Freddy (3 oktober 2026, eerder marge 0). btw 1,21 = 21%. Alleen hier aanpassen: de site (banden.js) en update_bandenprijzen.py lezen deze waarden."
+ },
+ "montage_per_band": 50,
+ "maten": [
+  {
+   "merk": "Yamaha",
+   "model": "MT-07",
+   "uitvoering": [
+    "Standaard",
+    ""
+   ],
+   "van": 2014,
+   "tot": 2017,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://www.manualslib.com/manual/837941/Yamaha-Mt-07.html?page=66"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "MT-07",
+   "uitvoering": [
+    "Standaard",
+    ""
+   ],
+   "van": 2018,
+   "tot": 2020,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://www.carmanualsonline.info/yamaha-mt-07-2018-owners-manual/10 ; https://www.motorcycle.com/specs/yamaha/standard/2018/mt/07/detail.html"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "MT-07",
+   "uitvoering": [
+    "Standaard",
+    ""
+   ],
+   "van": 2021,
+   "tot": 2024,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://www.motorcycle.com/specs/yamaha/standard/2021/mt/07/detail.html"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "MT-07",
+   "uitvoering": [
+    "Standaard"
+   ],
+   "van": 2025,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://yamaha.co.za/product/2025-mt-07/ ; https://yamahamotorsports.com/models/mt-07/specs"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "MT-09",
+   "uitvoering": [
+    "Standaard",
+    "SP",
+    ""
+   ],
+   "van": 2021,
+   "tot": 2023,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://www.carmanualsonline.info/yamaha-mt-09-2021-owners-manual/?srch=wheel+size ; https://www.motorcycle.com/specs/yamaha/standard/2021/mt/09-sp/detail.html"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "MT-09",
+   "uitvoering": [
+    "Standaard",
+    "SP"
+   ],
+   "van": 2024,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://yamahamotorsports.com/models/24-mt-09/specs ; https://www.motorcycle.com/specs/yamaha/standard/2024/mt/09-sp/detail.html"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "Ténéré 700",
+   "uitvoering": [
+    "Standaard"
+   ],
+   "van": 2019,
+   "tot": 2024,
+   "voor": "90/90-21",
+   "achter": "150/70 R18",
+   "bron": "https://www.ultimatespecs.com/motorcycles-specs/yamaha/yamaha-tenere-700-2019 ; https://motorbike-specs.com/yamaha-tenere-700-2019/"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "Ténéré 700",
+   "uitvoering": [
+    "Standaard"
+   ],
+   "van": 2025,
+   "tot": null,
+   "voor": "90/90-21",
+   "achter": "150/70 R18",
+   "bron": "https://yamahamotorsports.com/models/tenere-700/specs"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "Z900",
+   "uitvoering": [
+    "Standaard",
+    ""
+   ],
+   "van": 2017,
+   "tot": 2019,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://www.kawasaki-la.com/en-la/products/ProductSpecSheetPDF/2019-Z900-ABS ; https://motorbike-specs.com/kawasaki-z900-2017/"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "Z900",
+   "uitvoering": [
+    "Standaard"
+   ],
+   "van": 2020,
+   "tot": 2024,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://www.kawasaki-la.com/en-la/products/ProductSpecSheetPDF/2020-Z900-ABS ; https://www.kawasaki-la.com/en-la/products/ProductSpecSheetPDF/2024-Z900-ABS"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "Z900",
+   "uitvoering": [
+    "Standaard",
+    "SE",
+    ""
+   ],
+   "van": 2025,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://global.kawasaki.com/news_241031-2e.pdf ; https://www.kawasaki.eu/en/EICMA/Z900.html"
+  },
+  {
+   "merk": "BMW",
+   "model": "R 1250 GS",
+   "uitvoering": null,
+   "van": 2019,
+   "tot": 2023,
+   "voor": "120/70 R19",
+   "achter": "170/60 R17",
+   "bron": "https://manuals.bmw-motorrad.com/manuals/BA-Extern/IN/BA-INTERNET-COM/PDF/R_0J53_ARM-HP_0618_07.pdf"
+  },
+  {
+   "merk": "BMW",
+   "model": "R 1250 GS Adventure",
+   "uitvoering": null,
+   "van": 2019,
+   "tot": 2023,
+   "voor": "120/70 R19",
+   "achter": "170/60 R17",
+   "bron": "https://motorbike-specs.com/bmw-r-1250-gs-adventure-2019/"
+  },
+  {
+   "merk": "Honda",
+   "model": "Africa Twin CRF1100L",
+   "uitvoering": [
+    "Standaard",
+    "Standaard DCT"
+   ],
+   "van": 2020,
+   "tot": 2023,
+   "voor": "90/90-21",
+   "achter": "150/70 R18",
+   "bron": "https://cdn.honda.co.za/preprod/general/motorcycles/crf1100-africa-twin/AfricaTwin_CRF1100A-D_SpecSheet.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "Africa Twin CRF1100L",
+   "uitvoering": [
+    "Standaard",
+    "Standaard DCT"
+   ],
+   "van": 2024,
+   "tot": null,
+   "voor": "90/90-21",
+   "achter": "150/70 R18",
+   "bron": "https://webom.hondamotopub.com/webom/HMEE/MLN250/html/GSP002001.html ; https://www.honda.co.uk/motorcycles/range/adventure/crf1100l-africa-twin/specifications-and-price.html"
+  },
+  {
+   "merk": "Honda",
+   "model": "Africa Twin CRF1100L",
+   "uitvoering": [
+    "Adventure Sports",
+    "Adventure Sports DCT"
+   ],
+   "van": 2024,
+   "tot": null,
+   "voor": "110/80 R19",
+   "achter": "150/70 R18",
+   "bron": "https://webom.hondamotopub.com/webom/HMEE/MLN250/html/GSP002001.html"
+  },
+  {
+   "merk": "KTM",
+   "model": "1290 Super Duke",
+   "uitvoering": [
+    "R"
+   ],
+   "van": 2014,
+   "tot": 2016,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://www.motorcycle.com/specs/ktm/sport/2014/super-duke/1290-r-abs/detail.html"
+  },
+  {
+   "merk": "KTM",
+   "model": "1290 Super Duke",
+   "uitvoering": [
+    "R"
+   ],
+   "van": 2017,
+   "tot": 2019,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "bevestigd door eigenaar (OG MotoWorks, 2019) ; https://www.motorcycle.com/specs/ktm/sport/2019/super-duke/1290-r/detail.html ; https://eu.mynetmoto.com/shop.cfm/moto/ktm/6440-1290-super-duke-r/motorcycle-tires.html"
+  },
+  {
+   "merk": "KTM",
+   "model": "1290 Super Duke",
+   "uitvoering": [
+    ""
+   ],
+   "van": 2014,
+   "tot": 2019,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "R en GT hebben in deze jaren dezelfde maten: zie bronnen R (2014, 2017-2019) en GT (2016)"
+  },
+  {
+   "merk": "KTM",
+   "model": "1290 Super Duke",
+   "uitvoering": [
+    "R"
+   ],
+   "van": 2020,
+   "tot": 2023,
+   "voor": "120/70 ZR17",
+   "achter": "200/55 ZR17",
+   "bron": "https://www.ktmmalaysia.com/product/ktm-1290-super-duke-r/ ; https://www.moto-data.net/ktm/1290-super-duke-r-2020"
+  },
+  {
+   "merk": "KTM",
+   "model": "1290 Super Duke",
+   "uitvoering": [
+    "R EVO"
+   ],
+   "van": 2022,
+   "tot": 2023,
+   "voor": "120/70 ZR17",
+   "achter": "200/55 ZR17",
+   "bron": "https://www.ktm.com/en-ph/models/naked-bike/2023-ktm-1290-superdukerevo.html ; https://www.motorcycle.com/specs/ktm/sport/2022/super-duke/1290-r-evo/detail.html"
+  },
+  {
+   "merk": "KTM",
+   "model": "1290 Super Duke",
+   "uitvoering": [
+    "GT"
+   ],
+   "van": 2016,
+   "tot": 2024,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://www.motorcycle-specs.net/make/ktm/1290-super-duke-gt/2016 ; https://motorbike-specs.com/ktm-1290-super-duke-gt-2019/ ; https://www.motorcycle.com/specs/ktm/sport/2024/super-duke/1290-gt/detail.html"
+  },
+  {
+   "merk": "BMW",
+   "model": "F 900 XR",
+   "uitvoering": null,
+   "van": 2020,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://www.bmw-motorrad.co.uk/en/models/sport/f900xr/technicaldata.html ; https://www.bmw-motorrad.ie/en/models/sport/f900xr-2024/technicaldata.html"
+  },
+  {
+   "merk": "BMW",
+   "model": "K 1600",
+   "uitvoering": null,
+   "van": 2011,
+   "tot": 2016,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://www.press.bmwgroup.com/switzerland/article/attachment/T0084875DE/130175"
+  },
+  {
+   "merk": "BMW",
+   "model": "K 1600",
+   "uitvoering": null,
+   "van": 2017,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://www.press.bmwgroup.com/usa/article/detail/T0266146EN_US/the-new-bmw-k-1600-gt?language=en_US ; https://www.bmw-motorrad.co.uk/en/models/tour/k1600gt/technicaldata.html ; https://www.bmwmotorcycles.com/en/models/tour/k1600b/technicaldata.html ; https://www.bmwmotorcycles.com/en/models/tour/k1600-grand-america/technicaldata.html"
+  },
+  {
+   "merk": "BMW",
+   "model": "R 1200 RT",
+   "uitvoering": null,
+   "van": 2005,
+   "tot": 2009,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://www.manualslib.com/manual/368760/Bmw-R-1200-Rt.html"
+  },
+  {
+   "merk": "BMW",
+   "model": "R 1200 RT",
+   "uitvoering": null,
+   "van": 2010,
+   "tot": 2013,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://www.press.bmwgroup.com/global/article/attachment/T0060833EN/132338"
+  },
+  {
+   "merk": "BMW",
+   "model": "R 1200 RT",
+   "uitvoering": null,
+   "van": 2014,
+   "tot": 2018,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://www.press.bmwgroup.com/portugal/article/attachment/T0152366PT/231413"
+  },
+  {
+   "merk": "BMW",
+   "model": "R 1250 RS",
+   "uitvoering": null,
+   "van": 2019,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://www.bmw-motorrad.co.uk/en/models/sport/r1250rs-2019/technicaldata.html"
+  },
+  {
+   "merk": "BMW",
+   "model": "R 1250 RT",
+   "uitvoering": null,
+   "van": 2019,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://www.bmw-motorrad.ie/en/models/tour/r1250rt/technicaldata.html ; https://manuals.bmw-motorrad.com/manuals/BA-Extern/IN/BA-INTERNET-COM/PDF/R_0L01_RM_0720_01.pdf"
+  },
+  {
+   "merk": "BMW",
+   "model": "S 1000 XR",
+   "uitvoering": null,
+   "van": 2015,
+   "tot": 2019,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://www.manualslib.de/manual/1188791/Bmw-Motorrad-S-1000-Xr-2015.html?page=203"
+  },
+  {
+   "merk": "BMW",
+   "model": "S 1000 XR",
+   "uitvoering": null,
+   "van": 2020,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://www.press.bmwgroup.com/middle-east/article/attachment/T0302931EN/442495 ; https://www.bmw-motorrad.co.uk/en/models/sport/s1000xr/technicaldata.html"
+  },
+  {
+   "merk": "CFMoto",
+   "model": "650GT",
+   "uitvoering": null,
+   "van": 2021,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://www.cfmoto.com/content/dam/cfmoto/site/global/product/motorcycle/gt---grand-touring/650gt-/documentation/2021_650GT%20brochure.pdf"
+  },
+  {
+   "merk": "Harley-Davidson",
+   "model": "Street Glide",
+   "uitvoering": null,
+   "van": 2022,
+   "tot": 2023,
+   "voor": "130/60 B19",
+   "achter": "180/55 B18",
+   "bron": "https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2022/flhx/specifications_flhx_us.pdf ; https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2022/flhxs/specifications_flhxs_us.pdf ; https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2022/flhxst/specifications_flhxst_us.pdf ; https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2022/flhxse/specifications_flhxse_us.pdf ; https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2023/flhx/specifications_flhx_us.pdf ; https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2023/flhxs/specifications_flhxs_us.pdf ; https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2023/flhxst/specifications_flhxst_us.pdf ; https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2023/flhxse/specifications_flhxse_us.pdf"
+  },
+  {
+   "merk": "Harley-Davidson",
+   "model": "Street Glide",
+   "uitvoering": null,
+   "van": 2024,
+   "tot": null,
+   "voor": "130/60 B19",
+   "achter": "180/55 B18",
+   "bron": "https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2024/flhx/specifications_flhx_us.pdf ; https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2024/flhxse/specifications_flhxse_us.pdf ; https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2025/flhx/specifications_flhx_us.pdf ; https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2025/flhxse/specifications_flhxse_us.pdf ; https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2025/flhxu/specifications_flhxu_us.pdf ; https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2026/flhx/specifications_flhx_us.pdf ; https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2026/flhxse/specifications_flhxse_us.pdf ; https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2026/flhxl/specifications_flhxl_us.pdf ; https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2026/flhxlse/specifications_flhxlse_us.pdf"
+  },
+  {
+   "merk": "Harley-Davidson",
+   "model": "Road Glide",
+   "uitvoering": null,
+   "van": 2025,
+   "tot": null,
+   "voor": "130/60 B19",
+   "achter": "180/55 B18",
+   "bron": "https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2025/fltrx/specifications_fltrx_us.pdf ; https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2025/fltrxse/specifications_fltrxse_us.pdf ; https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2025/fltrxstse/specifications_fltrxstse_us.pdf ; https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2025/fltrxrrse/specifications_fltrxrrse_us.pdf ; https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2026/fltrx/specifications_fltrx_us.pdf ; https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2026/fltrxstse/specifications_fltrxstse_us.pdf ; https://h-dmediakit.com/epapi-get/pdf/bikepages/specs/2026/fltrxl/specifications_fltrxl_us.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "Gold Wing",
+   "uitvoering": null,
+   "van": 2012,
+   "tot": 2017,
+   "voor": "130/70 R18",
+   "achter": "180/60 R16",
+   "bron": "https://hondanews.eu/eu/lv/cars/media/pressreleases/73952/16ym-gl1800-gold-wing8 ; https://goldwing-forum.de/homepage/inhalte/gw_technik/broschueren/2012/HONDA_Gold_Wing_Daten_2012_at.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "Gold Wing",
+   "uitvoering": null,
+   "van": 2018,
+   "tot": null,
+   "voor": "130/70 R18",
+   "achter": "200/55 R16",
+   "bron": "https://www.honda.co.uk/motorcycles/range/touring/gl1800-gold-wing/specifications-and-price.html ; https://www.honda.co.uk/motorcycles/range/touring/gl1800-gold-wing-tour/specifications-and-price.html ; https://hondanews.eu/eu/en/motorcycles/media/pressreleases/116767/2018-gl1800-gold-wing"
+  },
+  {
+   "merk": "Honda",
+   "model": "NT1100",
+   "uitvoering": null,
+   "van": 2022,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://www.honda.co.uk/motorcycles/range/touring/nt1100/specifications-and-price.html ; https://webom.hondamotopub.com/webom/HMEE/MLF250/html/GSP002001.html"
+  },
+  {
+   "merk": "Honda",
+   "model": "VFR800F",
+   "uitvoering": null,
+   "van": 2014,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://hondanews.eu/eu/en/cars/media/pressreleases/35085/2014-vfr800f-press-pack"
+  },
+  {
+   "merk": "Indian",
+   "model": "Roadmaster",
+   "uitvoering": null,
+   "van": 2015,
+   "tot": 2019,
+   "voor": "130/90 B16",
+   "achter": "180/60 R16",
+   "bron": "https://www.indianmotorcycle.com/en-us/2015/touring/roadmaster-thunder-black-2015/ ; https://www.indianmotorcycle.com/en-us/2017/touring/roadmaster-classic-thunder-black-2017-indian/ ; https://www.indianmotorcycle.com/en-us/2018/touring/roadmaster-thunder-black-2018-indian/ ; https://www.indianmotorcycle.media/product/2019-indian-roadmaster/ ; https://www.indianmotorcycle.media/product/2019-roadmaster-elite/"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "Ninja 1000SX",
+   "uitvoering": null,
+   "van": 2020,
+   "tot": 2024,
+   "voor": "120/70 ZR17",
+   "achter": "190/50 ZR17",
+   "bron": "https://hawaii.kawasaki.com/en-la/products/ProductSpecSheetPDF/2020-ninja-1000sx ; https://hawaii.kawasaki.com/en-us/products/ProductSpecSheetPDF/2024-ninja-1000sx"
+  },
+  {
+   "merk": "MV Agusta",
+   "model": "Turismo Veloce",
+   "uitvoering": null,
+   "van": 2023,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://www.mvagusta.com/media/c2f69498-87c3-49b2-b437-3fab46110a5b/Turismo_Veloce_R_my23_en.pdf ; https://www.mvagusta.com/media/04ef8709-90d9-47ee-a7f5-9a874986a9d6/Turismo_Veloce_Lusso_SCS_my24_en.pdf ; https://www.mvagusta.com/media/56babac3-0676-45a2-9cc8-45f133f76e74/Turismo_Veloce_RC_SCS_my24_en.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "GSX-S1000GT",
+   "uitvoering": null,
+   "van": 2022,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "190/50 ZR17",
+   "bron": "https://www.globalsuzuki.com/motorcycle/smgs/products/specialsite/2022gsx-s1000gt/ ; https://www.globalsuzuki.com/motorcycle/smgs/products/2027gsx-s1000gt/"
+  },
+  {
+   "merk": "Triumph",
+   "model": "Tiger Sport 660",
+   "uitvoering": null,
+   "van": 2022,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://www.triumphmotorcycles.com/motorcycles/adventure/tiger-sport-660/specification"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "FJR1300",
+   "uitvoering": null,
+   "van": 2008,
+   "tot": 2012,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://cdn2.yamaha-motor.eu/prod/product-assets/2008/FJR1300A/Factsheets/2008-FJR1300A_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2009/FJR1300A/Factsheets/2009-FJR1300A_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2010/FJR1300A/Factsheets/2010-FJR1300A_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2011/FJR1300A/Factsheets/2011-FJR1300A_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2012/FJR1300A/Factsheets/2012-FJR1300A_en.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "FJR1300",
+   "uitvoering": null,
+   "van": 2013,
+   "tot": 2015,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://cdn2.yamaha-motor.eu/prod/product-assets/2013/FJR1300A/Factsheets/2013-FJR1300A_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2013/FJR1300AS/Factsheets/2013-FJR1300AS_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2014/FJR1300AE/Factsheets/2014-FJR1300AE_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2015/FJR1300AE/Factsheets/2015-FJR1300AE_en.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "FJR1300",
+   "uitvoering": null,
+   "van": 2016,
+   "tot": 2020,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://cdn2.yamaha-motor.eu/prod/product-assets/2016/FJR1300AE/Factsheets/2016-FJR1300AE_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2018/FJR1300AE/Factsheets/2018-FJR1300AE_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2020/FJR1300A/Factsheets/2020-FJR1300A_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2020/FJR1300AE/Factsheets/2020-FJR1300AE_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2020/FJR1300AS/Factsheets/2020-FJR1300AS_en.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "Niken",
+   "uitvoering": null,
+   "van": 2018,
+   "tot": 2022,
+   "voor": "120/70 R15",
+   "achter": "190/55 R17",
+   "bron": "https://cdn2.yamaha-motor.eu/prod/product-assets/2018/MXT850/Factsheets/2018-MXT850_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2019/LMWTR/Factsheets/2019-LMWTR_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2019/LMWTRDX/Factsheets/2019-LMWTRDX_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2020/LMWTRDX/Factsheets/2020-LMWTRDX_en.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "Niken",
+   "uitvoering": null,
+   "van": 2023,
+   "tot": null,
+   "voor": "120/70 R15",
+   "achter": "190/55 R17",
+   "bron": "https://cdn2.yamaha-motor.eu/prod/product-assets/2023/LMWTRDX/Factsheets/2023-LMWTRDX_en.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "Tracer 7",
+   "uitvoering": null,
+   "van": 2021,
+   "tot": 2024,
+   "voor": "120/70 R17",
+   "achter": "180/55 R17",
+   "bron": "https://cdn2.yamaha-motor.eu/prod/product-assets/2021/MT07TRGT/Factsheets/2021-MT07TRGT_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2022/MT07TR/Factsheets/2022-MT07TR_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2023/MT07TR/Factsheets/2023-MT07TR_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2024/MT07TR/Factsheets/2024-MT07TR_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2024/MT07TRGT/Factsheets/2024-MT07TRGT_en.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "Tracer 7",
+   "uitvoering": null,
+   "van": 2025,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 R17",
+   "bron": "https://cdn2.yamaha-motor.eu/prod/product-assets/2025/MT07TR/Factsheets/2025-MT07TR_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2025/MT07TRGT/Factsheets/2025-MT07TRGT_en.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "Tracer 9",
+   "uitvoering": [
+    "Standaard",
+    "GT"
+   ],
+   "van": 2021,
+   "tot": 2024,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://cdn2.yamaha-motor.eu/prod/product-assets/2021/MT09TR/Factsheets/2021-MT09TR_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2021/MT09TRGT/Factsheets/2021-MT09TRGT_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2023/MT09TR/Factsheets/2023-MT09TR_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2023/MT09TRGT/Factsheets/2023-MT09TRGT_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2024/MT09TR/Factsheets/2024-MT09TR_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2024/MT09TRGT/Factsheets/2024-MT09TRGT_en.pdf ; https://www.bridgestone.com/corporate/news/2020112701.html"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "Tracer 900",
+   "uitvoering": null,
+   "van": 2015,
+   "tot": 2017,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://cdn2.yamaha-motor.eu/prod/product-assets/2015/MT09TR/Factsheets/2015-MT09TR_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2016/MT09TR/Factsheets/2016-MT09TR_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2017/MT09TR/Factsheets/2017-MT09TR_en.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "Tracer 900",
+   "uitvoering": null,
+   "van": 2018,
+   "tot": 2020,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://cdn2.yamaha-motor.eu/prod/product-assets/2018/MT09TR/Factsheets/2018-MT09TR_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2018/MT09TRGT/Factsheets/2018-MT09TRGT_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2019/MT09TR/Factsheets/2019-MT09TR_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2019/MT09TRGT/Factsheets/2019-MT09TRGT_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2020/MT09TR/Factsheets/2020-MT09TR_en.pdf ; https://cdn2.yamaha-motor.eu/prod/product-assets/2020/MT09TRGT/Factsheets/2020-MT09TRGT_en.pdf"
+  },
+  {
+   "merk": "BMW",
+   "model": "F 650 GS",
+   "uitvoering": [
+    "Standaard"
+   ],
+   "van": 2000,
+   "tot": 2007,
+   "voor": "100/90-19",
+   "achter": "130/80 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2529-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2192-S.pdf"
+  },
+  {
+   "merk": "BMW",
+   "model": "F 650 GS",
+   "uitvoering": [
+    "Dakar"
+   ],
+   "van": 2000,
+   "tot": 2007,
+   "voor": "90/90-21",
+   "achter": "130/80 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2530-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2193-S.pdf"
+  },
+  {
+   "merk": "BMW",
+   "model": "F 650 GS",
+   "uitvoering": null,
+   "van": 2008,
+   "tot": 2012,
+   "voor": "110/80 R19",
+   "achter": "140/80 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2198-S.pdf",
+   "noot": "tweecilinder"
+  },
+  {
+   "merk": "BMW",
+   "model": "F 700 GS",
+   "uitvoering": null,
+   "van": 2013,
+   "tot": 2018,
+   "voor": "110/80 R19",
+   "achter": "140/80 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2882-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3429-S.pdf"
+  },
+  {
+   "merk": "BMW",
+   "model": "F 750 GS",
+   "uitvoering": null,
+   "van": 2018,
+   "tot": 2023,
+   "voor": "110/80 R19",
+   "achter": "150/70 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3476-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3564-S.pdf"
+  },
+  {
+   "merk": "BMW",
+   "model": "F 800 GS",
+   "uitvoering": null,
+   "van": 2008,
+   "tot": 2018,
+   "voor": "90/90-21",
+   "achter": "150/70 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2199-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3432-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3433-S.pdf"
+  },
+  {
+   "merk": "BMW",
+   "model": "F 800 GS",
+   "uitvoering": null,
+   "van": 2024,
+   "tot": null,
+   "voor": "110/80 R19",
+   "achter": "150/70 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3828-S.pdf + https://moto.permission.jfnet.de/MICHELIN/6511-S.pdf"
+  },
+  {
+   "merk": "BMW",
+   "model": "F 850 GS",
+   "uitvoering": null,
+   "van": 2018,
+   "tot": 2023,
+   "voor": "90/90-21",
+   "achter": "150/70 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3477-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3791-S.pdf"
+  },
+  {
+   "merk": "BMW",
+   "model": "F 850 GS Adventure",
+   "uitvoering": null,
+   "van": 2019,
+   "tot": 2023,
+   "voor": "90/90-21",
+   "achter": "150/70 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3477-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3791-S.pdf"
+  },
+  {
+   "merk": "BMW",
+   "model": "F 900 GS",
+   "uitvoering": null,
+   "van": 2024,
+   "tot": null,
+   "voor": "90/90-21",
+   "achter": "150/70 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3829-S.pdf + https://moto.permission.jfnet.de/MICHELIN/6543-S.pdf"
+  },
+  {
+   "merk": "BMW",
+   "model": "G 310 GS",
+   "uitvoering": null,
+   "van": 2017,
+   "tot": null,
+   "voor": "110/80 R19",
+   "achter": "150/70 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3484-S.pdf + https://moto.permission.jfnet.de/MICHELIN/6532-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3572-S.pdf"
+  },
+  {
+   "merk": "BMW",
+   "model": "R 1150 GS",
+   "uitvoering": null,
+   "van": 1999,
+   "tot": 2004,
+   "voor": "110/80 R19",
+   "achter": "150/70 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2508-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2509-S.pdf"
+  },
+  {
+   "merk": "BMW",
+   "model": "R 1150 GS Adventure",
+   "uitvoering": null,
+   "van": 2002,
+   "tot": 2005,
+   "voor": "110/80 R19",
+   "achter": "150/70 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2509-S.pdf"
+  },
+  {
+   "merk": "BMW",
+   "model": "R 1200 GS",
+   "uitvoering": null,
+   "van": 2004,
+   "tot": 2012,
+   "voor": "110/80 R19",
+   "achter": "150/70 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2521-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2522-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2520-S.pdf",
+   "noot": "gietwielen en kruisspaakwielen (optie) hebben dezelfde maten"
+  },
+  {
+   "merk": "BMW",
+   "model": "R 1200 GS",
+   "uitvoering": null,
+   "van": 2013,
+   "tot": 2018,
+   "voor": "120/70 R19",
+   "achter": "170/60 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2383-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3315-S.pdf",
+   "noot": "LC; gietwielen en kruisspaakwielen dezelfde maten"
+  },
+  {
+   "merk": "BMW",
+   "model": "R 1200 GS Adventure",
+   "uitvoering": null,
+   "van": 2006,
+   "tot": 2013,
+   "voor": "110/80 R19",
+   "achter": "150/70 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2521-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2522-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2520-S.pdf"
+  },
+  {
+   "merk": "BMW",
+   "model": "R 1200 GS Adventure",
+   "uitvoering": null,
+   "van": 2014,
+   "tot": 2018,
+   "voor": "120/70 R19",
+   "achter": "170/60 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2885-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3317-S.pdf"
+  },
+  {
+   "merk": "BMW",
+   "model": "R 1300 GS",
+   "uitvoering": null,
+   "van": 2023,
+   "tot": null,
+   "voor": "120/70 R19",
+   "achter": "170/60 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3827-S.pdf + https://moto.permission.jfnet.de/MICHELIN/6502-S.pdf"
+  },
+  {
+   "merk": "BMW",
+   "model": "R 1300 GS Adventure",
+   "uitvoering": null,
+   "van": 2024,
+   "tot": null,
+   "voor": "120/70 R19",
+   "achter": "170/60 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/6545-S.pdf"
+  },
+  {
+   "merk": "BMW",
+   "model": "R 1200 R",
+   "uitvoering": null,
+   "van": 2006,
+   "tot": 2014,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2971-S.pdf"
+  },
+  {
+   "merk": "BMW",
+   "model": "R 1200 R",
+   "uitvoering": null,
+   "van": 2015,
+   "tot": 2018,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2380-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3566-S.pdf"
+  },
+  {
+   "merk": "BMW",
+   "model": "R 1250 R",
+   "uitvoering": null,
+   "van": 2019,
+   "tot": 2023,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3491-S.pdf"
+  },
+  {
+   "merk": "BMW",
+   "model": "F 800 R",
+   "uitvoering": null,
+   "van": 2009,
+   "tot": 2019,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2200-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2969-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3349-S.pdf"
+  },
+  {
+   "merk": "BMW",
+   "model": "F 900 R",
+   "uitvoering": null,
+   "van": 2020,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3551-S.pdf"
+  },
+  {
+   "merk": "BMW",
+   "model": "G 310 R",
+   "uitvoering": null,
+   "van": 2016,
+   "tot": null,
+   "voor": "110/70 R17",
+   "achter": "150/60 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3403-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3573-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3837-S.pdf"
+  },
+  {
+   "merk": "BMW",
+   "model": "S 1000 R",
+   "uitvoering": null,
+   "van": 2014,
+   "tot": 2016,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2940-S.pdf"
+  },
+  {
+   "merk": "BMW",
+   "model": "S 1000 R",
+   "uitvoering": null,
+   "van": 2017,
+   "tot": 2020,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3343-S.pdf"
+  },
+  {
+   "merk": "BMW",
+   "model": "S 1000 R",
+   "uitvoering": null,
+   "van": 2025,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/6561-S.pdf"
+  },
+  {
+   "merk": "BMW",
+   "model": "S 1000 R",
+   "uitvoering": null,
+   "van": 2021,
+   "tot": 2024,
+   "voor": "120/70 ZR17",
+   "achter": null,
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3601-S.pdf",
+   "opties": [
+    {
+     "achter": "190/55 ZR17",
+     "bron": "https://moto.permission.jfnet.de/MICHELIN/3601-S.pdf"
+    },
+    {
+     "achter": "200/55 ZR17",
+     "bron": "https://moto.permission.jfnet.de/MICHELIN/3601-S.pdf"
+    }
+   ],
+   "noot": "meerdere originele maten volgens typegoedkeuring (Michelin-servicecertificaat); klant kiest"
+  },
+  {
+   "merk": "BMW",
+   "model": "M 1000 RR",
+   "uitvoering": null,
+   "van": 2021,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "200/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3600-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3776-S.pdf + https://moto.permission.jfnet.de/MICHELIN/6563-S.pdf"
+  },
+  {
+   "merk": "BMW",
+   "model": "K 1300 S",
+   "uitvoering": null,
+   "van": 2009,
+   "tot": 2016,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2396-S.pdf"
+  },
+  {
+   "merk": "BMW",
+   "model": "K 1200 S",
+   "uitvoering": null,
+   "van": 2005,
+   "tot": 2008,
+   "voor": "120/70 ZR17",
+   "achter": "190/50 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2394-S.pdf"
+  },
+  {
+   "merk": "BMW",
+   "model": "R 1150 R",
+   "uitvoering": [
+    "Standaard"
+   ],
+   "van": 2001,
+   "tot": 2006,
+   "voor": "120/70 ZR17",
+   "achter": "170/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2515-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2510-S.pdf"
+  },
+  {
+   "merk": "BMW",
+   "model": "R 1150 R",
+   "uitvoering": [
+    "Rockster"
+   ],
+   "van": 2003,
+   "tot": 2005,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2511-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2514-S.pdf"
+  },
+  {
+   "merk": "BMW",
+   "model": "R 1150 RT",
+   "uitvoering": null,
+   "van": 2001,
+   "tot": 2005,
+   "voor": "120/70 ZR17",
+   "achter": "170/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2513-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2518-S.pdf"
+  },
+  {
+   "merk": "BMW",
+   "model": "R 1200 ST",
+   "uitvoering": null,
+   "van": 2005,
+   "tot": 2007,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2533-S.pdf"
+  },
+  {
+   "merk": "BMW",
+   "model": "R nineT",
+   "uitvoering": [
+    "Standaard"
+   ],
+   "van": 2014,
+   "tot": 2024,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3427-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3428-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3574-S.pdf"
+  },
+  {
+   "merk": "BMW",
+   "model": "R nineT",
+   "uitvoering": [
+    "Pure"
+   ],
+   "van": 2017,
+   "tot": 2024,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3422-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3574-S.pdf"
+  },
+  {
+   "merk": "BMW",
+   "model": "R nineT",
+   "uitvoering": [
+    "Racer"
+   ],
+   "van": 2017,
+   "tot": 2024,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3423-S.pdf"
+  },
+  {
+   "merk": "BMW",
+   "model": "R nineT",
+   "uitvoering": [
+    "Scrambler"
+   ],
+   "van": 2016,
+   "tot": 2024,
+   "voor": "120/70 R19",
+   "achter": "170/60 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3296-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3576-S.pdf"
+  },
+  {
+   "merk": "BMW",
+   "model": "R nineT",
+   "uitvoering": [
+    "Urban G/S"
+   ],
+   "van": 2017,
+   "tot": 2024,
+   "voor": "120/70 R19",
+   "achter": "170/60 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3437-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3577-S.pdf"
+  },
+  {
+   "merk": "BMW",
+   "model": "S 1000 RR",
+   "uitvoering": null,
+   "van": 2009,
+   "tot": 2011,
+   "voor": "120/70 ZR17",
+   "achter": null,
+   "bron": "https://www.press.bmwgroup.com/canada/article/attachment/T0036542EN/56488 + https://moto.permission.jfnet.de/MICHELIN/2384-S.pdf",
+   "opties": [
+    {
+     "achter": "190/55 ZR17",
+     "bron": "https://www.press.bmwgroup.com/canada/article/attachment/T0036542EN/56488 + https://moto.permission.jfnet.de/MICHELIN/2384-S.pdf"
+    },
+    {
+     "achter": "200/55 ZR17",
+     "bron": "https://moto.permission.jfnet.de/MICHELIN/2384-S.pdf"
+    }
+   ],
+   "noot": "typegoedkeuring noemt achter 190/55 ZR17 en 200/55 ZR17; BMW-persinformatie noemt 190/55"
+  },
+  {
+   "merk": "BMW",
+   "model": "S 1000 RR",
+   "uitvoering": null,
+   "van": 2012,
+   "tot": 2014,
+   "voor": "120/70 ZR17",
+   "achter": null,
+   "bron": "https://www.press.bmwgroup.com/canada/article/attachment/T0123903EN/182432 + https://moto.permission.jfnet.de/MICHELIN/2763-S.pdf",
+   "opties": [
+    {
+     "achter": "190/55 ZR17",
+     "bron": "https://www.press.bmwgroup.com/canada/article/attachment/T0123903EN/182432 + https://moto.permission.jfnet.de/MICHELIN/2763-S.pdf"
+    },
+    {
+     "achter": "200/55 ZR17",
+     "bron": "https://moto.permission.jfnet.de/MICHELIN/2763-S.pdf"
+    }
+   ],
+   "noot": "typegoedkeuring noemt achter 190/55 ZR17 en 200/55 ZR17; BMW-persinformatie noemt 190/55"
+  },
+  {
+   "merk": "BMW",
+   "model": "S 1000 RR",
+   "uitvoering": null,
+   "van": 2015,
+   "tot": 2018,
+   "voor": "120/70 ZR17",
+   "achter": null,
+   "bron": "https://www.press.bmwgroup.com/global/article/attachment/T0193176EN/285026 + https://moto.permission.jfnet.de/MICHELIN/3123-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3344-S.pdf",
+   "opties": [
+    {
+     "achter": "190/55 ZR17",
+     "bron": "https://www.press.bmwgroup.com/global/article/attachment/T0193176EN/285026 + https://moto.permission.jfnet.de/MICHELIN/3123-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3344-S.pdf"
+    },
+    {
+     "achter": "200/55 ZR17",
+     "bron": "https://moto.permission.jfnet.de/MICHELIN/3123-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3344-S.pdf"
+    }
+   ],
+   "noot": "typegoedkeuring noemt achter 190/55 ZR17 en 200/55 ZR17; BMW-persinformatie noemt 190/55"
+  },
+  {
+   "merk": "BMW",
+   "model": "S 1000 RR",
+   "uitvoering": null,
+   "van": 2019,
+   "tot": 2022,
+   "voor": "120/70 ZR17",
+   "achter": null,
+   "bron": "https://www.press.bmwgroup.com/africa-dom-easteurope/article/attachment/T0286712EN/418116 + https://moto.permission.jfnet.de/MICHELIN/3536-S.pdf",
+   "opties": [
+    {
+     "achter": "190/55 ZR17",
+     "bron": "https://www.press.bmwgroup.com/africa-dom-easteurope/article/attachment/T0286712EN/418116 + https://moto.permission.jfnet.de/MICHELIN/3536-S.pdf"
+    },
+    {
+     "achter": "200/55 ZR17",
+     "bron": "https://moto.permission.jfnet.de/MICHELIN/3536-S.pdf"
+    }
+   ],
+   "noot": "typegoedkeuring noemt achter 190/55 ZR17 en 200/55 ZR17; BMW-persinformatie noemt 190/55"
+  },
+  {
+   "merk": "BMW",
+   "model": "S 1000 RR",
+   "uitvoering": [
+    "Standaard"
+   ],
+   "van": 2023,
+   "tot": 2024,
+   "voor": "120/70 ZR17",
+   "achter": null,
+   "bron": "https://www.bmw-motorrad.co.uk/en/models/sport/s1000rr-2023/technicaldata.html + https://moto.permission.jfnet.de/MICHELIN/3536-S.pdf",
+   "opties": [
+    {
+     "achter": "190/55 ZR17",
+     "bron": "https://www.bmw-motorrad.co.uk/en/models/sport/s1000rr-2023/technicaldata.html + https://moto.permission.jfnet.de/MICHELIN/3536-S.pdf"
+    },
+    {
+     "achter": "200/55 ZR17",
+     "bron": "https://www.bmw-motorrad.co.uk/en/models/sport/s1000rr-2023/technicaldata.html + https://moto.permission.jfnet.de/MICHELIN/3536-S.pdf"
+    }
+   ],
+   "noot": "Standaard 190/55; met de optionele M-gesmede velgen 200/55 (BMW technische gegevens)"
+  },
+  {
+   "merk": "BMW",
+   "model": "S 1000 RR",
+   "uitvoering": [
+    "M Package"
+   ],
+   "van": 2023,
+   "tot": 2024,
+   "voor": "120/70 ZR17",
+   "achter": "200/55 ZR17",
+   "bron": "https://www.bmw-motorrad.co.uk/en/models/sport/s1000rr-2023/technicaldata.html",
+   "noot": "M-carbonwielen"
+  },
+  {
+   "merk": "BMW",
+   "model": "S 1000 RR",
+   "uitvoering": [
+    "Standaard"
+   ],
+   "van": 2025,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": null,
+   "bron": "https://www.bmw-motorrad.co.uk/en/models/sport/s1000rr/technicaldata.html",
+   "opties": [
+    {
+     "achter": "190/55 ZR17",
+     "bron": "https://www.bmw-motorrad.co.uk/en/models/sport/s1000rr/technicaldata.html"
+    },
+    {
+     "achter": "200/55 ZR17",
+     "bron": "https://www.bmw-motorrad.co.uk/en/models/sport/s1000rr/technicaldata.html"
+    }
+   ],
+   "noot": "Standaard 190/55; met de optionele M-gesmede velgen 200/55 (BMW technische gegevens)"
+  },
+  {
+   "merk": "BMW",
+   "model": "S 1000 RR",
+   "uitvoering": [
+    "M Package"
+   ],
+   "van": 2025,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "200/55 ZR17",
+   "bron": "https://www.bmw-motorrad.co.uk/en/models/sport/s1000rr/technicaldata.html",
+   "noot": "M-smeed- of carbonwielen"
+  },
+  {
+   "merk": "Aprilia",
+   "model": "Tuareg 660",
+   "uitvoering": null,
+   "van": 2022,
+   "tot": null,
+   "voor": "90/90-21",
+   "achter": "150/70 R18",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3038-S.pdf"
+  },
+  {
+   "merk": "Aprilia",
+   "model": "RSV4",
+   "uitvoering": null,
+   "van": 2015,
+   "tot": 2020,
+   "voor": "120/70 ZR17",
+   "achter": "200/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3227-S.pdf",
+   "noot": "RSV4 RR en RF"
+  },
+  {
+   "merk": "Aprilia",
+   "model": "RSV4",
+   "uitvoering": null,
+   "van": 2009,
+   "tot": 2014,
+   "voor": "120/70 ZR17",
+   "achter": null,
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2579-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3226-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3228-S.pdf",
+   "opties": [
+    {
+     "achter": "190/55 ZR17",
+     "bron": "https://moto.permission.jfnet.de/MICHELIN/2579-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3226-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3228-S.pdf"
+    },
+    {
+     "achter": "200/55 ZR17",
+     "bron": "https://moto.permission.jfnet.de/MICHELIN/2579-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3226-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3228-S.pdf"
+    }
+   ],
+   "noot": "meerdere originele maten volgens typegoedkeuring (Michelin-servicecertificaat); klant kiest"
+  },
+  {
+   "merk": "Aprilia",
+   "model": "Tuono V4",
+   "uitvoering": null,
+   "van": 2011,
+   "tot": 2014,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2692-S.pdf"
+  },
+  {
+   "merk": "Aprilia",
+   "model": "Tuono V4",
+   "uitvoering": null,
+   "van": 2015,
+   "tot": 2016,
+   "voor": "120/70 ZR17",
+   "achter": null,
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3274-S.pdf",
+   "opties": [
+    {
+     "achter": "190/55 ZR17",
+     "bron": "https://moto.permission.jfnet.de/MICHELIN/3274-S.pdf"
+    },
+    {
+     "achter": "200/55 ZR17",
+     "bron": "https://moto.permission.jfnet.de/MICHELIN/3274-S.pdf"
+    }
+   ],
+   "noot": "meerdere originele maten volgens typegoedkeuring (Michelin-servicecertificaat); klant kiest"
+  },
+  {
+   "merk": "Aprilia",
+   "model": "Tuono V4",
+   "uitvoering": null,
+   "van": 2017,
+   "tot": 2020,
+   "voor": "120/70 ZR17",
+   "achter": null,
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3357-S.pdf",
+   "opties": [
+    {
+     "achter": "190/55 ZR17",
+     "bron": "https://moto.permission.jfnet.de/MICHELIN/3357-S.pdf"
+    },
+    {
+     "achter": "200/55 ZR17",
+     "bron": "https://moto.permission.jfnet.de/MICHELIN/3357-S.pdf"
+    }
+   ],
+   "noot": "meerdere originele maten volgens typegoedkeuring (Michelin-servicecertificaat); klant kiest"
+  },
+  {
+   "merk": "Aprilia",
+   "model": "Shiver 900",
+   "uitvoering": null,
+   "van": 2017,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3452-S.pdf"
+  },
+  {
+   "merk": "Aprilia",
+   "model": "RS 125",
+   "uitvoering": null,
+   "van": 2006,
+   "tot": 2007,
+   "voor": "110/70 ZR17",
+   "achter": "150/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2208-S.pdf"
+  },
+  {
+   "merk": "Aprilia",
+   "model": "RS 125",
+   "uitvoering": null,
+   "van": 2008,
+   "tot": 2012,
+   "voor": "110/70 ZR17",
+   "achter": "150/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2173-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2559-S.pdf"
+  },
+  {
+   "merk": "Aprilia",
+   "model": "RS 125",
+   "uitvoering": null,
+   "van": 2021,
+   "tot": null,
+   "voor": "100/80-17",
+   "achter": "140/70-17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3019-S.pdf"
+  },
+  {
+   "merk": "Aprilia",
+   "model": "Tuono 1000",
+   "uitvoering": null,
+   "van": 2002,
+   "tot": 2003,
+   "voor": "120/70 ZR17",
+   "achter": "190/50 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2600-S.pdf",
+   "noot": "RSV Mille Tuono (type RP)"
+  },
+  {
+   "merk": "Aprilia",
+   "model": "Tuono 1000",
+   "uitvoering": null,
+   "van": 2004,
+   "tot": 2010,
+   "voor": null,
+   "achter": null,
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2614-S.pdf",
+   "opties": [
+    {
+     "voor": "120/65 ZR17",
+     "bron": "https://moto.permission.jfnet.de/MICHELIN/2614-S.pdf"
+    },
+    {
+     "voor": "120/70 ZR17",
+     "bron": "https://moto.permission.jfnet.de/MICHELIN/2614-S.pdf"
+    },
+    {
+     "achter": "180/55 ZR17",
+     "bron": "https://moto.permission.jfnet.de/MICHELIN/2614-S.pdf"
+    },
+    {
+     "achter": "190/50 ZR17",
+     "bron": "https://moto.permission.jfnet.de/MICHELIN/2614-S.pdf"
+    },
+    {
+     "achter": "190/55 ZR17",
+     "bron": "https://moto.permission.jfnet.de/MICHELIN/2614-S.pdf"
+    }
+   ],
+   "noot": "meerdere originele maten volgens typegoedkeuring (Michelin-servicecertificaat); klant kiest"
+  },
+  {
+   "merk": "Aprilia",
+   "model": "ETV 1000 Caponord",
+   "uitvoering": null,
+   "van": 2001,
+   "tot": 2007,
+   "voor": "110/80 R19",
+   "achter": "150/70 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2506-S.pdf"
+  },
+  {
+   "merk": "Aprilia",
+   "model": "Caponord 1200",
+   "uitvoering": [
+    "Standaard"
+   ],
+   "van": 2013,
+   "tot": 2016,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3192-S.pdf"
+  },
+  {
+   "merk": "Aprilia",
+   "model": "Caponord 1200",
+   "uitvoering": [
+    "Rally"
+   ],
+   "van": 2015,
+   "tot": 2016,
+   "voor": "120/70 R19",
+   "achter": "170/60 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3193-S.pdf"
+  },
+  {
+   "merk": "Aprilia",
+   "model": "Shiver 750",
+   "uitvoering": null,
+   "van": 2010,
+   "tot": 2016,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2536-S.pdf"
+  },
+  {
+   "merk": "Aprilia",
+   "model": "Shiver 750",
+   "uitvoering": null,
+   "van": 2007,
+   "tot": 2009,
+   "voor": "120/70 ZR17",
+   "achter": null,
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2535-S.pdf",
+   "opties": [
+    {
+     "achter": "180/55 ZR17",
+     "bron": "https://moto.permission.jfnet.de/MICHELIN/2535-S.pdf"
+    },
+    {
+     "achter": "190/50 ZR17",
+     "bron": "https://moto.permission.jfnet.de/MICHELIN/2535-S.pdf"
+    }
+   ],
+   "noot": "meerdere originele maten volgens typegoedkeuring (Michelin-servicecertificaat); klant kiest"
+  },
+  {
+   "merk": "Aprilia",
+   "model": "Dorsoduro 750",
+   "uitvoering": null,
+   "van": 2008,
+   "tot": 2016,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2663-S.pdf"
+  },
+  {
+   "merk": "Aprilia",
+   "model": "Dorsoduro 1200",
+   "uitvoering": null,
+   "van": 2011,
+   "tot": 2016,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2863-S.pdf"
+  },
+  {
+   "merk": "Aprilia",
+   "model": "RS 660",
+   "uitvoering": null,
+   "van": 2021,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": null,
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3278-S.pdf",
+   "opties": [
+    {
+     "achter": "180/55 ZR17",
+     "bron": "https://moto.permission.jfnet.de/MICHELIN/3278-S.pdf"
+    },
+    {
+     "achter": "180/60 ZR17",
+     "bron": "https://moto.permission.jfnet.de/MICHELIN/3278-S.pdf"
+    }
+   ],
+   "noot": "meerdere originele maten volgens typegoedkeuring (Michelin-servicecertificaat); klant kiest"
+  },
+  {
+   "merk": "Aprilia",
+   "model": "RSV 1000",
+   "uitvoering": null,
+   "van": 1998,
+   "tot": 2003,
+   "voor": "120/70 ZR17",
+   "achter": null,
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2455-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2599-S.pdf",
+   "opties": [
+    {
+     "achter": "180/55 ZR17",
+     "bron": "https://moto.permission.jfnet.de/MICHELIN/2455-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2599-S.pdf"
+    },
+    {
+     "achter": "190/50 ZR17",
+     "bron": "https://moto.permission.jfnet.de/MICHELIN/2455-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2599-S.pdf"
+    }
+   ],
+   "noot": "meerdere originele maten volgens typegoedkeuring (Michelin-servicecertificaat); klant kiest"
+  },
+  {
+   "merk": "Aprilia",
+   "model": "RSV 1000",
+   "uitvoering": null,
+   "van": 2004,
+   "tot": 2010,
+   "voor": "120/70 ZR17",
+   "achter": null,
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2613-S.pdf",
+   "opties": [
+    {
+     "achter": "180/55 ZR17",
+     "bron": "https://moto.permission.jfnet.de/MICHELIN/2613-S.pdf"
+    },
+    {
+     "achter": "190/50 ZR17",
+     "bron": "https://moto.permission.jfnet.de/MICHELIN/2613-S.pdf"
+    }
+   ],
+   "noot": "meerdere originele maten volgens typegoedkeuring (Michelin-servicecertificaat); klant kiest"
+  },
+  {
+   "merk": "Honda",
+   "model": "Africa Twin CRF1000L",
+   "uitvoering": null,
+   "van": 2016,
+   "tot": 2019,
+   "voor": "90/90-21",
+   "achter": "150/70 R18",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3420-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3421-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3438-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "CB500X",
+   "uitvoering": null,
+   "van": 2013,
+   "tot": 2018,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2497-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3359-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "CB500X",
+   "uitvoering": null,
+   "van": 2019,
+   "tot": 2023,
+   "voor": "110/80 R19",
+   "achter": "160/60 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3498-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "NX500",
+   "uitvoering": null,
+   "van": 2024,
+   "tot": null,
+   "voor": "110/80 ZR19",
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/6517-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "NC700X",
+   "uitvoering": null,
+   "van": 2012,
+   "tot": 2013,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2558-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "NC750X",
+   "uitvoering": null,
+   "van": 2014,
+   "tot": 2015,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2930-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "NC750X",
+   "uitvoering": null,
+   "van": 2016,
+   "tot": 2020,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3272-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "NC750X",
+   "uitvoering": null,
+   "van": 2021,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3637-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "XL750 Transalp",
+   "uitvoering": null,
+   "van": 2023,
+   "tot": null,
+   "voor": "90/90-21",
+   "achter": "150/70 R18",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3759-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "CB125R",
+   "uitvoering": null,
+   "van": 2018,
+   "tot": null,
+   "voor": "110/70 R17",
+   "achter": "150/60 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3740-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3816-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3708-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "CB500 Hornet",
+   "uitvoering": null,
+   "van": 2024,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3839-S.pdf + https://moto.permission.jfnet.de/MICHELIN/6529-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "CB500F",
+   "uitvoering": null,
+   "van": 2013,
+   "tot": 2018,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2498-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3358-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "CB500F",
+   "uitvoering": null,
+   "van": 2019,
+   "tot": 2023,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3500-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "CB650F",
+   "uitvoering": null,
+   "van": 2014,
+   "tot": 2018,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2915-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3361-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "CB650R",
+   "uitvoering": null,
+   "van": 2019,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3618-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "CB750 Hornet",
+   "uitvoering": null,
+   "van": 2023,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3757-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "CB1000R",
+   "uitvoering": null,
+   "van": 2008,
+   "tot": 2017,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2649-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "CB1000R",
+   "uitvoering": null,
+   "van": 2018,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3481-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "CBF600",
+   "uitvoering": null,
+   "van": 2004,
+   "tot": 2007,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2489-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "CBF600",
+   "uitvoering": null,
+   "van": 2008,
+   "tot": 2013,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2495-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "CBR125R",
+   "uitvoering": null,
+   "van": 2011,
+   "tot": 2017,
+   "voor": "100/80-17",
+   "achter": "130/70-17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3199-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "CBR500R",
+   "uitvoering": null,
+   "van": 2013,
+   "tot": 2015,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2496-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "CBR500R",
+   "uitvoering": null,
+   "van": 2016,
+   "tot": 2018,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3364-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "CBR500R",
+   "uitvoering": null,
+   "van": 2019,
+   "tot": 2023,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3554-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "CBR500R",
+   "uitvoering": null,
+   "van": 2024,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3831-S.pdf + https://moto.permission.jfnet.de/MICHELIN/6518-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "CBR600RR",
+   "uitvoering": null,
+   "van": 2003,
+   "tot": 2004,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2499-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "CBR600RR",
+   "uitvoering": null,
+   "van": 2005,
+   "tot": 2006,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2487-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "CBR600RR",
+   "uitvoering": null,
+   "van": 2007,
+   "tot": 2016,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2491-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2492-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3134-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "CBR600RR",
+   "uitvoering": null,
+   "van": 2024,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3832-S.pdf + https://moto.permission.jfnet.de/MICHELIN/6519-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "CBR650R",
+   "uitvoering": null,
+   "van": 2019,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3620-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3840-S.pdf + https://moto.permission.jfnet.de/MICHELIN/6530-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "CBR1000RR Fireblade",
+   "uitvoering": null,
+   "van": 2004,
+   "tot": 2005,
+   "voor": "120/70 ZR17",
+   "achter": "190/50 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2652-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "CBR1000RR Fireblade",
+   "uitvoering": null,
+   "van": 2006,
+   "tot": 2007,
+   "voor": "120/70 ZR17",
+   "achter": "190/50 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2646-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "CBR1000RR Fireblade",
+   "uitvoering": null,
+   "van": 2008,
+   "tot": 2016,
+   "voor": "120/70 ZR17",
+   "achter": "190/50 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2648-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2653-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2933-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "CBR1000RR Fireblade",
+   "uitvoering": null,
+   "van": 2017,
+   "tot": 2019,
+   "voor": "120/70 ZR17",
+   "achter": "190/50 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3356-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "CBR1000RR Fireblade",
+   "uitvoering": null,
+   "van": 2020,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "200/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3589-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3860-S.pdf",
+   "noot": "RR-R"
+  },
+  {
+   "merk": "Honda",
+   "model": "CMX500 Rebel",
+   "uitvoering": null,
+   "van": 2017,
+   "tot": null,
+   "voor": "130/90-16",
+   "achter": "150/80-16",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3365-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "CMX1100 Rebel",
+   "uitvoering": null,
+   "van": 2021,
+   "tot": null,
+   "voor": "130/70 B18",
+   "achter": "180/65 B16",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3634-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3635-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "Gold Wing",
+   "uitvoering": null,
+   "van": 2001,
+   "tot": 2011,
+   "voor": "130/70 R18",
+   "achter": "180/60 R16",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/6217-S.pdf",
+   "noot": "GL1800 (SC47)"
+  },
+  {
+   "merk": "Honda",
+   "model": "X-ADV",
+   "uitvoering": null,
+   "van": 2017,
+   "tot": 2020,
+   "voor": "120/70 R17",
+   "achter": "160/60 R15",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3353-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "X-ADV",
+   "uitvoering": null,
+   "van": 2021,
+   "tot": null,
+   "voor": "120/70 R17",
+   "achter": "160/60 R15",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/6559-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "VFR800F",
+   "uitvoering": null,
+   "van": 2002,
+   "tot": 2013,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2550-S.pdf",
+   "noot": "VFR 800 V-TEC (RC46)"
+  },
+  {
+   "merk": "Honda",
+   "model": "CB600F Hornet",
+   "uitvoering": null,
+   "van": 2000,
+   "tot": 2001,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2481-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "CB600F Hornet",
+   "uitvoering": null,
+   "van": 2002,
+   "tot": 2006,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2485-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2486-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "CB600F Hornet",
+   "uitvoering": null,
+   "van": 2007,
+   "tot": 2013,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2494-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "XL650V Transalp",
+   "uitvoering": null,
+   "van": 2000,
+   "tot": 2007,
+   "voor": "90/90-21",
+   "achter": "120/90-17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2568-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2569-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "XL700V Transalp",
+   "uitvoering": null,
+   "van": 2008,
+   "tot": 2012,
+   "voor": "100/90-19",
+   "achter": "130/80 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2570-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "XL1000V Varadero",
+   "uitvoering": null,
+   "van": 1999,
+   "tot": 2012,
+   "voor": "110/80 R19",
+   "achter": "150/70 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2656-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2657-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2658-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2659-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "CBF1000",
+   "uitvoering": null,
+   "van": 2006,
+   "tot": 2009,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2647-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "CBF1000",
+   "uitvoering": null,
+   "van": 2010,
+   "tot": 2013,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2650-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "VFR1200X Crosstourer",
+   "uitvoering": null,
+   "van": 2012,
+   "tot": 2019,
+   "voor": "110/80 R19",
+   "achter": "150/70 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2655-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3270-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "VFR1200F",
+   "uitvoering": null,
+   "van": 2010,
+   "tot": 2016,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2654-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "NT700V Deauville",
+   "uitvoering": null,
+   "van": 2006,
+   "tot": 2013,
+   "voor": "120/70 ZR17",
+   "achter": "150/70 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2552-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3196-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "ST1300 Pan-European",
+   "uitvoering": null,
+   "van": 2002,
+   "tot": 2013,
+   "voor": "120/70 ZR18",
+   "achter": "170/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2241-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "CBR600F",
+   "uitvoering": null,
+   "van": 2001,
+   "tot": 2006,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2484-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "CBR600F",
+   "uitvoering": null,
+   "van": 2011,
+   "tot": 2013,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2493-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "CBR900RR Fireblade",
+   "uitvoering": null,
+   "van": 2000,
+   "tot": 2001,
+   "voor": "120/70 ZR17",
+   "achter": "190/50 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2639-S.pdf"
+  },
+  {
+   "merk": "Honda",
+   "model": "CBR900RR Fireblade",
+   "uitvoering": null,
+   "van": 2002,
+   "tot": 2003,
+   "voor": "120/70 ZR17",
+   "achter": "190/50 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2643-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "MT-09",
+   "uitvoering": null,
+   "van": 2014,
+   "tot": 2016,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2916-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "MT-09",
+   "uitvoering": null,
+   "van": 2017,
+   "tot": 2020,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3375-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "MT-10",
+   "uitvoering": null,
+   "van": 2016,
+   "tot": 2021,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3240-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3377-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "MT-10",
+   "uitvoering": null,
+   "van": 2022,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3651-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "MT-03",
+   "uitvoering": null,
+   "van": 2006,
+   "tot": 2014,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2581-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3245-S.pdf",
+   "noot": "660 cc eencilinder"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "MT-03",
+   "uitvoering": null,
+   "van": 2016,
+   "tot": null,
+   "voor": "110/70-17",
+   "achter": "140/70-17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3239-S.pdf",
+   "noot": "321 cc"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "MT-125",
+   "uitvoering": null,
+   "van": 2014,
+   "tot": 2019,
+   "voor": "100/80-17",
+   "achter": "130/70-17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3248-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3333-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "R1",
+   "uitvoering": null,
+   "van": 2000,
+   "tot": 2001,
+   "voor": "120/70 ZR17",
+   "achter": "190/50 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2583-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "R1",
+   "uitvoering": null,
+   "van": 2002,
+   "tot": 2003,
+   "voor": "120/70 ZR17",
+   "achter": "190/50 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2586-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "R1",
+   "uitvoering": null,
+   "van": 2004,
+   "tot": 2006,
+   "voor": "120/70 ZR17",
+   "achter": "190/50 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2588-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2589-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "R1",
+   "uitvoering": null,
+   "van": 2007,
+   "tot": 2008,
+   "voor": "120/70 ZR17",
+   "achter": "190/50 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2594-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "R1",
+   "uitvoering": null,
+   "van": 2009,
+   "tot": 2014,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2595-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2598-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "R1",
+   "uitvoering": [
+    "Standaard"
+   ],
+   "van": 2015,
+   "tot": 2019,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3148-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3369-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "R1",
+   "uitvoering": [
+    "M"
+   ],
+   "van": 2015,
+   "tot": 2019,
+   "voor": "120/70 ZR17",
+   "achter": "200/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3149-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3381-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "R1",
+   "uitvoering": [
+    "Standaard"
+   ],
+   "van": 2020,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3592-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "R1",
+   "uitvoering": [
+    "M"
+   ],
+   "van": 2020,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "200/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3593-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "R6",
+   "uitvoering": null,
+   "van": 1999,
+   "tot": 2002,
+   "voor": "120/60 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2566-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "R6",
+   "uitvoering": null,
+   "van": 2003,
+   "tot": 2004,
+   "voor": "120/60 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2567-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2563-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "R6",
+   "uitvoering": null,
+   "van": 2005,
+   "tot": 2005,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2573-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "R6",
+   "uitvoering": null,
+   "van": 2006,
+   "tot": 2007,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2574-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "R6",
+   "uitvoering": null,
+   "van": 2008,
+   "tot": 2016,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2576-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "R6",
+   "uitvoering": null,
+   "van": 2017,
+   "tot": 2020,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3385-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "R3",
+   "uitvoering": null,
+   "van": 2015,
+   "tot": null,
+   "voor": "110/70-17",
+   "achter": "140/70-17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3120-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "R7",
+   "uitvoering": null,
+   "van": 2022,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3597-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3656-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "R125",
+   "uitvoering": null,
+   "van": 2008,
+   "tot": 2018,
+   "voor": "100/80-17",
+   "achter": "130/70-17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2907-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3030-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3336-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "R125",
+   "uitvoering": null,
+   "van": 2019,
+   "tot": null,
+   "voor": "100/80-17",
+   "achter": "140/70-17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3547-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "XSR125",
+   "uitvoering": null,
+   "van": 2021,
+   "tot": null,
+   "voor": "110/70-17",
+   "achter": "140/70-17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3817-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3818-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "XSR700",
+   "uitvoering": null,
+   "van": 2016,
+   "tot": 2020,
+   "voor": "120/70 R17",
+   "achter": "180/55 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3231-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3622-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "XSR700",
+   "uitvoering": null,
+   "van": 2021,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3560-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3561-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "XSR900",
+   "uitvoering": null,
+   "van": 2016,
+   "tot": 2021,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3251-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "XSR900",
+   "uitvoering": null,
+   "van": 2022,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3652-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3853-S.pdf + https://moto.permission.jfnet.de/MICHELIN/6539-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "FZ1",
+   "uitvoering": null,
+   "van": 2006,
+   "tot": 2015,
+   "voor": "120/70 ZR17",
+   "achter": "190/50 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2591-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2592-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "FZ6",
+   "uitvoering": null,
+   "van": 2004,
+   "tot": 2006,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2572-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "FZ6",
+   "uitvoering": null,
+   "van": 2007,
+   "tot": 2010,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2575-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "XJ6",
+   "uitvoering": null,
+   "van": 2009,
+   "tot": 2016,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2577-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2578-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "Super Ténéré XT1200Z",
+   "uitvoering": null,
+   "van": 2010,
+   "tot": 2013,
+   "voor": "110/80 R19",
+   "achter": "150/70 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2189-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "Super Ténéré XT1200Z",
+   "uitvoering": null,
+   "van": 2014,
+   "tot": 2020,
+   "voor": "110/80 R19",
+   "achter": "150/70 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2167-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3382-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "XT660Z Ténéré",
+   "uitvoering": null,
+   "van": 2008,
+   "tot": 2016,
+   "voor": "90/90-21",
+   "achter": "130/80 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2188-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3329-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "FJR1300",
+   "uitvoering": null,
+   "van": 2001,
+   "tot": 2005,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2602-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2605-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2607-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "FJR1300",
+   "uitvoering": null,
+   "van": 2006,
+   "tot": 2007,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2609-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "TDM900",
+   "uitvoering": null,
+   "van": 2002,
+   "tot": 2014,
+   "voor": "120/70 ZR18",
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2585-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2587-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2593-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "FZS1000 Fazer",
+   "uitvoering": null,
+   "van": 2001,
+   "tot": 2005,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2584-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2590-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "FZS600 Fazer",
+   "uitvoering": null,
+   "van": 1998,
+   "tot": 2003,
+   "voor": "110/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2565-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "FZ8",
+   "uitvoering": null,
+   "van": 2010,
+   "tot": 2016,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2596-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2597-S.pdf"
+  },
+  {
+   "merk": "Yamaha",
+   "model": "MT-01",
+   "uitvoering": null,
+   "van": 2005,
+   "tot": 2012,
+   "voor": "120/70 ZR17",
+   "achter": "190/50 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2608-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2610-S.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "V-Strom 650",
+   "uitvoering": null,
+   "van": 2004,
+   "tot": 2011,
+   "voor": "110/80 R19",
+   "achter": "150/70 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2728-S.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "V-Strom 650",
+   "uitvoering": null,
+   "van": 2012,
+   "tot": 2016,
+   "voor": "110/80 R19",
+   "achter": "150/70 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2170-S.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "V-Strom 650",
+   "uitvoering": null,
+   "van": 2017,
+   "tot": null,
+   "voor": "110/80 R19",
+   "achter": "150/70 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3753-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3754-S.pdf",
+   "noot": "gietwielen en XT met spaakwielen hebben dezelfde maten"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "V-Strom 1000",
+   "uitvoering": null,
+   "van": 2002,
+   "tot": 2008,
+   "voor": "110/80 R19",
+   "achter": "150/70 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2741-S.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "V-Strom 1000",
+   "uitvoering": null,
+   "van": 2014,
+   "tot": 2019,
+   "voor": "110/80 R19",
+   "achter": "150/70 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3286-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3483-S.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "V-Strom 1050",
+   "uitvoering": null,
+   "van": 2020,
+   "tot": 2022,
+   "voor": "110/80 R19",
+   "achter": "150/70 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3588-S.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "V-Strom 1050",
+   "uitvoering": [
+    "Standaard",
+    "XT"
+   ],
+   "van": 2023,
+   "tot": null,
+   "voor": "110/80 R19",
+   "achter": "150/70 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3588-S.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "V-Strom 1050",
+   "uitvoering": [
+    "DE"
+   ],
+   "van": 2023,
+   "tot": null,
+   "voor": "90/90-21",
+   "achter": "150/70 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3756-S.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "Bandit 650",
+   "uitvoering": null,
+   "van": 2005,
+   "tot": 2006,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2732-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2733-S.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "Bandit 650",
+   "uitvoering": null,
+   "van": 2007,
+   "tot": 2016,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2761-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2771-S.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "Bandit 1250",
+   "uitvoering": null,
+   "van": 2007,
+   "tot": 2016,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2759-S.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "GSX-8S",
+   "uitvoering": null,
+   "van": 2023,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3749-S.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "GSX-8R",
+   "uitvoering": null,
+   "van": 2024,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3851-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3749-S.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "GSX-R600",
+   "uitvoering": null,
+   "van": 2001,
+   "tot": 2003,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2737-S.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "GSX-R600",
+   "uitvoering": null,
+   "van": 2004,
+   "tot": 2005,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2729-S.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "GSX-R600",
+   "uitvoering": null,
+   "van": 2006,
+   "tot": 2007,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2755-S.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "GSX-R600",
+   "uitvoering": null,
+   "van": 2008,
+   "tot": 2010,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2766-S.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "GSX-R600",
+   "uitvoering": null,
+   "van": 2011,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2751-S.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "GSX-R750",
+   "uitvoering": null,
+   "van": 2000,
+   "tot": 2003,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2736-S.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "GSX-R750",
+   "uitvoering": null,
+   "van": 2004,
+   "tot": 2005,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2730-S.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "GSX-R750",
+   "uitvoering": null,
+   "van": 2006,
+   "tot": 2007,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2756-S.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "GSX-R750",
+   "uitvoering": null,
+   "van": 2008,
+   "tot": 2010,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2767-S.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "GSX-R750",
+   "uitvoering": null,
+   "van": 2011,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2752-S.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "GSX-R1000",
+   "uitvoering": null,
+   "van": 2001,
+   "tot": 2002,
+   "voor": "120/70 ZR17",
+   "achter": "190/50 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2738-S.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "GSX-R1000",
+   "uitvoering": null,
+   "van": 2003,
+   "tot": 2004,
+   "voor": "120/70 ZR17",
+   "achter": "190/50 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2750-S.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "GSX-R1000",
+   "uitvoering": null,
+   "van": 2005,
+   "tot": 2006,
+   "voor": "120/70 ZR17",
+   "achter": "190/50 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2734-S.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "GSX-R1000",
+   "uitvoering": null,
+   "van": 2007,
+   "tot": 2008,
+   "voor": "120/70 ZR17",
+   "achter": "190/50 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2764-S.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "GSX-R1000",
+   "uitvoering": null,
+   "van": 2009,
+   "tot": 2016,
+   "voor": "120/70 ZR17",
+   "achter": "190/50 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2769-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2770-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3154-S.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "GSX-R1000",
+   "uitvoering": null,
+   "van": 2017,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3379-S.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "GSX-S750",
+   "uitvoering": null,
+   "van": 2017,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3378-S.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "GSX-S1000",
+   "uitvoering": null,
+   "van": 2015,
+   "tot": 2020,
+   "voor": "120/70 ZR17",
+   "achter": "190/50 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3144-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3352-S.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "GSX-S1000",
+   "uitvoering": null,
+   "van": 2021,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "190/50 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3671-S.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "Katana",
+   "uitvoering": null,
+   "van": 2019,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "190/50 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3524-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3671-S.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "Hayabusa",
+   "uitvoering": null,
+   "van": 1999,
+   "tot": 2007,
+   "voor": "120/70 ZR17",
+   "achter": "190/50 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2725-S.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "Hayabusa",
+   "uitvoering": null,
+   "van": 2008,
+   "tot": 2020,
+   "voor": "120/70 ZR17",
+   "achter": "190/50 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2762-S.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "Hayabusa",
+   "uitvoering": null,
+   "van": 2021,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "190/50 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3654-S.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "Intruder M800",
+   "uitvoering": null,
+   "van": 2005,
+   "tot": null,
+   "voor": "130/90-16",
+   "achter": "170/80-15",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2731-S.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "SV650",
+   "uitvoering": null,
+   "van": 2016,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3222-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3751-S.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "SV650",
+   "uitvoering": null,
+   "van": 2003,
+   "tot": 2008,
+   "voor": null,
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2747-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2749-S.pdf + https://moto.permission.jfnet.de/MICHELIN/6541-S.pdf",
+   "opties": [
+    {
+     "voor": "120/60 ZR17",
+     "bron": "https://moto.permission.jfnet.de/MICHELIN/2747-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2749-S.pdf + https://moto.permission.jfnet.de/MICHELIN/6541-S.pdf"
+    },
+    {
+     "voor": "120/70 ZR17",
+     "bron": "https://moto.permission.jfnet.de/MICHELIN/2747-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2749-S.pdf + https://moto.permission.jfnet.de/MICHELIN/6541-S.pdf"
+    }
+   ],
+   "noot": "meerdere originele maten volgens typegoedkeuring (Michelin-servicecertificaat); klant kiest"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "Bandit 600",
+   "uitvoering": null,
+   "van": 2000,
+   "tot": 2004,
+   "voor": "120/60 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2726-S.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "Bandit 1200",
+   "uitvoering": null,
+   "van": 2001,
+   "tot": 2006,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2727-S.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "SV1000",
+   "uitvoering": null,
+   "van": 2003,
+   "tot": 2008,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2442-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2746-S.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "GSX1250FA",
+   "uitvoering": null,
+   "van": 2010,
+   "tot": 2016,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2758-S.pdf"
+  },
+  {
+   "merk": "Suzuki",
+   "model": "GSX650F",
+   "uitvoering": null,
+   "van": 2008,
+   "tot": 2016,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2760-S.pdf"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "ER-6n",
+   "uitvoering": null,
+   "van": 2006,
+   "tot": 2016,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2210-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2211-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2212-S.pdf"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "ER-6f",
+   "uitvoering": null,
+   "van": 2006,
+   "tot": 2016,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2216-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2217-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2218-S.pdf"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "H2",
+   "uitvoering": [
+    "SX",
+    "SX SE"
+   ],
+   "van": 2018,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3462-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3667-S.pdf"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "Ninja 125",
+   "uitvoering": null,
+   "van": 2019,
+   "tot": null,
+   "voor": "100/80-17",
+   "achter": "130/70-17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3703-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3823-S.pdf"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "Ninja 400",
+   "uitvoering": null,
+   "van": 2018,
+   "tot": null,
+   "voor": "110/70 R17",
+   "achter": "150/60 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3464-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3763-S.pdf"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "Ninja 650",
+   "uitvoering": null,
+   "van": 2017,
+   "tot": 2019,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3458-S.pdf"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "Ninja 650",
+   "uitvoering": null,
+   "van": 2020,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3584-S.pdf"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "Ninja ZX-6R",
+   "uitvoering": null,
+   "van": 2000,
+   "tot": 2006,
+   "voor": "120/65 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2037-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2829-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2830-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2831-S.pdf"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "Ninja ZX-6R",
+   "uitvoering": null,
+   "van": 2007,
+   "tot": 2012,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2626-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2828-S.pdf"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "Ninja ZX-6R",
+   "uitvoering": null,
+   "van": 2013,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2841-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3583-S.pdf"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "Ninja ZX-10R",
+   "uitvoering": null,
+   "van": 2004,
+   "tot": 2005,
+   "voor": "120/70 ZR17",
+   "achter": "190/50 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2844-S.pdf"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "Ninja ZX-10R",
+   "uitvoering": null,
+   "van": 2006,
+   "tot": 2010,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2852-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2853-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2854-S.pdf"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "Ninja ZX-10R",
+   "uitvoering": null,
+   "van": 2011,
+   "tot": 2015,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2855-S.pdf"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "Ninja ZX-10R",
+   "uitvoering": null,
+   "van": 2016,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3306-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3371-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3463-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3586-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3585-S.pdf + https://moto.permission.jfnet.de/MICHELIN/5825-S.pdf"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "Versys 650",
+   "uitvoering": null,
+   "van": 2007,
+   "tot": 2009,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2414-S.pdf"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "Versys 650",
+   "uitvoering": null,
+   "van": 2010,
+   "tot": 2014,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2415-S.pdf"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "Versys 650",
+   "uitvoering": null,
+   "van": 2015,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3150-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3460-S.pdf"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "Versys 1000",
+   "uitvoering": null,
+   "van": 2012,
+   "tot": 2018,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2431-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3151-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3486-S.pdf"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "Versys 1000",
+   "uitvoering": null,
+   "van": 2019,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3628-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3668-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3669-S.pdf"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "Versys-X 300",
+   "uitvoering": null,
+   "van": 2017,
+   "tot": null,
+   "voor": "100/90-19",
+   "achter": "130/80-17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3459-S.pdf"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "Vulcan S",
+   "uitvoering": null,
+   "van": 2015,
+   "tot": null,
+   "voor": "120/70 R18",
+   "achter": "160/60 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3152-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3391-S.pdf"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "W800",
+   "uitvoering": null,
+   "van": 2011,
+   "tot": 2016,
+   "voor": "100/90-19",
+   "achter": "130/80-18",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2204-S.pdf"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "Eliminator 500",
+   "uitvoering": null,
+   "van": 2024,
+   "tot": null,
+   "voor": "130/70 B18",
+   "achter": "150/80 B16",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3843-S.pdf + https://moto.permission.jfnet.de/MICHELIN/6520-S.pdf"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "Z125",
+   "uitvoering": null,
+   "van": 2019,
+   "tot": null,
+   "voor": "100/80-17",
+   "achter": "130/70-17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3704-S.pdf"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "Z400",
+   "uitvoering": null,
+   "van": 2019,
+   "tot": null,
+   "voor": "110/70 R17",
+   "achter": "150/60 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3587-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3764-S.pdf"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "Z650",
+   "uitvoering": null,
+   "van": 2017,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3457-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3582-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3779-S.pdf"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "Z650RS",
+   "uitvoering": null,
+   "van": 2022,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3640-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3641-S.pdf"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "Z750",
+   "uitvoering": null,
+   "van": 2004,
+   "tot": 2006,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2808-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2809-S.pdf"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "Z750",
+   "uitvoering": null,
+   "van": 2007,
+   "tot": 2012,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2810-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2811-S.pdf"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "Z800",
+   "uitvoering": null,
+   "van": 2013,
+   "tot": 2016,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2812-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2166-S.pdf"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "Z900RS",
+   "uitvoering": null,
+   "van": 2018,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3461-S.pdf"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "Z1000",
+   "uitvoering": null,
+   "van": 2003,
+   "tot": 2006,
+   "voor": "120/70 ZR17",
+   "achter": "190/50 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2813-S.pdf"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "Z1000",
+   "uitvoering": null,
+   "van": 2007,
+   "tot": 2009,
+   "voor": "120/70 ZR17",
+   "achter": "190/50 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2814-S.pdf"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "Z1000",
+   "uitvoering": null,
+   "van": 2010,
+   "tot": 2013,
+   "voor": "120/70 ZR17",
+   "achter": "190/50 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2819-S.pdf"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "Z1000",
+   "uitvoering": null,
+   "van": 2014,
+   "tot": 2016,
+   "voor": "120/70 ZR17",
+   "achter": "190/50 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2928-S.pdf"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "Z1000",
+   "uitvoering": null,
+   "van": 2017,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "190/50 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3372-S.pdf"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "Z1000SX",
+   "uitvoering": null,
+   "van": 2011,
+   "tot": 2019,
+   "voor": "120/70 ZR17",
+   "achter": "190/50 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2845-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2929-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3374-S.pdf"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "ZZR1400",
+   "uitvoering": null,
+   "van": 2006,
+   "tot": 2020,
+   "voor": "120/70 ZR17",
+   "achter": "190/50 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2856-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2857-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2858-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3373-S.pdf"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "1400GTR",
+   "uitvoering": null,
+   "van": 2007,
+   "tot": 2020,
+   "voor": "120/70 ZR17",
+   "achter": "190/50 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2011-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2804-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3268-S.pdf"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "Z H2",
+   "uitvoering": null,
+   "van": 2020,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3666-S.pdf"
+  },
+  {
+   "merk": "Kawasaki",
+   "model": "ER-5",
+   "uitvoering": null,
+   "van": 2000,
+   "tot": 2006,
+   "voor": "110/70-17",
+   "achter": "130/70-17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3533-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2209-S.pdf"
+  },
+  {
+   "merk": "Ducati",
+   "model": "DesertX",
+   "uitvoering": null,
+   "van": 2022,
+   "tot": null,
+   "voor": "90/90-21",
+   "achter": "150/70 R18",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3645-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3859-S.pdf + https://moto.permission.jfnet.de/MICHELIN/6515-S.pdf",
+   "noot": "Rally en Discovery dezelfde maten"
+  },
+  {
+   "merk": "Ducati",
+   "model": "Diavel V4",
+   "uitvoering": null,
+   "van": 2023,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "240/45 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3796-S.pdf"
+  },
+  {
+   "merk": "Ducati",
+   "model": "Hypermotard 950",
+   "uitvoering": null,
+   "van": 2019,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3677-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2623-S.pdf"
+  },
+  {
+   "merk": "Ducati",
+   "model": "Monster",
+   "uitvoering": null,
+   "van": 2021,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3609-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3774-S.pdf"
+  },
+  {
+   "merk": "Ducati",
+   "model": "Monster 821",
+   "uitvoering": null,
+   "van": 2014,
+   "tot": 2017,
+   "voor": "120/70 ZR17",
+   "achter": "180/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3156-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3425-S.pdf"
+  },
+  {
+   "merk": "Ducati",
+   "model": "Monster 821",
+   "uitvoering": null,
+   "van": 2018,
+   "tot": 2020,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3450-S.pdf"
+  },
+  {
+   "merk": "Ducati",
+   "model": "Monster 1200",
+   "uitvoering": null,
+   "van": 2014,
+   "tot": 2015,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2942-S.pdf"
+  },
+  {
+   "merk": "Ducati",
+   "model": "Monster 1200",
+   "uitvoering": null,
+   "van": 2016,
+   "tot": 2021,
+   "voor": "120/70 ZR17",
+   "achter": null,
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3397-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3387-S.pdf",
+   "opties": [
+    {
+     "achter": "190/55 ZR17",
+     "bron": "https://moto.permission.jfnet.de/MICHELIN/3397-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3387-S.pdf"
+    },
+    {
+     "achter": "200/55 ZR17",
+     "bron": "https://moto.permission.jfnet.de/MICHELIN/3397-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3387-S.pdf"
+    }
+   ],
+   "noot": "meerdere originele maten volgens typegoedkeuring (Michelin-servicecertificaat); klant kiest"
+  },
+  {
+   "merk": "Ducati",
+   "model": "Multistrada 950",
+   "uitvoering": null,
+   "van": 2017,
+   "tot": 2021,
+   "voor": "120/70 ZR19",
+   "achter": "170/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3386-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3525-S.pdf"
+  },
+  {
+   "merk": "Ducati",
+   "model": "Multistrada 1260",
+   "uitvoering": [
+    "Standaard",
+    "S",
+    "Pikes Peak"
+   ],
+   "van": 2018,
+   "tot": 2021,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3451-S.pdf"
+  },
+  {
+   "merk": "Ducati",
+   "model": "Multistrada V2",
+   "uitvoering": null,
+   "van": 2022,
+   "tot": null,
+   "voor": "120/70 ZR19",
+   "achter": "170/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/6555-S.pdf"
+  },
+  {
+   "merk": "Ducati",
+   "model": "Multistrada V4",
+   "uitvoering": [
+    "Standaard",
+    "S",
+    "Rally"
+   ],
+   "van": 2021,
+   "tot": null,
+   "voor": "120/70 ZR19",
+   "achter": "170/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3557-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3800-S.pdf + https://moto.permission.jfnet.de/MICHELIN/6556-S.pdf + https://moto.permission.jfnet.de/MICHELIN/6514-S.pdf"
+  },
+  {
+   "merk": "Ducati",
+   "model": "Multistrada V4",
+   "uitvoering": [
+    "Pikes Peak"
+   ],
+   "van": 2022,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3646-S.pdf + https://moto.permission.jfnet.de/MICHELIN/6557-S.pdf"
+  },
+  {
+   "merk": "Ducati",
+   "model": "Scrambler 800",
+   "uitvoering": [
+    "Icon",
+    "Full Throttle"
+   ],
+   "van": 2015,
+   "tot": 2022,
+   "voor": "110/80 R18",
+   "achter": "180/55 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3200-S.pdf"
+  },
+  {
+   "merk": "Ducati",
+   "model": "Scrambler 800",
+   "uitvoering": [
+    "Café Racer"
+   ],
+   "van": 2017,
+   "tot": 2022,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3392-S.pdf"
+  },
+  {
+   "merk": "Ducati",
+   "model": "Scrambler 800",
+   "uitvoering": [
+    "Desert Sled"
+   ],
+   "van": 2017,
+   "tot": 2022,
+   "voor": "120/70 R19",
+   "achter": "170/60 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3389-S.pdf"
+  },
+  {
+   "merk": "Ducati",
+   "model": "SuperSport 950",
+   "uitvoering": null,
+   "van": 2021,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3611-S.pdf"
+  },
+  {
+   "merk": "Ducati",
+   "model": "XDiavel",
+   "uitvoering": null,
+   "van": 2016,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "240/45 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3238-S.pdf"
+  },
+  {
+   "merk": "Ducati",
+   "model": "SuperSport 939",
+   "uitvoering": null,
+   "van": 2017,
+   "tot": 2020,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3398-S.pdf"
+  },
+  {
+   "merk": "Ducati",
+   "model": "Multistrada 1000 DS",
+   "uitvoering": null,
+   "van": 2003,
+   "tot": 2006,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2111-S.pdf"
+  },
+  {
+   "merk": "Ducati",
+   "model": "Multistrada 1100",
+   "uitvoering": null,
+   "van": 2007,
+   "tot": 2009,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2112-S.pdf"
+  },
+  {
+   "merk": "Ducati",
+   "model": "Multistrada 1200",
+   "uitvoering": null,
+   "van": 2010,
+   "tot": 2014,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2114-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2115-S.pdf"
+  },
+  {
+   "merk": "Ducati",
+   "model": "Multistrada 1200",
+   "uitvoering": [
+    "Standaard",
+    "S"
+   ],
+   "van": 2015,
+   "tot": 2017,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3191-S.pdf"
+  },
+  {
+   "merk": "Ducati",
+   "model": "Multistrada 1200",
+   "uitvoering": [
+    "Enduro"
+   ],
+   "van": 2016,
+   "tot": 2018,
+   "voor": "120/70 ZR19",
+   "achter": "170/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3255-S.pdf"
+  },
+  {
+   "merk": "Ducati",
+   "model": "Monster 696",
+   "uitvoering": null,
+   "van": 2008,
+   "tot": 2014,
+   "voor": "120/60 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2449-S.pdf"
+  },
+  {
+   "merk": "Ducati",
+   "model": "Monster 796",
+   "uitvoering": null,
+   "van": 2010,
+   "tot": 2014,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2452-S.pdf"
+  },
+  {
+   "merk": "Ducati",
+   "model": "Monster 797",
+   "uitvoering": null,
+   "van": 2017,
+   "tot": 2020,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3390-S.pdf"
+  },
+  {
+   "merk": "Ducati",
+   "model": "Monster 1100",
+   "uitvoering": null,
+   "van": 2009,
+   "tot": 2013,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2450-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2451-S.pdf"
+  },
+  {
+   "merk": "Ducati",
+   "model": "Hypermotard 1100",
+   "uitvoering": null,
+   "van": 2007,
+   "tot": 2012,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2129-S.pdf"
+  },
+  {
+   "merk": "Ducati",
+   "model": "Hypermotard 821",
+   "uitvoering": null,
+   "van": 2013,
+   "tot": 2015,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2960-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2961-S.pdf"
+  },
+  {
+   "merk": "Ducati",
+   "model": "Hypermotard 939",
+   "uitvoering": null,
+   "van": 2016,
+   "tot": 2018,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3230-S.pdf"
+  },
+  {
+   "merk": "Ducati",
+   "model": "Diavel",
+   "uitvoering": null,
+   "van": 2011,
+   "tot": 2018,
+   "voor": "120/70 ZR17",
+   "achter": "240/45 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3188-S.pdf"
+  },
+  {
+   "merk": "Ducati",
+   "model": "Scrambler 1100",
+   "uitvoering": null,
+   "van": 2018,
+   "tot": null,
+   "voor": "120/70 ZR18",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3449-S.pdf"
+  },
+  {
+   "merk": "Ducati",
+   "model": "848",
+   "uitvoering": null,
+   "van": 2008,
+   "tot": 2013,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2032-S.pdf"
+  },
+  {
+   "merk": "Ducati",
+   "model": "1098",
+   "uitvoering": null,
+   "van": 2007,
+   "tot": 2008,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2003-S.pdf"
+  },
+  {
+   "merk": "Ducati",
+   "model": "1198",
+   "uitvoering": null,
+   "van": 2009,
+   "tot": 2011,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2008-S.pdf"
+  },
+  {
+   "merk": "Ducati",
+   "model": "899 Panigale",
+   "uitvoering": null,
+   "van": 2014,
+   "tot": 2015,
+   "voor": "120/70 ZR17",
+   "achter": "180/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2941-S.pdf"
+  },
+  {
+   "merk": "Ducati",
+   "model": "959 Panigale",
+   "uitvoering": null,
+   "van": 2016,
+   "tot": 2019,
+   "voor": "120/70 ZR17",
+   "achter": "180/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3264-S.pdf"
+  },
+  {
+   "merk": "Ducati",
+   "model": "1199 Panigale",
+   "uitvoering": null,
+   "van": 2012,
+   "tot": 2014,
+   "voor": "120/70 ZR17",
+   "achter": "200/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3309-S.pdf"
+  },
+  {
+   "merk": "Ducati",
+   "model": "1299 Panigale",
+   "uitvoering": null,
+   "van": 2015,
+   "tot": 2017,
+   "voor": "120/70 ZR17",
+   "achter": "200/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3203-S.pdf"
+  },
+  {
+   "merk": "Ducati",
+   "model": "Streetfighter 848",
+   "uitvoering": null,
+   "van": 2012,
+   "tot": 2015,
+   "voor": "120/70 ZR17",
+   "achter": "180/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3159-S.pdf"
+  },
+  {
+   "merk": "Ducati",
+   "model": "Streetfighter 1098",
+   "uitvoering": null,
+   "van": 2009,
+   "tot": 2013,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2220-S.pdf"
+  },
+  {
+   "merk": "Ducati",
+   "model": "Panigale V4",
+   "uitvoering": null,
+   "van": 2018,
+   "tot": 2024,
+   "voor": "120/70 ZR17",
+   "achter": "200/60 ZR17",
+   "bron": "https://press.pirelli.com/it/pirelli-presenta-il-nuovo-diablotm-supercorsa-sp-al-debutto-assoluto-nellinedita-misura-posteriore-20060-zr17-con-la-ducati-panigale-v4/ + https://press.pirelli.com/pirelli-is-chosen-as-original-equipment-for-the-most-powerful-new-naked-production-machines-alongside-key-new-models-across-all-segments-of-the-2020-motorcycle-manufacturer-ranges/ + https://www.ducati.com/us/en/bikes/panigale/panigale-v4-2024 + https://www.ducati.com/au/en/bikes/panigale/panigale-v4-r-2024",
+   "noot": "alle uitvoeringen (V4, S, R, SP/SP2) 200/60"
+  },
+  {
+   "merk": "Ducati",
+   "model": "Panigale V4",
+   "uitvoering": null,
+   "van": 2025,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "200/60 ZR17",
+   "bron": "https://assets.ctfassets.net/x7j9qwvpvr5s/5TX2MDoXVXrFVHDfcgPOd2/e4cfc9a4c13dd32f003dc8d46da6b2d6/Brochure_MY25_Panigale_V4_7G_ENG_Web.pdf + https://www.ducati.com/us/en/bikes/panigale/panigale-v4-r",
+   "noot": "V4/V4 S en V4 R"
+  },
+  {
+   "merk": "Ducati",
+   "model": "Panigale V2",
+   "uitvoering": null,
+   "van": 2020,
+   "tot": 2024,
+   "voor": "120/70 ZR17",
+   "achter": "180/60 ZR17",
+   "bron": "https://assets.ctfassets.net/28uk7b0wvnz9/5PShP74SZiNMG4aUqWb6Cm/9b4b281d52d8e609e5cc3d112440429c/MY20_Panigale_V2_DEF_ENG.pdf + https://press.pirelli.com/pirelli-is-chosen-as-original-equipment-for-the-most-powerful-new-naked-production-machines-alongside-key-new-models-across-all-segments-of-the-2020-motorcycle-manufacturer-ranges/",
+   "noot": "955 cc"
+  },
+  {
+   "merk": "Ducati",
+   "model": "Panigale V2",
+   "uitvoering": null,
+   "van": 2025,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://www.ducati.com/us/en/bikes/panigale/panigale-v2",
+   "noot": "890 cc, nieuwe generatie"
+  },
+  {
+   "merk": "Ducati",
+   "model": "Streetfighter V4",
+   "uitvoering": null,
+   "van": 2020,
+   "tot": 2024,
+   "voor": "120/70 ZR17",
+   "achter": "200/60 ZR17",
+   "bron": "https://press.pirelli.com/pirelli-is-chosen-as-original-equipment-for-the-most-powerful-new-naked-production-machines-alongside-key-new-models-across-all-segments-of-the-2020-motorcycle-manufacturer-ranges/ + https://assets.ctfassets.net/x7j9qwvpvr5s/6ZCqEw5jjgz4fOSkWvJcM/f83ce055223bab24d962bf36c1199c51/Streetfighter_V4_MY_2023_Brochure_ENG.pdf"
+  },
+  {
+   "merk": "Ducati",
+   "model": "Streetfighter V4",
+   "uitvoering": null,
+   "van": 2025,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "200/60 ZR17",
+   "bron": "https://www.ducati.com/us/en/bikes/streetfighter/streetfighter-v4"
+  },
+  {
+   "merk": "Ducati",
+   "model": "Streetfighter V2",
+   "uitvoering": null,
+   "van": 2022,
+   "tot": 2024,
+   "voor": "120/70 ZR17",
+   "achter": "180/60 ZR17",
+   "bron": "https://assets.ctfassets.net/x7j9qwvpvr5s/10dpmtmhAZc1pORYwSLT0h/3681e218178f53126bf3d1a611d8e340/Streetfighter_V2_MY_2022_Brochure_ENG.pdf + https://assets.ctfassets.net/x7j9qwvpvr5s/1TQk4bEZ1mVnIpYIlQryZF/46f3b3385e366733b355cb88eae150fb/Streetfighter_V2_MY_2023_Brochure_ENG.pdf + https://mediahouse.ducati.com/streetfighter-v2-and-streetfighter-v4-sp-two-new-ducati-models-derived-from-the-successful-fight-formula-396381/",
+   "noot": "955 cc"
+  },
+  {
+   "merk": "Ducati",
+   "model": "Streetfighter V2",
+   "uitvoering": null,
+   "van": 2025,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://www.ducati.com/us/en/bikes/streetfighter/streetfighter-v2",
+   "noot": "890 cc, nieuwe generatie"
+  },
+  {
+   "merk": "Triumph",
+   "model": "Bonneville T100",
+   "uitvoering": null,
+   "van": 2005,
+   "tot": 2016,
+   "voor": "100/90-19",
+   "achter": "130/80-17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2108-S.pdf",
+   "noot": "luchtgekoeld"
+  },
+  {
+   "merk": "Triumph",
+   "model": "Bonneville T100",
+   "uitvoering": null,
+   "van": 2017,
+   "tot": null,
+   "voor": "100/90-18",
+   "achter": "150/70 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3414-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3415-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2264-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2265-S.pdf"
+  },
+  {
+   "merk": "Triumph",
+   "model": "Bonneville T120",
+   "uitvoering": null,
+   "van": 2016,
+   "tot": null,
+   "voor": "100/90-18",
+   "achter": "150/70 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3237-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2355-S.pdf + https://moto.permission.jfnet.de/MICHELIN/6566-S.pdf"
+  },
+  {
+   "merk": "Triumph",
+   "model": "Scrambler 900",
+   "uitvoering": null,
+   "van": 2006,
+   "tot": 2016,
+   "voor": "100/90-19",
+   "achter": "130/80-17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3232-S.pdf",
+   "noot": "luchtgekoelde Scrambler"
+  },
+  {
+   "merk": "Triumph",
+   "model": "Scrambler 900",
+   "uitvoering": null,
+   "van": 2017,
+   "tot": null,
+   "voor": "100/90-19",
+   "achter": "150/70 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3411-S.pdf",
+   "noot": "Street Scrambler / Scrambler 900"
+  },
+  {
+   "merk": "Triumph",
+   "model": "Scrambler 1200",
+   "uitvoering": null,
+   "van": 2019,
+   "tot": null,
+   "voor": "90/90-21",
+   "achter": "150/70 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3522-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3523-S.pdf"
+  },
+  {
+   "merk": "Triumph",
+   "model": "Speed Triple 1050",
+   "uitvoering": null,
+   "van": 2005,
+   "tot": 2010,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2092-S.pdf"
+  },
+  {
+   "merk": "Triumph",
+   "model": "Speed Triple 1050",
+   "uitvoering": null,
+   "van": 2011,
+   "tot": 2015,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2399-S.pdf"
+  },
+  {
+   "merk": "Triumph",
+   "model": "Speed Triple 1050",
+   "uitvoering": null,
+   "van": 2016,
+   "tot": 2020,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3307-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3453-S.pdf"
+  },
+  {
+   "merk": "Triumph",
+   "model": "Speed Triple 1200 RS",
+   "uitvoering": null,
+   "van": 2021,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3604-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3653-S.pdf"
+  },
+  {
+   "merk": "Triumph",
+   "model": "Speed Twin 1200",
+   "uitvoering": null,
+   "van": 2019,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3658-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3648-S.pdf"
+  },
+  {
+   "merk": "Triumph",
+   "model": "Speed Twin 900",
+   "uitvoering": null,
+   "van": 2016,
+   "tot": 2022,
+   "voor": "100/90-18",
+   "achter": "150/70 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3236-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3406-S.pdf",
+   "noot": "verkocht als Street Twin"
+  },
+  {
+   "merk": "Triumph",
+   "model": "Street Triple 675",
+   "uitvoering": null,
+   "van": 2007,
+   "tot": 2012,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2181-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2180-S.pdf"
+  },
+  {
+   "merk": "Triumph",
+   "model": "Street Triple 675",
+   "uitvoering": null,
+   "van": 2013,
+   "tot": 2016,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2412-S.pdf"
+  },
+  {
+   "merk": "Triumph",
+   "model": "Street Triple 765",
+   "uitvoering": null,
+   "van": 2017,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3418-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3419-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3388-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3412-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3682-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3748-S.pdf"
+  },
+  {
+   "merk": "Triumph",
+   "model": "Thruxton",
+   "uitvoering": null,
+   "van": 2004,
+   "tot": 2015,
+   "voor": "100/90-18",
+   "achter": "130/80-17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3269-S.pdf",
+   "noot": "Thruxton 900"
+  },
+  {
+   "merk": "Triumph",
+   "model": "Thruxton",
+   "uitvoering": null,
+   "van": 2016,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3465-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3454-S.pdf",
+   "noot": "Thruxton 1200"
+  },
+  {
+   "merk": "Triumph",
+   "model": "Tiger 800",
+   "uitvoering": [
+    "XC",
+    "XCx",
+    "XCa"
+   ],
+   "van": 2011,
+   "tot": 2020,
+   "voor": "90/90-21",
+   "achter": "150/70 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2109-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3292-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3410-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3488-S.pdf"
+  },
+  {
+   "merk": "Triumph",
+   "model": "Tiger 800",
+   "uitvoering": [
+    "XR",
+    "XRx",
+    "XRt"
+   ],
+   "van": 2011,
+   "tot": 2020,
+   "voor": "100/90-19",
+   "achter": "150/70 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2110-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3131-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3409-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3487-S.pdf"
+  },
+  {
+   "merk": "Triumph",
+   "model": "Tiger 900",
+   "uitvoering": null,
+   "van": 1999,
+   "tot": 2001,
+   "voor": "110/80 R19",
+   "achter": "150/70 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2683-S.pdf"
+  },
+  {
+   "merk": "Triumph",
+   "model": "Tiger 900",
+   "uitvoering": [
+    "GT",
+    "GT Pro",
+    "GT Low"
+   ],
+   "van": 2020,
+   "tot": null,
+   "voor": "100/90-19",
+   "achter": "150/70 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3605-S.pdf"
+  },
+  {
+   "merk": "Triumph",
+   "model": "Tiger 900",
+   "uitvoering": [
+    "Rally",
+    "Rally Pro"
+   ],
+   "van": 2020,
+   "tot": null,
+   "voor": "90/90-21",
+   "achter": "150/70 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3606-S.pdf"
+  },
+  {
+   "merk": "Triumph",
+   "model": "Tiger 1200",
+   "uitvoering": null,
+   "van": 2012,
+   "tot": 2015,
+   "voor": "110/80 R19",
+   "achter": "150/70 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2045-S.pdf",
+   "noot": "Tiger Explorer"
+  },
+  {
+   "merk": "Triumph",
+   "model": "Tiger 1200",
+   "uitvoering": null,
+   "van": 2016,
+   "tot": 2021,
+   "voor": "120/70 R19",
+   "achter": "170/60 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3208-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3209-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3474-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3475-S.pdf",
+   "noot": "Explorer XC/XR-uitvoeringen"
+  },
+  {
+   "merk": "Triumph",
+   "model": "Tiger 1200",
+   "uitvoering": [
+    "GT",
+    "GT Pro",
+    "GT Explorer"
+   ],
+   "van": 2022,
+   "tot": null,
+   "voor": "120/70 R19",
+   "achter": "150/70 R18",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3649-S.pdf"
+  },
+  {
+   "merk": "Triumph",
+   "model": "Tiger 1200",
+   "uitvoering": [
+    "Rally Pro",
+    "Rally Explorer"
+   ],
+   "van": 2022,
+   "tot": null,
+   "voor": "90/90-21",
+   "achter": "150/70 R18",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3650-S.pdf"
+  },
+  {
+   "merk": "Triumph",
+   "model": "Trident 660",
+   "uitvoering": null,
+   "van": 2021,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3568-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3569-S.pdf"
+  },
+  {
+   "merk": "Triumph",
+   "model": "Daytona 675",
+   "uitvoering": null,
+   "van": 2006,
+   "tot": 2017,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2178-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2179-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2026-S.pdf"
+  },
+  {
+   "merk": "Triumph",
+   "model": "Speed Triple 955i",
+   "uitvoering": null,
+   "van": 2002,
+   "tot": 2004,
+   "voor": "120/70 ZR17",
+   "achter": "190/50 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2096-S.pdf"
+  },
+  {
+   "merk": "Triumph",
+   "model": "Tiger 955i",
+   "uitvoering": null,
+   "van": 2001,
+   "tot": 2006,
+   "voor": "110/80 R19",
+   "achter": "150/70 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2103-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2102-S.pdf"
+  },
+  {
+   "merk": "Triumph",
+   "model": "Tiger 1050",
+   "uitvoering": null,
+   "van": 2007,
+   "tot": 2012,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2053-S.pdf"
+  },
+  {
+   "merk": "Triumph",
+   "model": "Tiger Sport 1050",
+   "uitvoering": null,
+   "van": 2013,
+   "tot": 2020,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2369-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3308-S.pdf"
+  },
+  {
+   "merk": "Triumph",
+   "model": "Sprint ST",
+   "uitvoering": null,
+   "van": 2002,
+   "tot": 2010,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2099-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2056-S.pdf"
+  },
+  {
+   "merk": "Triumph",
+   "model": "Speed Four",
+   "uitvoering": null,
+   "van": 2002,
+   "tot": 2005,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3107-S.pdf"
+  },
+  {
+   "merk": "Triumph",
+   "model": "Trophy 1215",
+   "uitvoering": null,
+   "van": 2013,
+   "tot": 2017,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3408-S.pdf"
+  },
+  {
+   "merk": "Triumph",
+   "model": "Bonneville Bobber",
+   "uitvoering": null,
+   "van": 2017,
+   "tot": null,
+   "voor": "100/90-19",
+   "achter": "150/80 R16",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3404-S.pdf"
+  },
+  {
+   "merk": "Triumph",
+   "model": "Daytona 955i",
+   "uitvoering": null,
+   "van": 2002,
+   "tot": 2006,
+   "voor": "120/70 ZR17",
+   "achter": null,
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2094-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2095-S.pdf",
+   "opties": [
+    {
+     "achter": "180/55 ZR17",
+     "bron": "https://moto.permission.jfnet.de/MICHELIN/2094-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2095-S.pdf"
+    },
+    {
+     "achter": "190/50 ZR17",
+     "bron": "https://moto.permission.jfnet.de/MICHELIN/2094-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2095-S.pdf"
+    }
+   ],
+   "noot": "meerdere originele maten volgens typegoedkeuring (Michelin-servicecertificaat); klant kiest"
+  },
+  {
+   "merk": "KTM",
+   "model": "125 Duke",
+   "uitvoering": null,
+   "van": 2011,
+   "tot": 2016,
+   "voor": "110/70 ZR17",
+   "achter": "150/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2010-S.pdf"
+  },
+  {
+   "merk": "KTM",
+   "model": "125 Duke",
+   "uitvoering": null,
+   "van": 2017,
+   "tot": 2023,
+   "voor": "110/70 R17",
+   "achter": "150/60 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3399-S.pdf"
+  },
+  {
+   "merk": "KTM",
+   "model": "125 Duke",
+   "uitvoering": null,
+   "van": 2024,
+   "tot": null,
+   "voor": "110/70 ZR17",
+   "achter": "150/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/6534-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3849-S.pdf"
+  },
+  {
+   "merk": "KTM",
+   "model": "390 Adventure",
+   "uitvoering": null,
+   "van": 2020,
+   "tot": 2024,
+   "voor": "100/90-19",
+   "achter": "130/80-17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3633-S.pdf"
+  },
+  {
+   "merk": "KTM",
+   "model": "390 Duke",
+   "uitvoering": null,
+   "van": 2013,
+   "tot": 2016,
+   "voor": "110/70 ZR17",
+   "achter": "150/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2896-S.pdf"
+  },
+  {
+   "merk": "KTM",
+   "model": "390 Duke",
+   "uitvoering": null,
+   "van": 2017,
+   "tot": 2023,
+   "voor": "110/70 R17",
+   "achter": "150/60 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3402-S.pdf"
+  },
+  {
+   "merk": "KTM",
+   "model": "390 Duke",
+   "uitvoering": null,
+   "van": 2024,
+   "tot": null,
+   "voor": "110/70 ZR17",
+   "achter": "150/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/6526-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3846-S.pdf"
+  },
+  {
+   "merk": "KTM",
+   "model": "690 Duke",
+   "uitvoering": null,
+   "van": 2008,
+   "tot": 2019,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2020-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2391-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2899-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3242-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3243-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2021-S.pdf"
+  },
+  {
+   "merk": "KTM",
+   "model": "690 Enduro R",
+   "uitvoering": null,
+   "van": 2019,
+   "tot": null,
+   "voor": "90/90-21",
+   "achter": "140/80-18",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3542-S.pdf"
+  },
+  {
+   "merk": "KTM",
+   "model": "690 SMC R",
+   "uitvoering": null,
+   "van": 2014,
+   "tot": 2018,
+   "voor": "120/70 R17",
+   "achter": "160/60 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3267-S.pdf"
+  },
+  {
+   "merk": "KTM",
+   "model": "690 SMC R",
+   "uitvoering": null,
+   "van": 2019,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3552-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3615-S.pdf"
+  },
+  {
+   "merk": "KTM",
+   "model": "790 Adventure",
+   "uitvoering": null,
+   "van": 2019,
+   "tot": null,
+   "voor": "90/90-21",
+   "achter": "150/70 R18",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3766-S.pdf"
+  },
+  {
+   "merk": "KTM",
+   "model": "790 Duke",
+   "uitvoering": null,
+   "van": 2018,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3446-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3447-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3448-S.pdf"
+  },
+  {
+   "merk": "KTM",
+   "model": "890 Adventure",
+   "uitvoering": null,
+   "van": 2021,
+   "tot": null,
+   "voor": "90/90-21",
+   "achter": "150/70 R18",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3631-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3632-S.pdf"
+  },
+  {
+   "merk": "KTM",
+   "model": "890 Duke",
+   "uitvoering": null,
+   "van": 2020,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3607-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3537-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3815-S.pdf"
+  },
+  {
+   "merk": "KTM",
+   "model": "990 Duke",
+   "uitvoering": null,
+   "van": 2024,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3848-S.pdf + https://moto.permission.jfnet.de/MICHELIN/6528-S.pdf + https://moto.permission.jfnet.de/MICHELIN/6560-S.pdf"
+  },
+  {
+   "merk": "KTM",
+   "model": "1090 Adventure",
+   "uitvoering": [
+    "Standaard"
+   ],
+   "van": 2017,
+   "tot": 2019,
+   "voor": "110/80 R19",
+   "achter": "150/70 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3401-S.pdf"
+  },
+  {
+   "merk": "KTM",
+   "model": "1090 Adventure",
+   "uitvoering": [
+    "R"
+   ],
+   "van": 2017,
+   "tot": 2019,
+   "voor": "90/90-21",
+   "achter": "150/70 ZR18",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3435-S.pdf"
+  },
+  {
+   "merk": "KTM",
+   "model": "1190 Adventure",
+   "uitvoering": [
+    "Standaard"
+   ],
+   "van": 2013,
+   "tot": 2016,
+   "voor": "120/70 ZR19",
+   "achter": "170/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3478-S.pdf"
+  },
+  {
+   "merk": "KTM",
+   "model": "1290 Super Adventure",
+   "uitvoering": null,
+   "van": 2015,
+   "tot": 2016,
+   "voor": "120/70 ZR19",
+   "achter": "170/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3479-S.pdf"
+  },
+  {
+   "merk": "KTM",
+   "model": "1290 Super Adventure",
+   "uitvoering": [
+    "S",
+    "T"
+   ],
+   "van": 2017,
+   "tot": 2020,
+   "voor": "120/70 ZR19",
+   "achter": "170/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3553-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3480-S.pdf"
+  },
+  {
+   "merk": "KTM",
+   "model": "1290 Super Adventure",
+   "uitvoering": [
+    "S"
+   ],
+   "van": 2021,
+   "tot": null,
+   "voor": "120/70 ZR19",
+   "achter": "170/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3630-S.pdf"
+  },
+  {
+   "merk": "KTM",
+   "model": "1290 Super Adventure",
+   "uitvoering": [
+    "R"
+   ],
+   "van": 2021,
+   "tot": null,
+   "voor": "90/90-21",
+   "achter": "150/70 ZR18",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3771-S.pdf"
+  },
+  {
+   "merk": "KTM",
+   "model": "1390 Super Duke R",
+   "uitvoering": null,
+   "van": 2024,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "200/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3845-S.pdf + https://moto.permission.jfnet.de/MICHELIN/6525-S.pdf"
+  },
+  {
+   "merk": "KTM",
+   "model": "RC 390",
+   "uitvoering": null,
+   "van": 2017,
+   "tot": null,
+   "voor": "110/70 R17",
+   "achter": "150/60 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3244-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3416-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3769-S.pdf"
+  },
+  {
+   "merk": "KTM",
+   "model": "990 Adventure",
+   "uitvoering": null,
+   "van": 2006,
+   "tot": 2013,
+   "voor": "90/90-21",
+   "achter": "150/70-18",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3436-S.pdf"
+  },
+  {
+   "merk": "KTM",
+   "model": "990 Super Duke",
+   "uitvoering": null,
+   "van": 2005,
+   "tot": 2013,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2397-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2404-S.pdf"
+  },
+  {
+   "merk": "KTM",
+   "model": "990 SMT",
+   "uitvoering": null,
+   "van": 2009,
+   "tot": 2013,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2405-S.pdf"
+  },
+  {
+   "merk": "KTM",
+   "model": "1190 RC8",
+   "uitvoering": null,
+   "van": 2008,
+   "tot": 2015,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2007-S.pdf"
+  },
+  {
+   "merk": "KTM",
+   "model": "1050 Adventure",
+   "uitvoering": null,
+   "van": 2015,
+   "tot": 2016,
+   "voor": "110/80 R19",
+   "achter": "150/70 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3129-S.pdf"
+  },
+  {
+   "merk": "Harley-Davidson",
+   "model": "Breakout",
+   "uitvoering": null,
+   "van": 2018,
+   "tot": 2022,
+   "voor": "130/60 B21",
+   "achter": "240/40 R18",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2996-S.pdf"
+  },
+  {
+   "merk": "Harley-Davidson",
+   "model": "Electra Glide",
+   "uitvoering": null,
+   "van": 2009,
+   "tot": 2019,
+   "voor": "130/80 B17",
+   "achter": "180/65 B16",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2246-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3733-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3696-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3697-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2268-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3282-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3739-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3627-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3625-S.pdf",
+   "noot": "Electra Glide Standard/Classic/Ultra Classic/Ultra Limited"
+  },
+  {
+   "merk": "Harley-Davidson",
+   "model": "Fat Bob",
+   "uitvoering": null,
+   "van": 2008,
+   "tot": 2017,
+   "voor": "130/90 B16",
+   "achter": "180/70 B16",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3082-S.pdf",
+   "noot": "Dyna Fat Bob"
+  },
+  {
+   "merk": "Harley-Davidson",
+   "model": "Fat Boy",
+   "uitvoering": null,
+   "van": 2007,
+   "tot": 2017,
+   "voor": "140/75 R17",
+   "achter": "200/55 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2302-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3170-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3717-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3716-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3715-S.pdf"
+  },
+  {
+   "merk": "Harley-Davidson",
+   "model": "Fat Boy",
+   "uitvoering": null,
+   "van": 2018,
+   "tot": null,
+   "voor": "160/60 R18",
+   "achter": "240/40 R18",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3018-S.pdf"
+  },
+  {
+   "merk": "Harley-Davidson",
+   "model": "Forty-Eight",
+   "uitvoering": null,
+   "van": 2010,
+   "tot": 2022,
+   "voor": "130/90 B16",
+   "achter": "150/80 B16",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2798-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2651-S.pdf"
+  },
+  {
+   "merk": "Harley-Davidson",
+   "model": "Iron 883",
+   "uitvoering": null,
+   "van": 2009,
+   "tot": 2022,
+   "voor": "100/90-19",
+   "achter": "150/80 B16",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2796-S.pdf"
+  },
+  {
+   "merk": "Harley-Davidson",
+   "model": "Nightster",
+   "uitvoering": null,
+   "van": 2007,
+   "tot": 2012,
+   "voor": "100/90-19",
+   "achter": "150/80 B16",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2793-S.pdf",
+   "noot": "XL 1200N"
+  },
+  {
+   "merk": "Harley-Davidson",
+   "model": "Pan America 1250",
+   "uitvoering": null,
+   "van": 2021,
+   "tot": null,
+   "voor": "120/70 R19",
+   "achter": "170/60 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3563-S.pdf"
+  },
+  {
+   "merk": "Harley-Davidson",
+   "model": "Road Glide",
+   "uitvoering": null,
+   "van": 2010,
+   "tot": 2013,
+   "voor": "130/70 B18",
+   "achter": "180/65 B16",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2274-S.pdf",
+   "noot": "FLTRX Road Glide Custom"
+  },
+  {
+   "merk": "Harley-Davidson",
+   "model": "Road Glide",
+   "uitvoering": null,
+   "van": 2017,
+   "tot": 2021,
+   "voor": "130/60 B19",
+   "achter": "180/55 B18",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/6587-S.pdf",
+   "noot": "FLTRX"
+  },
+  {
+   "merk": "Harley-Davidson",
+   "model": "Street Bob",
+   "uitvoering": null,
+   "van": 2006,
+   "tot": 2017,
+   "voor": "100/90 B19",
+   "achter": "160/70 B17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3311-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2236-S.pdf",
+   "noot": "Dyna Street Bob"
+  },
+  {
+   "merk": "Harley-Davidson",
+   "model": "Street Bob",
+   "uitvoering": null,
+   "van": 2021,
+   "tot": null,
+   "voor": "100/90 B19",
+   "achter": "150/80 B16",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3639-S.pdf"
+  },
+  {
+   "merk": "Harley-Davidson",
+   "model": "Street Glide",
+   "uitvoering": null,
+   "van": 2010,
+   "tot": 2013,
+   "voor": "130/70 B18",
+   "achter": "180/65 B16",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2271-S.pdf"
+  },
+  {
+   "merk": "Harley-Davidson",
+   "model": "Street Glide",
+   "uitvoering": null,
+   "van": 2014,
+   "tot": 2016,
+   "voor": "130/60 B19",
+   "achter": "180/65 B16",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3281-S.pdf"
+  },
+  {
+   "merk": "Harley-Davidson",
+   "model": "Street Glide",
+   "uitvoering": null,
+   "van": 2017,
+   "tot": 2021,
+   "voor": "130/60 B19",
+   "achter": "180/55 B18",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/6587-S.pdf"
+  },
+  {
+   "merk": "Harley-Davidson",
+   "model": "Road King",
+   "uitvoering": null,
+   "van": 2009,
+   "tot": 2023,
+   "voor": null,
+   "achter": null,
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3275-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3729-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3599-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2267-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3623-S.pdf",
+   "opties": [
+    {
+     "naam": "Road King",
+     "voor": "130/80 B17",
+     "achter": "180/65 B16",
+     "bron": "https://moto.permission.jfnet.de/MICHELIN/3275-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3729-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3599-S.pdf"
+    },
+    {
+     "naam": "Road King Classic",
+     "voor": "130/90 B16",
+     "achter": "180/65 B16",
+     "bron": "https://moto.permission.jfnet.de/MICHELIN/2267-S.pdf"
+    },
+    {
+     "naam": "Road King Special",
+     "voor": "130/60 B19",
+     "achter": "180/55 B18",
+     "bron": "https://moto.permission.jfnet.de/MICHELIN/3623-S.pdf"
+    }
+   ],
+   "noot": "meerdere originele maten volgens typegoedkeuring (Michelin-servicecertificaat); klant kiest"
+  },
+  {
+   "merk": "Indian",
+   "model": "Super Chief",
+   "uitvoering": null,
+   "van": 2022,
+   "tot": null,
+   "voor": "130/90 B16",
+   "achter": "180/65 B16",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3679-S.pdf"
+  },
+  {
+   "merk": "Indian",
+   "model": "FTR 1200",
+   "uitvoering": null,
+   "van": 2019,
+   "tot": 2021,
+   "voor": "120/70 R19",
+   "achter": "150/70 R18",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3526-S.pdf"
+  },
+  {
+   "merk": "Indian",
+   "model": "FTR 1200",
+   "uitvoering": null,
+   "van": 2022,
+   "tot": null,
+   "voor": null,
+   "achter": null,
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3798-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3797-S.pdf",
+   "opties": [
+    {
+     "voor": "120/70 R19",
+     "achter": "150/70 R18",
+     "bron": "https://moto.permission.jfnet.de/MICHELIN/3797-S.pdf"
+    },
+    {
+     "voor": "120/70 ZR17",
+     "achter": "180/55 ZR17",
+     "bron": "https://moto.permission.jfnet.de/MICHELIN/3798-S.pdf"
+    }
+   ],
+   "noot": "meerdere originele maten volgens typegoedkeuring (Michelin-servicecertificaat); klant kiest"
+  },
+  {
+   "merk": "Indian",
+   "model": "Scout",
+   "uitvoering": null,
+   "van": 2015,
+   "tot": 2024,
+   "voor": "130/90-16",
+   "achter": "150/80-16",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3233-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3234-S.pdf"
+  },
+  {
+   "merk": "Indian",
+   "model": "Scout",
+   "uitvoering": null,
+   "van": 2025,
+   "tot": null,
+   "voor": "130/90 B16",
+   "achter": "150/80 B16",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/6589-S.pdf + https://moto.permission.jfnet.de/MICHELIN/6586-S.pdf",
+   "noot": "Scout Classic"
+  },
+  {
+   "merk": "Indian",
+   "model": "Scout Bobber",
+   "uitvoering": null,
+   "van": 2025,
+   "tot": null,
+   "voor": "130/90 B16",
+   "achter": "150/80 B16",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/6589-S.pdf + https://moto.permission.jfnet.de/MICHELIN/6586-S.pdf"
+  },
+  {
+   "merk": "MV Agusta",
+   "model": "Brutale 800",
+   "uitvoering": null,
+   "van": 2013,
+   "tot": 2023,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2131-S.pdf"
+  },
+  {
+   "merk": "MV Agusta",
+   "model": "F3 800",
+   "uitvoering": null,
+   "van": 2014,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3128-S.pdf"
+  },
+  {
+   "merk": "MV Agusta",
+   "model": "Superveloce",
+   "uitvoering": null,
+   "van": 2020,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/6596-S.pdf"
+  },
+  {
+   "merk": "MV Agusta",
+   "model": "Turismo Veloce",
+   "uitvoering": null,
+   "van": 2015,
+   "tot": 2022,
+   "voor": "120/70 ZR17",
+   "achter": "190/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3204-S.pdf"
+  },
+  {
+   "merk": "Moto Guzzi",
+   "model": "Griso",
+   "uitvoering": null,
+   "van": 2006,
+   "tot": 2016,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2422-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2423-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2424-S.pdf"
+  },
+  {
+   "merk": "Moto Guzzi",
+   "model": "Stelvio",
+   "uitvoering": null,
+   "van": 2008,
+   "tot": 2010,
+   "voor": "110/80 R19",
+   "achter": "180/55 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2488-S.pdf"
+  },
+  {
+   "merk": "Moto Guzzi",
+   "model": "Stelvio",
+   "uitvoering": null,
+   "van": 2011,
+   "tot": 2016,
+   "voor": "110/80 R19",
+   "achter": "150/70 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2430-S.pdf"
+  },
+  {
+   "merk": "Moto Guzzi",
+   "model": "Stelvio",
+   "uitvoering": null,
+   "van": 2024,
+   "tot": null,
+   "voor": "120/70 R19",
+   "achter": "170/60 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/6536-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3870-S.pdf"
+  },
+  {
+   "merk": "Moto Guzzi",
+   "model": "V7",
+   "uitvoering": null,
+   "van": 2021,
+   "tot": null,
+   "voor": "100/90-18",
+   "achter": "150/70-17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3824-S.pdf"
+  },
+  {
+   "merk": "Moto Guzzi",
+   "model": "V85 TT",
+   "uitvoering": null,
+   "van": 2019,
+   "tot": null,
+   "voor": "110/80 R19",
+   "achter": "150/70 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3534-S.pdf + https://moto.permission.jfnet.de/MICHELIN/3868-S.pdf + https://moto.permission.jfnet.de/MICHELIN/6535-S.pdf"
+  },
+  {
+   "merk": "Moto Guzzi",
+   "model": "V9 Bobber",
+   "uitvoering": null,
+   "van": 2016,
+   "tot": null,
+   "voor": "130/90-16",
+   "achter": "150/80 B16",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3473-S.pdf"
+  },
+  {
+   "merk": "Moto Guzzi",
+   "model": "V9 Roamer",
+   "uitvoering": null,
+   "van": 2016,
+   "tot": null,
+   "voor": "100/90-19",
+   "achter": "150/80-16",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3472-S.pdf"
+  },
+  {
+   "merk": "Moto Guzzi",
+   "model": "V100 Mandello",
+   "uitvoering": null,
+   "van": 2022,
+   "tot": null,
+   "voor": "120/70 R17",
+   "achter": "190/55 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3762-S.pdf"
+  },
+  {
+   "merk": "Moto Guzzi",
+   "model": "Norge 1200",
+   "uitvoering": null,
+   "van": 2006,
+   "tot": 2016,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2420-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2419-S.pdf"
+  },
+  {
+   "merk": "Moto Guzzi",
+   "model": "Breva 750",
+   "uitvoering": null,
+   "van": 2003,
+   "tot": 2011,
+   "voor": "110/70-17",
+   "achter": "130/80-17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2416-S.pdf"
+  },
+  {
+   "merk": "Moto Guzzi",
+   "model": "Breva 1100",
+   "uitvoering": null,
+   "van": 2005,
+   "tot": 2009,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2421-S.pdf"
+  },
+  {
+   "merk": "Moto Guzzi",
+   "model": "1200 Sport",
+   "uitvoering": null,
+   "van": 2006,
+   "tot": 2013,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2009-S.pdf"
+  },
+  {
+   "merk": "Husqvarna",
+   "model": "701 Enduro",
+   "uitvoering": null,
+   "van": 2016,
+   "tot": null,
+   "voor": "90/90-21",
+   "achter": "140/80-18",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3765-S.pdf"
+  },
+  {
+   "merk": "Husqvarna",
+   "model": "701 Supermoto",
+   "uitvoering": null,
+   "van": 2017,
+   "tot": null,
+   "voor": "120/70 R17",
+   "achter": "160/60 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3440-S.pdf"
+  },
+  {
+   "merk": "Husqvarna",
+   "model": "Norden 901",
+   "uitvoering": null,
+   "van": 2022,
+   "tot": null,
+   "voor": "90/90-21",
+   "achter": "150/70-18",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3678-S.pdf"
+  },
+  {
+   "merk": "Husqvarna",
+   "model": "Svartpilen 125",
+   "uitvoering": null,
+   "van": 2021,
+   "tot": null,
+   "voor": "110/70 R17",
+   "achter": "150/60 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3770-S.pdf"
+  },
+  {
+   "merk": "Husqvarna",
+   "model": "Svartpilen 401",
+   "uitvoering": null,
+   "van": 2018,
+   "tot": 2023,
+   "voor": "110/70 R17",
+   "achter": "150/60 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3772-S.pdf"
+  },
+  {
+   "merk": "Husqvarna",
+   "model": "Svartpilen 401",
+   "uitvoering": null,
+   "van": 2024,
+   "tot": null,
+   "voor": "110/70 R17",
+   "achter": "150/60 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/6573-S.pdf"
+  },
+  {
+   "merk": "Husqvarna",
+   "model": "Vitpilen 401",
+   "uitvoering": null,
+   "van": 2018,
+   "tot": 2023,
+   "voor": "110/70 R17",
+   "achter": "150/60 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3773-S.pdf"
+  },
+  {
+   "merk": "Husqvarna",
+   "model": "Vitpilen 401",
+   "uitvoering": null,
+   "van": 2024,
+   "tot": null,
+   "voor": "110/70 R17",
+   "achter": "150/60 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/6573-S.pdf"
+  },
+  {
+   "merk": "Husqvarna",
+   "model": "Svartpilen 701",
+   "uitvoering": null,
+   "van": 2019,
+   "tot": null,
+   "voor": "110/80 R18",
+   "achter": "160/60 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3737-S.pdf"
+  },
+  {
+   "merk": "Husqvarna",
+   "model": "Vitpilen 701",
+   "uitvoering": null,
+   "van": 2018,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3725-S.pdf"
+  },
+  {
+   "merk": "Husqvarna",
+   "model": "Svartpilen 801",
+   "uitvoering": null,
+   "van": 2024,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/6574-S.pdf"
+  },
+  {
+   "merk": "Husqvarna",
+   "model": "Nuda 900",
+   "uitvoering": null,
+   "van": 2012,
+   "tot": 2013,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2873-S.pdf"
+  },
+  {
+   "merk": "Benelli",
+   "model": "Leoncino 800",
+   "uitvoering": [
+    "Standaard"
+   ],
+   "van": 2022,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3767-S.pdf"
+  },
+  {
+   "merk": "Benelli",
+   "model": "Leoncino 800",
+   "uitvoering": [
+    "Trail"
+   ],
+   "van": 2022,
+   "tot": null,
+   "voor": "120/70 R19",
+   "achter": "170/60 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3775-S.pdf"
+  },
+  {
+   "merk": "Benelli",
+   "model": "TNT 1130",
+   "uitvoering": null,
+   "van": 2005,
+   "tot": 2016,
+   "voor": "120/70 ZR17",
+   "achter": "190/50 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/2689-S.pdf + https://moto.permission.jfnet.de/MICHELIN/2691-S.pdf"
+  },
+  {
+   "merk": "Benelli",
+   "model": "752S",
+   "uitvoering": null,
+   "van": 2022,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://www.benelli.com/int-en/products/752s-2 + https://www.michelin.it/motorbike/costruttori/benelli/752s/2022/754"
+  },
+  {
+   "merk": "Benelli",
+   "model": "Imperiale 400",
+   "uitvoering": null,
+   "van": 2022,
+   "tot": null,
+   "voor": "100/90-19",
+   "achter": "130/80-18",
+   "bron": "https://www.benelli.com/int-en/products/imperiale-400 + https://www.michelin.it/motorbike/costruttori/benelli/imperiale-400/2022/400"
+  },
+  {
+   "merk": "Benelli",
+   "model": "TRK 502",
+   "uitvoering": [
+    "Standaard"
+   ],
+   "van": 2017,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://www.benelli.com/int-en/products/trk-502-2 + https://www.michelin.it/motorbike/costruttori/benelli/trk-502/2017/500"
+  },
+  {
+   "merk": "Benelli",
+   "model": "TRK 502",
+   "uitvoering": [
+    "X"
+   ],
+   "van": 2017,
+   "tot": null,
+   "voor": "110/80 R19",
+   "achter": "150/70 R17",
+   "bron": "https://www.benelli.com/int-en/products/trk-502x-2 + https://www.michelin.it/motorbike/costruttori/benelli/trk-502-x/2017/500"
+  },
+  {
+   "merk": "Benelli",
+   "model": "TRK 702",
+   "uitvoering": [
+    "Standaard"
+   ],
+   "van": 2023,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://www.benelli.com/int-en/products/trk-702 + https://www.michelin.it/motorbike/costruttori/benelli/trk-702/2023/698"
+  },
+  {
+   "merk": "Benelli",
+   "model": "TRK 702",
+   "uitvoering": [
+    "X"
+   ],
+   "van": 2023,
+   "tot": null,
+   "voor": "110/80 R19",
+   "achter": "150/70 R17",
+   "bron": "https://www.benelli.com/int-en/products/trk-702x + https://www.michelin.it/motorbike/costruttori/benelli/trk-702-x/2023/698"
+  },
+  {
+   "merk": "CFMoto",
+   "model": "450NK",
+   "uitvoering": null,
+   "van": 2023,
+   "tot": null,
+   "voor": "110/70 ZR17",
+   "achter": "150/60 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3863-S.pdf + https://moto.permission.jfnet.de/MICHELIN/6513-S.pdf"
+  },
+  {
+   "merk": "CFMoto",
+   "model": "700CL-X",
+   "uitvoering": [
+    "Heritage"
+   ],
+   "van": 2022,
+   "tot": null,
+   "voor": "110/80 R18",
+   "achter": "180/55 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3782-S.pdf"
+  },
+  {
+   "merk": "CFMoto",
+   "model": "700CL-X",
+   "uitvoering": [
+    "Sport"
+   ],
+   "van": 2022,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3783-S.pdf"
+  },
+  {
+   "merk": "CFMoto",
+   "model": "700CL-X",
+   "uitvoering": [
+    "Adventure"
+   ],
+   "van": 2022,
+   "tot": null,
+   "voor": "110/80 R18",
+   "achter": "170/60 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3784-S.pdf"
+  },
+  {
+   "merk": "CFMoto",
+   "model": "700MT",
+   "uitvoering": null,
+   "van": 2024,
+   "tot": null,
+   "voor": "110/80 R19",
+   "achter": "150/70 R17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/6584-S.pdf"
+  },
+  {
+   "merk": "CFMoto",
+   "model": "300NK",
+   "uitvoering": null,
+   "van": 2021,
+   "tot": null,
+   "voor": "110/70 R17",
+   "achter": "140/60 R17",
+   "bron": "https://images.autox.com/uploads/bikes/brochure/2021/07/cfmoto-300nk-brochure.pdf + https://medias.cfmoto.ca/download/1158/2025/16099/300nk_2025_en.pdf?lang=en",
+   "noot": "CFMoto-brochure 2021 en CFMoto Canada-specificaties 2025"
+  },
+  {
+   "merk": "CFMoto",
+   "model": "450MT",
+   "uitvoering": null,
+   "van": 2024,
+   "tot": null,
+   "voor": "90/90 R21",
+   "achter": "140/70 R18",
+   "bron": "https://cfmoto-motorcycle.eu/en/motorcycles/multi-function-touring/450mt + https://www.cfmoto.co.za/wp-content/uploads/2025/04/450MT_Specifications.pdf",
+   "noot": "CFMoto Europa en CFMoto Zuid-Afrika"
+  },
+  {
+   "merk": "CFMoto",
+   "model": "450SR",
+   "uitvoering": null,
+   "van": 2023,
+   "tot": null,
+   "voor": "110/70 R17",
+   "achter": "150/60 R17",
+   "bron": "https://www.cfmoto91.fr/img/cms/Manuel-utilisateur-CFMOTO-450SR-compress%C3%A9.pdf + https://cfmoto-motorcycle.eu/uk/en/motorcycles/sport-racing/450sr",
+   "noot": "instructieboek 450SR (CF400-6) en CFMoto Europa"
+  },
+  {
+   "merk": "CFMoto",
+   "model": "650MT",
+   "uitvoering": null,
+   "van": 2021,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://www.cfmoto.it/wp-content/uploads/2021/05/OWNER-MANUAL-CFMOTO-MT-650.pdf + https://cfmotocolombia.com/wp-content/uploads/2023/04/2021_650MT-brochure.pdf",
+   "noot": "instructieboek CF650-3 en CFMoto-brochure 2021"
+  },
+  {
+   "merk": "CFMoto",
+   "model": "650NK",
+   "uitvoering": null,
+   "van": 2021,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "160/60 ZR17",
+   "bron": "https://medias.cfmoto.ca/download/240/motos/1493/650-manual.pdf + https://www.cfmotoindia.com/650nk.php",
+   "noot": "instructieboek CF650-7 en CFMoto India"
+  },
+  {
+   "merk": "CFMoto",
+   "model": "800MT",
+   "uitvoering": null,
+   "van": 2022,
+   "tot": null,
+   "voor": "110/80 R19",
+   "achter": "150/70 R17",
+   "bron": "https://www.cfmoto.com/content/dam/cfmoto/site/global/product/motorcycle/mt----mult-touring/800mt-touring/documentation/2021_800MT%20brochure_International.pdf + https://cfmoto-motorcycle.eu/uk/en/motorcycles/multi-function-touring/800mt-touring",
+   "noot": "Sport en Touring; de 800MT-X (21/18 inch) valt hier niet onder"
+  },
+  {
+   "merk": "CFMoto",
+   "model": "800NK",
+   "uitvoering": null,
+   "van": 2023,
+   "tot": null,
+   "voor": "120/70 ZR17",
+   "achter": "180/55 ZR17",
+   "bron": "https://www.cfmotousa.com/assets/cfmoto/images/customer_care/owners_manuals/800nk-om-usa-20230913.pdf + https://www.cfmoto.com/motorcycles/800nk",
+   "noot": "instructieboek en cfmoto.com; de Europese site noemt 120/60 voor (waarschijnlijk tikfout)"
+  },
+  {
+   "merk": "Royal Enfield",
+   "model": "Continental GT 650",
+   "uitvoering": null,
+   "van": 2019,
+   "tot": null,
+   "voor": "100/90-18",
+   "achter": "130/70-18",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3544-S.pdf"
+  },
+  {
+   "merk": "Royal Enfield",
+   "model": "Interceptor 650",
+   "uitvoering": null,
+   "van": 2019,
+   "tot": null,
+   "voor": "100/90-18",
+   "achter": "130/70-18",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3543-S.pdf"
+  },
+  {
+   "merk": "Royal Enfield",
+   "model": "Himalayan 450",
+   "uitvoering": null,
+   "van": 2024,
+   "tot": null,
+   "voor": "90/90-21",
+   "achter": "140/80-17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3871-S.pdf + https://moto.permission.jfnet.de/MICHELIN/6533-S.pdf"
+  },
+  {
+   "merk": "Royal Enfield",
+   "model": "Super Meteor 650",
+   "uitvoering": null,
+   "van": 2023,
+   "tot": null,
+   "voor": "100/90-19",
+   "achter": "150/80 B16",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3781-S.pdf"
+  },
+  {
+   "merk": "Royal Enfield",
+   "model": "Bullet 350",
+   "uitvoering": null,
+   "van": 2023,
+   "tot": null,
+   "voor": "100/90-19",
+   "achter": "120/80-18",
+   "bron": "https://www.royalenfield.com/content/dam/royal-enfield/bullet/eu-bullet/specifications/royal-enfield-bullet-350-technical-specifications-english.pdf + https://www.royalenfield.com/content/dam/open-pdf/royal-enfield-bullet-350-technical-specifications.pdf",
+   "noot": "nieuwe J-serie Bullet; oudere Bullet 350 heeft andere maten"
+  },
+  {
+   "merk": "Royal Enfield",
+   "model": "Classic 350",
+   "uitvoering": null,
+   "van": 2021,
+   "tot": null,
+   "voor": "100/90-19",
+   "achter": "120/80-18",
+   "bron": "https://www.royalenfield.com/content/dam/royal-enfield/united-kingdom/motorcycles/technical-specifications/royal-enfield-classic-350-tech-specs-uk-english.pdf + https://www.royalenfield.com/content/dam/royal-enfield/classic-350/thailand/specification-classic-350.pdf",
+   "noot": "nieuwe Classic 350 (2021); spaak- en gietwielen zelfde maat"
+  },
+  {
+   "merk": "Royal Enfield",
+   "model": "Guerrilla 450",
+   "uitvoering": null,
+   "van": 2024,
+   "tot": null,
+   "voor": "120/70 R17",
+   "achter": "160/60 R17",
+   "bron": "https://www.royalenfield.com/content/dam/open-pdf/royal-enfield-guerrilla-450-technical-specifications-english.pdf + https://www.royalenfield.com/content/dam/open-pdf/royal-enfield-guerrilla-450-technical-specifications-united-kingdom-english.pdf"
+  },
+  {
+   "merk": "Royal Enfield",
+   "model": "Himalayan 411",
+   "uitvoering": null,
+   "van": 2016,
+   "tot": 2023,
+   "voor": "90/90-21",
+   "achter": "120/90-17",
+   "bron": "https://www.royalenfield.com/content/dam/royal-enfield/himalayan-411/royal-enfield-himalayan-technical-specifications.pdf + https://www.royalenfield.com/content/dam/royal-enfield/india/motorcycles/himalayan/specifications/himalayan-specification-new.pdf"
+  },
+  {
+   "merk": "Royal Enfield",
+   "model": "Hunter 350",
+   "uitvoering": null,
+   "van": 2022,
+   "tot": null,
+   "voor": null,
+   "achter": null,
+   "bron": "https://www.royalenfield.com/content/dam/royal-enfield/hunter-350/royal-enfield-hunter-350-technical-specifications-english.pdf + https://www.royalenfield.com/content/dam/open-pdf/royal-enfield-hunter-350-technical-specifications-2026.pdf",
+   "opties": [
+    {
+     "voor": "110/70-17",
+     "achter": "140/70-17",
+     "bron": "https://www.royalenfield.com/content/dam/royal-enfield/hunter-350/royal-enfield-hunter-350-technical-specifications-english.pdf + https://www.royalenfield.com/content/dam/open-pdf/royal-enfield-hunter-350-technical-specifications-2026.pdf"
+    },
+    {
+     "voor": "100/80-17",
+     "achter": "120/80-17",
+     "bron": "https://www.royalenfield.com/content/dam/open-pdf/royal-enfield-hunter-350-technical-specifications-2026.pdf"
+    }
+   ],
+   "noot": "Royal Enfield noemt per uitvoering 110/70-17 + 140/70-17 (gietwielen) of 100/80-17 + 120/80-17 (smalle giet- of spaakwielen)"
+  },
+  {
+   "merk": "Royal Enfield",
+   "model": "Meteor 350",
+   "uitvoering": null,
+   "van": 2021,
+   "tot": null,
+   "voor": "100/90-19",
+   "achter": "140/70-17",
+   "bron": "https://www.royalenfield.com/content/dam/royal-enfield/motorcycles/meteor-350/europe/specifications/royal-enfield-meteor-350-technical-specifications-english.pdf + https://www.royalenfield.com/content/dam/royal-enfield/india/motorcycles/specifications/royal-enfield-meteor-technical-specifications.pdf"
+  },
+  {
+   "merk": "Royal Enfield",
+   "model": "Scram 411",
+   "uitvoering": null,
+   "van": 2022,
+   "tot": 2024,
+   "voor": "100/90-19",
+   "achter": "120/90-17",
+   "bron": "https://www.royalenfield.com/content/dam/royal-enfield/united-kingdom/motorcycles/technical-specifications/royal-enfield-scram-411-technical-specifications-english.pdf + https://www.royalenfield.com/content/dam/royal-enfield/india/support/owners-manual/pdf/scram-411.pdf"
+  },
+  {
+   "merk": "Royal Enfield",
+   "model": "Shotgun 650",
+   "uitvoering": null,
+   "van": 2024,
+   "tot": null,
+   "voor": "100/90-18",
+   "achter": "150/70 R17",
+   "bron": "https://www.royalenfield.com/content/dam/open-pdf/royal-enfield-shotgun_650-techincal-specifications-uk-english.pdf + https://www.royalenfield.com/content/dam/open-pdf/royal-enfield-shotgun-650-technical-specifications-english.pdf"
+  },
+  {
+   "merk": "Zero",
+   "model": "DSR/X",
+   "uitvoering": null,
+   "van": 2023,
+   "tot": null,
+   "voor": "120/70-19",
+   "achter": "170/60-17",
+   "bron": "https://moto.permission.jfnet.de/MICHELIN/3780-S.pdf"
+  },
+  {
+   "merk": "Voge",
+   "model": "525 DSX",
+   "uitvoering": null,
+   "van": 2023,
+   "tot": null,
+   "voor": "110/80 R19",
+   "achter": "150/70 R17",
+   "bron": "https://www.vogeglobal.com/ds525x + https://vogeitaly.it/valico525dsx/ + https://vogespain.es/modelos/525dsx/"
+  }
+ ],
+ "advies": {
+  "120/70 ZR17": [
+   {
+    "soort": "zuinig",
+    "merk": "Michelin",
+    "band": "Road 6",
+    "uitleg": "Toerband die lang meegaat en veel grip houdt in de regen.",
+    "inkoop_excl_btw": 113.38
+   },
+   {
+    "soort": "allround",
+    "merk": "Bridgestone",
+    "band": "Battlax T32",
+    "uitleg": "Sporttoerband: stabiel, snel op temperatuur, goed in alle weer.",
+    "inkoop_excl_btw": 95.11
+   },
+   {
+    "soort": "sportief",
+    "merk": "Michelin",
+    "band": "Power 6",
+    "uitleg": "Sportieve straatband met veel grip in bochten, slijt sneller.",
+    "inkoop_excl_btw": 114.78
+   }
+  ],
+  "180/55 ZR17": [
+   {
+    "soort": "zuinig",
+    "merk": "Michelin",
+    "band": "Road 6",
+    "uitleg": "Toerband die lang meegaat en veel grip houdt in de regen.",
+    "inkoop_excl_btw": 149.41
+   },
+   {
+    "soort": "allround",
+    "merk": "Bridgestone",
+    "band": "Battlax T32",
+    "uitleg": "Sporttoerband: stabiel, snel op temperatuur, goed in alle weer.",
+    "inkoop_excl_btw": 123.79
+   },
+   {
+    "soort": "sportief",
+    "merk": "Michelin",
+    "band": "Power 6",
+    "uitleg": "Sportieve straatband met veel grip in bochten, slijt sneller.",
+    "inkoop_excl_btw": 143.63
+   }
+  ],
+  "120/70 R19": [
+   {
+    "soort": "zuinig",
+    "merk": "Michelin",
+    "band": "Anakee Road",
+    "uitleg": "Adventureband voor de weg: lange levensduur, prettig in de regen.",
+    "inkoop_excl_btw": 106.69
+   },
+   {
+    "soort": "allround",
+    "merk": "Bridgestone",
+    "band": "Battlax A41",
+    "uitleg": "Allround adventureband voor asfalt en een stukje onverhard.",
+    "inkoop_excl_btw": 100.73
+   },
+   {
+    "soort": "sportief",
+    "merk": "Pirelli",
+    "band": "Scorpion Trail II",
+    "uitleg": "Sportieve adventureband met veel grip op asfalt.",
+    "inkoop_excl_btw": 106.36
+   }
+  ],
+  "170/60 R17": [
+   {
+    "soort": "zuinig",
+    "merk": "Michelin",
+    "band": "Anakee Road",
+    "uitleg": "Adventureband voor de weg: lange levensduur, prettig in de regen.",
+    "inkoop_excl_btw": 136.27
+   },
+   {
+    "soort": "allround",
+    "merk": "Bridgestone",
+    "band": "Battlax A41",
+    "uitleg": "Allround adventureband voor asfalt en een stukje onverhard.",
+    "inkoop_excl_btw": 121.14
+   },
+   {
+    "soort": "sportief",
+    "merk": "Pirelli",
+    "band": "Scorpion Trail II",
+    "uitleg": "Sportieve adventureband met veel grip op asfalt.",
+    "inkoop_excl_btw": 127.84
+   }
+  ],
+  "90/90-21": [
+   {
+    "soort": "zuinig",
+    "merk": "Michelin",
+    "band": "Anakee Adventure",
+    "uitleg": "Vooral voor de weg, met genoeg profiel voor een onverhard pad. Gaat lang mee.",
+    "inkoop_excl_btw": 100.73
+   },
+   {
+    "soort": "allround",
+    "merk": "Bridgestone",
+    "band": "Battlax A41",
+    "uitleg": "Allround adventureband voor asfalt en een stukje onverhard.",
+    "inkoop_excl_btw": 108.75
+   },
+   {
+    "soort": "sportief",
+    "merk": "Metzeler",
+    "band": "Karoo Street",
+    "uitleg": "Grof profiel voor meer grip onverhard; op asfalt iets minder verfijnd.",
+    "inkoop_excl_btw": 102.31
+   }
+  ],
+  "200/55 ZR17": [
+   {
+    "soort": "zuinig",
+    "merk": "Continental",
+    "band": "ContiSportAttack 4",
+    "uitleg": "Eigenlijk een sportband, maar in deze maat de voordeligste gangbare band. Veel grip in bochten; slijt sneller dan een sporttoerband.",
+    "inkoop_excl_btw": 128.67
+   },
+   {
+    "soort": "allround",
+    "merk": "Pirelli",
+    "band": "Diablo Rosso IV",
+    "uitleg": "Sportieve straatband die snel warm is en ook op natte weg vertrouwen geeft.",
+    "inkoop_excl_btw": 163.46
+   },
+   {
+    "soort": "sportief",
+    "merk": "Bridgestone",
+    "band": "Battlax Hypersport S23",
+    "uitleg": "Veel grip voor sportief rijden op de weg, slijt sneller.",
+    "inkoop_excl_btw": 179.9
+   }
+  ],
+  "190/55 ZR17": [
+   {
+    "soort": "zuinig",
+    "merk": "Michelin",
+    "band": "Road 6",
+    "uitleg": "Toerband die lang meegaat en veel grip houdt in de regen.",
+    "inkoop_excl_btw": 159.33
+   },
+   {
+    "soort": "allround",
+    "merk": "Bridgestone",
+    "band": "Battlax T32",
+    "uitleg": "Sporttoerband: stabiel, snel op temperatuur, goed in alle weer.",
+    "inkoop_excl_btw": 136.19
+   },
+   {
+    "soort": "sportief",
+    "merk": "Michelin",
+    "band": "Power 6",
+    "uitleg": "Sportieve straatband met veel grip in bochten, slijt sneller.",
+    "inkoop_excl_btw": 151.07
+   }
+  ],
+  "110/80 R19": [
+   {
+    "soort": "zuinig",
+    "merk": "Michelin",
+    "band": "Anakee Road",
+    "uitleg": "Adventureband voor de weg: lange levensduur, prettig in de regen.",
+    "inkoop_excl_btw": 107.6
+   },
+   {
+    "soort": "allround",
+    "merk": "Bridgestone",
+    "band": "Battlax A41",
+    "uitleg": "Allround adventureband voor asfalt en een stukje onverhard.",
+    "inkoop_excl_btw": 90.65
+   },
+   {
+    "soort": "sportief",
+    "merk": "Pirelli",
+    "band": "Scorpion Trail II",
+    "uitleg": "Sportieve adventureband met veel grip op asfalt.",
+    "inkoop_excl_btw": 98.83
+   }
+  ],
+  "150/70 R18": [
+   {
+    "soort": "zuinig",
+    "merk": "Michelin",
+    "band": "Anakee Adventure",
+    "uitleg": "Vooral voor de weg, met genoeg profiel voor een onverhard pad. Gaat lang mee.",
+    "inkoop_excl_btw": 122.97
+   },
+   {
+    "soort": "allround",
+    "merk": "Bridgestone",
+    "band": "Battlax A41",
+    "uitleg": "Allround adventureband voor asfalt en een stukje onverhard.",
+    "inkoop_excl_btw": 115.36
+   },
+   {
+    "soort": "sportief",
+    "merk": "Metzeler",
+    "band": "Karoo Street",
+    "uitleg": "Grof profiel voor meer grip onverhard; op asfalt iets minder verfijnd.",
+    "inkoop_excl_btw": 123.13
+   }
+  ],
+  "190/50 ZR17": [
+   {
+    "soort": "zuinig",
+    "merk": "Dunlop",
+    "band": "Sportmax GPR-300",
+    "uitleg": "Voordelige radiaalband voor dagelijks rijden en toeren; gaat redelijk lang mee en is voorspelbaar, ook op natte weg.",
+    "inkoop_excl_btw": 104.79
+   },
+   {
+    "soort": "allround",
+    "merk": "Michelin",
+    "band": "Road 6",
+    "uitleg": "Toerband die lang meegaat en veel grip houdt in de regen.",
+    "inkoop_excl_btw": 156.85
+   },
+   {
+    "soort": "sportief",
+    "merk": "Michelin",
+    "band": "Power 6",
+    "uitleg": "Sportieve straatband met veel grip in bochten, slijt sneller.",
+    "inkoop_excl_btw": 147.76
+   }
+  ],
+  "160/60 ZR17": [
+   {
+    "soort": "zuinig",
+    "merk": "Dunlop",
+    "band": "Sportmax GPR-300",
+    "uitleg": "Voordelige radiaalband voor dagelijks rijden en toeren; gaat redelijk lang mee en is voorspelbaar, ook op natte weg.",
+    "inkoop_excl_btw": 96.77
+   },
+   {
+    "soort": "allround",
+    "merk": "Michelin",
+    "band": "Road 6",
+    "uitleg": "Toerband die lang meegaat en veel grip houdt in de regen.",
+    "inkoop_excl_btw": 139.58
+   },
+   {
+    "soort": "sportief",
+    "merk": "Michelin",
+    "band": "Power 6",
+    "uitleg": "Sportieve straatband met veel grip in bochten, slijt sneller.",
+    "inkoop_excl_btw": 133.71
+   }
+  ],
+  "150/60 ZR17": [
+   {
+    "soort": "zuinig",
+    "merk": "Dunlop",
+    "band": "Sportmax GPR-300",
+    "uitleg": "Voordelige radiaalband voor dagelijks rijden en toeren; gaat redelijk lang mee en is voorspelbaar, ook op natte weg.",
+    "inkoop_excl_btw": 111.98
+   },
+   {
+    "soort": "allround",
+    "merk": "Michelin",
+    "band": "Road 6",
+    "uitleg": "Toerband die lang meegaat en veel grip houdt in de regen.",
+    "inkoop_excl_btw": 137.02
+   },
+   {
+    "soort": "sportief",
+    "merk": "Michelin",
+    "band": "Power 6",
+    "uitleg": "Sportieve straatband met veel grip in bochten, slijt sneller.",
+    "inkoop_excl_btw": 134.95
+   }
+  ],
+  "110/70 ZR17": [
+   {
+    "soort": "zuinig",
+    "merk": "Michelin",
+    "band": "Pilot Street Radial",
+    "uitleg": "Radiaalband voor lichtere motoren en dagelijks gebruik; gaat lang mee en geeft vertrouwen op natte weg.",
+    "inkoop_excl_btw": 78.75
+   },
+   {
+    "soort": "allround",
+    "merk": "Bridgestone",
+    "band": "Battlax T32",
+    "uitleg": "Sporttoerband: stabiel, snel op temperatuur, goed in alle weer.",
+    "inkoop_excl_btw": 96.52
+   },
+   {
+    "soort": "sportief",
+    "merk": "Pirelli",
+    "band": "Diablo Rosso IV",
+    "uitleg": "Sportieve straatband die snel warm is en ook op natte weg vertrouwen geeft.",
+    "inkoop_excl_btw": 113.71
+   }
+  ],
+  "140/70-17": [
+   {
+    "soort": "zuinig",
+    "merk": "Michelin",
+    "band": "Pilot Street Radial",
+    "uitleg": "Radiaalband voor lichtere motoren en dagelijks gebruik; gaat lang mee en geeft vertrouwen op natte weg.",
+    "inkoop_excl_btw": 90.24
+   },
+   {
+    "soort": "allround",
+    "merk": "Bridgestone",
+    "band": "Battlax BT-46",
+    "uitleg": "Toerband voor lichtere en klassieke motoren: stabiel, rustig en gemaakt om lang mee te gaan, ook bij nat weer.",
+    "inkoop_excl_btw": 98.92
+   },
+   {
+    "soort": "sportief",
+    "merk": "Pirelli",
+    "band": "Diablo Rosso IV",
+    "uitleg": "Sportieve straatband die snel warm is en ook op natte weg vertrouwen geeft.",
+    "inkoop_excl_btw": 114.7
+   }
+  ],
+  "130/70-17": [
+   {
+    "soort": "zuinig",
+    "merk": "Michelin",
+    "band": "Pilot Street Radial",
+    "uitleg": "Radiaalband voor lichtere motoren en dagelijks gebruik; gaat lang mee en geeft vertrouwen op natte weg.",
+    "inkoop_excl_btw": 88.17
+   },
+   {
+    "soort": "allround",
+    "merk": "Bridgestone",
+    "band": "Battlax BT-46",
+    "uitleg": "Toerband voor lichtere en klassieke motoren: stabiel, rustig en gemaakt om lang mee te gaan, ook bij nat weer.",
+    "inkoop_excl_btw": 98.26
+   },
+   {
+    "soort": "sportief",
+    "merk": "Pirelli",
+    "band": "Diablo Rosso II",
+    "uitleg": "Sportieve straatband (ouder model) met veel grip in bochten op droge weg; slijt sneller dan een toerband.",
+    "inkoop_excl_btw": 73.88
+   }
+  ],
+  "150/70 R17": [
+   {
+    "soort": "zuinig",
+    "merk": "Bridgestone",
+    "band": "Battlax A41",
+    "uitleg": "Adventureband vooral voor asfalt (een stukje onverhard kan): gaat lang mee en blijft goed in de regen.",
+    "inkoop_excl_btw": 117.1
+   },
+   {
+    "soort": "allround",
+    "merk": "Michelin",
+    "band": "Anakee Adventure",
+    "uitleg": "Vooral voor de weg, met genoeg profiel voor een onverhard pad. Gaat lang mee.",
+    "inkoop_excl_btw": 121.31
+   },
+   {
+    "soort": "sportief",
+    "merk": "Pirelli",
+    "band": "Scorpion Trail II",
+    "uitleg": "Sportieve adventureband met veel grip op asfalt.",
+    "inkoop_excl_btw": 126.27
+   }
+  ],
+  "100/90-19": [
+   {
+    "soort": "zuinig",
+    "merk": "Bridgestone",
+    "band": "Battlax A41",
+    "uitleg": "Adventureband vooral voor asfalt (een stukje onverhard kan): gaat lang mee en blijft goed in de regen.",
+    "inkoop_excl_btw": 95.69
+   },
+   {
+    "soort": "allround",
+    "merk": "Michelin",
+    "band": "Anakee Adventure",
+    "uitleg": "Vooral voor de weg, met genoeg profiel voor een onverhard pad. Gaat lang mee.",
+    "inkoop_excl_btw": 101.89
+   },
+   {
+    "soort": "sportief",
+    "merk": "Metzeler",
+    "band": "Karoo Street",
+    "uitleg": "Grof profiel voor meer grip onverhard; op asfalt iets minder verfijnd.",
+    "inkoop_excl_btw": 103.13
+   }
+  ],
+  "130/80-17": [
+   {
+    "soort": "zuinig",
+    "merk": "Bridgestone",
+    "band": "Battlax A41",
+    "uitleg": "Adventureband vooral voor asfalt (een stukje onverhard kan): gaat lang mee en blijft goed in de regen.",
+    "inkoop_excl_btw": 96.52
+   },
+   {
+    "soort": "allround",
+    "merk": "Michelin",
+    "band": "Anakee Adventure",
+    "uitleg": "Vooral voor de weg, met genoeg profiel voor een onverhard pad. Gaat lang mee.",
+    "inkoop_excl_btw": 125.45
+   },
+   {
+    "soort": "sportief",
+    "merk": "Metzeler",
+    "band": "Karoo Street",
+    "uitleg": "Grof profiel voor meer grip onverhard; op asfalt iets minder verfijnd.",
+    "inkoop_excl_btw": 112.72
+   }
+  ]
+ },
+ "toelichting_maten": "Eén regel per generatie/jaarreeks, altijd met bron. 'uitvoering': null = alle uitvoeringen; anders een lijst, waarbij \"\" = uitvoering onbekend ('Weet ik niet'). \"\" staat er alleen bij als alle uitvoeringen in die jaren dezelfde maten hebben. Niet zeker voor een jaarreeks of uitvoering = geen regel (klant kiest zelf).",
+ "toelichting_advies": "Advies wordt gezocht op breedte/hoogte/velgmaat (bv. 150/70 R18 en 150/70-18 vinden hetzelfde advies)."
+}
