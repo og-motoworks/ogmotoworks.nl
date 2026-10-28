@@ -1,0 +1,232 @@
+/* OG MotoWorks – aanvraagformulier → WhatsApp (+ optioneel een kopie per e-mail via Formspree). Plain JS.
+   Elke link naar wa.me/31642939555 opent eerst dit formulier; daarna opent WhatsApp met een kant-en-klaar bericht.
+   Motorgegevens komen uit de gedeelde motorkeuze (assets/js/motor.js) en worden na versturen onthouden (alleen op dit apparaat).
+   Zonder JS (of zonder <dialog>-ondersteuning) werken de WhatsApp-links gewoon direct. */
+(function () {
+  'use strict';
+  var NUMBER = '31642939555';
+  // Formspree-endpoint (aan sinds 3 okt 2026; account info@ogmotoworks.nl, doel afspraken@ogmotoworks.nl). Leeg = uit (alleen WhatsApp).
+  // Aan: bij versturen gaat de aanvraag ook als e-mail via Formspree naar ons; WhatsApp opent altijd, ook als dat mislukt.
+  // Let op: bij uitzetten ook FORMSPREE_AAN = False in site-build/build_pages.py (privacyverklaring) en opnieuw bouwen.
+  var FORMSPREE_ENDPOINT = 'https://formspree.io/f/myezrojv';
+  var dlg = document.getElementById('wa-dialog');
+  if (!dlg || typeof dlg.showModal !== 'function' || !window.OGMotor) return;
+  var form = document.getElementById('wa-form');
+  var intentEl = form.elements.intent;
+  var lastTrigger = null;
+  var OTHER = OGMotor.OTHER;
+  var motor = OGMotor.bind('wa');
+  var T = OGMotor.T, I18N = OGMotor.i18n; // taal: zie motor.js (EN-pagina's laden assets/js/i18n-en.js)
+
+  // intent (data-wa-intent: afspraak/prijs/banden/vraag) + aangevinkte diensten → openingszin: zie OGMotor.klus.opening (motor.js)
+
+  function field(name) { return form.elements[name]; }
+  function clean(v) { return String(v || '').replace(/\s+/g, ' ').trim(); }
+
+  function setError(input, msg) {
+    var err = document.getElementById((input.getAttribute('aria-describedby') || input.id + '-err').split(' ')[0]);
+    if (msg) { input.setAttribute('aria-invalid', 'true'); if (err) err.textContent = msg; }
+    else { input.removeAttribute('aria-invalid'); if (err) err.textContent = ''; }
+  }
+
+  function validate() {
+    var first = null;
+    var plate = field('kenteken'), merk = field('merk'), model = field('model'), km = field('km');
+    var p = clean(plate.value).toUpperCase().replace(/\s/g, '-');
+    plate.value = p;
+    var pOk = /^[A-Z0-9]+(-[A-Z0-9]+)*$/.test(p) && p.replace(/-/g, '').length >= 4 && p.replace(/-/g, '').length <= 10;
+    setError(plate, p ? (pOk ? '' : T('Vul een geldig kenteken in, bijv. AB-12-CD.')) : T('Vul je kenteken in.'));
+    if (!pOk) first = first || plate;
+    [[merk, field('merk_anders'), T('Kies het merk.'), T('Vul het merk in.')],
+     [model, field('model_anders'), T('Kies het model.'), T('Vul het model in.')]].forEach(function (x) {
+      var sel = x[0], other = x[1], useOther = !other.hidden;
+      var ok = useOther ? clean(other.value) !== '' : clean(sel.value) !== '' && sel.value !== OTHER;
+      var target = useOther && (sel.value === OTHER || sel.hidden) ? other : sel;
+      setError(sel, ''); setError(other, '');
+      setError(target, ok ? '' : (useOther ? x[3] : x[2]));
+      if (!ok) first = first || target;
+    });
+    var by = field('bouwjaar');
+    var byOk = by.value !== '';
+    setError(by, byOk ? '' : T('Kies het bouwjaar.'));
+    if (!byOk) first = first || by;
+    var digits = clean(km.value).replace(/[.,\s]/g, '');
+    var kmOk = !digits || /^\d{1,7}$/.test(digits); // optioneel sinds 4 okt 2026 (verzoek Freddy): leeg mag, ingevuld = alleen cijfers
+    setError(km, kmOk ? '' : T('Vul alleen cijfers in, bijv. 23450.'));
+    if (!kmOk) first = first || km;
+    // jouw gegevens
+    var naam = field('naam'), tel = field('telefoon'), mail = field('email'), akk = field('akkoord');
+    var nOk = clean(naam.value).length >= 2;
+    setError(naam, nOk ? '' : T('Vul je naam in.')); if (!nOk) first = first || naam;
+    var t = clean(tel.value).replace(/[\s().-]/g, '');
+    var tOk = /^(\+|00)?\d{9,14}$/.test(t);
+    setError(tel, t ? (tOk ? '' : T('Vul een geldig telefoonnummer in, bijv. 06 12345678.')) : T('Vul je telefoonnummer in.')); if (!tOk) first = first || tel;
+    var m = clean(mail.value); // optioneel; alleen controleren als het is ingevuld
+    var mOk = !m || /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m);
+    setError(mail, mOk ? '' : T('Vul een geldig e-mailadres in, of laat het leeg.')); if (!mOk) first = first || mail;
+    setError(akk, akk.checked ? '' : T('Vink aan dat we je gegevens mogen gebruiken voor deze aanvraag.')); if (!akk.checked) first = first || akk;
+    return first;
+  }
+
+  // Alle gegevens uit het formulier als regels (ook bruikbaar voor een andere afleverroute)
+  function collect() {
+    var by = motor.bouwjaar();
+    var kmTxt = clean(field('km').value).replace(/[.,\s]/g, ''), km = kmTxt === '' ? NaN : Number(kmTxt);
+    return {
+      intent: intentEl.value || 'afspraak',
+      klus: OGMotor.klus.lines(),
+      winter: OGMotor.klus.winter ? OGMotor.klus.winter.info() : null,
+      naam: clean(field('naam').value),
+      telefoon: clean(field('telefoon').value), email: clean(field('email').value), plaats: clean(field('plaats').value),
+      akkoord: !!field('akkoord').checked,
+      review: !!(field('review') && field('review').checked),
+      kenteken: clean(field('kenteken').value).toUpperCase(),
+      merk: motor.merk(), model: motor.model(), uitvoering: OGMotor.uvTxt(motor.uitvoering()),
+      bouwjaar: by ? OGMotor.yearText(by) : '',
+      km: isFinite(km) ? km : null,
+      banden: (field('banden') && clean(field('banden').value)) || (OGMotor.klus.get().items.indexOf('banden') !== -1 ? OGMotor.klus.get().banden : ''),
+      vraag: String(field('vraag').value || '').trim()
+    };
+  }
+  function buildMessage() {
+    var d = collect();
+    var op = OGMotor.klus.opening(d.intent);
+    var lines = [T('Hoi OG MotoWorks! ') + op.zin + (op.lijst.length && /:$/.test(op.zin) ? '\n' + op.lijst.map(function (x) { return '- ' + x; }).join('\n') : '')];
+    if (op.lijst.length && !/:$/.test(op.zin)) lines.push(T('Laten doen:') + '\n' + op.lijst.map(function (x) { return '- ' + x; }).join('\n'));
+    if (d.naam) lines.push(T('Naam: ') + d.naam);
+    if (d.telefoon) lines.push(T('Telefoon: ') + d.telefoon);
+    if (d.email) lines.push(T('E-mail: ') + d.email);
+    if (d.plaats) lines.push(T('Plaats/adres: ') + d.plaats);
+    lines.push(T('Kenteken: ') + d.kenteken);
+    lines.push(T('Merk/model: ') + clean(d.merk + ' ' + d.model));
+    if (d.uitvoering) lines.push(T('Uitvoering: ') + d.uitvoering);
+    lines.push(T('Bouwjaar: ') + d.bouwjaar);
+    if (d.km != null) lines.push(T('Kilometerstand: ') + d.km.toLocaleString(I18N.loc) + ' km'); // optioneel: alleen als ingevuld
+    var bo = bandOverzicht();
+    if (bo) lines.push(T('Banden – overzicht:') + '\n' + bo.regels.map(function (r) { return '- ' + r[0] + ': ' + r[1]; }).join('\n') + '\n' + bo.tekst + '\n' + DEF);
+    else if (d.banden) lines.push(T('Banden: ') + d.banden);
+    if (d.vraag) lines.push(T('Vraag: ') + d.vraag);
+    if (d.review) lines.push(T('Reviewverzoek per mail: ja'));
+    return lines.join('\n');
+  }
+  // Bandenoverzicht (regels + richtprijs) alleen als Banden aangevinkt is en het bandenmenu een overzicht heeft gemaakt
+  var DEF = T('Definitieve prijs na check in de offerte.');
+  function bandOverzicht() {
+    var kl = OGMotor.klus.get(), bx = kl.bandExtra;
+    return kl.items.indexOf('banden') !== -1 && bx && bx.regels && bx.regels.length && bx.tekst ? bx : null;
+  }
+  // Zachte melding (blokkeert niet): reviewverzoek aangevinkt maar geen e-mailadres
+  function reviewNote() {
+    var r = field('review'), note = document.getElementById('wa-review-note');
+    if (!r || !note) return;
+    note.textContent = r.checked && !clean(field('email').value) ? T('Voor de reviewmail hebben we je e-mailadres nodig. Vul het hierboven in als je die wilt ontvangen.') : '';
+  }
+  // Velden voor Formspree (worden in de mail getoond). Speciale Formspree-velden (help.formspree.io, Special Fields):
+  // 'subject' = onderwerp van de mail, 'email' = Reply-To (alleen meesturen als het een geldig adres is), '_gotcha' = honeypot.
+  // Lege/niet-van-toepassing velden worden weggelaten (geen '(niet ingevuld)' e.d.: spamfilters houden niet van lege of nep-waarden).
+  var MAIL_OK = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  function formspreeData() {
+    var d = collect(), kl = OGMotor.klus.get(), bx = d.banden && kl.items.indexOf('banden') !== -1 ? (kl.bandExtra || { ventielen: false, afvoeren: false, aantal: 0, totaal: null }) : null;
+    var motorTxt = clean(d.merk + ' ' + d.model), bo = bandOverzicht(), o = {};
+    function put(k, v) { if (v != null && String(v).trim() !== '') o[k] = String(v); }
+    // Veldnamen en onderwerp blijven Nederlands (voor ons); 'Taal' zegt in welke taal we antwoorden. Klantteksten zijn in de taal van de pagina.
+    put('subject', 'Nieuwe aanvraag via ogmotoworks.nl – ' + (d.naam || 'onbekend') + ' – ' + (motorTxt || 'motor') + (I18N.lang === 'en' ? ' [EN]' : ''));
+    put('Taal', I18N.lang === 'en' ? 'EN' : 'NL');
+    put('Soort aanvraag', (function (op) { return op.zin + (/:$/.test(op.zin) ? ' ' + op.lijst.join('; ') : ''); })(OGMotor.klus.opening(d.intent)));
+    put('Naam', d.naam); put('Telefoon', d.telefoon);
+    if (MAIL_OK.test(d.email)) put('email', d.email);
+    put('Plaats/adres', d.plaats); put('Kenteken', d.kenteken); put('Merk/model', motorTxt); put('Uitvoering', d.uitvoering);
+    put('Bouwjaar', d.bouwjaar); put('Kilometerstand', d.km == null ? '' : d.km.toLocaleString('nl-NL') + ' km'); // leeg = weggelaten
+    if (d.klus.length) put('Laten doen', d.klus.join('; '));
+    put('Banden', d.banden);
+    if (bx) {
+      put('Haakse ventielen', bx.ventielen ? 'ja (+€20 per set, als het past)' : 'nee');
+      put('Oude band afvoeren', bx.afvoeren ? 'ja (' + (bx.aantal ? bx.aantal + ' × €5' : '€5 per band') + ')' : 'nee');
+    }
+    if (bo) { put('Banden overzicht', bo.regels.map(function (r) { return r[0] + ': ' + r[1]; }).join('\n')); put('Richtprijs banden', bo.tekst + ' (incl. btw). ' + DEF); }
+    put('Vraag', d.vraag);
+    if (d.winter) { put('Winterpakket', d.winter.naam || '(nog kiezen)'); }
+    put('Akkoord gegevens voor deze aanvraag', d.akkoord ? 'ja' : 'nee');
+    put('Toestemming reviewverzoek per mail', d.review ? 'ja' : 'nee');
+    put('Pagina', location.pathname);
+    o._gotcha = '';
+    return o;
+  }
+  // Stil versturen: geen foutmelding voor de klant; WhatsApp is altijd de hoofdroute
+  function sendFormspree() {
+    if (!FORMSPREE_ENDPOINT || !window.fetch) return false;
+    if (clean(field('_gotcha') && field('_gotcha').value)) return false; // honeypot ingevuld = bot
+    try {
+      // FormData + Accept: application/json = 'simple' CORS-verzoek (geen preflight), werkt ook met keepalive
+      var o = formspreeData(), fd = new FormData();
+      Object.keys(o).forEach(function (k) { fd.append(k, o[k]); });
+      fetch(FORMSPREE_ENDPOINT, { method: 'POST', keepalive: true, headers: { 'Accept': 'application/json' }, body: fd }).catch(function () {});
+    } catch (err) {}
+    return true;
+  }
+  function waUrl() { return 'https://wa.me/' + NUMBER + '?text=' + encodeURIComponent(buildMessage()); }
+
+  // knop met data-dienst → bijbehorend vinkje in 'Wat wil je laten doen?' aan
+  function setDienst(v) { var id = OGMotor.klus.fromDienst(v); if (id) OGMotor.klus.add(id); }
+
+  function open(trigger) {
+    lastTrigger = trigger;
+    intentEl.value = (trigger && trigger.getAttribute('data-wa-intent')) || 'afspraak';
+    if (trigger && trigger.hasAttribute('data-dienst')) setDienst(trigger.getAttribute('data-dienst'));
+    if (trigger && trigger.hasAttribute('data-winterpakket') && OGMotor.klus.winter) OGMotor.klus.winter.set(trigger.getAttribute('data-winterpakket'));
+    if (field('banden')) field('banden').value = (trigger && trigger.getAttribute('data-banden')) || field('banden').value || '';
+    var saved = OGMotor.get();
+    var filled = saved ? motor.fill(saved) : OGMotor.load();
+    dlg.showModal();
+    field('kenteken').focus();
+    return filled;
+  }
+  function close() { dlg.close(); }
+
+  document.addEventListener('click', function (e) {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var a = e.target.closest && e.target.closest('a[href^="https://wa.me/' + NUMBER + '"]');
+    if (!a || dlg.contains(a)) return;
+    e.preventDefault();
+    open(a);
+  });
+
+  field('kenteken').addEventListener('input', function () {
+    var el = this, pos = el.selectionStart;
+    el.value = el.value.toUpperCase();
+    try { el.setSelectionRange(pos, pos); } catch (err) {}
+  });
+
+  function clearOnEdit(e) {
+    if (e.target.getAttribute('aria-invalid') === 'true') setError(e.target, '');
+  }
+  form.addEventListener('input', clearOnEdit);
+  form.addEventListener('change', clearOnEdit);
+  if (field('review')) { field('review').addEventListener('change', reviewNote); field('email').addEventListener('input', reviewNote); }
+  var fsNote = dlg.querySelector('[data-fs-note]'); if (fsNote && FORMSPREE_ENDPOINT) fsNote.hidden = false;
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var bad = validate();
+    if (bad) { bad.focus(); return; }
+    OGMotor.set(motor.read());
+    reviewNote();
+    sendFormspree();
+    var url = waUrl();
+    var w = window.open(url, '_blank', 'noopener');
+    if (!w) window.location.href = url;
+    close();
+  });
+
+  dlg.querySelectorAll('[data-wa-close]').forEach(function (b) { b.addEventListener('click', close); });
+  // Esc in een open zoeklijst sluit alleen die lijst, niet het formulier
+  dlg.addEventListener('cancel', function (e) { if (window.OGCombo && OGCombo.anyOpen(dlg)) e.preventDefault(); });
+  // Klik op de achtergrond (buiten het paneel) sluit ook
+  dlg.addEventListener('click', function (e) { if (e.target === dlg) close(); });
+  dlg.addEventListener('close', function () {
+    if (lastTrigger && typeof lastTrigger.focus === 'function') lastTrigger.focus();
+  });
+
+  // Voor testen/screenshots
+  window.ogWaForm = { open: open, buildMessage: buildMessage, collect: collect, validate: validate, formspreeData: formspreeData, endpoint: function () { return FORMSPREE_ENDPOINT; }, loadModels: OGMotor.load, waUrl: waUrl };
+})();
