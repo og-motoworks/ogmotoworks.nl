@@ -2,7 +2,7 @@
  "versie": 1,
  "bron": "Google Maps (Places API New)",
  "place_id": "ChIJwTtwaLGVxkcRzA1mWT-fP6Q",
- "bijgewerkt": "2026-10-08T21:12:07Z",
+ "bijgewerkt": "2026-10-28T03:01:40Z",
  "toon": 6,
  "alle_reviews_url": "https://www.google.com/maps/search/?api=1&query=OG%20MotoWorks&query_place_id=ChIJwTtwaLGVxkcRzA1mWT-fP6Q",
  "reviews": [
@@ -63,6 +63,28 @@
    }
   },
   {
+   "id": "places/ChIJwTtwaLGVxkcRzA1mWT-fP6Q/reviews/Ci9DQUlRQUNvZENodHljRjlvT25WcFgyczBNMGQwVEZOR2JuTk5lSEF5VkZoa1gxRRAB",
+   "naam": "linda gillis",
+   "sterren": 5,
+   "tekst": "Fijne motorzaak en is bereid om mee te denken! Persoonlijk contact en service. Een aanrader als je een betrouwbaar adres zoekt voor je motorbike!",
+   "taal": "nl",
+   "datum": "2026-08-26T12:55:41Z",
+   "auteur_url": "https://www.google.com/maps/contrib/100041240406356594647/reviews",
+   "google_url": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sCi9DQUlRQUNvZENodHljRjlvT25WcFgyczBNMGQwVEZOR2JuTk5lSEF5VkZoa1gxRRAB!2m1!1s0x47c695b168703bc1:0xa43f9f3f59660dcc",
+   "bron": "google",
+   "seed": {
+    "id": "seed-4",
+    "naam": "Linda G.",
+    "sterren": 5,
+    "tekst": "Fijne motorzaak en is bereid om mee te denken! Persoonlijk contact en service. Een aanrader als je een betrouwbaar adres zoekt voor …",
+    "taal": "nl",
+    "datum": "",
+    "auteur_url": "",
+    "google_url": "",
+    "bron": "seed"
+   }
+  },
+  {
    "id": "places/ChIJwTtwaLGVxkcRzA1mWT-fP6Q/reviews/Ci9DQUlRQUNvZENodHljRjlvT2tWSGNtNW1OR05IY205eGRWZFNZVWxGTm5oMVoyYxAB",
    "naam": "Darko A.",
    "sterren": 5,
@@ -89,17 +111,6 @@
    "naam": "Ismael B.",
    "sterren": 5,
    "tekst": "Ik had een lekke band en gelukkig kon ik dezelfde dag nog terecht bij OG Motoworks. De communicatie verloopt erg fijn en …",
-   "taal": "nl",
-   "datum": "",
-   "auteur_url": "",
-   "google_url": "",
-   "bron": "seed"
-  },
-  {
-   "id": "seed-4",
-   "naam": "Linda G.",
-   "sterren": 5,
-   "tekst": "Fijne motorzaak en is bereid om mee te denken! Persoonlijk contact en service. Een aanrader als je een betrouwbaar adres zoekt voor …",
    "taal": "nl",
    "datum": "",
    "auteur_url": "",
