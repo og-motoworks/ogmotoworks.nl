@@ -18,3 +18,7 @@
 .kw-eigen{display:block;font-weight:700;margin:12px 0 6px}.kw-eigen span{font-weight:400;opacity:.7}
 #kw-eigen{width:100%;box-sizing:border-box;padding:10px;border-radius:10px;border:2px solid rgba(127,127,127,.35);background:transparent;color:inherit;font:inherit}
 .kw-foto{font-size:15px}
+
+.kw-tile .ic{display:none}
+.kw-tile.foto{min-height:132px;justify-content:flex-end;background-size:cover;background-position:center;background-color:#111;color:#fff;border-color:#222;text-shadow:0 1px 3px rgba(0,0,0,.8);font-size:18px}
+.kw-tile.foto:hover,.kw-tile.foto:focus-visible{border-color:#d32f2f}

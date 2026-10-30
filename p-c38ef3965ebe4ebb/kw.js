@@ -4,12 +4,12 @@ var box=document.getElementById('kw'),mbox=document.getElementById('kw-motor'),D
 var WEET='Weet ik niet / anders';
 function esc(t){return String(t).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
 function step(n){document.querySelectorAll('.kw-steps li').forEach(function(l){l.classList.toggle('on',+l.dataset.s===n);});}
-function tile(label,ic,cls,fn){var b=document.createElement('button');b.type='button';b.className='kw-tile '+(cls||'');b.innerHTML=(ic?'<span class="ic" aria-hidden="true">'+ic+'</span>':'')+'<span>'+esc(label)+'</span>';b.onclick=fn;return b;}
+function tile(label,foto,cls,fn){var b=document.createElement('button');b.type='button';b.className='kw-tile '+(cls||'')+(foto?' foto':'');if(foto)b.style.backgroundImage='linear-gradient(180deg,rgba(0,0,0,.15) 0%,rgba(0,0,0,.82) 100%),url('+foto+')';b.innerHTML='<span>'+esc(label)+'</span>';b.onclick=fn;return b;}
 function grid(title,tiles,back){box.innerHTML='<h2>'+esc(title)+'</h2>';var g=document.createElement('div');g.className='kw-grid';tiles.forEach(function(t){g.appendChild(t);});box.appendChild(g);
  if(back){var b=document.createElement('button');b.className='kw-back';b.textContent='← Terug';b.onclick=back;box.appendChild(b);} mbox.hidden=true;box.hidden=false;box.scrollIntoView({block:'start'});}
-function s1(){st={};step(1);grid('Wat merk je?',D.voorkant.map(function(v){return tile(v.label,v.icon,v.id==='anders'?'weet':'',function(){st.sym=v;s2();});}));}
+function s1(){st={};step(1);grid('Wat merk je?',D.voorkant.map(function(v){return tile(v.label,v.foto,v.id==='anders'?'weet':'',function(){st.sym=v;s2();});}));}
 function s2(){step(2);var t=st.sym.opties.map(function(o){return tile(o.label,'',o.veilig?'red':'',function(){st.opt=o;s3();});});
- t.push(tile(WEET,'❓','weet',function(){st.opt=null;s3();}));grid(st.sym.label+': wat precies?',t,s1);}
+ t.push(tile(WEET,'','weet',function(){st.opt=null;s3();}));grid(st.sym.label+': wat precies?',t,s1);}
 function s3(){step(3);box.hidden=true;mbox.hidden=false;mbox.scrollIntoView({block:'start'});}
 document.getElementById('kw-motor-ok').onclick=function(){st.motor=window.OGMotor&&OGMotor.get();s4();};
 document.getElementById('kw-motor-skip').onclick=function(){st.motor=null;s4();};

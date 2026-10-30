@@ -6,7 +6,6 @@
   {
    "id": "starten-elektra",
    "label": "Starten & elektra",
-   "icon": "⚡",
    "items": [
     {
      "id": "motor-start-niet",
@@ -111,7 +110,6 @@
   {
    "id": "motor-rijden",
    "label": "Motor & rijden",
-   "icon": "🏍️",
    "items": [
     {
      "id": "te-weinig-vermogen",
@@ -214,7 +212,6 @@
   {
    "id": "remmen",
    "label": "Remmen",
-   "icon": "🛑",
    "items": [
     {
      "id": "remt-te-zwak",
@@ -278,7 +275,6 @@
   {
    "id": "koppeling-versnellingsbak",
    "label": "Koppeling & versnellingsbak",
-   "icon": "⚙️",
    "items": [
     {
      "id": "koppeling",
@@ -329,7 +325,6 @@
   {
    "id": "aandrijving",
    "label": "Aandrijving",
-   "icon": "🔗",
    "items": [
     {
      "id": "ketting",
@@ -398,7 +393,6 @@
   {
    "id": "vering-stuur",
    "label": "Vering & stuur",
-   "icon": "🛞",
    "items": [
     {
      "id": "voorvork",
@@ -470,7 +464,6 @@
   {
    "id": "koeling",
    "label": "Koeling",
-   "icon": "🌡️",
    "items": [
     {
      "id": "te-heet",
@@ -503,7 +496,6 @@
   {
    "id": "brandstof",
    "label": "Brandstof",
-   "icon": "⛽",
    "items": [
     {
      "id": "carburateurs",
@@ -568,7 +560,6 @@
   {
    "id": "banden-wielen",
    "label": "Banden & wielen",
-   "icon": "🛞",
    "items": [
     {
      "id": "banden",
@@ -620,7 +611,6 @@
   {
    "id": "lekkages",
    "label": "Lekkages",
-   "icon": "💧",
    "items": [
     {
      "id": "olie",
@@ -663,7 +653,6 @@
   {
    "id": "onderhoud",
    "label": "Onderhoud",
-   "icon": "🔧",
    "items": [
     {
      "id": "kleine-beurt",
@@ -698,7 +687,6 @@
   {
    "id": "overig",
    "label": "Overig",
-   "icon": "➕",
    "items": [
     {
      "id": "valschade",
@@ -889,7 +877,6 @@
   {
    "id": "start",
    "label": "Hij start niet",
-   "icon": "🔑",
    "opties": [
     {
      "label": "Ik hoor alleen een klik",
@@ -916,12 +903,12 @@
      "cat": "brandstof",
      "tekst": "Vertel kort wat er speelt en stuur desnoods een foto — we helpen je verder."
     }
-   ]
+   ],
+   "foto": "img/kw-start.webp"
   },
   {
    "id": "rijdt",
    "label": "Hij rijdt slecht",
-   "icon": "🏍️",
    "opties": [
     {
      "label": "Te weinig vermogen",
@@ -973,12 +960,12 @@
      "cat": "koppeling-versnellingsbak",
      "tekst": "Hij gaat niet in zijn versnelling of blijft in neutraal hangen. We kijken naar schakeling, koppeling en sensor."
     }
-   ]
+   ],
+   "foto": "img/kw-rijdt.webp"
   },
   {
    "id": "geluid",
    "label": "Geluid of trilling",
-   "icon": "🔊",
    "opties": [
     {
      "label": "Tikken of ratelen uit de motor",
@@ -1021,12 +1008,12 @@
      "cat": "motor-rijden",
      "tekst": "De motor trilt tijdens het rijden. We kijken naar banden, wielen, ketting en motorophanging."
     }
-   ]
+   ],
+   "foto": "img/kw-geluid.webp"
   },
   {
    "id": "lekt",
    "label": "Er lekt iets",
-   "icon": "💧",
    "opties": [
     {
      "label": "Olie",
@@ -1061,12 +1048,12 @@
      "cat": "lekkages",
      "tekst": "Er lekt iets, maar je weet niet wat — stuur een foto mee."
     }
-   ]
+   ],
+   "foto": "img/kw-lekt.webp"
   },
   {
    "id": "banden",
    "label": "Banden, remmen & ketting",
-   "icon": "🛑",
    "opties": [
     {
      "label": "Lekke band",
@@ -1113,12 +1100,12 @@
      "tekst": "Je hoort of voelt de remmen schuren. Vaak zijn de remblokken op; we controleren blokken en schijven.",
      "veilig": true
     }
-   ]
+   ],
+   "foto": "img/kw-banden.webp"
   },
   {
    "id": "onderhoud",
    "label": "Onderhoud of keuring",
-   "icon": "🔧",
    "opties": [
     {
      "label": "Klein onderhoud",
@@ -1160,12 +1147,12 @@
      "cat": "onderhoud",
      "tekst": "Heb je een rijschool of meerdere motoren? App ons, dan plannen we het onderhoud samen in."
     }
-   ]
+   ],
+   "foto": "img/kw-onderhoud.webp"
   },
   {
    "id": "anders",
    "label": "Anders / weet ik niet",
-   "icon": "❓",
    "opties": [
     {
      "label": "Verlichting of elektra",
@@ -1197,7 +1184,8 @@
      "cat": "overig",
      "tekst": "Vertel kort wat er speelt en stuur desnoods een foto — we helpen je verder."
     }
-   ]
+   ],
+   "foto": "img/kw-anders.webp"
   }
  ],
  "tekst_weet_niet": "Vertel kort wat er speelt en stuur desnoods een foto — we helpen je verder.",
