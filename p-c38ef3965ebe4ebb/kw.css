@@ -25,3 +25,9 @@
 .kw-grid.kw-two{grid-template-columns:1fr 1fr}
 .kw-two .kw-tile.foto{min-height:220px;font-size:24px}
 @media(min-width:720px){.kw-two .kw-tile.foto{min-height:300px;font-size:28px}}
+
+/* motor-type silhouet (JPG) in motorstap */
+.mp__view{display:grid;grid-template-columns:auto 1fr;gap:12px 16px;align-items:center}
+.mp__sil-wrap{display:block;width:136px;max-width:100%}
+img.mp__sil{display:block;width:100%;height:auto;object-fit:contain;border-radius:10px}
+@media (max-width:480px){.mp__sil-wrap{width:112px}}
