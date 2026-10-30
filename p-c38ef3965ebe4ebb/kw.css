@@ -22,3 +22,6 @@
 .kw-tile .ic{display:none}
 .kw-tile.foto{min-height:132px;justify-content:flex-end;background-size:cover;background-position:center;background-color:#111;color:#fff;border-color:#222;text-shadow:0 1px 3px rgba(0,0,0,.8);font-size:18px}
 .kw-tile.foto:hover,.kw-tile.foto:focus-visible{border-color:#d32f2f}
+.kw-grid.kw-two{grid-template-columns:1fr 1fr}
+.kw-two .kw-tile.foto{min-height:220px;font-size:24px}
+@media(min-width:720px){.kw-two .kw-tile.foto{min-height:300px;font-size:28px}}

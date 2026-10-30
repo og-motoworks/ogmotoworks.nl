@@ -961,7 +961,15 @@
      "tekst": "Hij gaat niet in zijn versnelling of blijft in neutraal hangen. We kijken naar schakeling, koppeling en sensor."
     }
    ],
-   "foto": "img/kw-rijdt.jpg"
+   "foto": "img/kw-rijdt.jpg",
+   "toon": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    6
+   ]
   },
   {
    "id": "geluid",
@@ -1009,7 +1017,15 @@
      "tekst": "De motor trilt tijdens het rijden. We kijken naar banden, wielen, ketting en motorophanging."
     }
    ],
-   "foto": "img/kw-geluid.jpg"
+   "foto": "img/kw-geluid.jpg",
+   "toon": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+   ]
   },
   {
    "id": "lekt",
@@ -1053,7 +1069,7 @@
   },
   {
    "id": "banden",
-   "label": "Banden, remmen & ketting",
+   "label": "Banden, remmen of ketting",
    "opties": [
     {
      "label": "Lekke band",
@@ -1101,7 +1117,15 @@
      "veilig": true
     }
    ],
-   "foto": "img/kw-banden.jpg"
+   "foto": "img/kw-banden.jpg",
+   "toon": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    6
+   ]
   },
   {
    "id": "onderhoud",
@@ -1192,5 +1216,85 @@
  "tekst_veilig": "Niet mee rijden; bel of app ons.",
  "label_typisch": "Vaak gezien bij dit type",
  "label_eigen": "Wat denk je zelf?",
- "tekst_foto": "Stuur een foto of kort filmpje mee via WhatsApp."
+ "tekst_foto": "Stuur een foto of kort filmpje mee via WhatsApp.",
+ "n0": [
+  {
+   "id": "onderhoud",
+   "label": "Onderhoud",
+   "foto": "img/kw-onderhoud.jpg"
+  },
+  {
+   "id": "probleem",
+   "label": "Probleem",
+   "foto": "img/kw-start.jpg"
+  }
+ ],
+ "probleem_ids": [
+  "start",
+  "rijdt",
+  "geluid",
+  "lekt",
+  "banden",
+  "anders"
+ ],
+ "onderhoud_flow": {
+  "niveau1": [
+   {
+    "label": "Kleine beurt",
+    "cat": "onderhoud",
+    "tekst": "Olie- en filterwisseling.",
+    "foto": "img/kw-onderhoud.jpg"
+   },
+   {
+    "label": "Grote beurt",
+    "cat": "onderhoud",
+    "tekst": "Uitgebreider onderhoud, zoals filters, bougies en vloeistoffen.",
+    "foto": "img/kw-onderhoud.jpg"
+   },
+   {
+    "id": "specifiek",
+    "label": "Iets specifiek",
+    "foto": "img/kw-banden.jpg"
+   }
+  ],
+  "weet_niveau1": {
+   "label": "Weet ik niet — complete check",
+   "cat": "onderhoud",
+   "tekst": "We lopen je motor helemaal na: remmen, banden, ketting, vloeistoffen, verlichting en elektra. Je hoort vooraf wat we vinden."
+  },
+  "specifiek": [
+   {
+    "label": "Voorvork / vering",
+    "cat": "vering-stuur",
+    "tekst": "We controleren je voorvork en vering op lekkage en slijtage, en vervangen olie en keerringen als dat nodig is.",
+    "draft": true
+   },
+   {
+    "label": "Kleppen",
+    "cat": "onderhoud",
+    "tekst": "Service volgens het boek, bijvoorbeeld kleppen stellen."
+   },
+   {
+    "label": "Ketting / aandrijving",
+    "cat": "aandrijving",
+    "tekst": "Je ketting is te slap, ratelt of is aan vervanging toe. We stellen die af of vervangen ketting en tandwielen als dat nodig is."
+   },
+   {
+    "label": "Remmen",
+    "cat": "remmen",
+    "tekst": "We controleren remblokken, schijven en remvloeistof, en vervangen wat versleten is.",
+    "draft": true
+   },
+   {
+    "label": "Banden",
+    "cat": "banden-wielen",
+    "tekst": "Twijfel over profiel, lek of ouderdom, of je wilt nieuwe banden."
+   },
+   {
+    "label": "Anders",
+    "cat": "onderhoud",
+    "tekst": "Vertel kort wat er speelt en stuur desnoods een foto — we helpen je verder."
+   }
+  ]
+ }
 }
