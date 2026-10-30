@@ -1,7 +1,8 @@
-/* OG MotoWorks – keuzewijzer (PREVIEW). N0 Onderhoud|Probleem → niveaus → motor (OGMotor) → advies. Boom: keuzewijzer.json. */
+/* OG MotoWorks – keuzewijzer (PREVIEW). N0 Onderhoud|Motorproblemen/reparatie → niveaus → motor (OGMotor) → advies. Boom: keuzewijzer.json. */
 (function(){'use strict';
 var box=document.getElementById('kw'),mbox=document.getElementById('kw-motor'),D=null,st={},hist=[];
 var WEET='Weet ik niet / anders';
+function n0lab(id){var x=(D.n0||[]).filter(function(n){return n.id===id;})[0];return x&&x.label?x.label:(id==='probleem'?'Motorproblemen / reparatie':id);}
 function esc(t){return String(t).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
 function step(n){document.querySelectorAll('.kw-steps li').forEach(function(l){l.classList.toggle('on',+l.dataset.s===n);});}
 function tile(label,foto,cls,fn){var b=document.createElement('button');b.type='button';b.className='kw-tile '+(cls||'')+(foto?' foto':'');if(foto)b.style.backgroundImage='linear-gradient(180deg,rgba(0,0,0,.15) 0%,rgba(0,0,0,.82) 100%),url('+foto+')';b.innerHTML='<span>'+esc(label)+'</span>';b.onclick=fn;return b;}
@@ -14,9 +15,9 @@ function n0(){st={pad:[]};step(1);grid('Waar kunnen we je mee helpen?',D.n0.map(
 function o1(){st.pad=['Onderhoud'];step(2);var F=D.onderhoud_flow,t=F.niveau1.map(function(o){return o.id==='specifiek'?tile(o.label,o.foto,'',function(){st.pad=['Onderhoud',o.label];o2();}):opt(o);});
  t.push(weet(F.weet_niveau1));grid('Wat voor onderhoud?',t,n0);st.back=o1;}
 function o2(){step(2);var t=D.onderhoud_flow.specifiek.map(opt);t.push(weet(null));grid('Waar gaat het om?',t,o1);st.back=o2;}
-/* Probleem */
+/* Motorproblemen */
 function sym(id){return D.voorkant.filter(function(v){return v.id===id;})[0];}
-function p1(){st.pad=['Probleem'];step(2);grid('Wat merk je?',D.probleem_ids.map(function(id){var v=sym(id);return tile(v.label,v.foto,id==='anders'?'weet':'',function(){st.sym=v;st.pad=['Probleem',v.label];p2();});}),n0);}
+function p1(){st.pad=[n0lab('probleem')];step(2);grid('Wat merk je?',D.probleem_ids.map(function(id){var v=sym(id);return tile(v.label,v.foto,id==='anders'?'weet':'',function(){st.sym=v;st.pad=[n0lab('probleem'),v.label];p2();});}),n0);}
 function p2(){step(2);var v=st.sym,os=v.toon?v.toon.map(function(i){return v.opties[i];}):v.opties;var t=os.map(opt);t.push(weet(null));grid(v.label+': wat precies?',t,p1);st.back=p2;}
 function motor(){step(3);box.hidden=true;mbox.hidden=false;mbox.scrollIntoView({block:'start'});}
 document.getElementById('kw-motor-ok').onclick=function(){st.motor=window.OGMotor&&OGMotor.get();res();};
@@ -24,10 +25,10 @@ document.getElementById('kw-motor-skip').onclick=function(){st.motor=null;res();
 function cat(id){return D.categorieen.filter(function(c){return c.id===id;})[0];}
 function chips(m){if(!m)return[];var n=(m.merk+' '+m.model+' '+(m.uitvoering||'')).toLowerCase(),out=[];
  D.typisch.forEach(function(t){if(t.match.some(function(k){return n.indexOf(k)>=0;}))out=out.concat(t.chips);});return out;}
-function res(){step(4);var o=st.opt,c=o&&cat(o.cat),veilig=o&&(o.veilig||(c&&c.veilig&&st.pad[0]==='Probleem'));
+function res(){step(4);var o=st.opt,c=o&&cat(o.cat),veilig=o&&(o.veilig||(c&&c.veilig&&st.pad[0]===n0lab('probleem')));
  var motor=st.motor&&window.OGMotor?OGMotor.label(st.motor):'';
  var pad=st.pad.join(' > '),ond=st.pad[0]==='Onderhoud';
- var msg='Hoi OG MotoWorks, ik heb een vraag via de keuzewijzer.\n'+(ond?'Onderhoud: ':'Probleem: ')+pad.replace(/^(Onderhoud|Probleem) > /,'')+(motor?'\nMotor: '+motor:'')+'\n(Ik stuur zo een foto of filmpje mee.)';st.msg=msg;
+ var pl=n0lab('probleem');var msg='Hoi OG MotoWorks, ik heb een vraag via de keuzewijzer.\n'+(ond?'Onderhoud: ':pl+': ')+pad.replace(/^.+? > /,'')+(motor?'\nMotor: '+motor:'')+'\n(Ik stuur zo een foto of filmpje mee.)';st.msg=msg;
  var wa='https://wa.me/'+D.whatsapp+'?text='+encodeURIComponent(msg);
  var ch=chips(st.motor),h='<div class="kw-res"><h2>'+esc(o?o.label:'We kijken graag met je mee')+'</h2>';
  if(veilig)h+='<p class="kw-safe">⚠️ '+esc(D.tekst_veilig||'Niet mee rijden; bel of app ons.')+'</p>';
