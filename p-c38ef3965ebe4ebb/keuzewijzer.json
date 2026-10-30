@@ -904,7 +904,7 @@
      "tekst": "Vertel kort wat er speelt en stuur desnoods een foto — we helpen je verder."
     }
    ],
-   "foto": "img/kw-start.webp"
+   "foto": "img/kw-start.jpg"
   },
   {
    "id": "rijdt",
@@ -961,7 +961,7 @@
      "tekst": "Hij gaat niet in zijn versnelling of blijft in neutraal hangen. We kijken naar schakeling, koppeling en sensor."
     }
    ],
-   "foto": "img/kw-rijdt.webp"
+   "foto": "img/kw-rijdt.jpg"
   },
   {
    "id": "geluid",
@@ -1009,7 +1009,7 @@
      "tekst": "De motor trilt tijdens het rijden. We kijken naar banden, wielen, ketting en motorophanging."
     }
    ],
-   "foto": "img/kw-geluid.webp"
+   "foto": "img/kw-geluid.jpg"
   },
   {
    "id": "lekt",
@@ -1049,7 +1049,7 @@
      "tekst": "Er lekt iets, maar je weet niet wat — stuur een foto mee."
     }
    ],
-   "foto": "img/kw-lekt.webp"
+   "foto": "img/kw-lekt.jpg"
   },
   {
    "id": "banden",
@@ -1101,7 +1101,7 @@
      "veilig": true
     }
    ],
-   "foto": "img/kw-banden.webp"
+   "foto": "img/kw-banden.jpg"
   },
   {
    "id": "onderhoud",
@@ -1148,7 +1148,7 @@
      "tekst": "Heb je een rijschool of meerdere motoren? App ons, dan plannen we het onderhoud samen in."
     }
    ],
-   "foto": "img/kw-onderhoud.webp"
+   "foto": "img/kw-onderhoud.jpg"
   },
   {
    "id": "anders",
@@ -1185,7 +1185,7 @@
      "tekst": "Vertel kort wat er speelt en stuur desnoods een foto — we helpen je verder."
     }
    ],
-   "foto": "img/kw-anders.webp"
+   "foto": "img/kw-anders.jpg"
   }
  ],
  "tekst_weet_niet": "Vertel kort wat er speelt en stuur desnoods een foto — we helpen je verder.",
