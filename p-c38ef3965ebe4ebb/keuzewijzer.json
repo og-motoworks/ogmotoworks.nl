@@ -1,0 +1,1208 @@
+{
+ "versie": "preview-2026-10-30",
+ "bron": "Werkplaats boom volledig 30-10-2026",
+ "whatsapp": "31642939555",
+ "categorieen": [
+  {
+   "id": "starten-elektra",
+   "label": "Starten & elektra",
+   "icon": "⚡",
+   "items": [
+    {
+     "id": "motor-start-niet",
+     "label": "Motor start niet",
+     "items": [
+      {
+       "id": "alleen-een-klik",
+       "label": "Alleen een klik"
+      },
+      {
+       "id": "start-traag",
+       "label": "Start traag"
+      },
+      {
+       "id": "draait-maar-slaat-niet-aan",
+       "label": "Draait maar slaat niet aan"
+      },
+      {
+       "id": "slaat-aan-en-valt-af",
+       "label": "Slaat aan en valt af"
+      }
+     ]
+    },
+    {
+     "id": "accu",
+     "label": "Accu",
+     "items": [
+      {
+       "id": "leeg-na-stilstand",
+       "label": "Leeg na stilstand"
+      },
+      {
+       "id": "leeg-tijdens-rijden-laadsysteem",
+       "label": "Leeg tijdens rijden (laadsysteem)"
+      },
+      {
+       "id": "oud-na-de-winter",
+       "label": "Oud / na de winter"
+      }
+     ]
+    },
+    {
+     "id": "verlichting",
+     "label": "Verlichting",
+     "items": [
+      {
+       "id": "koplamp-achterlicht-remlicht",
+       "label": "Koplamp / achterlicht / remlicht"
+      },
+      {
+       "id": "knipperlichten-te-snel-of-niet",
+       "label": "Knipperlichten te snel of niet"
+      },
+      {
+       "id": "flikkeren",
+       "label": "Flikkeren"
+      }
+     ]
+    },
+    {
+     "id": "dashboard-lampjes",
+     "label": "Dashboard & lampjes",
+     "items": [
+      {
+       "id": "motorlampje-brandt",
+       "label": "Motorlampje brandt"
+      },
+      {
+       "id": "abs-of-tractielampje",
+       "label": "ABS- of tractielampje"
+      },
+      {
+       "id": "dashboard-uit-of-doet-vreemd",
+       "label": "Dashboard uit of doet vreemd"
+      }
+     ]
+    },
+    {
+     "id": "overige-elektra",
+     "label": "Overige elektra",
+     "items": [
+      {
+       "id": "claxon",
+       "label": "Claxon"
+      },
+      {
+       "id": "zekering",
+       "label": "Zekering"
+      },
+      {
+       "id": "alarm-immobilizer",
+       "label": "Alarm / immobilizer"
+      },
+      {
+       "id": "accessoires",
+       "label": "Accessoires"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "motor-rijden",
+   "label": "Motor & rijden",
+   "icon": "🏍️",
+   "items": [
+    {
+     "id": "te-weinig-vermogen",
+     "label": "Te weinig vermogen",
+     "items": [
+      {
+       "id": "trekt-slecht",
+       "label": "Trekt slecht"
+      },
+      {
+       "id": "haalt-topsnelheid-niet",
+       "label": "Haalt topsnelheid niet"
+      }
+     ]
+    },
+    {
+     "id": "stotteren-inhouden",
+     "label": "Stotteren / inhouden",
+     "items": [
+      {
+       "id": "bij-optrekken",
+       "label": "Bij optrekken"
+      },
+      {
+       "id": "constant",
+       "label": "Constant"
+      },
+      {
+       "id": "alleen-koud-of-alleen-warm",
+       "label": "Alleen koud of alleen warm"
+      }
+     ]
+    },
+    {
+     "id": "stationair",
+     "label": "Stationair",
+     "items": [
+      {
+       "id": "slaat-af",
+       "label": "Slaat af"
+      },
+      {
+       "id": "te-hoog-schommelt",
+       "label": "Te hoog / schommelt"
+      }
+     ]
+    },
+    {
+     "id": "geluiden",
+     "label": "Geluiden",
+     "items": [
+      {
+       "id": "tikken-ratelen",
+       "label": "Tikken / ratelen"
+      },
+      {
+       "id": "knallen-in-de-uitlaat",
+       "label": "Knallen in de uitlaat"
+      },
+      {
+       "id": "fluiten",
+       "label": "Fluiten"
+      }
+     ]
+    },
+    {
+     "id": "rook",
+     "label": "Rook",
+     "items": [
+      {
+       "id": "blauwe-rook",
+       "label": "Blauwe rook"
+      },
+      {
+       "id": "zwarte-rook",
+       "label": "Zwarte rook"
+      },
+      {
+       "id": "witte-rook",
+       "label": "Witte rook"
+      }
+     ]
+    },
+    {
+     "id": "trillingen-verbruik",
+     "label": "Trillingen / verbruik",
+     "items": [
+      {
+       "id": "trillingen-nieuw-of-erger",
+       "label": "Trillingen nieuw of erger"
+      },
+      {
+       "id": "hoog-verbruik",
+       "label": "Hoog verbruik"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "remmen",
+   "label": "Remmen",
+   "icon": "🛑",
+   "items": [
+    {
+     "id": "remt-te-zwak",
+     "label": "Remt te zwak",
+     "items": [
+      {
+       "id": "sponzig",
+       "label": "Sponzig"
+      },
+      {
+       "id": "hendel-gaat-tot-het-handvat",
+       "label": "Hendel gaat tot het handvat"
+      }
+     ]
+    },
+    {
+     "id": "geluid",
+     "label": "Geluid",
+     "items": [
+      {
+       "id": "piepen",
+       "label": "Piepen"
+      },
+      {
+       "id": "schuren-blokken",
+       "label": "Schuren (blokken)"
+      }
+     ]
+    },
+    {
+     "id": "trillen-hangen",
+     "label": "Trillen / hangen",
+     "items": [
+      {
+       "id": "trillen-of-pulseren-schijf",
+       "label": "Trillen of pulseren (schijf)"
+      },
+      {
+       "id": "rem-blijft-hangen",
+       "label": "Rem blijft hangen"
+      }
+     ]
+    },
+    {
+     "id": "remvloeistof-abs",
+     "label": "Remvloeistof & ABS",
+     "items": [
+      {
+       "id": "remvloeistof-lekt-of-is-donker",
+       "label": "Remvloeistof lekt of is donker"
+      },
+      {
+       "id": "abs-lampje-of-abs-doet-vreemd",
+       "label": "ABS-lampje of ABS doet vreemd"
+      }
+     ]
+    }
+   ],
+   "veilig": true
+  },
+  {
+   "id": "koppeling-versnellingsbak",
+   "label": "Koppeling & versnellingsbak",
+   "icon": "⚙️",
+   "items": [
+    {
+     "id": "koppeling",
+     "label": "Koppeling",
+     "items": [
+      {
+       "id": "slipt",
+       "label": "Slipt"
+      },
+      {
+       "id": "sleept",
+       "label": "Sleept"
+      },
+      {
+       "id": "hendel-zwaar-slap-hydraulisch",
+       "label": "Hendel zwaar / slap / hydraulisch"
+      }
+     ]
+    },
+    {
+     "id": "schakelen",
+     "label": "Schakelen",
+     "items": [
+      {
+       "id": "schakelt-hard-hakt",
+       "label": "Schakelt hard / hakt"
+      },
+      {
+       "id": "springt-uit-de-versnelling",
+       "label": "Springt uit de versnelling"
+      },
+      {
+       "id": "neutraal-lastig-te-vinden",
+       "label": "Neutraal lastig te vinden"
+      },
+      {
+       "id": "versnelling-slaat-over",
+       "label": "Versnelling slaat over"
+      }
+     ]
+    },
+    {
+     "id": "quickshifter-dct-storing",
+     "label": "Quickshifter / DCT storing"
+    }
+   ]
+  },
+  {
+   "id": "aandrijving",
+   "label": "Aandrijving",
+   "icon": "🔗",
+   "items": [
+    {
+     "id": "ketting",
+     "label": "Ketting",
+     "items": [
+      {
+       "id": "slap",
+       "label": "Slap"
+      },
+      {
+       "id": "strak",
+       "label": "Strak"
+      },
+      {
+       "id": "ratelt",
+       "label": "Ratelt"
+      },
+      {
+       "id": "stijve-schakels",
+       "label": "Stijve schakels"
+      },
+      {
+       "id": "nieuwe-set-nodig",
+       "label": "Nieuwe set nodig"
+      }
+     ]
+    },
+    {
+     "id": "tandwielen-versleten",
+     "label": "Tandwielen versleten"
+    },
+    {
+     "id": "cardan",
+     "label": "Cardan",
+     "items": [
+      {
+       "id": "lekt",
+       "label": "Lekt"
+      },
+      {
+       "id": "klonkt",
+       "label": "Klonkt"
+      },
+      {
+       "id": "speling",
+       "label": "Speling"
+      }
+     ]
+    },
+    {
+     "id": "riem",
+     "label": "Riem",
+     "items": [
+      {
+       "id": "scheurtjes",
+       "label": "Scheurtjes"
+      },
+      {
+       "id": "geluid",
+       "label": "Geluid"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "vering-stuur",
+   "label": "Vering & stuur",
+   "icon": "🛞",
+   "items": [
+    {
+     "id": "voorvork",
+     "label": "Voorvork",
+     "items": [
+      {
+       "id": "vork-lekt-olie",
+       "label": "Vork lekt olie",
+       "veilig": true
+      },
+      {
+       "id": "duikt-te-veel",
+       "label": "Duikt te veel"
+      },
+      {
+       "id": "te-hard",
+       "label": "Te hard"
+      }
+     ]
+    },
+    {
+     "id": "achterschokbreker",
+     "label": "Achterschokbreker",
+     "items": [
+      {
+       "id": "lekt",
+       "label": "Lekt"
+      },
+      {
+       "id": "stuitert",
+       "label": "Stuitert"
+      }
+     ]
+    },
+    {
+     "id": "stuur",
+     "label": "Stuur",
+     "items": [
+      {
+       "id": "trekt-naar-n-kant",
+       "label": "Trekt naar één kant"
+      },
+      {
+       "id": "shimmy-wiebelen",
+       "label": "Shimmy / wiebelen"
+      },
+      {
+       "id": "stroef-balhoofd",
+       "label": "Stroef (balhoofd)"
+      }
+     ]
+    },
+    {
+     "id": "afstellen-esa",
+     "label": "Afstellen / ESA",
+     "items": [
+      {
+       "id": "vering-laten-afstellen",
+       "label": "Vering laten afstellen"
+      },
+      {
+       "id": "esa-storing",
+       "label": "ESA-storing"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "koeling",
+   "label": "Koeling",
+   "icon": "🌡️",
+   "items": [
+    {
+     "id": "te-heet",
+     "label": "Te heet",
+     "items": [
+      {
+       "id": "wordt-te-heet",
+       "label": "Wordt te heet"
+      },
+      {
+       "id": "ventilator-slaat-niet-aan",
+       "label": "Ventilator slaat niet aan"
+      },
+      {
+       "id": "luchtgekoeld-heet-in-de-file",
+       "label": "Luchtgekoeld: heet in de file"
+      }
+     ]
+    },
+    {
+     "id": "koelvloeistof-verdwijnt-lekt",
+     "label": "Koelvloeistof verdwijnt / lekt"
+    },
+    {
+     "id": "radiateur",
+     "label": "Radiateur"
+    }
+   ]
+  },
+  {
+   "id": "brandstof",
+   "label": "Brandstof",
+   "icon": "⛽",
+   "items": [
+    {
+     "id": "carburateurs",
+     "label": "Carburateurs",
+     "items": [
+      {
+       "id": "na-winter-stilstand",
+       "label": "Na winter / stilstand"
+      },
+      {
+       "id": "niet-synchroon",
+       "label": "Niet synchroon"
+      },
+      {
+       "id": "choke",
+       "label": "Choke"
+      },
+      {
+       "id": "overloop",
+       "label": "Overloop"
+      }
+     ]
+    },
+    {
+     "id": "injectie",
+     "label": "Injectie",
+     "items": [
+      {
+       "id": "lampje-brandt",
+       "label": "Lampje brandt"
+      },
+      {
+       "id": "hapert",
+       "label": "Hapert"
+      }
+     ]
+    },
+    {
+     "id": "tank-toevoer",
+     "label": "Tank & toevoer",
+     "items": [
+      {
+       "id": "tank-leidingen",
+       "label": "Tank / leidingen"
+      },
+      {
+       "id": "benzinepomp",
+       "label": "Benzinepomp"
+      },
+      {
+       "id": "benzinemeter",
+       "label": "Benzinemeter"
+      },
+      {
+       "id": "filter-of-kraan-verstopt",
+       "label": "Filter of kraan verstopt"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "banden-wielen",
+   "label": "Banden & wielen",
+   "icon": "🛞",
+   "items": [
+    {
+     "id": "banden",
+     "label": "Banden",
+     "items": [
+      {
+       "id": "versleten-vierkant",
+       "label": "Versleten / vierkant"
+      },
+      {
+       "id": "lekke-band",
+       "label": "Lekke band",
+       "veilig": true
+      },
+      {
+       "id": "oud-dot-code",
+       "label": "Oud (DOT-code)"
+      },
+      {
+       "id": "nieuwe-banden-monteren",
+       "label": "Nieuwe banden monteren"
+      }
+     ]
+    },
+    {
+     "id": "wielen",
+     "label": "Wielen",
+     "items": [
+      {
+       "id": "slaan-balans",
+       "label": "Slaan / balans"
+      },
+      {
+       "id": "spaken",
+       "label": "Spaken"
+      },
+      {
+       "id": "wiellagers",
+       "label": "Wiellagers"
+      }
+     ]
+    },
+    {
+     "id": "tpms-storing",
+     "label": "TPMS storing"
+    }
+   ]
+  },
+  {
+   "id": "lekkages",
+   "label": "Lekkages",
+   "icon": "💧",
+   "items": [
+    {
+     "id": "olie",
+     "label": "Olie",
+     "items": [
+      {
+       "id": "onder-de-motor",
+       "label": "Onder de motor"
+      },
+      {
+       "id": "klepdeksel",
+       "label": "Klepdeksel"
+      },
+      {
+       "id": "voorvork",
+       "label": "Voorvork",
+       "veilig": true
+      }
+     ]
+    },
+    {
+     "id": "koelmiddel",
+     "label": "Koelmiddel"
+    },
+    {
+     "id": "benzine",
+     "label": "Benzine"
+    },
+    {
+     "id": "rem-of-koppelingsvloeistof",
+     "label": "Rem- of koppelingsvloeistof",
+     "veilig": true
+    },
+    {
+     "id": "weet-niet-wat-het-is-stuur-een-foto",
+     "label": "Weet niet wat het is (stuur een foto)"
+    }
+   ]
+  },
+  {
+   "id": "onderhoud",
+   "label": "Onderhoud",
+   "icon": "🔧",
+   "items": [
+    {
+     "id": "kleine-beurt",
+     "label": "Kleine beurt"
+    },
+    {
+     "id": "grote-beurt",
+     "label": "Grote beurt"
+    },
+    {
+     "id": "kleppen-stellen",
+     "label": "Kleppen stellen"
+    },
+    {
+     "id": "distributie",
+     "label": "Distributie"
+    },
+    {
+     "id": "seizoensklaar-maken",
+     "label": "Seizoensklaar maken"
+    },
+    {
+     "id": "aankoopkeuring-reisklaar",
+     "label": "Aankoopkeuring / reisklaar"
+    },
+    {
+     "id": "servicelampje-resetten",
+     "label": "Servicelampje resetten"
+    }
+   ]
+  },
+  {
+   "id": "overig",
+   "label": "Overig",
+   "icon": "➕",
+   "items": [
+    {
+     "id": "valschade",
+     "label": "Valschade",
+     "items": [
+      {
+       "id": "cosmetisch",
+       "label": "Cosmetisch"
+      },
+      {
+       "id": "hendels",
+       "label": "Hendels"
+      },
+      {
+       "id": "stuur-scheef",
+       "label": "Stuur scheef"
+      }
+     ]
+    },
+    {
+     "id": "accessoires",
+     "label": "Accessoires"
+    },
+    {
+     "id": "uitlaat",
+     "label": "Uitlaat",
+     "items": [
+      {
+       "id": "te-luid",
+       "label": "Te luid"
+      },
+      {
+       "id": "lekt",
+       "label": "Lekt"
+      },
+      {
+       "id": "montage",
+       "label": "Montage"
+      }
+     ]
+    },
+    {
+     "id": "rijschoolmotor",
+     "label": "Rijschoolmotor"
+    }
+   ]
+  }
+ ],
+ "typisch": [
+  {
+   "match": [
+    "fazer",
+    "fzs600",
+    "fzs 600"
+   ],
+   "chips": [
+    "Carburateurs synchroon / stilstand",
+    "Choke",
+    "Schakelen",
+    "Regelaar (laden)",
+    "Ketting",
+    "Ventilator",
+    "Balhoofd"
+   ]
+  },
+  {
+   "match": [
+    "f650gs",
+    "f 650 gs",
+    "f650 gs"
+   ],
+   "chips": [
+    "Start / accu",
+    "Waterpomp",
+    "Ketting"
+   ]
+  },
+  {
+   "match": [
+    "r1200gs adv",
+    "r 1200 gs adv",
+    "adventure"
+   ],
+   "chips": [
+    "Cardan",
+    "ESA",
+    "ABS",
+    "Kleppen / synchroon",
+    "CAN-bus elektra"
+   ]
+  },
+  {
+   "match": [
+    "m1000r",
+    "m 1000 r"
+   ],
+   "chips": [
+    "Elektronica / rijmodi",
+    "Quickshifter",
+    "Banden",
+    "Ketting",
+    "Remmen",
+    "Accu",
+    "Kleppen"
+   ]
+  },
+  {
+   "match": [
+    "z650",
+    "z 650"
+   ],
+   "chips": [
+    "Koppeling",
+    "Valschade",
+    "Remmen",
+    "Ketting",
+    "Accu",
+    "Banden"
+   ]
+  },
+  {
+   "match": [
+    "pegaso"
+   ],
+   "chips": [
+    "Start",
+    "Waterpomp",
+    "Carburateur",
+    "Ketting"
+   ]
+  },
+  {
+   "match": [
+    "tuono"
+   ],
+   "chips": [
+    "Regelaar (laden)",
+    "Elektra",
+    "Koppeling",
+    "Koeling",
+    "Remmen"
+   ]
+  },
+  {
+   "match": [
+    "cb1000r",
+    "cb 1000 r",
+    "cbr"
+   ],
+   "chips": [
+    "Ketting",
+    "Regelaar (laden)",
+    "Kleppen",
+    "Voorvork"
+   ]
+  },
+  {
+   "match": [
+    "x-adv",
+    "xadv",
+    "x adv"
+   ],
+   "chips": [
+    "DCT",
+    "Smart key",
+    "Accu",
+    "Valschade"
+   ]
+  },
+  {
+   "match": [
+    "gsx-r",
+    "gsxr",
+    "gsf",
+    "bandit"
+   ],
+   "chips": [
+    "Regelaar (bekend zwak punt)",
+    "Carburateurs (GSF)",
+    "Koppeling",
+    "Ketting",
+    "Voorvork",
+    "Remklauwen"
+   ]
+  }
+ ],
+ "voorkant": [
+  {
+   "id": "start",
+   "label": "Hij start niet",
+   "icon": "🔑",
+   "opties": [
+    {
+     "label": "Ik hoor alleen een klik",
+     "cat": "starten-elektra",
+     "tekst": "De startmotor reageert niet of je hoort alleen een klik — vaak de accu of het startrelais."
+    },
+    {
+     "label": "Start traag / accu lijkt leeg",
+     "cat": "starten-elektra",
+     "tekst": "De accu is leeg na stilstand of laadt niet bij tijdens het rijden."
+    },
+    {
+     "label": "Draait wel, maar slaat niet aan",
+     "cat": "starten-elektra",
+     "tekst": "De motor draait rond maar springt niet aan — denk aan brandstof, ontsteking of een beveiliging."
+    },
+    {
+     "label": "Slaat aan en valt meteen af",
+     "cat": "motor-rijden",
+     "tekst": "Hij start kort en valt meteen weer uit."
+    },
+    {
+     "label": "Na de winter / lang stilgestaan",
+     "cat": "brandstof",
+     "tekst": "Vertel kort wat er speelt en stuur desnoods een foto — we helpen je verder."
+    }
+   ]
+  },
+  {
+   "id": "rijdt",
+   "label": "Hij rijdt slecht",
+   "icon": "🏍️",
+   "opties": [
+    {
+     "label": "Te weinig vermogen",
+     "cat": "motor-rijden",
+     "tekst": "Hij komt traag op toeren of mist vermogen."
+    },
+    {
+     "label": "Stottert of houdt in",
+     "cat": "motor-rijden",
+     "tekst": "Hij hapert bij gas geven of tijdens het rijden."
+    },
+    {
+     "label": "Stationair slaat af of schommelt",
+     "cat": "motor-rijden",
+     "tekst": "Hij slaat af in zijn vrij of het toerental schommelt."
+    },
+    {
+     "label": "Wordt te heet",
+     "cat": "koeling",
+     "tekst": "De temperatuur loopt op of de ventilator lijkt niet te doen."
+    },
+    {
+     "label": "Koppeling slipt of schakelen gaat lastig",
+     "cat": "koppeling-versnellingsbak",
+     "tekst": "Schakelen gaat zwaar, hakt, of de koppeling slipt of sleept."
+    },
+    {
+     "label": "Stuur trekt of wiebelt",
+     "cat": "vering-stuur",
+     "tekst": "Vertel kort wat er speelt en stuur desnoods een foto — we helpen je verder."
+    },
+    {
+     "label": "Lampje op het dashboard",
+     "cat": "starten-elektra",
+     "tekst": "Vertel kort wat er speelt en stuur desnoods een foto — we helpen je verder."
+    },
+    {
+     "label": "Stottert bij gas geven",
+     "cat": "motor-rijden",
+     "tekst": "Hij stottert of slikt zich zodra je gas geeft. Vaak zit het in de brandstoftoevoer of de carburateurs. We zoeken het voor je uit."
+    },
+    {
+     "label": "Hapert / valt weg",
+     "cat": "motor-rijden",
+     "tekst": "Hij hapert tijdens het rijden of valt even helemaal weg. We kijken naar brandstof, ontsteking en elektra."
+    },
+    {
+     "label": "Schakelt niet / blijft in neutraal",
+     "cat": "koppeling-versnellingsbak",
+     "tekst": "Hij gaat niet in zijn versnelling of blijft in neutraal hangen. We kijken naar schakeling, koppeling en sensor."
+    }
+   ]
+  },
+  {
+   "id": "geluid",
+   "label": "Geluid of trilling",
+   "icon": "🔊",
+   "opties": [
+    {
+     "label": "Tikken of ratelen uit de motor",
+     "cat": "motor-rijden",
+     "tekst": "Er klinkt een tik of geratel uit het blok of de aandrijving."
+    },
+    {
+     "label": "Ketting ratelt of is slap",
+     "cat": "aandrijving",
+     "tekst": "De ketting of de aandrijving maakt lawaai of ratelt."
+    },
+    {
+     "label": "Remmen piepen of schuren",
+     "cat": "remmen",
+     "veilig": true,
+     "tekst": "De remmen piepen of schuren."
+    },
+    {
+     "label": "Knallen in de uitlaat",
+     "cat": "motor-rijden",
+     "tekst": "Er knalt iets in of uit de uitlaat."
+    },
+    {
+     "label": "Trillingen, nieuw of erger",
+     "cat": "motor-rijden",
+     "tekst": "Er is een nieuwe of ergere trilling."
+    },
+    {
+     "label": "Rook uit de uitlaat",
+     "cat": "motor-rijden",
+     "tekst": "Vertel kort wat er speelt en stuur desnoods een foto — we helpen je verder."
+    },
+    {
+     "label": "Ratelt bij gas geven",
+     "cat": "motor-rijden",
+     "tekst": "Je hoort geratel zodra je gas geeft. We luisteren mee en zoeken uit of het uit het blok, de ketting of de uitlaat komt."
+    },
+    {
+     "label": "Trilt tijdens rijden",
+     "cat": "motor-rijden",
+     "tekst": "De motor trilt tijdens het rijden. We kijken naar banden, wielen, ketting en motorophanging."
+    }
+   ]
+  },
+  {
+   "id": "lekt",
+   "label": "Er lekt iets",
+   "icon": "💧",
+   "opties": [
+    {
+     "label": "Olie",
+     "cat": "lekkages",
+     "tekst": "Er ligt of druppelt olie onder of bij de motor."
+    },
+    {
+     "label": "Benzine",
+     "cat": "brandstof",
+     "veilig": true,
+     "tekst": "Je ruikt of ziet benzine lekken."
+    },
+    {
+     "label": "Koelmiddel",
+     "cat": "koeling",
+     "tekst": "Er lekt of verdwijnt koelvloeistof."
+    },
+    {
+     "label": "Remvloeistof",
+     "cat": "remmen",
+     "veilig": true,
+     "tekst": "Er lekt vloeistof bij rem of koppeling."
+    },
+    {
+     "label": "Voorvork lekt olie",
+     "cat": "vering-stuur",
+     "veilig": true,
+     "tekst": "Er ligt of druppelt olie onder of bij de motor."
+    },
+    {
+     "label": "Weet niet wat het is (stuur een foto)",
+     "cat": "lekkages",
+     "tekst": "Er lekt iets, maar je weet niet wat — stuur een foto mee."
+    }
+   ]
+  },
+  {
+   "id": "banden",
+   "label": "Banden, remmen & ketting",
+   "icon": "🛑",
+   "opties": [
+    {
+     "label": "Lekke band",
+     "cat": "banden-wielen",
+     "veilig": true,
+     "tekst": "Twijfel over profiel, lek of ouderdom, of je wilt nieuwe banden."
+    },
+    {
+     "label": "Banden versleten of oud",
+     "cat": "banden-wielen",
+     "tekst": "Twijfel over profiel, lek of ouderdom, of je wilt nieuwe banden."
+    },
+    {
+     "label": "Remt te zwak of sponzig",
+     "cat": "remmen",
+     "veilig": true,
+     "tekst": "De rem voelt sponzig of te zwak."
+    },
+    {
+     "label": "Rem trilt of blijft hangen",
+     "cat": "remmen",
+     "veilig": true,
+     "tekst": "Het stuur of de motor trilt als je remt."
+    },
+    {
+     "label": "ABS-lampje",
+     "cat": "remmen",
+     "veilig": true,
+     "tekst": "Het ABS-lampje brandt of het ABS voelt vreemd."
+    },
+    {
+     "label": "Nieuwe banden laten monteren",
+     "cat": "banden-wielen",
+     "tekst": "Twijfel over profiel, lek of ouderdom, of je wilt nieuwe banden."
+    },
+    {
+     "label": "Ketting spannen of vervangen",
+     "cat": "aandrijving",
+     "tekst": "Je ketting is te slap, ratelt of is aan vervanging toe. We stellen die af of vervangen ketting en tandwielen als dat nodig is."
+    },
+    {
+     "label": "Remmen schuren",
+     "cat": "remmen",
+     "tekst": "Je hoort of voelt de remmen schuren. Vaak zijn de remblokken op; we controleren blokken en schijven.",
+     "veilig": true
+    }
+   ]
+  },
+  {
+   "id": "onderhoud",
+   "label": "Onderhoud of keuring",
+   "icon": "🔧",
+   "opties": [
+    {
+     "label": "Klein onderhoud",
+     "cat": "onderhoud",
+     "tekst": "Olie- en filterwisseling."
+    },
+    {
+     "label": "Groot onderhoud",
+     "cat": "onderhoud",
+     "tekst": "Uitgebreider onderhoud, zoals filters, bougies en vloeistoffen."
+    },
+    {
+     "label": "Kleppen of distributie",
+     "cat": "onderhoud",
+     "tekst": "Service volgens het boek, bijvoorbeeld kleppen stellen."
+    },
+    {
+     "label": "Seizoensklaar maken",
+     "cat": "onderhoud",
+     "tekst": "Winter- of voorjaarsklaar maken."
+    },
+    {
+     "label": "Aankoopkeuring of reisklaar",
+     "cat": "onderhoud",
+     "tekst": "Check vóór aankoop of voor een lange rit."
+    },
+    {
+     "label": "Servicelampje resetten",
+     "cat": "onderhoud",
+     "tekst": "Het servicelampje resetten."
+    },
+    {
+     "label": "Complete check",
+     "cat": "onderhoud",
+     "tekst": "We lopen je motor helemaal na: remmen, banden, ketting, vloeistoffen, verlichting en elektra. Je hoort vooraf wat we vinden."
+    },
+    {
+     "label": "Rijschool / meerdere motoren",
+     "cat": "onderhoud",
+     "tekst": "Heb je een rijschool of meerdere motoren? App ons, dan plannen we het onderhoud samen in."
+    }
+   ]
+  },
+  {
+   "id": "anders",
+   "label": "Anders / weet ik niet",
+   "icon": "❓",
+   "opties": [
+    {
+     "label": "Verlichting of elektra",
+     "cat": "starten-elektra",
+     "tekst": "Een lamp doet het niet, of er is iets met de elektra. Stuur een foto mee, dan kijken we wat er nodig is."
+    },
+    {
+     "label": "Accessoire of upgrade inbouwen",
+     "cat": "overig",
+     "tekst": "Je wilt iets laten inbouwen, zoals een versnellingsindicator of andere upgrade. Vertel wat je wilt, dan denken we met je mee."
+    },
+    {
+     "label": "Ik heb het onderdeel al",
+     "cat": "overig",
+     "tekst": "Heb je het onderdeel zelf al? App ons welk onderdeel en voor welke motor, dan spreken we af wanneer we het monteren."
+    },
+    {
+     "label": "Valschade",
+     "cat": "overig",
+     "tekst": "Vertel kort wat er speelt en stuur desnoods een foto — we helpen je verder."
+    },
+    {
+     "label": "Accessoires monteren",
+     "cat": "overig",
+     "tekst": "Vertel kort wat er speelt en stuur desnoods een foto — we helpen je verder."
+    },
+    {
+     "label": "Uitlaat",
+     "cat": "overig",
+     "tekst": "Vertel kort wat er speelt en stuur desnoods een foto — we helpen je verder."
+    }
+   ]
+  }
+ ],
+ "tekst_weet_niet": "Vertel kort wat er speelt en stuur desnoods een foto — we helpen je verder.",
+ "tekst_veilig": "Niet mee rijden; bel of app ons.",
+ "label_typisch": "Vaak gezien bij dit type",
+ "label_eigen": "Wat denk je zelf?",
+ "tekst_foto": "Stuur een foto of kort filmpje mee via WhatsApp."
+}

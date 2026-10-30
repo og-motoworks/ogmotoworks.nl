@@ -244,7 +244,7 @@
   }
 
   /* ---------- "Wat wil je laten doen?" (meerkeuze, onthouden op dit apparaat) ---------- */
-  // prijs = indicatie (vanaf-)prijs: alleen nog in het WhatsApp-/Formspree-bericht, NIET meer zichtbaar in de checklist (verzoek Sven, 3 okt 2026).
+  // prijs = indicatie (vanaf-)prijs: alleen nog in het WhatsApp-/Formspree-bericht, NIET meer zichtbaar in de checklist (verzoek 3 okt 2026).
   // Banden: band 'vanaf' (bandenmenu) + €50 montage per band. Onder de lijst staat een link naar /tarieven/.
   var KLUS_KEY = 'ogmw.klus.v1';
   // zin = openingszin als alleen deze dienst is aangevinkt; wat = 'een prijs weten voor ...' (WhatsApp/Formspree)
