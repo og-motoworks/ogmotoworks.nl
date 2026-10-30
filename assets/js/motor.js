@@ -217,7 +217,7 @@
     return api;
   }
 
-  /* ---------- silhouet per soort motor (eigen SVG's, geen foto's) ---------- */
+  /* ---------- silhouet per soort motor (JPG's in /assets/img/motor-types/; SVG's alleen nog voor OGMotor.sil) ---------- */
   // Soort komt uit motoren.json → "types" (naked, sport, toer, adventure, scooter, klassiek); anders generiek.
   var SIL = {
     naked: '<path d="M44 66l52-6 8-9h34l18 8-6 13-15 12-4 19H101l-9-21-34-6z"/><path class="s" d="M187 106l-24-55M150 44l20-4M55 106l50-10"/><circle cx="166" cy="61" r="7"/>',
@@ -232,12 +232,12 @@
           '<path d="M70 50q22-26 64-24l12 14-30 8-12 14-22 0z"/><circle cx="150" cy="24" r="13"/>'
   };
   function motorType(s) { return (s && !s.handmatig && data && data.types && data.types[s.merk] && data.types[s.merk][s.model]) || 'generiek'; }
+  var SIL_TYPES = { naked: 1, sport: 1, toer: 1, adventure: 1, scooter: 1, klassiek: 1, generiek: 1 };
   function silhouette(type) {
-    var small = type === 'scooter', r = small ? 20 : 27, y = small ? 113 : 106, x1 = small ? 60 : 55, x2 = small ? 182 : 187;
-    return '<svg class="mp__sil" viewBox="0 0 240 140" role="img" aria-label="' + T('Silhouet ' + (type === 'generiek' ? 'motor' : type)) + '" data-type="' + type + '">' +
-      '<g class="w"><circle cx="' + x1 + '" cy="' + y + '" r="' + r + '"/><circle cx="' + x2 + '" cy="' + y + '" r="' + r + '"/></g>' +
-      '<g class="b">' + (SIL[type] || SIL.generiek) + '</g><path class="a" d="M8 136h224"/></svg>';
+    var t = SIL_TYPES[type] ? type : 'generiek';
+    return '<img class="mp__sil" src="/assets/img/motor-types/' + t + '.jpg" alt="" role="img" loading="lazy" width="1024" height="1024" aria-label="' + T('Silhouet ' + (type === 'generiek' ? 'motor' : type)) + '" data-type="' + type + '">';
   }
+
   function richLabel(s) {
     return '<span class="mp__brand">' + escapeHtml(s.merk) + '</span> <span class="mp__model">' + escapeHtml(clean(s.model + ' ' + uvTxt(s.uitvoering || ''))) + '</span>' +
            (s.bouwjaar ? ' <span class="mp__year">(' + escapeHtml(yearText(s.bouwjaar)) + ')</span>' : '');
